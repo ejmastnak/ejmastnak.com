@@ -1,0 +1,3 @@
+baseURL = 'http://ejmastnak.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'

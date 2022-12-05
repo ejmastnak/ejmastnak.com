@@ -1,4 +1,4 @@
 baseURL = 'http://ejmastnak.org/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
-disableKinds: ['taxonomy', 'term']
+disableKinds = ['taxonomy', 'term', 'section']

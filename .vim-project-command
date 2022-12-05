@@ -2,12 +2,17 @@
 # $1 should be the path to file from which this script was called
 # relative to the project root.
 
+xdg-open http://localhost:1313/ && hugo server
+exit 0
+
+# For now ignore jumping to specific page
+
 # Check that at least one parameter was passed,
 # presumably first parameter is file name.
 if [[ $# -ge 1 ]]; then
   # Open browser and display file from which script was called
   # Note that markdown extension is replaced with html.
-  xdg-open "http://localhost:4000/${1%.md}.html" && bundle exec jekyll serve
+  xdg-open "http://localhost:1313/${1%.md}.html" && hugo server
 else
-  xdg-open http://localhost:4000/ && bundle exec jekyll serve
+  xdg-open http://localhost:1313/ && hugo server
 fi

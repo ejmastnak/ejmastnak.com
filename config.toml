@@ -2,3 +2,8 @@ baseURL = 'http://ejmastnak.org/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 disableKinds = ['taxonomy', 'term', 'section']
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

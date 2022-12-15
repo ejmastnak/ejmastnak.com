@@ -3,7 +3,7 @@ title: "Home"
 date: 2022-12-04T15:54:22+01:00
 ---
 
-<h1>Welcome</h1>
+<h1 style="text-align: left">Welcome</h1>
 
 You have reached Elijan J. Mastnak's website.
 For the time being, you can either view my [résumé](/) or read through the following:

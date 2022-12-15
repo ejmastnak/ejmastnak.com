@@ -1,50 +1,359 @@
 @import "colors";
 
 body { 
+
   line-height: 1.5;
-  color: #3b4252;
-  background-color: $nord10;
-  font-family: 'Computer Modern Typewriter', serif; 
+  color: $text-color;
+  background-color: $background-color;
+  font-family: 'Computer Modern Sans', sans-serif; 
   font-size: 18px;
+  line-height: 1.5;
+  word-wrap: break-word;
 
   box-sizing: border-box;
   min-width: 200px;
   max-width: 850px;
   margin: 0 auto;
-  padding: 45px;
+  padding: 3rem;
 
-  // Element: tables
-  // -----------------------------------------------
-  table {
-    display: block;
-    width: 100%;
-    overflow: auto;
-    border-spacing: 0;
-    border-collapse: collapse;
-  }
-
-  table th {
-    font-weight: 600;
-  }
-
-  // Note: table border color
-  table td,
-  table th {
-    padding: 6px 13px;
-    border: 1px solid $table-border-color;
-  }
-
-  // Note: table row background color 1
-  table tr {
-    background-color: $table-row-color-light;
-    border-top: 1px solid #c6cbd1;
-  }
-
-  // Note: table row background color 2
-  table tr:nth-child(2n) {
-    background-color: $table-row-color-dark;
-  }
-  // -----------------------------------------------
 }
 
+// Element: tables
+// -----------------------------------------------
+table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+table th {
+  font-weight: 600;
+}
+
+// Note: table border color
+table td,
+table th {
+  padding: 6px 13px;
+  border: 1px solid $table-border-color;
+}
+
+// Note: table row background color 1
+table tr {
+  background-color: $table-row-color-light;
+  border-top: 1px solid #c6cbd1;
+}
+
+// Note: table row background color 2
+table tr:nth-child(2n) {
+  background-color: $table-row-color-dark;
+}
+// -----------------------------------------------
+
+// Element: headers
+// -----------------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 2.00em;
+  padding-bottom: .3em;
+  text-align: center;
+  // border-bottom: 1px solid $border-color;
+}
+
+h2 {
+  font-size: 1.5em;
+  padding-bottom: .3em;
+  border-bottom: 1px solid $border-color;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
+h4 {
+  font-size: 1em;
+}
+
+h5 {
+  font-size: .875em;
+}
+
+h6 {
+  font-size: .85em;
+}
+// -----------------------------------------------
+
+// Element: links
+// -----------------------------------------------
+a {
+  color: $link-color;
+  background-color: initial;
+  text-decoration: none;
+}
+
+a:active,
+a:hover {
+  outline-width: 0;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a code {
+  padding: .2em .4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: $inline-code-background-color;
+  color: $link-color;
+  border-radius: 3px;
+}
+
+a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+// -----------------------------------------------
+
+// Element: details and summary
+// -----------------------------------------------
+details {
+  background-color: $light2;
+  display: block;
+}
+
+summary {
+  display: list-item;
+  padding-bottom: 1ex;
+}
+
+details summary {
+  cursor: pointer;
+  color: $nord10;
+  background-color: $background-color;
+}
+
+details p {
+  padding: 0px 10px;
+}
+// -----------------------------------------------
+
+// Element: input
+// -----------------------------------------------
+input {
+  overflow: visible;
+  font: inherit;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+// -----------------------------------------------
+
+// Element: horizontal rule
+// -----------------------------------------------
+hr {
+  height: .25ex;
+  padding: 0;
+  margin: 16px 0;
+  background-color: $border-color;
+  border: 0;
+}
+// -----------------------------------------------
+
+// Generic margin settings
+// -----------------------------------------------
+blockquote,
+details,
+dl,
+ol,
+p,
+pre,
+table,
+ul {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+// -----------------------------------------------
+
+// Element: block quotes
+// -----------------------------------------------
+blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: $quote-text-color;
+  background-color: $quote-background-color;
+  border-left: .25em solid $border-color;
+}
+// -----------------------------------------------
+
+// Element: lists and list items
+// -----------------------------------------------
+ol,
+ul {
+  padding-left: 1.75em;
+}
+
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: lower-roman;
+}
+
+ol ol ol,
+ol ul ol,
+ul ol ol,
+ul ul ol {
+  list-style-type: lower-alpha;
+}
+
+li {
+  word-wrap: break-all;
+}
+
+li>p {
+  margin-top: 16px;
+}
+
+li+li {
+  margin-top: .25em;
+}
+// -----------------------------------------------
+
+// Element: description list, details, term
+// -----------------------------------------------
+dl {
+  padding: 0;
+}
+
+dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+}
+
+dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+dd {
+  margin-left: 0;
+}
+// -----------------------------------------------
+
+
+// Element: image
+// -----------------------------------------------
+img {
+  max-width: 100%;
+  box-sizing: initial;
+  background-color: #fff;
+  border-style: none;
+}
+
+img[align=right] {
+  padding-left: 20px;
+}
+
+img[align=left] {
+  padding-right: 20px;
+}
+// -----------------------------------------------
+
+// Element: code, highlight, pre, etc
+// -----------------------------------------------
+code,
+pre {
+  font-family: 'Computer Modern Typewriter',monospace;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  word-wrap: normal;
+}
+
+// Note: Text color and background color of inline code
+code {
+  padding: .2em .4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: $inline-code-background-color;
+  color: $inline-code-text-color;
+  border-radius: 3px;
+}
+
+pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.highlight {
+  margin-bottom: 16px;
+}
+
+.highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+// Note: Background color of code blocks
+.highlight pre,
+pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 90%;
+  line-height: 1.45;
+  background-color: $block-code-background-color;
+  border-radius: 3px;
+}
+
+// Note: Text color and background color inside code blocks
+pre code {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: initial;
+  color: $block-code-text-color;
+  border: 0;
+}
+// -----------------------------------------------
+
+// Media queries
+// -----------------------------------------------
+
+@media (max-width: 767px) {
+  body {
+    padding: 15px;
+  }
+}
+
+// -----------------------------------------------
 

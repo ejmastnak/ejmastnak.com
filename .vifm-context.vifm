@@ -1,0 +1,3 @@
+let $VIFM_CONTEXT = expand('%d')
+
+source $VIFM/personal/navigation-contexts/hugo.vifm

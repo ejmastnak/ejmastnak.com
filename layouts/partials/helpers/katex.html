@@ -1,0 +1,22 @@
+{{ $katexcss := resources.Get "katex/katex.min.css" | fingerprint "sha512" }}
+{{ $katexjs := resources.Get "katex/katex.min.js" | fingerprint "sha512" }}
+{{ $katexautorenderjs := resources.Get "katex/auto-render.min.js" | fingerprint "sha512" }}
+
+<link rel="stylesheet" href="{{ $katexcss.RelPermalink }}" integrity="{{ $katexcss.Data.Integrity }}">
+
+<script defer src="{{ $katexjs.RelPermalink }}" integrity="{{ $katexjs.Data.Integrity }}"></script>
+
+<script defer src="{{ $katexautorenderjs.RelPermalink }}" integrity="{{ $katexautorenderjs.Data.Integrity }}"></script>
+
+<!-- For inline equations -->
+<!-- From https://katex.org/docs/autorender.html -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false}
+            ]
+        });
+    });
+</script>

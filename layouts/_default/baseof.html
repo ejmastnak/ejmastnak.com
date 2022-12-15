@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" charset="utf-8">
-<head>
-</head>
-<body>
-	{{ block "main" . }}
-	{{ end }}
-</body>
+  <head>
+
+    {{ $options := (dict "outputStyle" "compressed") }}
+
+    <!-- CSS -->
+    <!-- ------------------------------------------------------- -->
+    {{ $css_cm := resources.Get "scss/cm.scss" | resources.ToCSS $options }}
+    {{ $css_main := resources.Get "scss/main.scss" | resources.ToCSS $options }}
+    {{ $css_nord := resources.Get "scss/nord-syntax.scss" | resources.ToCSS $options }}
+    {{ $css_bundle := slice $css_cm $css_nord $css_main | resources.Concat "/css/vendor.css" | minify }}
+    <link rel="stylesheet" href="{{ $css_bundle.RelPermalink }}" >
+    <!-- ------------------------------------------------------- -->
+
+    <!-- FAVICON FILES -->
+    <!-- ------------------------------------------------------- -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <!-- ------------------------------------------------------- -->
+
+    <!-- Load KaTeX on math pages -->
+    {{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
+
+  </head>
+  <body>
+    {{ block "main" . }}
+    {{ end }}
+  </body>
 </html>

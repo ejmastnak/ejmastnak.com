@@ -1,0 +1,12 @@
+{{ $date := .Page.Date.Format "02.01.2006" }}
+{{ $lastmod := .Page.Lastmod.Format "02.01.2006" }}
+
+<span>
+  Published on {{ $date }}
+</span>
+
+{{ if (time .Page.Lastmod).After (time .Page.Date) }}
+<span>
+  <br>Updated on {{ $lastmod }}
+</span>
+{{ end }}

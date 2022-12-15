@@ -1,0 +1,5 @@
+{{ $image := .Page.Resources.GetMatch ( .Get `src` ) }}
+{{ $image := $image.Resize ( .Get `resize` )  }}
+{{ with $image }}
+  <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}">
+{{ end }}

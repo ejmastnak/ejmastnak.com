@@ -1,9 +1,13 @@
-baseURL = 'http://ejmastnak.org/'
+baseURL = 'http://ejmastnak.com/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'ejmastnak'
 disableKinds = ['taxonomy', 'term', 'section']
 
 [markup]
+  [markup.highlight]
+      noClasses = false
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+enableGitInfo = true

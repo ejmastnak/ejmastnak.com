@@ -1,0 +1,50 @@
+@import "colors";
+
+body { 
+  line-height: 1.5;
+  color: #3b4252;
+  background-color: $nord10;
+  font-family: 'Computer Modern Typewriter', serif; 
+  font-size: 18px;
+
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 45px;
+
+  // Element: tables
+  // -----------------------------------------------
+  table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+
+  table th {
+    font-weight: 600;
+  }
+
+  // Note: table border color
+  table td,
+  table th {
+    padding: 6px 13px;
+    border: 1px solid $table-border-color;
+  }
+
+  // Note: table row background color 1
+  table tr {
+    background-color: $table-row-color-light;
+    border-top: 1px solid #c6cbd1;
+  }
+
+  // Note: table row background color 2
+  table tr:nth-child(2n) {
+    background-color: $table-row-color-dark;
+  }
+  // -----------------------------------------------
+}
+
+

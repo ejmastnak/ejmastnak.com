@@ -1,0 +1,83 @@
+@import "colors";
+
+.chroma {
+    .err { color: $nord11; }   /* Error */
+    .x   { color: $nord4; }    /* Other */
+    .cl  { }		       /* CodeLine */
+    .k   { color: $nord9; }    /* Keyword */
+    .kc  { color: $nord11; }   /* Keyword.Constant */
+    .kd  { color: $nord9; }    /* Keyword.Declaration */
+    .kn  { color: $nord9; }    /* Keyword.Namespace */
+    .kp  { color: $nord9; }    /* Keyword.Pseudo */
+    .kr  { color: $nord10; }   /* Keyword.Reserved */
+    .kt  { color: $nord9; }    /* Keyword.Type */
+    .n   { color: $nord4; }    /* Name */
+    .na  { color: $nord7; }    /* Name.Attribute */
+    .nb  { color: $nord9; }    /* Name.Builtin */
+    .bp  { color: $nord9; }    /* Name.Builtin.Pseudo */
+    .nc  { color: $nord7; }    /* Name.Class */
+    .no  { color: $nord7; }    /* Name.Constant */
+    .nd  { color: $nord7; }    /* Name.Decorator */
+    .ni  { color: $nord12; }   /* Name.Entity */
+    .ne  { color: $nord12; }   /* Name.Exception */
+    .nf  { color: $nord8; }    /* Name.Function */
+    .py  { color: $nord9; }    /* Name.Property */
+    .nl  { color: $nord8; }    /* Name.Label */
+    .nn  { color: $nord8; }    /* Name.Namespace */
+    .nx  { color: $nord8; }    /* Name.Other */
+    .nt  { color: $nord9; }    /* Name.Tag */
+    .nv  { color: $nord4; }    /* Name.Variable */
+    .vc  { color: $nord4; }    /* Name.Variable.Class */
+    .vg  { color: $nord4; }    /* Name.Variable.Global */
+    .vi  { color: $nord4; }    /* Name.Variable.Instance */
+    .l   { color: $nord9; }    /* Literal */
+    .ld  { color: $nord9; }    /* Literal.Date */
+    .s   { color: $nord14; }   /* Literal.String */
+    .sb  { color: $nord14; }   /* Literal.String.Backtick */
+    .sc  { color: $nord14; }   /* Literal.String.Char */
+    .sd  { color: $nord14; }   /* Literal.String.Doc */
+    .s2  { color: $nord14; }   /* Literal.String.Double */
+    .se  { color: $nord12; }   /* Literal.String.Escape */
+    .sh  { color: $nord14; }   /* Literal.String.Heredoc */
+    .si  { color: $nord14; }   /* Literal.String.Interpol */
+    .sx  { color: $nord14; }   /* Literal.String.Other */
+    .sr  { color: $nord13; }   /* Literal.String.Regex */
+    .s1  { color: $nord14; }   /* Literal.String.Single */
+    .ss  { color: $nord14; }   /* Literal.String.Symbol */
+    .m   { color: $nord15; }   /* Literal.Number */
+    .mf  { color: $nord15; }   /* Literal.Number.Float */
+    .mh  { color: $nord15; }   /* Literal.Number.Hex */
+    .mi  { color: $nord15; }   /* Literal.Number.Integer */
+    .il  { color: $nord15; }   /* Literal.Number.Integer.Long */
+    .mo  { color: $nord15; }   /* Literal.Number.Oct */
+    .mx  { color: $nord15; }   /* Literal.Number.Hex */
+    .mb  { color: $nord15; }   /* Literal.Number.Bin */
+    .o   { color: $nord4; }    /* Operator */
+    .ow  { color: $nord9; }    /* Operator.Word */
+    .p   { color: $nord4; }    /* Punctuation */
+    .cm  { color: $nord3_bright; }    /* Comment.Multiline */
+    .cp  { color: $nord10; }   /* Comment.Preproc */
+    .c1  { color: $nord3_bright; }    /* Comment.Single */
+    .cs  { color: $nord3_bright; }    /* Comment.Special */
+    .g   { color: $nord4; }    /* Generic */
+    .gd  { color: $nord13; }   /* Generic.Deleted */
+    .gr  { color: $nord11; }   /* Generic.Error */
+    .gh  { color: $nord8; }    /* Generic.Heading */
+    .gi  { color: $nord4; }    /* Generic.Inserted */
+    .go  { color: $nord4; }    /* Generic.Output */
+    .gp  { color: $nord4; }    /* Generic.Prompt */
+    .gu  { color: $nord9; }    /* Generic.Subheading */
+    .gt  { color: $nord13; }   /* Generic.Traceback */
+    .gl  { color: $nord2; }    /* Generic.Lineno */
+
+    .c  { color: $nord3_bright; }    /* Comment */
+    .w  { background-color: $nord11; }          /* Text.Whitespace */
+    .gs { color: $nord4; font-weight: bold; }   /* Generic.Strong */
+    .ge { color: $nord4; font-style: italic; }  /* Generic.Emph */
+
+    // My custom: "Generic Attention"
+    .ga { color: $nord5; background-color: $nord9; }  /* Generic.Attention */
+}
+
+.bg { color: $nord5; background-color: $nord0; }     /* Background */ 
+.chroma { color: $nord5; background-color: $nord0; } /* PreWrapper */ 

@@ -1,6 +1,6 @@
 ---
 title: "Home"
-date: 2022-12-04T15:54:22+01:00
+date: 2022-12-04
 ---
 
 <h1 style="text-align: left">Welcome</h1>

@@ -1,0 +1,59 @@
+@import "colors";
+
+// A combination of https://www.w3schools.com/css/css_navbar_horizontal.asp
+// and the navbar used in the Vim-LaTeX series
+
+.topnav {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.topnav ul {
+  margin: 0;
+  padding: 0;
+  padding-left: 0;
+  border: 0;
+  background-color: $light0;
+  list-style-type: none;
+  overflow: auto;
+
+  display: flex;
+  align-items: baseline;
+  justify-content:start;
+  border: 1px solid $nord0;
+  white-space: nowrap;
+}
+
+.topnav li {
+  float: left;
+}
+
+.topnav li a {
+  display: block;
+  color: $text-color;
+  text-align: center;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+.topnav li a:hover {
+  color: $link-color;
+}
+
+@media (max-width: 767px) {
+  .topnav li a {
+    padding: 8px 10px;
+    }
+}
+
+.topnav hr {
+  height: 0;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid $nord3;
+}

@@ -1,0 +1,17 @@
+{{ $image := .Page.Resources.GetMatch ( .Get `src` ) }}
+{{ $image := $image.Resize ( .Get `resize` )  }}
+{{ with $image }}
+
+<div style="
+  display: flex;
+  justify-content: center;
+  width: 100%;"
+>
+  <img
+    src="{{ .RelPermalink }}"
+    width="{{ .Width }}"
+    height="{{ .Height }}"
+  >
+</div>
+
+{{ end }}

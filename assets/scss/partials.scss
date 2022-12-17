@@ -1,8 +1,12 @@
 @import "colors";
 
-// A combination of https://www.w3schools.com/css/css_navbar_horizontal.asp
-// and the navbar used in the Vim-LaTeX series
+// Styling for custom partials and shortcodes, to avoid cluttering the
+// main.scss file
 
+// Top navigation bar
+// A combination of https://www.w3schools.com/css/css_navbar_horizontal.asp
+// and the navbar used in the Vim-LaTeX series.
+// -------------------------------------------------------------- //
 .topnav {
   width: 100%;
   margin: 0 auto;
@@ -57,3 +61,4 @@
   border: 0;
   border-bottom: 1px solid $nord3;
 }
+// -------------------------------------------------------------- //

@@ -8,9 +8,9 @@
     <!-- ------------------------------------------------------- -->
     {{ $css_cm := resources.Get "scss/cm.scss" | resources.ToCSS $options }}
     {{ $css_main := resources.Get "scss/main.scss" | resources.ToCSS $options }}
-    {{ $css_topnav := resources.Get "scss/topnav.scss" | resources.ToCSS $options }}
+    {{ $css_partials := resources.Get "scss/partials.scss" | resources.ToCSS $options }}
     {{ $css_nord := resources.Get "scss/nord-syntax.scss" | resources.ToCSS $options }}
-    {{ $css_bundle := slice $css_cm $css_nord $css_main $css_topnav | resources.Concat "/css/vendor.css" | minify }}
+    {{ $css_bundle := slice $css_cm $css_nord $css_main $css_partials | resources.Concat "/css/vendor.css" | minify }}
     <link rel="stylesheet" href="{{ $css_bundle.RelPermalink }}" >
     <!-- ------------------------------------------------------- -->
 

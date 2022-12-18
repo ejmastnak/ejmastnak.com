@@ -3,6 +3,18 @@
 // Styling for custom partials and shortcodes, to avoid cluttering the
 // main.scss file
 
+.arch-notes-header {
+  text-align: center;
+  margin-bottom: 1.0em;
+}
+
+.arch-notes-footer {
+  text-align: center;
+  font-style: italic;
+  margin: 0 auto;
+  margin-top: 1.5em;
+}
+
 // Top navigation bar
 // A combination of https://www.w3schools.com/css/css_navbar_horizontal.asp
 // and the navbar used in the Vim-LaTeX series.

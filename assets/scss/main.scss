@@ -1,10 +1,14 @@
 @import "colors";
 
+html {
+
+  color: $text-color;
+  background-color: $background-color;
+}
+
 body { 
 
   line-height: 1.5;
-  color: $text-color;
-  background-color: $background-color;
   font-family: 'Computer Modern Sans', sans-serif; 
   font-size: 18px;
   line-height: 1.5;

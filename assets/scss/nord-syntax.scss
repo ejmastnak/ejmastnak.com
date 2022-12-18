@@ -26,7 +26,7 @@
     .nn  { color: $nord8; }    /* Name.Namespace */
     .nx  { color: $nord8; }    /* Name.Other */
     .nt  { color: $nord9; }    /* Name.Tag */
-    .nv  { color: $nord4; }    /* Name.Variable */
+    .nv  { color: $nord4; font-weight: bold; }    /* Name.Variable */
     .vc  { color: $nord4; }    /* Name.Variable.Class */
     .vg  { color: $nord4; }    /* Name.Variable.Global */
     .vi  { color: $nord4; }    /* Name.Variable.Instance */
@@ -71,7 +71,7 @@
     .gl  { color: $nord2; }    /* Generic.Lineno */
 
     .c  { color: $nord3_bright; }    /* Comment */
-    .w  { background-color: $nord11; }          /* Text.Whitespace */
+    .w  {}          /* Text.Whitespace */
     .gs { color: $nord4; font-weight: bold; }   /* Generic.Strong */
     .ge { color: $nord4; font-style: italic; }  /* Generic.Emph */
 

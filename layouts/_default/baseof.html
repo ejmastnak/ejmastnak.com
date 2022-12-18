@@ -2,6 +2,10 @@
 <html lang="en" charset="utf-8">
   <head>
 
+    <title>
+      {{ .Page.Title }} | ejmastnak
+    </title>
+
     {{ $options := (dict "outputStyle" "compressed") }}
 
     <!-- CSS -->
@@ -12,18 +16,18 @@
     {{ $css_nord := resources.Get "scss/nord-syntax.scss" | resources.ToCSS $options }}
     {{ $css_bundle := slice $css_cm $css_nord $css_main $css_partials | resources.Concat "/css/vendor.css" | minify }}
     <link rel="stylesheet" href="{{ $css_bundle.RelPermalink }}" >
-    <!-- ------------------------------------------------------- -->
+      <!-- ------------------------------------------------------- -->
 
-    <!-- FAVICON FILES -->
-    <!-- ------------------------------------------------------- -->
+      <!-- FAVICON FILES -->
+      <!-- ------------------------------------------------------- -->
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
-    <!-- ------------------------------------------------------- -->
+      <!-- ------------------------------------------------------- -->
 
-    <!-- Load KaTeX on math pages -->
-    {{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
+      <!-- Load KaTeX on math pages -->
+      {{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
 
   </head>
   <body>

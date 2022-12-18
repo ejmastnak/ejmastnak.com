@@ -23,21 +23,7 @@ In practice, NM provides "set it and forget it" functionality---after connecting
 - Also consider [ArchWiki: NetworkManager](https://wiki.archlinux.org/title/NetworkManager), but the coverage of relevant topics is somewhat patchy at the time of writing.
 - [Arch Wiki: Network Configuration](https://wiki.archlinux.org/title/Network_configuration) has useful general networking information for Arch Linux
 
-
-## Contents
-<!-- vim-markdown-toc GFM -->
-
-* [Installation](#installation)
-  * [Use `systemd-resolved` for DNS resolution](#use-systemd-resolved-for-dns-resolution)
-  * [Disable currently running network daemons (if needed)](#disable-currently-running-network-daemons-if-needed)
-  * [Start NetworkManager](#start-networkmanager)
-* [Hello world network connection](#hello-world-network-connection)
-  * [Check network interfaces](#check-network-interfaces)
-  * [Ethernet](#ethernet)
-  * [Wi-Fi](#wi-fi)
-* [Checking basic network status](#checking-basic-network-status)
-
-<!-- vim-markdown-toc -->
+{{< toc level="2" title="Contents of this article" >}}
 
 ## Installation
 

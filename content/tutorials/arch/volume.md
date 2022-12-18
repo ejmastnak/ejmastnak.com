@@ -22,25 +22,9 @@ If your volume keys already work (perhaps your window manager or desktop environ
 
 <!-- (Note: this page closely parallels my guide to [controlling a laptop's backlight brightness]({{< relref "/tutorials/arch/backlight" >}}), since both rely `acpid` to set key bindings.) -->
 
-## Procedure
+{{< toc level="2" title="Contents of this article" >}}
 
 There are two independent tasks in this article: (1) learning the shell commands to control volume and (2) binding these commands to keyboard keys using `xbindkeys`.
-
-<!-- vim-markdown-toc GFM -->
-
-* [Adjust volume from a shell](#adjust-volume-from-a-shell)
-  * [Kernel-level drivers and sound servers](#kernel-level-drivers-and-sound-servers)
-  * [Your choices](#your-choices)
-  * [Control volume with ALSA and `amixer`](#control-volume-with-alsa-and-amixer)
-  * [Control volume with PulseAudio and `pactl`](#control-volume-with-pulseaudio-and-pactl)
-  * [Shell script for volume control](#shell-script-for-volume-control)
-* [Convenient key mappings for volume control](#convenient-key-mappings-for-volume-control)
-    * [Detect key symbols](#detect-key-symbols)
-    * [Define key bindings in `.xbindkeysrc`](#define-key-bindings-in-xbindkeysrc)
-    * [Activate key bindings](#activate-key-bindings)
-* [Bonus: Cap PulseAudio volume at 100%](#bonus-cap-pulseaudio-volume-at-100)
-
-<!-- vim-markdown-toc -->
 
 ## Adjust volume from a shell
 
@@ -197,7 +181,7 @@ Following the recipe from the [media player control article]({{< relref "/tutori
 1. The program you want to run when the key is pressed (e.g. `volume.sh raise` to increase volume using the `volume.sh` script).
    You can then use `xbindkeys` to bind the program to the keysym.
 
-#### Detect key symbols
+### Detect key symbols
 
 You can identify X11 keysyms with the `xev` (X events) utility:
 open a shell and run `xev`, type the key you wish to bind, and record the keysym.
@@ -226,7 +210,7 @@ I've highlighted the keysyms.
 The keysyms for the mute, lower-volume, and raise-volume keys are `XF86AudioMute`, `XF86AudioLowerVolume`, `XF86AudioRaiseVolume`---they'll very likely be the same on your system, too.
 You have to do a bit of digging through `xev`'s verbose output here; alternatively you could run `xev | grep keysym` to only print the keysym line.
 
-#### Define key bindings in `.xbindkeysrc`
+### Define key bindings in `.xbindkeysrc`
 
 It's easy: first (if needed) create the `~/.xbindkeysrc` config file; you can do this manually or run:
 
@@ -266,7 +250,7 @@ These key bindings will run the shell script `volume.sh` (with arguments dependi
 
 For more information and examples using `xbindkeys` see [ArchWiki: Xbindkeys](https://wiki.archlinux.org/title/Xbindkeys).
 
-#### Activate key bindings
+### Activate key bindings
 
 1. Run `xbindkeys` in a shell to activate the just-defined key bindings.
 

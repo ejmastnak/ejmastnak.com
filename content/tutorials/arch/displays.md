@@ -25,17 +25,7 @@ You should first [set up X]({{< relref "tutorials/arch/startx" >}}) if you have 
 - [ArchWiki: xrandr](https://wiki.archlinux.org/title/xrandr): the de-facto tool for controlling displays on the X Window System.
 - [GitHub: autorandr](https://github.com/phillipberndt/autorandr): a well-received, automated alternative to `xrandr` (not covered here).
 
-## In this article
-
-<!-- vim-markdown-toc GFM -->
-
-* [Explanation of what's involved](#explanation-of-whats-involved)
-* [Identifying video output names](#identifying-video-output-names)
-* [Toggling displays](#toggling-displays)
-* [Example single-monitor workflow](#example-single-monitor-workflow)
-* [Example script for toggling displays](#example-script-for-toggling-displays)
-
-<!-- vim-markdown-toc -->
+{{< toc level="2" title="Contents of this article" >}}
 
 First make sure you have the [`xorg-xrandr` package](https://archlinux.org/packages/extra/x86_64/xorg-xrandr/) installed (note that `xorg-xrandr` ships with the commonly-installed `xorg` group, so you might already have it on your system).
 We'll need this package to access the `xrandr` utility.

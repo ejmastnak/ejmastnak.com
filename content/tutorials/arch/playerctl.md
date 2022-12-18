@@ -18,7 +18,7 @@ Best served with this series's [volume control guide]({{< relref "/tutorials/arc
 - [The freedesktop.org MPRIS specification](https://specifications.freedesktop.org/mpris-spec/latest/)
 - [ArchWiki: Xbindkeys](https://wiki.archlinux.org/title/Xbindkeys)
 
-### What's involved
+## What's involved
 
 There are three main players in the game here:
 
@@ -37,19 +37,6 @@ There are three main players in the game here:
 ## Procedure
 
 There are two independent tasks in this article: (1) learning the commands to control `playerctl` and (2) binding these commands to keyboard keys using `xbindkeys`.
-
-<!-- vim-markdown-toc GFM -->
-
-* [Using `playerctl`](#using-playerctl)
-  * [Hello world](#hello-world)
-  * [Multiple media players](#multiple-media-players)
-  * [Using `playerctl` with `mpv`](#using-playerctl-with-mpv)
-* [Key bindings for media controls](#key-bindings-for-media-controls)
-  * [Detect key symbols](#detect-key-symbols)
-  * [Define key bindings in `.xbindkeysrc`](#define-key-bindings-in-xbindkeysrc)
-  * [Activate key bindings](#activate-key-bindings)
-
-<!-- vim-markdown-toc -->
 
 ### Using `playerctl`
 

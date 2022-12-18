@@ -24,25 +24,13 @@ Most anything associated with modern desktop computing requires a window system.
 - [ArchWiki: Window manager](https://wiki.archlinux.org/title/Window_manager): manages appearance of windows within a window system
 - [ArchWiki: Desktop environment](https://wiki.archlinux.org/title/desktop_environment): a bundle of desktop-related software that includes a window manager
 
-## Contents
-<!-- vim-markdown-toc GFM -->
-
-* [What's involved](#whats-involved)
-  * [Making sense of all the Xs](#making-sense-of-all-the-xs)
-  * [Choices: Standalone window manager vs. desktop environment](#choices-standalone-window-manager-vs-desktop-environment)
-  * [Choices: Display manager or not?](#choices-display-manager-or-not)
-* [Installing Xorg and i3](#installing-xorg-and-i3)
-  * [Installation](#installation)
-  * [Starting X](#starting-x)
-  * [Next steps](#next-steps)
-
-<!-- vim-markdown-toc -->
+{{< toc level="2" title="Contents of this article" >}}
 
 ## What's involved
 
 ### Making sense of all the Xs
 
-**Note:** Feel free to [skip to installation](#installing-xorg-and-i3).
+**Note:** Feel free to [skip to installation]({{< relref "#install" >}}).
 The technical details in this section don't matter much once you actually begin using a window system, and you usually won't think about them or need them from the perspective of an everyday user.
 
 Confusingly, the X Window System, display server, and display server communication protocol are all called X in everyday usage.
@@ -122,7 +110,7 @@ You can also configure most DMs to start Xorg automatically after logging in.
 My suggestion for beginners: log in using the text-based console and leave a display manager for later---you'll have fewer things to set up and potentially misconfigure.
 You can always install a DM after setting up your window manager and/or desktop environment.
 
-## Installing Xorg and i3
+## Installing Xorg and i3 {#install}
 
 Here's the minimal window setup I'll cover on this page:
 

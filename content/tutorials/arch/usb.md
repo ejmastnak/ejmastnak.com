@@ -18,18 +18,7 @@ date: 2022-04-29
 - [ArchWiki: File systems](https://wiki.archlinux.org/title/file_systems)
 - The `man` pages for `lsblk`, `mount`, `umount`, `udisksctl`, and `udisks`.
 
-### Contents
-
-<!-- vim-markdown-toc GFM -->
-
-* [Mounting a USB drive](#mounting-a-usb-drive)
-  * [Detect the USB drive's block device name](#detect-the-usb-drives-block-device-name)
-  * [Mount the USB drive](#mount-the-usb-drive)
-* [Ejecting a USB drive](#ejecting-a-usb-drive)
-* [Modern alternative: udisks2](#modern-alternative-udisks2)
-* [Automounting with udiskie](#automounting-with-udiskie)
-
-<!-- vim-markdown-toc -->
+{{< toc level="2" title="Contents of this article" >}}
 
 **Drives must be mounted:** to interact with the files on a USB drive from your computer, you have to mount the file system stored on the USB drive's data partition onto a dedicated *mount point* on your computer's file system (Windows/macOS and most desktop environments usually do this for you).
 
@@ -96,7 +85,7 @@ sudo mkdir /mnt/usbdrive            # create a mount point (if needed)
 sudo mount /dev/sdxN /mnt/usbdrive  # mount the drive's data partition
 ```
 
-You can now [jump to ejecting the USB drive](#ejecting-a-usb-drive).
+You can now [jump to ejecting the USB drive]({{< relref "#eject" >}}).
 
 In more detail: a mount point is a location on one file system from which you interact with a second file system;
 in our context, a mount point is the directory on your computer's file system from which you can interact with the files on the USB drive's file system.
@@ -132,7 +121,7 @@ Check the USB drive's file system (use e.g. `lsblk -f` and check the `FSTYPE` co
 Most commonly you'll run into problems with drives using Microsoft's [NTFS file system](https://en.wikipedia.org/wiki/NTFS) and will need to install the [`ntfs-3g` package](https://archlinux.org/packages/extra/x86_64/ntfs-3g/).
 {{< /details >}}
 
-## Ejecting a USB drive
+## Ejecting a USB drive {#eject}
 
 Safely ejecting a USB drive requires two steps:
 (1) unmounting the drive's data partition and 
@@ -154,7 +143,7 @@ umount /dev/sdxN      # by specifying the device partition (not preferred)
 You can check the drive is unmounted using `lsblk`---the `MOUNTPOINTS` column for the drive's data partition entry should now be blank.
 
 At this point it's probably safe to remove the drive, but it's best practice to first **power off the drive**.
-This is probably easier with `udisksctl`'s `power-off` command, described in the [next section](#modern-alternative-udisks2).
+This is probably easier with `udisksctl`'s `power-off` command, described in the [next section]({{< relref "#udisk2" >}}).
 But without third-party tools, you can power off a drive by writing directly to the USB drive's device files [(more info on Linux device files)](https://wiki.archlinux.org/title/Device_file) using root privileges:
 
 ```bash
@@ -170,9 +159,7 @@ Note that you target the root drive device (e.g. `sdb`) and not the data partiti
 Note that you can't just `sudo echo 1 >` as a regular user because the sudo privileges aren't transfered through the `>` redirection operation, but you can get around this with `tee`.
 For more discussion of the power-off line see [this StackExchange answer](https://unix.stackexchange.com/a/43450) and/or [ArchWiki: USB storage/Device not shutting down after unmounting all partitions](https://wiki.archlinux.org/title/USB_storage_devices#Device_not_shutting_down_after_unmounting_all_partitions).
 
-
-
-## Modern alternative: udisks2
+## Modern alternative: udisks2 {#udisk2}
 
 At this point the article has covered everything you need to know to interact with USB drives.
 You can safely stop reading.
@@ -221,7 +208,7 @@ A few comments:
 If you don't mind manually issuing `mount` commands to mount USB drives, this article has nothing more for you---feel free to stop reading. 
 
 And for those that find manually calling `mount` to be tedious, you can combine `udisks2` with a program that detects when you physically plug in a USB drive and then mounts the drive for you---this is called *automounting*, and basically saves you a manually-typed `mount` command.
-(You should be familiar with the [`udisks2` section](#modern-alternative-udisks2) first.)
+(You should be familiar with the [`udisks2` section]({{< relref "#udisk2" >}}) first.)
 
 <!-- Automounting: run a program that listens for USB drives being plugged in. -->
 <!-- When the drive is plugged in, mount it. -->
@@ -238,6 +225,6 @@ Here's how to automount USB drives with `udiskie`:
 - As long as `udiskie` is running, it will detect plugged-in drives and automount them using using `udisksctl` (i.e. `udiskie` mounts to `/run/media/$USER/$DEVICE_UUID` just like `udisksctl`).
   You'll probably also get some desktop notifications if you [have a notification server running]({{< relref "tutorials/arch/battery-alert" >}}).
 
-- Interact with and eject the drive as described earlier in the [`udisks2` section](#modern-alternative-udisks2), i.e. you still manually eject the drive with `umount` and `power-off`.
+- Interact with and eject the drive as described earlier in the [`udisks2` section]({{< relref "#udisk2" >}}), i.e. you still manually eject the drive with `umount` and `power-off`.
 
 {{< arch/arch-notes-footer >}}

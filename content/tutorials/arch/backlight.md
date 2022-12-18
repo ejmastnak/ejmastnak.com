@@ -21,25 +21,7 @@ You're welcome to read this anyway, and perhaps you'll learn something useful ab
 - [ArchWiki: Backlight](https://wiki.archlinux.org/title/backlight)
 - [ArchWiki: acpid](https://wiki.archlinux.org/title/Acpid)
 
-## Contents
-<!-- vim-markdown-toc GFM -->
-
-* [Adjust backlight brightness from a shell](#adjust-backlight-brightness-from-a-shell)
-  * [Identify your backlight interface directory](#identify-your-backlight-interface-directory)
-  * [Using backlight brightness files](#using-backlight-brightness-files)
-  * [Allow regular users to modify backlight brightness](#allow-regular-users-to-modify-backlight-brightness)
-    * [Add users to the `video` group](#add-users-to-the-video-group)
-    * [Create a `udev` rule](#create-a-udev-rule)
-* [Convenient key mappings for backlight control](#convenient-key-mappings-for-backlight-control)
-  * [Installation](#installation)
-  * [The ACPI event workflow](#the-acpi-event-workflow)
-  * [Key bindings and event handler for backlight control](#key-bindings-and-event-handler-for-backlight-control)
-    * [Identify event names](#identify-event-names)
-    * [Create an event handler script](#create-an-event-handler-script)
-    * [Create event-matching files](#create-event-matching-files)
-* [Troubleshooting: fix failed loading of `acpi_video0` with dual graphics](#troubleshooting-fix-failed-loading-of-acpi_video0-with-dual-graphics)
-
-<!-- vim-markdown-toc -->
+{{< toc level="2" title="Contents of this article" >}}
 
 ## Adjust backlight brightness from a shell
 

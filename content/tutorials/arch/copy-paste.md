@@ -22,7 +22,7 @@ You should first [set up X]({{< relref "tutorials/arch/startx" >}}) if you have 
 
 <!-- For Vim clipboard configuration, see [this StackExchange answer](https://vi.stackexchange.com/a/96). -->
 
-## An X clipboard crash course
+## An X clipboard crash course {#x-clipboard-crash-course}
 
 (To help new users coming from Windows and macOS; feel free to skip.)
 
@@ -96,7 +96,7 @@ Here are the tools you need:
 Goal: Make Vim/Neovim's yank, delete, and change operations copy into system `CLIPBOARD`, and make Neovim's put (paste) operation paste from the `CLIPBOARD`.
 Example use case: copy a URL in a web browser with `<Ctrl>-C`, then paste the URL into Neovim with the default `p` action.
 
-### Requirements
+### Requirements {#requirements}
 
 Note: Vim and Neovim have different clipboard interfaces.
 Here's what a typical user needs to know:
@@ -132,7 +132,7 @@ Here's what a typical user needs to know:
 
 Suggested prerequisite knowledge:
 
-- The difference between X's `CLIPBOARD` and `PRIMARY` selections (scroll up and read [An X11 clipboard crash course](#an-x-clipboard-crash-course) for a refresher.)
+- The difference between X's `CLIPBOARD` and `PRIMARY` selections (scroll up and read [An X11 clipboard crash course]({{< relref "#x-clipboard-crash-course" >}}) for a refresher.)
 - What Vim registers are and how to use them---a sentence like "use `"ayiw` to yank a word into the `a` register"  or "use `"bp` to paste the contents of the `b` register" should make sense to you.
   If needed, I suggest taking a 20-minute detour and learning about registers; a good place to start might be Brian Storti's [Vim registers: The basics and beyond](https://www.brianstorti.com/vim-registers/), then moving on to the official documentation in `:help registers`
 
@@ -156,7 +156,7 @@ For documentation of `unnamed` and `unnamedplus` see `:help 'clipboard'` (make s
 For more Vim-related copy/paste documentation than a typical user would ever want to read, check out `:help 'clipboard'`, `:help registers`, `:help quoteplus`, and `:help quotestar`.
 
 Reminder: Neovim users will need a clipboard provider (e.g. `xclip`) and Vim users will need a Vim with the `+X11` and `+clipboard` features.
-Scroll back up to the [Requirements](#requirements) section for a refresher.
+Scroll back up to the [Requirements]({{< relref "#requirements" >}}) section for a refresher.
 
 <!-- ## tmux -->
 

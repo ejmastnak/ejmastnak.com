@@ -21,7 +21,7 @@ You should first [set up X]({{< relref "/tutorials/arch/startx" >}}) if you have
 
 **Example:** Here's my own computer screen while writing this web page:
 
-<image src="/assets/images/arch/transparent-windows.jpg" alt="Screenshot of transparent terminal windows revealing the background wallpaper." width="100%" />
+{{< img-centered src="transparent-windows.jpg" width="100%" >}}
 
 The window manager is [i3-gaps](https://github.com/Airblader/i3); you can find the wallpaper [on r/wallpaper](https://www.reddit.com/r/wallpaper/comments/tvu1c6/cherry_blossoms_1920x1200/) at the time of writing.
 

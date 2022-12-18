@@ -3,7 +3,7 @@
 
 <span>
 {{ if (time .Page.Lastmod).After (time .Page.Date) }}
-  <p>  Last modified: {{ $lastmod }}</p>
+  <p>Last modified: {{ $lastmod }}</p>
 {{else}}
   <p>Published on {{ $date }}</p>
 {{ end }}

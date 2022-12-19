@@ -1,0 +1,13 @@
+images: 
+  - image: /vim-latex-carousel/ss.png
+    content_html: "1"
+  - image: /vim-latex-carousel/cm.png
+    content_html: "2"
+  - image: /vim-latex-carousel/emp.png
+    content_html: "3"
+  - image: /vim-latex-carousel/optics.png
+    content_html: "4"
+  - image: /vim-latex-carousel/fizmer.png
+    content_html: "5"
+  - image: /vim-latex-carousel/qm.png
+    content_html: "6"

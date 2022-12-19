@@ -37,7 +37,7 @@ From that point reaching the speed in this page's GIFs would probably take month
 
 ### Contents
 
-1. Cover [**prerequisites**]({% link tutorials/vim-latex/prerequisites.md %}) for getting the most out of the series, along with references that should get you up to speed if needed.
+1. Cover [**prerequisites**]({{< relref "/tutorials/vim-latex/prerequisites" >}}) for getting the most out of the series, along with references that should get you up to speed if needed.
 
 1. Explain snippets, the key to real-time LaTeX.
    Available in [**UltiSnips**]({% link tutorials/vim-latex/ultisnips.md %}) or [**LuaSnip**]({% link tutorials/vim-latex/luasnip.md %}) flavor.

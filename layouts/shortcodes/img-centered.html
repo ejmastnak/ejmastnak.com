@@ -1,4 +1,15 @@
+<!-- Check if image is a Page Resource or Global Resource -->
+{{ if isset .Params "global" }}
+
+{{ $image := resources.Get ( .Get `src` ) }}
+{{ .Scratch.Set "link" $image.RelPermalink }}
+
+{{ else }}
+
 {{ $image := .Page.Resources.GetMatch ( .Get `src` ) }}
+{{ .Scratch.Set "link" $image.RelPermalink }}
+
+{{ end }}
 
 <div style="
   display: flex;
@@ -6,9 +17,8 @@
   width: 100%;"
 >
   <img
-    src="{{ $image.RelPermalink }}"
+    src="{{ $.Scratch.Get `link` }}"
     width="{{ .Get `width` }}"
     {{ if isset .Params "alt" }}alt="{{ .Get `alt` }}"{{ end }}
   >
-
 </div>

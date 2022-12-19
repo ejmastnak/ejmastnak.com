@@ -1,3 +1,8 @@
 let $VIFM_CONTEXT = expand('%d')
 
 source $VIFM/personal/navigation-contexts/hugo.vifm
+
+nnoremap ;cp :cd $VIFM_CONTEXT/content/projects<CR>
+nnoremap ;ctt :cd $VIFM_CONTEXT/content/tutorials<CR>
+nnoremap ;cta :cd $VIFM_CONTEXT/content/tutorials/arch<CR>
+nnoremap ;cn :cd $VIFM_CONTEXT/content/notes<CR>

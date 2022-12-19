@@ -11,3 +11,4 @@ disableKinds = ['taxonomy', 'term', 'section']
       unsafe = true
 
 enableGitInfo = true
+lastmod = ["lastmod", ":git", "date", "publishDate"]

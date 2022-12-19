@@ -14,7 +14,7 @@ For the time being, you can either view my [résumé](/) or read through the fol
 <br>
 A guide to turbocharged mathematical typesetting
 
-[**Find your footing on Arch Linux**]({{< relref "/tutorials/arch/about.md" >}})
+[**Find your footing on Arch Linux**]({{< relref "/tutorials/arch/about" >}})
 <br>
 Bite-sized tutorials to help you set up a functional work environment after a minimal install of Arch
 
@@ -26,10 +26,10 @@ From the final two years of undergrad at the Faculty of Math and Physics in Ljub
 
 ### Projects
 
-[**Undergraduate "mini-thesis"**]({{< relref "/projects/seminar/seminar.md" >}})
+[**Undergraduate "mini-thesis"**]({{< relref "/projects/seminar" >}})
 <br>
 End-to-end particle physics classification with convolutional neural networks
 
-[**Digital Hilbert transformer "from scratch"**]({{< relref "/projects/hilbert/hilbert.md" >}})
+[**Digital Hilbert transformer "from scratch"**]({{< relref "/projects/hilbert" >}})
 <br>
 A (near) real-time FIR Hilbert transformer and bandpass filter using Python's Numpy and PyAudio

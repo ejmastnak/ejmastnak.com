@@ -65,18 +65,18 @@
   padding: 0 5px;
 }
 
-/* Used nord1 #3b4252 for indicators and arrows */
+/* Used nord1 #4c566a for indicators and arrows */
 .carousel ol li a {
   display: block;
   height: 15px;
   width: 15px;
-  border: 3px solid #3b4252;
+  border: 3px solid #4c566a;
   background: transparent;
   border-radius: 100%;
 }
 
 .carousel ol li.selected a {
-  background: #3b4252;
+  background: #4c566a;
 }
 /* End carousel indicator dots  */
 
@@ -87,7 +87,7 @@
   user-select:none;
   cursor: pointer;
   font-size: 6rem;
-  color: #3b4252;
+  color: #4c566a;
   position: absolute;
   left: 0;
   padding: 15px 15px 30px;

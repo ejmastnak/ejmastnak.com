@@ -15,6 +15,55 @@
   margin-top: 1.5em;
 }
 
+/* --------------------------------------------- */
+
+.vim-latex-navbar {
+  width: 100%;
+  padding-top: 20px;
+  margin: 0 auto;
+  padding-right: 5%;
+}
+
+.vim-latex-navbar ul {
+  display: flex;
+  overflow: auto;
+  justify-content:space-between;
+  padding: 0;
+  padding-right: 5%;
+  padding-left: 5%;
+  
+  list-style-type: none;
+  align-items: baseline;
+}
+
+.vim-latex-navbar li {
+  display: block;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  .vim-latex-navbar ul {
+    padding: 0;
+    }
+  .vim-latex-navbar li a {
+    padding: 0;
+    }
+}
+
+/* --------------------------------------------- */
+
+.vim-latex-license {
+  text-align: center;
+  font-style: italic;
+  font-size: 16px;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 1.2em;
+}
+
+
 // Top navigation bar
 // A combination of https://www.w3schools.com/css/css_navbar_horizontal.asp
 // and the navbar used in the Vim-LaTeX series.

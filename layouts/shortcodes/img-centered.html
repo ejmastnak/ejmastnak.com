@@ -8,5 +8,7 @@
   <img
     src="{{ $image.RelPermalink }}"
     width="{{ .Get `width` }}"
+    {{ if isset .Params "alt" }}alt="{{ .Get `alt` }}"{{ end }}
   >
+
 </div>

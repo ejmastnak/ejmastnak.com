@@ -19,8 +19,7 @@ You should first [set up X]({{< relref "tutorials/arch/startx" >}}) if you have 
 
 **Reference:** [ArchWiki: Desktop notifications](https://wiki.archlinux.org/title/Desktop_notifications).
 
-
-{{< img-centered src="battery-alert.png" width="80%" >}}
+{{< img-centered src="battery-alert.png" width="80%" alt="Screenshot of a simple low battery level alert." >}}
 
 ## Procedure
 <!-- vim-markdown-toc GFM -->

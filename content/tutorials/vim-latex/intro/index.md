@@ -40,17 +40,17 @@ From that point reaching the speed in this page's GIFs would probably take month
 1. Cover [**prerequisites**]({{< relref "/tutorials/vim-latex/prerequisites" >}}) for getting the most out of the series, along with references that should get you up to speed if needed.
 
 1. Explain snippets, the key to real-time LaTeX.
-   Available in [**UltiSnips**]({% link tutorials/vim-latex/ultisnips.md %}) or [**LuaSnip**]({% link tutorials/vim-latex/luasnip.md %}) flavor.
+   Available in [**UltiSnips**]({{< relref "/tutorials/vim-latex/ultisnips" >}}) or [**LuaSnip**]({{< relref "/tutorials/vim-latex/luasnip" >}}) flavor.
 
-1. Introduce Vim's [**filetype plugin system**]({% link tutorials/vim-latex/ftplugin.md %}), which will help you understand the VimTeX plugin.
+1. Introduce Vim's [**filetype plugin system**]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which will help you understand the VimTeX plugin.
 
-1. Cover the excellent [**VimTeX plugin**]({% link tutorials/vim-latex/vimtex.md %})---*the reason* to use Vim over another LaTeX editor.
+1. Cover the excellent [**VimTeX plugin**]({{< relref "/tutorials/vim-latex/vimtex" >}})---*the reason* to use Vim over another LaTeX editor.
 
-1. Show how to [**compile LaTeX documents**]({% link tutorials/vim-latex/compilation.md %}) from within Vim.
+1. Show how to [**compile LaTeX documents**]({{< relref "/tutorials/vim-latex/compilation" >}}) from within Vim.
 
-1. Integrate Vim and a [**PDF reader**]({% link tutorials/vim-latex/pdf-reader.md %}) for viewing LaTeX documents.
+1. Integrate Vim and a [**PDF reader**]({{< relref "/tutorials/vim-latex/pdf-reader" >}}) for viewing LaTeX documents.
 
-1. [**A Vimscript primer**]({% link tutorials/vim-latex/vimscript.md %}) explaining the key mappings and Vimscript functions used in this tutorial.
+1. [**A Vim configuration primer**]({{< relref "/tutorials/vim-latex/vimscript" >}}) explaining the key mappings and Vimscript functions used in this tutorial.
 
 #### Shut up and show me results
 
@@ -127,4 +127,4 @@ If these or other ideas interest you, let me know---if there is enough interest 
 <p style="text-align: center"><a href="/tutorials/vim-latex/prerequisites.html"><strong><em>Begin the series!</em></strong></a></p>
 </div>
 
-{{< vim-latex/vim-latex-license >}}
+{{< vim-latex/license >}}

@@ -1,15 +1,15 @@
 ---
 title: UltiSnips Plugin Guide for LaTeX \| Vim and LaTeX Series Part 2
 
-prev-filename: prerequisites
-prev-display-name: "« 1. Prerequisites"
-next-filename: ftplugin
-next-display-name: "3. Vim's ftplugin system »"
+prevFilename: prerequisites
+prevDisplayName: "« 1. Prerequisites"
+nextFilename: ftplugin
+nextDisplayName: "3. Vim's ftplugin system »"
 
 date: 2021-10-08
 ---
 
-<!-- {% include vim-latex-navbar.html %} -->
+{{< vim-latex/navbar >}}
 
 # 2. An UltiSnips guide for LaTeX workflows
 
@@ -18,9 +18,9 @@ date: 2021-10-08
 You might be interested in this article for two reasons:
 
 1. As a standalone guide to writing snippets with the UltiSnips plugin (this article is LaTeX-heavy, but is applicable to any language).
-1. As part two in a [seven-part series]({{< relref "/tutorials/arch/about" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
+1. As part two in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
 
-[There is also a LuaSnip version of this article.]({% link tutorials/vim-latex/luasnip.md %})
+[There is also a LuaSnip version of this article.]({{< relref "/tutorials/vim-latex/luasnip" >}}))
 
 {{< toc level="2" title="Contents of this article" >}}
 
@@ -36,10 +36,10 @@ Here is a simple example:
 
 This tutorial will use [the UltiSnips plugin](https://github.com/SirVer/ultisnips), which is the most mature out of the menagerie of Vim snippet plugins.
 If you use Neovim, note that UltiSnips's support of Neovim is "best-effort only".
-Don't let this discourage you---although I have since [switched to LuaSnip]({% link tutorials/vim-latex/luasnip.md %}), both I and many other Neovim users have daily driven Ultisnips and Neovim without any issues, and things will probably be fine for you, too.
+Don't let this discourage you---although I have since [switched to LuaSnip]({{< relref "/tutorials/vim-latex/luasnip" >}}), both I and many other Neovim users have daily driven Ultisnips and Neovim without any issues, and things will probably be fine for you, too.
 If you use regular Vim, you should be fine in any case.
 
-Neovim users: there is also a [LuaSnip version of this article]({% link tutorials/vim-latex/luasnip.md %}) if you prefer.
+Neovim users: there is also a [LuaSnip version of this article]({{< relref "/tutorials/vim-latex/luasnip" >}}) if you prefer.
 
 ### Installation
 
@@ -340,7 +340,7 @@ Of course, you can still use any snippet that includes the `${VISUAL}` keyword w
 
 The visual placeholder is documented at `:help UltiSnips-visual-placeholder` and explained on video in the UltiSnips screencast [Episode 3: What's new in version 2.0](https://www.sirver.net/blog/2012/02/05/third-episode-of-ultisnips-screencast/); I encourage you to watch the video for orientation, if needed.
 
-### Dynamically-evaluated code inside snippets
+### Dynamically-evaluated code inside snippets {#interpolation}
 
 It is possible to add dynamically-evaluated code to snippet bodies (UltiSnips calls this "code interpolation").
 Shell script, Vimscript, and Python are all supported.
@@ -361,7 +361,7 @@ As an example of why this might be useful:
   (Note that the `frac` expansion problem can also be solved with a regex snippet trigger, which is covered in the next section.)
 
 You will need GitHub user `lervag`'s [VimTeX plugin](https://github.com/lervag/vimtex) for math-context expansion.
-(I cover VimTeX in much more detail in the [fourth article in this series]({% link tutorials/vim-latex/vimtex.md %}).)
+(I cover VimTeX in much more detail in the [fourth article in this series]({{< relref "/tutorials/vim-latex/vimtex" >}}).)
 The VimTeX plugin, among many other things, provides the user with the function `vimtex#syntax#in_mathzone()`, which returns `1` if the cursor is inside a LaTeX math zone (e.g. between `$ $` for inline math, inside an `equation` environment, etc...) and `0` otherwise.
 This function isn't explicitly mentioned in the VimTeX documentation, but you can find it in the VimTeX source code at [`vimtex/autoload/vimtex/syntax.vim`](https://github.com/lervag/vimtex/blob/master/autoload/vimtex/syntax.vim).
 
@@ -475,8 +475,6 @@ Regex tutorials abound on the internet; if you need a place to start, I recommen
 
    Here is the above snippet in action:
 
-   <image src="/assets/images/vim-latex/ultisnips/0-subscript.gif" alt="The 0 subscript snippet in action"  /> 
-
    {{< img-centered src="images/vim-latex/snippets/0-subscript.gif" width="100%" global="1" alt="GIF demonstrating a snippet for creating a zero subscript." >}}
    
 Combined with math-context expansion, these two classes of regex triggers cover the majority of my use cases and should give you enough to get started writing your own.
@@ -499,7 +497,7 @@ This workflow comes up regularly if you use snippets often, and I suggest writin
 nnoremap <leader>u <Cmd>call UltiSnips#RefreshSnippets()<CR>
 ```
 
-In case it looks unfamiliar, the above code snippet is a Vim *key mapping*, a standard Vim configuration tool described in much more detail in the series's final article, [7. A Vimscript Primer for Filetype-Specific Workflows]({% link tutorials/vim-latex/vimscript.md %}).
+In case it looks unfamiliar, the above code snippet is a Vim *key mapping*, a standard Vim configuration tool described in much more detail in the series's final article, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}).
 
 ## (Subjective) practical tips for fast editing {#tips}
 
@@ -586,7 +584,7 @@ Here's what this looks like in practice:
 
  {{< img-centered src="images/vim-latex/snippets/snip-snippet.gif" width="100%" global="1" alt="GIF demonstrating a snippet for writing snippets." >}}
 
-The use of `` `!p snip.rv = "snippet"` `` needs some explanation---this uses the UltiSnips Python interpolation feature, described in the section on [dynamically-evaluated code inside snippets](#dynamically-evaluated-code-inside-snippets)---to insert the literal string `snippet` in place of `` `!p snip.rv = "snippet"` ``.
+The use of `` `!p snip.rv = "snippet"` `` needs some explanation---this uses the UltiSnips Python interpolation feature, described in the section on [dynamically-evaluated code inside snippets](#interpolation)---to insert the literal string `snippet` in place of `` `!p snip.rv = "snippet"` ``.
 The naive implementation would be to write
 
 ```yaml
@@ -602,6 +600,6 @@ endsnippet
 but this would make the UltiSnips parser think that the line `snippet ${1:trigger}...` starts a new snippet definition, when the goal is to insert the literal string `snippet ${1:trigger}...` into another file.
 In any case, this problem is specific to using the string `snippet` inside a snippet, and most snippets are much easier to write than this.
 
-{% include vim-latex-navbar.html %}
+{{< vim-latex/navbar >}}
 
-{{< vim-latex/vim-latex-license >}}
+{{< vim-latex/license >}}

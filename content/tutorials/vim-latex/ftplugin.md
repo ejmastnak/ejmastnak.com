@@ -1,15 +1,15 @@
 ---
 title: The Vim ftplugin system \| Vim and LaTeX Series Part 3
 
-prev-filename: "ultisnips"
-prev-display-name: "« 2. Snippets"
-next-filename: "vimtex"
-next-display-name: "4. The VimTeX plugin »"
+prevFilename: "ultisnips"
+prevDisplayName: "« 2. Snippets"
+nextFilename: "vimtex"
+nextDisplayName: "4. The VimTeX plugin »"
 
 date: 2022-03-20
 ---
 
-<!-- {% include vim-latex-navbar.html %} -->
+{{< vim-latex/navbar >}}
 
 # 3. Vim's ftplugin system
 
@@ -122,7 +122,7 @@ The following sections explain how loading filetype plugins works under the hood
 - Once you set `:filetype on` in your `vimrc` (enabled by default on Neovim), Vim automatically detects common filetypes (LaTeX included) based on the file's extension using a Vimscript file called `filetype.vim` that ships with Vim.
   You can view `filetype.vim`'s source code at the path `$VIMRUNTIME/filetype.vim` (first use `:echo $VIMRUNTIME` in Vim to determine `$VIMRUNTIME`).
 
-### Manual filetype detection
+### Manual filetype detection {#ftdetect}
 
 If Vim's default filetype detection using `filetype.vim` fails (this only happens for exotic filetypes), you can also manually configure Vim to detect the target filetype.
 Note that manual detection of exotic filetypes is not needed for this tutorial (Vim detects LaTeX files without any configuration on your part), so feel free to skip ahead.
@@ -156,7 +156,7 @@ For our purposes:
   Generally this method works out of the box (`filetype.vim` is over 2300 lines and covers the majority of common files).
 
   If the file's type is not detected from extension, Vim attempts to guess the file type based on file contents using `$VIMRUNTIME/scripts.vim` (reference: `:help filetype`).
-  If both `$VIMRUNTIME/filetype.vim` and `$VIMRUNTIME/scripts.vim` fail, Vim checks the contents of `ftdetect` directories in your `runtimepath`, as described in the section [Manual filetype detection](#manual-filetype-detection) a few paragraphs above.
+  If both `$VIMRUNTIME/filetype.vim` and `$VIMRUNTIME/scripts.vim` fail, Vim checks the contents of `ftdetect` directories in your `runtimepath`, as described in the section [Manual filetype detection](#ftdetect) a few paragraphs above.
 
 - If Vim successfully detects a file's type, it sets the value of the `filetype` option to indicate the file type.
   Often, but not always, the value of `filetype` matches the file's conventional extension; for LaTeX this value is `filetype=tex`.
@@ -174,6 +174,6 @@ or split up among multiple files in `ftplugin/{filetype}/*.vim`.
 Think of the `ftplugin` files as a `vimrc` for one file type only,
 and keep your actual `vimrc` for global settings you want to apply to *all* file types.
 
-<!-- {% include vim-latex-navbar.html %} -->
+{{< vim-latex/navbar >}}
 
-{{< vim-latex/vim-latex-license >}}
+{{< vim-latex/license >}}

@@ -1,14 +1,14 @@
 ---
 title: A VimTeX Plugin Guide \| Vim and LaTeX Series Part 4
 
-prev-filename: "ftplugin"
-prev-display-name: "« 3. Vim's ftplugin system"
-next-filename: "compilation"
-next-display-name: "5. Compilation »"
+prevFilename: "ftplugin"
+prevDisplayName: "« 3. Vim's ftplugin system"
+nextFilename: "compilation"
+nextDisplayName: "5. Compilation »"
 date: 2021-11-24
 ---
 
-<!-- {% include vim-latex-navbar.html %} -->
+{{< vim-latex/navbar >}}
 
 # 4. Getting started with the VimTeX plugin
 
@@ -59,7 +59,7 @@ See `:help vimtex-requirements` for details on requirements for using VimTeX.
 
 Note that you will need a LaTeX compilation program (e.g. `latexmk` and `pdflatex`) installed on your computer to be able use VimTeX's compilation features.
 You also need a Vim version compiled with the `+clientserver` feature to use VimTeX's inverse search feature with PDF readers (note that `+clientserver` ships by default with Neovim).
-I cover compilation and setting up a PDF reader in the [next]({% link tutorials/vim-latex/compilation.md %}) [two]({% link tutorials/vim-latex/pdf-reader.md %}) articles in this series, so you can postpone these requirements until then.
+I cover compilation and setting up a PDF reader in the [next]({{< relref "/tutorials/vim-latex/compilation" >}}) [two]({{< relref "/tutorials/vim-latex/pdf-reader" >}}) articles in this series, so you can postpone these requirements until then.
 
 ### Some things to keep in mind
 
@@ -97,7 +97,7 @@ This article will cover the following features:
 - Snippet-like insert mode mappings
 - Syntax highlighting, including support for common LaTeX packages and the potential for math context detection for snippet triggers
 
-VimTeX also provides a compilation interface and PDF viewer support, which I have left out of this article and describe in two [dedicated]({% link tutorials/vim-latex/compilation.md %}) [articles]({% link tutorials/vim-latex/pdf-reader.md %}) later in the series.
+VimTeX also provides a compilation interface and PDF viewer support, which I have left out of this article and describe in two [dedicated]({{< relref "/tutorials/vim-latex/compilation" >}}) [articles]({{< relref "/tutorials/vim-latex/pdf-reader" >}}) later in the series.
 
 ## How to read VimTeX's documentation of mappings
 
@@ -123,7 +123,7 @@ Here is a representative example of what the list looks like:
 
 To have a clear mental image of what's going on here, you should understand how Vim mappings work,
 what the `<leader>` and `<localleader>` keys do, and what the `<Plug>` keyword means.
-If you want to learn about these topics now, take a detour and read through the final article in this series, [7. A Vimscript Primer for Filetype-Specific Workflows]({% link tutorials/vim-latex/vimscript.md %}).
+If you want to learn about these topics now, take a detour and read through the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}).
 
 For the present purposes, here is how to interpret the table:
 
@@ -139,7 +139,7 @@ For the present purposes, here is how to interpret the table:
 - Each mapping works only in a given Vim mode;
   this mode is specified in the `MODE` column using Vim's conventional single-letter abbreviations for mode names.
   For example, `ae <Plug>(vimtex-ae) xo` works in visual (`x`) and operator-pending (`o`) mode, while `tse <Plug>(vimtex-env-toggle-star) n` works in normal (`n`) mode.
-  For more information about map modes and key mappings, see the Vim documentation section `:help map-listing` and the [Vimscript article]({% link tutorials/vim-latex/vimscript.md %}) later in this series.
+  For more information about map modes and key mappings, see the Vim documentation section `:help map-listing` and the [Vim configuration article]({{< relref "/tutorials/vim-latex/vimscript" >}}) later in this series.
 
 The VimTeX documentation sections `COMMANDS` (accessed with `:help vimtex-commands`) and `MAP DEFINITIONS` (accessed with `:help vimtex-mappings`) list and explain the commands and mappings in the `RHS` of the above table.
 I recommend skimming through the table in `:help vimtex-default-mappings`, then referring to `:help vimtex-commands` or `:help vimtex-mappings` for more information about any mapping that catches your eye.
@@ -435,7 +435,7 @@ nmap dsm <Plug>(vimtex-env-delete-math)
 
 That's it!
 You could then use `dsm` in normal mode to delete surrounding math.
-(For a background of what's going on here, you can consult the final article this series, [7. A Vimscript Primer for Filetype-Specific Workflows]({% link tutorials/vim-latex/vimscript.md %}).)
+(For a background of what's going on here, you can consult the final article this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}).)
 
 The key when redefining default mappings is to use your own, personally-intuitive LHS mapping (e.g. `dsm`) with VimTeX's default `<Plug>` mapping (e.g. `<Plug>(vimtex-env-delete-math)`).
 VimTeX won't apply the default `LHS` shortcut to any `<Plug>` mapping you map to manually (this behavior is explained in `:help vimtex-default-mappings`).
@@ -609,7 +609,7 @@ Hopefully the above two examples give you a feel for setting VimTeX options; the
 The VimTeX plugin provides a number of user-defined commands, and these are listed and described in the documentation section `:help vimtex-commands`.
 The commands mostly cover compilation, PDF reader integration, and system and plugin status;
 we will return to VimTeX's commands when explaining 
-[compilation]({% link tutorials/vim-latex/compilation.md %}) and [PDF reader integration]({% link tutorials/vim-latex/pdf-reader.md %}) in the next two articles in this series.
+[compilation]({{< relref "/tutorials/vim-latex/compilation" >}}) and [PDF reader integration]({{< relref "/tutorials/vim-latex/pdf-reader" >}}) in the next two articles in this series.
 
 There is nothing much I have to say about the commands themselves that the documentation wouldn't say better; I suggest you skim through `:help vimtex-commands` and see if anything strikes your fancy.
 
@@ -646,9 +646,9 @@ I can think of three things worth mentioning:
 
 Here are a few more features to look into to learn about once you master the basics:
 
-- VimTeX offers a ready-to-go compilation interface, which I cover in detail in the [next article in the series]({% link tutorials/vim-latex/compilation.md %}).
+- VimTeX offers a ready-to-go compilation interface, which I cover in detail in the [next article in the series]({{< relref "/tutorials/vim-latex/compilation" >}}).
 
-- VimTeX also offers ready-to-go PDF viewer integration, which I cover in a [dedicated article]({% link tutorials/vim-latex/pdf-reader.md %}) later in the series.
+- VimTeX also offers ready-to-go PDF viewer integration, which I cover in a [dedicated article]({{< relref "/tutorials/vim-latex/pdf-reader" >}}) later in the series.
 
 - VimTeX provides completion of citations and reference labels, together with integration with common autocompletion plugins.
   See `:help vimtex-completion` for more information.
@@ -698,6 +698,6 @@ If you want to use both VimTeX and your own `tex` filetype plugin and currently 
 
 (The `let b:did_ftplugin = 1` business is a standard safety mechanism described in the Vim documentation at `:help ftplugin` that gives the user control over loading filetype plugins.)
 
-{% include vim-latex-navbar.html %}
+{{< vim-latex/navbar >}}
 
-{{< vim-latex/vim-latex-license >}}
+{{< vim-latex/license >}}

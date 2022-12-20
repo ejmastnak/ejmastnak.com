@@ -1,15 +1,15 @@
 ---
 title: Compiling LaTeX Documents in Vim \| Vim and LaTeX Series Part 5
 
-prev-filename: "vimtex"
-prev-display-name: "« 4. The VimTeX plugin"
-next-filename: "pdf-reader"
-next-display-name: "6. PDF Reader »"
+prevFilename: "vimtex"
+prevDisplayName: "« 4. The VimTeX plugin"
+nextFilename: "pdf-reader"
+nextDisplayName: "6. PDF Reader »"
 
 date: 2021-10-08
 ---
 
-<!-- {% include vim-latex-navbar.html %} -->
+{{< vim-latex/navbar >}}
 
 # 5. Compiling LaTeX Documents in a Vim-Based Workflow
 
@@ -24,7 +24,7 @@ This article covers compilation and should explain what you need to get started 
 - This article will make occasional references to the file `ftplugin/tex.vim`, which we will use to implement LaTeX-specific Vim configuration through Vim's filetype plugin system.
   In case you are just dropping in now and Vim's `ftplugin` system sounds unfamiliar, consider first reading through the article [3. Vim's `ftplugin` system]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which covers what you need to know.
 
-- We will also define some Vim key mappings in this article---if Vim keywords like `:map`, `<leader>`, `<localleader>`, and `<Plug>` are unfamiliar to you, consider taking a detour and reading through the final article in this series, [7. A Vimscript Primer for Filetype-Specific Workflows]({% link tutorials/vim-latex/vimscript.md %}), which explains everything you need to know about Vim key mappings to understand this series.
+- We will also define some Vim key mappings in this article---if Vim keywords like `:map`, `<leader>`, `<localleader>`, and `<Plug>` are unfamiliar to you, consider taking a detour and reading through the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}), which explains everything you need to know about Vim key mappings to understand this series.
 
 ## What to read in this article
 
@@ -61,7 +61,7 @@ Here is a short summary:
 - Compile LaTeX documents from within Vim using the command `:VimtexCompile`, which you can either type directly as a Vim command or access with the default VimTeX mapping `<localleader>ll`.
 
   {{< details summary="If words like `:map`, `<leader>`, and `<localleader>` are unfamiliar to you..." >}}
-  ...consider taking a detour and reading through the final article in this series, [7. A Vimscript Primer for Filetype-Specific Workflows]({% link tutorials/vim-latex/vimscript.md %}), which explains everything you need to know about Vim key mappings to understand this series (the `<leader>` and `<localleader>` concepts also apply if you use Neovim and Lua).
+  ...consider taking a detour and reading through the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}), which explains everything you need to know about Vim key mappings to understand this series (the `<leader>` and `<localleader>` concepts also apply if you use Neovim and Lua).
   {{< /details >}}
 
 - Optionally, if you don't like `<localleader>ll` as the compilation shortcut, [define a custom mapping](#compilation-shortcut) to call `:VimtexCompile` and use that instead.
@@ -138,9 +138,9 @@ Using `update` is redundant and therefore omitted for continuous compilation, wh
 Note that, because the above is not a `<Plug>` mapping to `<Plug>(vimtex-compile)` (which is tricky to combine with the `:update` command), this mapping will *not* override VimTeX's default `<localleader>ll` shortcut for triggering compilation.
 
 Aside: The above mapping uses the `<Cmd>` keyword (see `:help map-cmd` for documentation), which lets you call commands directly without switching Vim modes.
-The final article in the series, [7. A Vimscript Primer for Filetype-Specific Workflows]({% link tutorials/vim-latex/vimscript.md %}), explains key mappings in more detail.
+The final article in the series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}), explains key mappings in more detail.
 
-### A QuickFix menu crash course
+### A QuickFix menu crash course {#quickfix}
 
 After compiling with `:VimtexCompile` or `:VimtexCompileSS`, VimTeX will automatically open the QuickFix menu if warnings or errors occurred during compilation (the QuickFix menu stays closed if compilation completes successfully).
 For most compilation errors, the QuickFix menu will display the error's line number and a (hopefully) useful error message.
@@ -233,7 +233,7 @@ You can find full documentation of `pdflatex` options by running `man pdflatex` 
   ```
 
   Notice how the log message matches the `file:line:error` format: the file is `/home/user/test/test.tex`, the line number is `15`, and the error is `LaTeX Error: Something's wrong--perhaps a missing item`.
-  The `-file-line-error` format makes it easier to parse LaTeX compilation log messages using Vim's `errorformat` functionality, which is covered in more detail below in the section on [implementing error message parsing](#implementing-error-message-parsing).
+  The `-file-line-error` format makes it easier to parse LaTeX compilation log messages using Vim's `errorformat` functionality, which is covered in more detail below in the section on [implementing error message parsing](#error-parse).
 
 - `-halt-on-error` exits `pdflatex` immediately if an error is encountered during compilation (instead of attempting to continue compiling the document in spite of the error)
 
@@ -499,7 +499,7 @@ nnoremap <SID>TexToggleLatexmk :call <SID>TexToggleLatexmk()<CR>
 ```
 
 You could then use `<leader>tl` in normal mode to toggle between `pdflatex` and `latexmk` compilation.
-The `<Plug>` and `<SID>` syntax for script-local mapping is explained in detail in the final article in this series, [7. A Vimscript Primer for Filetype-Specific Workflows]({% link tutorials/vim-latex/vimscript.md %}).
+The `<Plug>` and `<SID>` syntax for script-local mapping is explained in detail in the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}).
 
 ### Setting the `makeprg` option
 
@@ -509,11 +509,11 @@ To actually set Vim's `makeprg` option to your custom compilation command, assum
 call s:TexSetMakePrg()  " set value of Vim's `makeprg` option
 ```
 
-### Implementing error message parsing
+### Implementing error message parsing {#error-parse}
 
 Vim turns the `makeprg` command's log output into useful error messages using the `errorformat` option.
 A properly configured `errorformat` can show you file name, line number, and error description, and also makes it easy to jump to the error location in the offending source code.
-You can find the details of the `:make` and error-parsing cycle in `:help :make`, and scroll back up the section [A QuickFix menu crash course](#a-quickfix-menu-crash-course) for a GIF of the QuickFix menu in action.
+You can find the details of the `:make` and error-parsing cycle in `:help :make`, and scroll back up the section [A QuickFix menu crash course](#quickfix) for a GIF of the QuickFix menu in action.
 
 Vim's `errorformat` uses a similar format to the C function `scanf`, which is rather cryptic to new users.
 I won't cover `errorformat` design in this series, and will only quote some `errorformat` values, taken from the [VimTeX](https://github.com/lervag/vimtex) plugin, that should satisfy most use cases.
@@ -587,7 +587,7 @@ Here's what to do:
 
 1. Install Tim Pope's [Dispatch plugin](https://github.com/tpope/vim-dispatch) just like you would any other Vim plugin.
 
-1. Assuming that you used `compiler/tex.vim` as the name of the compiler plugin described earlier in this article in the section [Writing a simple LaTeX compiler plugin](#writing-a-simple-latex-compiler-plugin-by-hand),
+1. Assuming that you used `compiler/tex.vim` as the name of the compiler plugin described earlier in this article in the section [Writing a simple LaTeX compiler plugin](#compiler),
    somewhere inside `ftplugin/tex.vim` include the line
 
    ```vim
@@ -663,7 +663,7 @@ nnoremap <SID>TexToggleShellEscape :call <SID>TexToggleShellEscape()<CR>
 ```
 
 You could then use `<leader>te` in normal mode to toggle `-shell-escape` compilation on and off.
-See the final article in this series, [7. A Vimscript Primer for Filetype-Specific Workflows]({% link tutorials/vim-latex/vimscript.md %}), for an explanation of the `<Plug>` and `<SID>` syntax.
+See the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}), for an explanation of the `<Plug>` and `<SID>` syntax.
 
 **A simple way to automatically detect `minted`**
 
@@ -804,6 +804,6 @@ setlocal errorformat+=%Cl.%l\ %m
 setlocal errorformat+=%-G%.%#
 ```
 
-{% include vim-latex-navbar.html %}
+{{< vim-latex/navbar >}}
 
-{{< vim-latex/vim-latex-license >}}
+{{< vim-latex/license >}}

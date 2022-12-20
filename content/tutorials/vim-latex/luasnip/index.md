@@ -263,7 +263,7 @@ In the first `imap` mapping, for example, the ternary operator is used to map `<
    See `:help select-mode` for details.)
 
    Also, `imap` and `smap` are *intentionally* used instead of `inoremap` and `snoremap`---this is standard (and necessary) practice when defining `<Plug>` mappings.
-   The `<Plug>` keyword might look unfamiliar---you can ignore it for now, or, if you're curious, take a peek at [the series's final article]({% link tutorials/vim-latex/vimscript.md %}), which explains some basic Vimscript usage, including `<Plug>` mappings.
+   The `<Plug>` keyword might look unfamiliar---you can ignore it for now, or, if you're curious, take a peek at [the series's final article]({{< relref "/tutorials/vim-latex/vimscript" >}}), which explains foundational Vim configuration, including `<Plug>` mappings.
 
 1. Power users: you can implement custom snippet expansion and navigation behavior by working directly with LuaSnip API functions controlling expand and jump behavior---see `:help luasnip-api-reference` (scroll down to the `jumpable(direction)` entry) for details.
    For most users the example mappings given above should be fine.
@@ -305,7 +305,7 @@ I think this makes sense because:
 If you want to use third-party snippets the rest of this article will probably not be of much help to you;
 see `:help luasnip-loaders`, `:help luasnip-vscode` and `:help luasnip-snipmate` instead.
 
-### Loading snippets and directory structure
+### Loading snippets and directory structure {#loading}
 
 You have two ways to load snippets:
 
@@ -524,7 +524,7 @@ we'll only need the following parameters in this guide:
   A `true`/`false` boolean value; `true` (enabled) by default.
   Since the `wordTrig` safety feature can conflict with regular expression triggers, you often want to set `wordTrig = false` when using `regTrig = true` snippets.
 - `snippetType`: either the string `"snippet"` (manually triggered) or `"autosnippet"` (autotriggered); `'snippet'` by default.
-  I encourage autotriggered snippets for efficient typing---see the tips [at the bottom of this article](#subjective-practical-tips-for-fast-editing) for details.
+  I encourage autotriggered snippets for efficient typing---see the tips [at the bottom of this article](#tips) for details.
   
 ### A common shortcut you'll see in the wild {#shortcut}
 
@@ -1339,7 +1339,7 @@ LuaSnip even passes a few convenience variables to the `condition` function for 
 To **implement math-specific snippet expansion**, you basically need a function that returns `true` in math contexts and `false` otherwise.
 The excellent [VimTeX plugin](https://github.com/lervag/vimtex/) provides exactly such a function---the `in_mathzone()` function in `vimtex/autoload/vimtex/syntax.vim`.
 <!-- This function isn't explicitly mentioned in the VimTeX documentation, but you can find it in the VimTeX source code at [`vimtex/autoload/vimtex/syntax.vim`](https://github.com/lervag/vimtex/blob/master/autoload/vimtex/syntax.vim). -->
-<!-- (which I cover in detail [later in the series]({% link tutorials/vim-latex/vimtex.md %})) -->
+<!-- (which I cover in detail [later in the series]({{< relref "/tutorials/vim-latex/vimtex" >}})) -->
 You can integrate VimTeX's math zone detection with LuaSnip's `condition` feature as follows:
 
 ```lua
@@ -1502,7 +1502,7 @@ In no particular order, here are some useful tips based on my personal experienc
 
 ### Tip: Refreshing snippets from a separate Vim instance
 
-In addition to initially loading snippets, the Lua loader functions `load` and `lazy_load` (covered [at the start of this article](#loading-snippets-and-directory-structure)) will refresh the snippets in the current Vim instance to reflect the contents of your snippets directory.
+In addition to initially loading snippets, the Lua loader functions `load` and `lazy_load` (covered [at the start of this article](#loading)) will refresh the snippets in the current Vim instance to reflect the contents of your snippets directory.
 Here's an example use case:
 
 - Problem: you're editing `foobar.tex` in one Vim instance, make some changes to the snippets file `tex.lua` in a *separate* Vim instance, and want the updates to be immediately available in `foobar.tex` without having to restart Vim.
@@ -1527,10 +1527,10 @@ vim.keymap.set('n', '<Leader>L', '<Cmd>lua require("luasnip.loaders.from_lua").l
 nnoremap <leader>L <Cmd>lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})<CR>
 ```
 
-Of course, if needed, you should update `~/.config/nvim/LuaSnip/` to your own snippet directory, covered [at the start of this article](#loading-snippets-and-directory-structure).
+Of course, if needed, you should update `~/.config/nvim/LuaSnip/` to your own snippet directory, covered [at the start of this article](#loading).
 
-In case they look unfamiliar, the above code snippets are Vim *key mappings*, a standard Vim configuration tool described in much more detail in the series's final article, [7. A Vimscript Primer for Filetype-Specific Workflows]({% link tutorials/vim-latex/vimscript.md %}).
+In case they look unfamiliar, the above code snippets are Vim *key mappings*, a standard Vim configuration tool described in much more detail in the series's final article, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}).
 
 {% include vim-latex-navbar.html %}
 
-{{< vim-latex/vim-latex-license >}}
+{{< vim-latex/license >}}

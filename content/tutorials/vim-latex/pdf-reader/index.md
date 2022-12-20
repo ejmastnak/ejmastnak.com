@@ -1,15 +1,15 @@
 ---
 title: PDF Reader for LaTeX and Vim \| Vim and LaTeX Series Part 6
 
-prev-filename: "compilation"
-prev-display-name: "« 5. Compilation"
-next-filename: "vimscript"
-next-display-name: "7. Vimscript »"
+prevFilename: "compilation"
+prevDisplayName: "« 5. Compilation"
+nextFilename: "vimscript"
+nextDisplayName: "7. Vimscript »"
 
 date: 2021-10-08
 ---
 
-<!-- {% include vim-latex-navbar.html %} -->
+{{< vim-latex/navbar >}}
 
 # 6. Setting Up a PDF Reader for Writing LaTeX with Vim
 
@@ -25,7 +25,7 @@ This article explains, for both Linux and macOS, how to set up a PDF reader for 
 - This article will make regular references to the file `ftplugin/tex.vim`, which we will use to implement LaTeX-specific Vim configuration through Vim's filetype plugin system.
   In case you are just dropping in now and Vim's `ftplugin` system sounds unfamiliar, consider first reading through [an earlier article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which covers what you need to know about `ftplugin`.
 
-- We will also define some Vim key mappings in this article---if Vim keywords like `:map`, `<leader>`, `<localleader>`, and `<Plug>` are unfamiliar to you, consider taking a detour and reading through the final article in this series, [7. A Vimscript Primer for Filetype-Specific Workflows]({% link tutorials/vim-latex/vimscript.md %}), which explains everything you need to know about Vim key mappings to understand this series (the same concepts apply if you use Neovim and Lua).
+- We will also define some Vim key mappings in this article---if Vim keywords like `:map`, `<leader>`, `<localleader>`, and `<Plug>` are unfamiliar to you, consider taking a detour and reading through the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}), which explains everything you need to know about Vim key mappings to understand this series (the same concepts apply if you use Neovim and Lua).
 
 ## Choosing a PDF Reader
 
@@ -384,7 +384,7 @@ Here's what to do:
    
    Although it is hacky, I have empirically found the `sleep 200m` wait ensures the subsequent window focus executes properly (you may want to tweak the exact sleep time for your hardware and window manager).
    The `redraw!` command refreshes Vim's screen.
-   If interested, you can read more about writing Vimscript functions in this series's [Vimscript article]({% link tutorials/vim-latex/vimscript.md %}), which is the next and final article in the series.
+   If interested, you can read more about writing Vimscript functions in this series's [Vim configuration article]({{< relref "/tutorials/vim-latex/vimscript" >}}), which is the next and final article in the series.
 
 1. Finally, define the following Vimscript autocommand group in your `ftplugin/tex.vim`:
 
@@ -635,7 +635,7 @@ For the original GitHub discussion that produced the instructions in `:help vimt
 
 ### Setting up Zathura on macOS
 
-Assuming your build succeeded, here is how to set up Zathura on macOS (many steps are similar to those for [setting up Zathura on Linux](#zathura-read-this-on-linux); please excuse any repetition):
+Assuming your build succeeded, here is how to set up Zathura on macOS (many steps are similar to those for [setting up Zathura on Linux](#zathura); please excuse any repetition):
 
 - Install the [`xdotool`](https://github.com/jordansissel/xdotool) program with `brew install xdotool`.
   (VimTeX uses `xdotool` to make forward search work properly; see `:help vimtex-view-zathura` for reference.)
@@ -784,6 +784,6 @@ If you prefer to disable this behavior, place the following code in your `ftplug
 let g:vimtex_view_automatic = 0
 ```
 
-{% include vim-latex-navbar.html %}
+{{< vim-latex/navbar >}}
 
-{{< vim-latex/vim-latex-license >}}
+{{< vim-latex/license >}}

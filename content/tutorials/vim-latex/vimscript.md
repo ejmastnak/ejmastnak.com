@@ -1,15 +1,15 @@
 ---
-title: Configuration Tutorial for Filetype-Specific Workflows  \| Vim and LaTeX Series Part 7
+title: Vim Configuration Tutorial for Filetype-Specific Workflows  \| Vim and LaTeX Series Part 7
 
-prev-filename: "pdf-reader"
-prev-display-name: "« 6. PDF Reader"
-next-filename: "intro"
-next-display-name: "Introduction"
+prevFilename: "pdf-reader"
+prevDisplay-name: "« 6. PDF Reader"
+nextFilename: "intro"
+nextDisplay-name: "Introduction"
 
 date: 2021-10-08
 ---
 
-<!-- {% include vim-latex-navbar.html %} -->
+{{< vim-latex/navbar >}}
 
 # 7. A Vim Configuration Primer for Filetype-Specific Workflows
 
@@ -617,6 +617,6 @@ Here is the basic workflow for using autoload functions:
 
 You can find official documentation of autoload functions at `:help autoload-functions`.
 
-{% include vim-latex-navbar.html %}
+{{< vim-latex/navbar >}}
 
-{{< vim-latex/vim-latex-license >}}
+{{< vim-latex/license >}}

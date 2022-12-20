@@ -1,19 +1,20 @@
 ---
 title: Prerequisites for Vim-LaTeX Workflows \| Vim and LaTeX Series Part 1
 
-prev-filename: "intro"
-prev-display-name: ""
-next-filename: "ultisnips"
-next-display-name: "2. Snippets »"
+prevFilename: "intro"
+prevDisplayName: ""
+nextFilename: "ultisnips"
+nextDisplayName: "2. Snippets »"
 
 date: 2022-01-24
 ---
 
-<!-- {% include vim-latex-navbar.html %} -->
+{{< vim-latex/navbar >}}
 
 # 1. Suggested Prerequisites for Writing LaTeX in Vim
 
 {{< date-last-mod >}}
+
 
 This is part one in a [seven-part series]({{< relref "/tutorials/arch/about" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
 I wrote this series with beginners in mind, but some prerequisite knowledge is unavoidable.
@@ -21,16 +22,6 @@ Each prerequisites is listed below and includes a suggestion or mini-tutorial fo
 You should be comfortable with the material below to get the most out of this series.
 
 {{< toc level="2" title="Contents of this article" >}}
-
-## Operating system
-
-**Prerequisite:** you are working on Linux, macOS, or some other Unix variant.
-
-{{< details summary="**Suggestion** (click arrow to expand)" >}}
-If you use Windows, I suggest you follow along with the series as is; you will still find plenty of helpful techniques and ideas, and if XYZ doesn't work as expected, search the Internet for “how to use XYZ Vim/LaTeX/shell feature on Windows”. I do not have formal experience with Windows and cannot offer advice at the level of detail required for this series, but there should be plenty of Windows users on the Internet more knowledgeable than I am who have figured out a solution or workaround.
-
-If you use some exotic flavor of Unix, I assume you know enough of what you are doing to adapt this series’s Linux-based suggestions to your platform.
-{{< /details >}}
 
 ## LaTeX knowledge
 
@@ -160,6 +151,19 @@ For more information, read `:help 01.1`, which explains the basics of the Vim do
 
 {{< /details >}}
 
+## Operating system
+
+*If you're only interested in the snippet and VimTeX articles you can ignore this prerequisite; it applies mainly to PDF reader integration.*
+
+**Prerequisite:** you are working on Linux, macOS, or some other Unix variant.
+
+{{< details summary="**Suggestion** (click arrow to expand)" >}}
+If you use Windows, I suggest you follow along with the series as is; you will still find plenty of helpful techniques and ideas, and if XYZ doesn't work as expected, search the Internet for “how to use XYZ Vim/LaTeX/shell feature on Windows”. I do not have formal experience with Windows and cannot offer advice at the level of detail required for this series, but there should be plenty of Windows users on the Internet more knowledgeable than I am who have figured out a solution or workaround.
+
+If you use some exotic flavor of Unix, I assume you know enough of what you are doing to adapt this series’s Linux-based suggestions to your platform.
+{{< /details >}}
+
+
 ## Python 3 installation
 
 *Python is only required if you plan on using UltiSnips for snippets.
@@ -235,6 +239,6 @@ The abbreviations you should know for this series are:
 
 {{< /details >}}
 
-<!-- {% include vim-latex-navbar.html %} -->
+{{< vim-latex/navbar >}}
 
-{{< vim-latex/vim-latex-license >}}
+{{< vim-latex/license >}}

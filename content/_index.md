@@ -20,7 +20,7 @@ Bite-sized tutorials to help you set up a functional work environment after a mi
 
 ### Notes
 
-[**1500+ pages of undergraduate physics notes typeset with LaTeX**]({{< relref "/notes/fmf/fmf.md" >}})
+[**1500+ pages of undergraduate physics notes typeset with LaTeX**]({{< relref "/notes/fmf/fmf" >}})
 <br>
 From the final two years of undergrad at the Faculty of Math and Physics in Ljubljana
 

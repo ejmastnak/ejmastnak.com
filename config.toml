@@ -10,5 +10,9 @@ disableKinds = ['taxonomy', 'term', 'section']
     [markup.goldmark.renderer]
       unsafe = true
 
+
 enableGitInfo = true
+[frontmatter]
+date = ["date", "publishDate", "lastmod"]
 lastmod = ["lastmod", ":git", "date", "publishDate"]
+

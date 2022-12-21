@@ -2,7 +2,7 @@
 title: "Real-time LaTeX using Vim/Neovim, VimTeX, and snippets"
 date: 2021-10-08
 aliases:
-    - /tutorials/vim-latex/intro.html
+    - /tutorials/vim-latex/introo.html
 ---
 
 <script type="text/javascript" src="/helpers/carousel.js"></script>

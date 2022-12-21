@@ -1,6 +1,8 @@
 ---
 title: "FMF"
 date: 2021-09-17
+aliases:
+    - /fmf.html
 ---
 
 # Lecture notes and solved exercises

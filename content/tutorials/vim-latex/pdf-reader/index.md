@@ -5,8 +5,6 @@ prevDisplayName: "« 5. Compilation"
 nextFilename: "vimscript"
 nextDisplayName: "7. Vimscript »"
 date: 2021-10-08
-aliases:
-    - /tutorials/vim-latex/pdf-reader.html
 ---
 
 {{< vim-latex/navbar >}}

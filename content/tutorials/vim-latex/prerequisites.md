@@ -5,8 +5,6 @@ prevDisplayName: ""
 nextFilename: "ultisnips"
 nextDisplayName: "2. Snippets »"
 date: 2022-01-24
-aliases:
-    - /tutorials/vim-latex/prerequisites.html
 ---
 
 {{< vim-latex/navbar >}}

@@ -5,8 +5,6 @@ prevDisplayName: "« 1. Prerequisites"
 nextFilename: ftplugin
 nextDisplayName: "3. Vim's ftplugin system »"
 date: 2021-10-08
-aliases:
-    - /tutorials/vim-latex/ultisnips.html
 ---
 
 {{< vim-latex/navbar >}}

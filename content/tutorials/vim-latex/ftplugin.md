@@ -5,8 +5,6 @@ prevDisplayName: "« 2. Snippets"
 nextFilename: "vimtex"
 nextDisplayName: "4. The VimTeX plugin »"
 date: 2022-03-20
-aliases:
-    - /tutorials/vim-latex/ftplugin.html
 ---
 
 {{< vim-latex/navbar >}}

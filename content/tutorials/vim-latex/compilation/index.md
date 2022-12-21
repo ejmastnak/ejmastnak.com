@@ -5,8 +5,6 @@ prevDisplayName: "« 4. The VimTeX plugin"
 nextFilename: "pdf-reader"
 nextDisplayName: "6. PDF Reader »"
 date: 2021-10-08
-aliases:
-    - /tutorials/vim-latex/compilation.html
 ---
 
 {{< vim-latex/navbar >}}

@@ -5,8 +5,6 @@ prevDisplay-name: "« 6. PDF Reader"
 nextFilename: "intro"
 nextDisplay-name: "Introduction"
 date: 2021-10-08
-aliases:
-    - /tutorials/vim-latex/vimscript.html
 ---
 
 {{< vim-latex/navbar >}}

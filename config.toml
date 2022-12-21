@@ -15,4 +15,3 @@ enableGitInfo = true
 [frontmatter]
 date = ["date", "publishDate", "lastmod"]
 lastmod = ["lastmod", ":git", "date", "publishDate"]
-

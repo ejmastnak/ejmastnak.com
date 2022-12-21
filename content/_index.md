@@ -5,6 +5,8 @@ date: 2022-12-04
 
 <h1 style="text-align: left">Welcome</h1>
 
+{{< date-last-mod >}}
+
 You have reached Elijan J. Mastnak's website.
 For the time being, you can either view my [résumé](/) or read through the following:
 

@@ -1,12 +1,12 @@
 ---
 title: LuaSnip Plugin Guide for LaTeX \| Vim and LaTeX Series Part 2
-
 prev-filename: prerequisites
 prev-display-name: "« 1. Prerequisites"
 next-filename: ftplugin
 next-display-name: "3. Vim's ftplugin system »"
-
 date: 2022-09-27
+aliases:
+    - /tutorials/vim-latex/luasnip.html
 ---
 
 <!-- {% include vim-latex-navbar.html %} -->

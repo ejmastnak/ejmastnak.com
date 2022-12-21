@@ -1,11 +1,12 @@
 ---
 title: A VimTeX Plugin Guide \| Vim and LaTeX Series Part 4
-
 prevFilename: "ftplugin"
 prevDisplayName: "« 3. Vim's ftplugin system"
 nextFilename: "compilation"
 nextDisplayName: "5. Compilation »"
 date: 2021-11-24
+aliases:
+    - /tutorials/vim-latex/vimtex.html
 ---
 
 {{< vim-latex/navbar >}}

@@ -1,12 +1,12 @@
 ---
 title: Prerequisites for Vim-LaTeX Workflows \| Vim and LaTeX Series Part 1
-
 prevFilename: "intro"
 prevDisplayName: ""
 nextFilename: "ultisnips"
 nextDisplayName: "2. Snippets »"
-
 date: 2022-01-24
+aliases:
+    - /tutorials/vim-latex/prerequisites.html
 ---
 
 {{< vim-latex/navbar >}}

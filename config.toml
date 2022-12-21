@@ -1,4 +1,4 @@
-baseURL = 'http://ejmastnak.netlify.app/'
+baseURL = ''
 languageCode = 'en-us'
 title = 'ejmastnak'
 disableKinds = ['taxonomy', 'term', 'section']
@@ -9,7 +9,6 @@ disableKinds = ['taxonomy', 'term', 'section']
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-
 
 enableGitInfo = true
 [frontmatter]

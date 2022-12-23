@@ -19,8 +19,6 @@ You might be interested in...
 
 Particle classification means identifying the results of a collision, often as simply as with a binary yes/no answer, e.g. "this collision produced a Higgs boson" or "this collision did not produce a Higgs boson". Performing classification with a high degree of certainty is vital if, say, you are a research group interested in announcing the discovery of a new elementary particle.
 
-Update height 100; object-fit cover;
-
 {{< img-centered src="classification.png" width="70%" alt="Diagram showing many elementary particles flying out from a central interaction point that may have produced a Higgs boson." resize="1x" >}}
 
 This project is distinguished by its focus on performing classification using raw, low-level data (i.e. the data produced directly by a particle detector's trackers and calorimeters, without further processing). Classification techniques that produce results directly from low-level data are called "end-to-end" classifiers. End-to-end classifiers are interesting because:

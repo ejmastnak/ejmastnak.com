@@ -288,7 +288,7 @@ I'll try my best to guide you through your options and give a sensible recommend
 
 LuaSnip supports multiple snippet formats.
 Your first step is to decide which format you will write your snippets in.
-You main options are:
+Your main options are:
 
 1. **Covered in this article:** Native LuaSnip snippets written in Lua (support for all LuaSnip features, best integration with the larger Neovim ecosystem).
 1. Use third-party snippets written for another snippet engine (e.g. VS Code, SnipMate) and try to parse them with LuaSnip's various snippet loaders.
@@ -1107,7 +1107,7 @@ For future reference, here the Lua pattern keywords needed for this article:
 **Here's how the following sections will work:**
 
 - I'll first give the generic snippet parameter table needed to use each class of regex triggers, and use `foo` as the example trigger.
-- I'll give a short explanation of each Lua regex works.
+- I'll give a short explanation of how each Lua regex works.
 - I'll give a few real life examples I personally find useful when writing LaTeX.
 
 #### Suppress expansion after alphanumeric characters.

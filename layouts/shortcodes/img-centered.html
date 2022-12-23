@@ -19,6 +19,7 @@
   <img
     src="{{ $.Scratch.Get `link` }}"
     width="{{ .Get `width` }}"
+    height="auto"
     {{ if isset .Params "alt" }}alt="{{ .Get `alt` }}"{{ end }}
   >
 </div>

@@ -19,7 +19,7 @@ You might be interested in...
 
 Particle classification means identifying the results of a collision, often as simply as with a binary yes/no answer, e.g. "this collision produced a Higgs boson" or "this collision did not produce a Higgs boson". Performing classification with a high degree of certainty is vital if, say, you are a research group interested in announcing the discovery of a new elementary particle.
 
-Update height auto;
+Update height auto; object-fit scale-down;
 
 {{< img-centered src="classification.png" width="70%" alt="Diagram showing many elementary particles flying out from a central interaction point that may have produced a Higgs boson." resize="1x" >}}
 

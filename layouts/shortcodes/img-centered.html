@@ -21,6 +21,7 @@
     src="{{ $.Scratch.Get `link` }}"
     style="width: {{ .Get `width` }};
     height: auto;
+    object-fit: scale-down;
     "
     {{ if isset .Params "alt" }}alt="{{ .Get `alt` }}"{{ end }}
   >

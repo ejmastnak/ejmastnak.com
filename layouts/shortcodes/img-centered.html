@@ -7,6 +7,7 @@
 {{ else }}
 
 {{ $image := .Page.Resources.GetMatch ( .Get `src` ) }}
+
 {{ .Scratch.Set "link" $image.RelPermalink }}
 
 {{ end }}
@@ -18,8 +19,12 @@
 >
   <img
     src="{{ $.Scratch.Get `link` }}"
-    width="{{ .Get `width` }}"
-    height="auto"
+    style="width: {{ .Get `width` }};
+    height: auto;
+    object-fit: cover;
+    "
     {{ if isset .Params "alt" }}alt="{{ .Get `alt` }}"{{ end }}
   >
 </div>
+
+

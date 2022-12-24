@@ -54,7 +54,7 @@ From that point reaching the speed in this page's GIFs would probably take month
 
 #### Shut up and show me results
 
-As concrete evidence that the techniques in this tutorial work in practice, here are [1500+ pages of typeset physics notes](https://ejmastnak.github.io/fmf.html) from my undergraduate studies, most of them written during university lecture in real time (although grammar and style were improved later).
+As concrete evidence that the techniques in this tutorial work in practice, here are [1500+ pages of typeset physics notes]({{< relref "/notes/fmf/fmf" >}}) from my undergraduate studies, most of them written during university lecture in real time (although grammar and style were improved later).
 Here are some examples of what these notes look like:
 
 {{< vim-latex/carousel items="1" height="108" unit="%" duration="7000" >}}
@@ -111,7 +111,7 @@ Since someone will probably be curious, here is an overview of the setup used in
 
 Feedback is welcome and appreciated.
 
-You can reach me by email, in English, Spanish, or Slovene, at [`ejmastnak@gmail.com`](mailto:ejmastnak@gmail.com) or by opening an issue or pull request at [`github.com/ejmastnak/ejmastnak.github.io`](https://github.com/ejmastnak/ejmastnak.github.io)).
+You can reach me by email, in English, Spanish, or Slovene, at [`ejmastnak@gmail.com`](mailto:ejmastnak@gmail.com) or by opening an issue or pull request at [`github.com/ejmastnak/ejmastnak.com`](https://github.com/ejmastnak/ejmastnak.com)).
 
 #### Have ideas for future projects?
 

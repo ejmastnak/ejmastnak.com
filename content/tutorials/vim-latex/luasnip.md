@@ -7,7 +7,7 @@ next-display-name: "3. Vim's ftplugin system »"
 date: 2022-09-27
 ---
 
-<!-- {% include vim-latex-navbar.html %} -->
+{{< vim-latex/navbar >}}
 
 # 2. A LuaSnip guide for LaTeX workflows
 
@@ -1529,6 +1529,6 @@ Of course, if needed, you should update `~/.config/nvim/LuaSnip/` to your own sn
 
 In case they look unfamiliar, the above code snippets are Vim *key mappings*, a standard Vim configuration tool described in much more detail in the series's final article, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}).
 
-{% include vim-latex-navbar.html %}
+{{< vim-latex/navbar >}}
 
 {{< vim-latex/license >}}

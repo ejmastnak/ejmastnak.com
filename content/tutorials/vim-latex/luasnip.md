@@ -1010,9 +1010,9 @@ Here is the corresponding snippet code:
 ```lua
 -- This is the `get_visual` function I've been talking about.
 -- ----------------------------------------------------------------------------
--- Summary: If `SELECT_RAW` is populated with a visual selection, the function
+-- Summary: When `SELECT_RAW` is populated with a visual selection, the function
 -- returns an insert node whose initial text is set to the visual selection.
--- If `SELECT_RAW` is empty, the function simply returns an empty insert node.
+-- When `SELECT_RAW` is empty, the function simply returns an empty insert node.
 local get_visual = function(args, parent)
   if (#parent.snippet.env.SELECT_RAW > 0) then
     return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
@@ -1037,8 +1037,8 @@ s({trig = "tii", dscr = "Expands 'tii' into LaTeX's textit{} command."},
 A few comments:
 
 - You only need to write the `get_visual` function once per snippet file---you can then use it in all snippets in the file.
-  By the way, there is no need to use the name `get_visual`.
-  You could name the function anything you like.
+  By the way, there is no need to use the name `get_visual`---you could use any name you like.
+- See the bonus tip a few paragraphs below to avoid excessive repetition from redefining the `get_visual` function in multiple snippet files.
 - You're probably wondering what the heck is a dynamic node---good question.
   A full answer falls beyond the scope of this article; see `:help luasnip-dynamicnode` for details.
   For our purposes, a dynamic node takes a numeric index (just like an insert node) as its first argument and a Lua function as its second argument, and this function (`get_visual` in the above example), returns a LuaSnip construct called a snippet node that *contains other nodes* (a single insert node in the above example).
@@ -1049,6 +1049,61 @@ Here's the great thing: you can still use any snippet that includes the `d(1, ge
 
 **Docs:** This use of dynamic nodes and `SELECT_RAW` to create a visual-selection snippet is not explicitly mentioned in the LuaSnip docs at the time of writing, but you can read about `SELECT_RAW` at `:help luasnip-variables` and about dynamic nodes, as mentioned earlier, at `:help luasnip-dynamicnode`.
 The `store_selection_keys` config key is documented in the [LuaSnip README's config section](https://github.com/L3MON4D3/LuaSnip#config).
+
+{{< details summary="Bonus: avoiding repition with `get_visual` functions." >}}
+
+Problem: redefining `local get_visual = function(args, parent)` in multiple snippet files leads to excessive code repetition.
+
+Solution: create a "global" version of `get_visual`, which you then source from individual snippet files.
+Here's what to do:
+
+1. Create a file at e.g. `~/.config/nvim/lua/luasnip-helper-funcs.lua`, and inside it place
+
+   ```lua
+   -- ~/.config/nvim/lua/luasnip-helper-funcs.lua
+   local M = {}
+ 
+   -- Be sure to explicitly define these LuaSnip node abbreviations!
+   local ls = require("luasnip")
+   local sn = ls.snippet_node
+   local i = ls.insert_node
+ 
+   function M.get_visual(args, parent)
+     if (#parent.snippet.env.SELECT_RAW > 0) then
+       return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+     else
+       return sn(nil, i(1, ''))
+     end
+   end
+ 
+   return M
+   ```
+
+   You could add other helper functions here too if you define them later.
+   (The `local M = {}` construction is a standard practice when constructing and return Lua modules for use as Neovim plugins.)
+
+2. Source `get_visual` from within snippet files as follows (for example, here is the same `\textit{}` snippet from just above):
+
+   ```lua
+   -- From any snippet file, source `get_visual` from global helper functions file
+   local helpers = require('luasnip-helper-funcs')
+   local get_visual = helpers.get_visual
+   
+   return {
+   s({trig = "tii", dscr = "Expands 'tii' into LaTeX's textit{} command."},
+     fmta("\\textit{<>}",
+       {
+         d(1, get_visual),
+       }
+     )
+   ),
+   }
+   ```
+
+   (The line `require('luasnip-helper-funcs')` sources the file `~/.config/nvim/lua/luasnip-helper-funcs.lua`; this is standard syntax for loading Lua modules and documented in the [Neovim Lua guide](https://neovim.io/doc/user/lua-guide.html#lua-guide-modules).)
+
+
+{{< /details >}}
 
 ## Conditional snippet expansion
 
@@ -1088,10 +1143,9 @@ Regex tutorials abound on the internet; if you need a place to start, I recommen
 
 For future reference, here the Lua pattern keywords needed for this article:
 
-<div align="center">
+<div style="display: flex; justify-content: center;">
+<div>
 
-{{
-  "
   | Keyword | Matched characters                |
   | ------- | ------------------                |
   | `.`     | all characters                    |
@@ -1099,9 +1153,8 @@ For future reference, here the Lua pattern keywords needed for this article:
   | `%a`    | letters (uppercase and lowercase) |
   | `%w`    | alphanumeric characters           |
   | `%s`    | white space characters            |
-  "
-| markdownify }}
 
+</div>
 </div>
 
 **Here's how the following sections will work:**

@@ -1050,7 +1050,7 @@ Here's the great thing: you can still use any snippet that includes the `d(1, ge
 **Docs:** This use of dynamic nodes and `SELECT_RAW` to create a visual-selection snippet is not explicitly mentioned in the LuaSnip docs at the time of writing, but you can read about `SELECT_RAW` at `:help luasnip-variables` and about dynamic nodes, as mentioned earlier, at `:help luasnip-dynamicnode`.
 The `store_selection_keys` config key is documented in the [LuaSnip README's config section](https://github.com/L3MON4D3/LuaSnip#config).
 
-{{< details summary="Bonus: avoiding repition with `get_visual` functions." >}}
+{{< details summary="Bonus: avoiding repetition with `get_visual` functions." >}}
 
 Problem: redefining `local get_visual = function(args, parent)` in multiple snippet files leads to excessive code repetition.
 

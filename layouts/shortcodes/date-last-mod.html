@@ -1,5 +1,5 @@
-{{ $date := .Page.Date.Format "2-1-2006" }}
-{{ $lastmod := .Page.Lastmod.Format "2-1-2006" }}
+{{ $date := .Page.Date.Format "2 January 2006" }}
+{{ $lastmod := .Page.Lastmod.Format "2 January 2006" }}
 
 <span>
 {{ if (time .Page.Lastmod).After (time .Page.Date) }}

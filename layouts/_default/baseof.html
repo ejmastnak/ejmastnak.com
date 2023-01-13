@@ -43,13 +43,15 @@
       {{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
 
   </head>
-  <body class="leading-normal font-md bg-gray-50 text-">
+  <body class="leading-normal font-md bg-gray-50 text-nord_gray_1">
     <div class="max-w-[850px] mx-auto p-8 sm:p-12">
 
       {{ partial "topnav.html" . }}
 
-      {{ block "main" . }}
-      {{ end }}
+      <div class="px-1">
+        {{ block "main" . }}
+        {{ end }}
+      </div>
 
     </div>
   </body>

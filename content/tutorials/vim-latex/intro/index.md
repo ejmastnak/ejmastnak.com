@@ -124,8 +124,8 @@ Here are two possible projects:
 
 If these or other ideas interest you, let me know---if there is enough interest from the community, I'd enjoy putting together more content like this.
 
-<div style="margin-top: 1.5em">
-<p style="text-align: center"><a href="/tutorials/vim-latex/prerequisites"><strong><em>Begin the series!</em></strong></a></p>
+<div class="text-center mx-auto mt-2 bg-blue-50 rounded-lg py-2">
+<p class="m-0 p-0"><a href="/tutorials/vim-latex/prerequisites"><strong>Begin the series!</strong></a></p>
 </div>
 
 {{< vim-latex/license >}}

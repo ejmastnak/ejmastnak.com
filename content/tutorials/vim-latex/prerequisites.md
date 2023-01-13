@@ -13,7 +13,6 @@ date: 2022-01-24
 
 {{< date-last-mod >}}
 
-
 This is part one in a [seven-part series]({{< relref "/tutorials/arch/about" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
 I wrote this series with beginners in mind, but some prerequisite knowledge is unavoidable.
 Each prerequisites is listed below and includes a suggestion or mini-tutorial for getting up to speed.

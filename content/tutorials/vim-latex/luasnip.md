@@ -149,7 +149,7 @@ If you use Vimscript, I assume you know how to call Lua from within Vimscript us
 - Neovim users: I suggest LuaSnip---it integrates better into the Neovim ecosystem, is free of external dependencies (UltiSnips requires Python), has more features, and is a bit faster (no, I don't have benchmarks).
   That said, UltiSnips still works fine in Neovim, and its syntax is easier to learn.
 
-There is also an  [UltiSnips version of this article]({{< relref "/tutorials/vim-latex/ultisnips" >}}) if you prefer.
+There is also an [UltiSnips version of this article]({{< relref "/tutorials/vim-latex/ultisnips" >}}) if you prefer.
 
 
 ### Installation {#install}

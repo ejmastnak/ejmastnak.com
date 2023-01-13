@@ -18,7 +18,7 @@ You might be interested in this article for two reasons:
 1. As a standalone guide to writing snippets with the UltiSnips plugin (this article is LaTeX-heavy, but is applicable to any language).
 1. As part two in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
 
-[There is also a LuaSnip version of this article.]({{< relref "/tutorials/vim-latex/luasnip" >}}))
+[There is also a LuaSnip version of this article.]({{< relref "/tutorials/vim-latex/luasnip" >}})
 
 {{< toc level="2" title="Contents of this article" >}}
 

@@ -1,6 +1,8 @@
-<details>
-  <summary> 
+<details class="py-2.5 px-4 border border-gray-900 rounded-lg overflow-hidden bg-blue-50">
+  <summary class="text-sky-600 font-medium"> 
     {{.Get `summary` | markdownify }}
   </summary>
-  {{ .Inner | markdownify }}
+  <div class="pt-2">
+    {{ .Inner | markdownify }}
+  </div>
 </details>

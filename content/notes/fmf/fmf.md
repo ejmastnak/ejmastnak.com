@@ -11,7 +11,7 @@ aliases:
 
 - What you're reading: the collection of typeset notes I compiled while studying in the physics program at the [Faculty of Mathematics and Physics](https://www.fmf.uni-lj.si/en/) (FMF) at the University of Ljubljana in Slovenia.
   The notes come mostly from the final three semesters.
-  [(Link to the curriculum)](fmf-courses.pdf).
+  [(Link to the curriculum)](/fmf-courses.pdf).
 
 - Intended audience: primarily FMF students taking the same courses, but everyone is welcome!
 

@@ -12,9 +12,13 @@ module.exports = {
             h1: {
               fontSize: '2.25rem',
               lineHeight: '2.5rem',
-              marginBottom: '1.5rem',
+              marginBottom: '2rem',
               color: theme('colors.gray.800'),
               fontWeight: '600',
+            },
+            img: {
+              marginTop: '0.5rem',
+              marginBottom: '0.5rem',
             },
             'code::before': {
               content: '',

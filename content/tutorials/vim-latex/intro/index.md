@@ -106,7 +106,8 @@ Since someone will probably be curious, here is an overview of the setup used in
 
 - If this series helped you, it will make my day to hear.
 - If you suggest constructive ideas for improving the series, I will quite likely implement them, appreciate your input, and give you credit for your contributions.
-  (Many thanks to Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how improve this series.)
+  (Many thanks to [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how improve this series.)
+
 - If you implement the setup in this series and show me the results, I will be very happy to see.
 
 Feedback is welcome and appreciated.

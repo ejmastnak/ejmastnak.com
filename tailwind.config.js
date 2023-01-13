@@ -9,6 +9,13 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
+            h1: {
+              fontSize: '2.25rem',
+              lineHeight: '2.5rem',
+              marginBottom: '1.5rem',
+              color: theme('colors.gray.800'),
+              fontWeight: '600',
+            },
             'code::before': {
               content: '',
             },

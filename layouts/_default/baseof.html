@@ -10,12 +10,25 @@
 
     <!-- CSS -->
     <!-- ------------------------------------------------------- -->
-    {{ $css_cm := resources.Get "scss/cm.scss" | resources.ToCSS $options }}
-    {{ $css_main := resources.Get "scss/main.scss" | resources.ToCSS $options }}
-    {{ $css_partials := resources.Get "scss/partials.scss" | resources.ToCSS $options }}
-    {{ $css_nord := resources.Get "scss/nord-syntax.scss" | resources.ToCSS $options }}
-    {{ $css_bundle := slice $css_cm $css_nord $css_main $css_partials | resources.Concat "/css/vendor.css" | minify }}
-    <link rel="stylesheet" href="{{ $css_bundle.RelPermalink }}" >
+    <!-- {{ $css_cm := resources.Get "scss/cm.scss" | resources.ToCSS $options }} -->
+    <!-- {{ $css_main := resources.Get "scss/main.scss" | resources.ToCSS $options }} -->
+    <!-- {{ $css_partials := resources.Get "scss/partials.scss" | resources.ToCSS $options }} -->
+    <!-- {{ $css_nord := resources.Get "scss/nord-syntax.scss" | resources.ToCSS $options }} -->
+    <!-- {{ $css_bundle := slice $css_cm $css_nord $css_main $css_partials | resources.Concat "/css/vendor.css" | minify }} -->
+    <!-- <link rel="stylesheet" href="{{ $css_bundle.RelPermalink }}" > -->
+
+    {{ if hugo.IsProduction }}
+    {{ $styles := resources.Get "css/tailwind.css" }}
+    {{ $styles = $styles | resources.PostCSS }}
+    {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+    <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
+    {{ else }}
+    <!-- Rely on manually compiled stylesheet -->
+    {{ $styles := resources.Get "css/main.css" }}
+    <link rel="stylesheet" href="{{ $styles.Permalink }}">
+      {{ end }}
+
+
       <!-- ------------------------------------------------------- -->
 
       <!-- FAVICON FILES -->
@@ -30,12 +43,14 @@
       {{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
 
   </head>
-  <body>
+  <body class="leading-normal font-md">
+    <div class="max-w-[850px] mx-auto">
 
-    {{ partial "topnav.html" . }}
+      {{ partial "topnav.html" . }}
 
-    {{ block "main" . }}
-    {{ end }}
+      {{ block "main" . }}
+      {{ end }}
 
+    </div>
   </body>
 </html>

@@ -1,6 +1,10 @@
 public
 resources
+node_modules
 .hugo_build.lock
+
+# Result of compiling Tailwind CSS
+assets/css/main.css
 
 TODO.md
 .root

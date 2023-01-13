@@ -1,0 +1,29 @@
+{
+  "name": "ejmastnak",
+  "version": "1.0.0",
+  "description": "Source files for [my website](https://www.ejmastnak.com/)—feel free to clone and reuse under the [license](https://www.ejmastnak.com/license/). The website is built using the [Hugo static site generator](https://gohugo.io/) and hosted on [Netlify](https://www.netlify.com/).",
+  "main": "index.js",
+  "scripts": {
+    "compile-tailwind": "npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/main.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ejmastnak/ejmastnak.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ejmastnak/ejmastnak.com/issues"
+  },
+  "homepage": "https://github.com/ejmastnak/ejmastnak.com#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.2.4"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.9"
+  }
+}

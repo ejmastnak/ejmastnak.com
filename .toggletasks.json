@@ -5,6 +5,12 @@
       "cmd": "xdg-open http://localhost:1313/ && hugo serve --enableGitInfo",
       "tags": ["project"],
       "count": 1
+    },
+    {
+      "name": "Compile Tailwind CSS",
+      "cmd": "npm run compile-tailwind",
+      "tags": ["compile"],
+      "count": 2
     }
   ]
 }

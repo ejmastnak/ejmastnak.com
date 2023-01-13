@@ -7,5 +7,6 @@ nnoremap ;pp :cd $VIFM_CONTEXT/content/projects<CR>
 nnoremap ;tt :cd $VIFM_CONTEXT/content/tutorials<CR>
 nnoremap ;ta :cd $VIFM_CONTEXT/content/tutorials/arch<CR>
 nnoremap ;tv :cd $VIFM_CONTEXT/content/tutorials/vim-latex<CR>
+nnoremap ;tl :cd $VIFM_CONTEXT/content/tutorials/vim-latex<CR>
 
 nnoremap ;nn :cd $VIFM_CONTEXT/content/notes<CR>

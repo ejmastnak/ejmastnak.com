@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./content/**/*.md",  // for example
@@ -20,6 +21,7 @@ module.exports = {
               marginTop: '0.5rem',
               marginBottom: '0.5rem',
             },
+            '--tw-prose-bullets': theme('colors.gray.400'),
             'code::before': {
               content: '',
             },

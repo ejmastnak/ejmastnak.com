@@ -43,7 +43,8 @@
       {{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
 
   </head>
-  <body class="leading-normal font-md bg-gray-50 text-nord_gray_1">
+  <!-- Background color to match GIF backgrounds in Vim-LaTeX tutorial -->
+  <body class="leading-normal font-md bg-[#fcfcfc]">
     <div class="max-w-[850px] mx-auto p-8 sm:p-12">
 
       {{ partial "topnav.html" . }}

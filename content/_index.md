@@ -3,8 +3,8 @@ title: "Home"
 date: 2022-12-04
 ---
 
-You have reached Elijan J. Mastnak's website;
-content is listed below.
+You have reached Elijan J. Mastnak's website.
+Here's the content I have available:
 
 ### Tutorials
 

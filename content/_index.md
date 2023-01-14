@@ -3,8 +3,8 @@ title: "Home"
 date: 2022-12-04
 ---
 
-You have reached Elijan J. Mastnak's website.
-For the time being, you can either view my [résumé](/resume.pdf) or read through the following:
+You have reached Elijan J. Mastnak's website;
+content is listed below.
 
 ### Tutorials
 

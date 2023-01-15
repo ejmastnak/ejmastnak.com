@@ -8,6 +8,11 @@
       {{ .Page.Title }} | ejmastnak
     </title>
 
+   <meta
+     name="description"
+     content="{{ if .Params.description }}{{ .Params.description }}{{ end }}"
+   />
+
     {{ $options := (dict "outputStyle" "compressed") }}
 
     {{ if hugo.IsProduction }}

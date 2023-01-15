@@ -1,6 +1,7 @@
 ---
 title: "Home"
 date: 2022-12-04
+description: The home page of Elijan Mastnak’s website.
 ---
 
 You have reached Elijan J. Mastnak's website.

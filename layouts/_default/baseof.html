@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" charset="utf-8">
+<html lang="en">
   <head>
+    <meta charset='UTF-8'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <title>
       {{ .Page.Title }} | ejmastnak
@@ -8,26 +10,16 @@
 
     {{ $options := (dict "outputStyle" "compressed") }}
 
-    <!-- CSS -->
-    <!-- ------------------------------------------------------- -->
-    <!-- {{ $css_cm := resources.Get "scss/cm.scss" | resources.ToCSS $options }} -->
-    <!-- {{ $css_main := resources.Get "scss/main.scss" | resources.ToCSS $options }} -->
-    <!-- {{ $css_partials := resources.Get "scss/partials.scss" | resources.ToCSS $options }} -->
-    <!-- {{ $css_nord := resources.Get "scss/nord-syntax.scss" | resources.ToCSS $options }} -->
-    <!-- {{ $css_bundle := slice $css_cm $css_nord $css_main $css_partials | resources.Concat "/css/vendor.css" | minify }} -->
-    <!-- <link rel="stylesheet" href="{{ $css_bundle.RelPermalink }}" > -->
-
     {{ if hugo.IsProduction }}
     {{ $styles := resources.Get "css/tailwind.css" }}
     {{ $styles = $styles | resources.PostCSS }}
     {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
     <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
     {{ else }}
-    <!-- Rely on manually compiled stylesheet -->
+    <!-- Use manually compiled stylesheet for local development -->
     {{ $styles := resources.Get "css/main.css" }}
     <link rel="stylesheet" href="{{ $styles.Permalink }}">
       {{ end }}
-
 
       <!-- ------------------------------------------------------- -->
 

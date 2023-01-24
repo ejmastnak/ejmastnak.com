@@ -26,25 +26,18 @@
     {{ end }}
     <!-- ------------------------------------------------------- -->
 
-      <!-- Dark mode toggle -->
+    <!-- Set dark theme if user preferences are saved in storage  -->
     <script>
-    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark')
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark')
     }
-
-    // Whenever the user explicitly chooses light mode
-    localStorage.theme = 'light'
-
-    // Whenever the user explicitly chooses dark mode
-    localStorage.theme = 'dark'
-
-    // Whenever the user explicitly chooses to respect the OS preference
-    localStorage.removeItem('theme')
-
     </script>
+
+    <!-- Dark/light theme toggle logic -->
+    {{ $themeswitchjs := resources.Get "js/theme-switch.js" }}
+    <script defer src="{{ $themeswitchjs.RelPermalink }}"></script>
     <!-- ------------------------------------------------------- -->
 
     <!-- Favicon settings -->
@@ -61,9 +54,12 @@
   </head>
   <!-- Background color to match GIF backgrounds in Vim-LaTeX tutorial -->
   <body class="leading-normal font-md text-gray-700 dark:text-gray-300 bg-neutral-50">
-    <div class="max-w-[850px] mx-auto p-8 sm:p-12">
+    <div class="max-w-[800px] mx-auto p-8 sm:p-12">
 
-      {{ partial "topnav.html" . }}
+      <nav class="w-full mx-auto mb-6 flex items-center space-x-2 sm:space-x-4 px-2">
+        {{ partial "topnav.html" . }}
+        {{ partial "theme-switch.html" . }}
+      </nav>
 
       <div class="px-1">
         {{ block "main" . }}

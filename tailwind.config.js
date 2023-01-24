@@ -5,10 +5,15 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   darkMode: 'class',
   content: [
-    "./content/**/*.md",  // for example
+    "./content/**/*.md",
     "./layouts/**/*.html",
+    "./assets/js/*.js",
   ],
   theme: {
+    screens: {
+      'xs': '475px',
+      ...defaultTheme.screens,
+    },
     extend: {
       fontFamily: {
         'sans': ['Inter', ...defaultTheme.fontFamily.sans],

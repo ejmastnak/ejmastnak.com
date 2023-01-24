@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  /* Inline code */
+  code {
+    @apply bg-gray-200 dark:bg-gray-800 text-sm
+  }
+  details code {
+    @apply dark:bg-gray-700
+  }
+  /* Block code */
+  pre code {
+    @apply bg-transparent dark:bg-transparent text-base
+  }
+}
+
 /* Nord syntax highlighting */
 .chroma .err { color: #bf616a; }    /* Error */
 .chroma .x   { color: #d8dee9; }    /* Other */

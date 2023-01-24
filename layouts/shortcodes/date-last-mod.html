@@ -1,7 +1,7 @@
 {{ $date := .Page.Date.Format "2 January 2006" }}
 {{ $lastmod := .Page.Lastmod.Format "2 January 2006" }}
 
-<span class="text-gray-500">
+<span class="text-gray-500 dark:text-gray-400">
 {{ if (time .Page.Lastmod).After (time .Page.Date) }}
   <p>Last modified: {{ $lastmod }}</p>
 {{else}}

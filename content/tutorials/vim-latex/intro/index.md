@@ -96,7 +96,7 @@ Since someone will probably be curious, here is an overview of the setup used in
 - Editor: [Neovim](https://neovim.io/)
 - Terminal: [Alacritty](https://alacritty.org/)
 - Colorscheme: [Nord](https://www.nordtheme.com/)
-- Font: [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) in the terminal and [Computer Modern](https://www.tug.org/FontCatalogue/computermodern/) on this website; at the time of writing, the fonts used on this website are available on [this demo page](https://www.checkmyworking.com/cm-web-fonts/).
+- Font: [Source Code Pro](https://github.com/adobe-fonts/source-code-pro) in the terminal (I've since jumped on the [Iosevka](https://github.com/be5invis/Iosevka) bandwagon) and [Inter](https://github.com/rsms/inter) on this website.
 - OS: [Arch Linux](https://archlinux.org/) as a daily driver; [macOS](https://www.apple.com/macos/) for testing cross-platform functionality
 - Window manager: [i3](https://i3wm.org/) on Linux; [Amethyst](https://ianyh.com/amethyst/) on macOS
 - GIF recording and screen capture: [Menyoki](https://github.com/orhun/menyoki)

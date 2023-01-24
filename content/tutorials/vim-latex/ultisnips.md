@@ -102,7 +102,7 @@ For example, to use `MySnippets` as a snippet directory, you would place the fol
 
 ```vim
 " Use both `UltiSnips` and `MySnippets` as snippet directories
- let g:UltiSnipsSnippetDirectories=["UltiSnips", "MySnippets"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "MySnippets"]
 ```
 
 UltiSnips would then load `*.snippet` files from all `UltiSnips` and `MySnippets` directories in your Vim `runtimepath`.
@@ -126,8 +126,8 @@ Again, this behavior is documented in `:help UltiSnips-how-snippets-are-loaded`.
 As a concrete example, a selection of my UltiSnips directory looks like this:
 
 ```bash
-${HOME}/.vim/UltiSnips/           # Vim
-${HOME}/.config/nvim/UltiSnips/   # Neovim
+${HOME}/.vim/UltiSnips/          # Vim
+${HOME}/.config/nvim/UltiSnips/  # Neovim
 ├── all.snippets
 ├── markdown.snippets
 ├── python.snippets
@@ -175,8 +175,8 @@ See `:help UltiSnips-authoring-snippets` for the relevant documentation.
 Please excuse the sub-optimal syntax highlighting of UltiSnips snippet code blocks throughout this article.
 This website is created with Hugo, which uses [Chroma](https://github.com/alecthomas/chroma) for syntax highlighting.
 At the time of writing, Chroma does not support the UltiSnips snippet language 
-(see here for the [current list of supported languages](https://github.com/alecthomas/chroma#supported-languages)),
-and so the snippet code looks meh.
+(see here for the [current list of supported languages](https://github.com/alecthomas/chroma#supported-languages)) and I have not implemented a custom UltiSnips lexer,
+so the snippet code looks meh.
 For lack of a better option, I shuffle between plain text and YAML (ha!), which at least highlights comments and leaves the rest of the text alone.
 Neither option is particularly satisfactory, but that's life.
 {{< /details >}}

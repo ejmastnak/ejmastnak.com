@@ -1,9 +1,9 @@
 ---
 title: LuaSnip Plugin Guide for LaTeX \| Vim and LaTeX Series Part 2
-prev-filename: prerequisites
-prev-display-name: "« 1. Prerequisites"
-next-filename: ftplugin
-next-display-name: "3. Vim's ftplugin system »"
+prevFilename: prerequisites
+prevDisplayName: "« 1. Prerequisites"
+nextFilename: ftplugin
+nextDisplayName: "3. Vim's ftplugin system »"
 date: 2022-09-27
 ---
 
@@ -780,7 +780,7 @@ Here's **how to call the `fmta` function**:
    ```
 
    Escaping delimiters: if you want to insert a delimiter character literally, just repeat it.
-   For example, `<<>>` would insert literal angle brackets into a `fmta` string, and `{% raw %}{{}}{% endraw %}` would insert literal curly braces into a `fmt` string.
+   For example, `<<>>` would insert literal angle brackets into a `fmta` string, and `{{}}` would insert literal curly braces into a `fmt` string.
  
 1. Node table: create a Lua table containing one node for each angle bracket placeholder in the boilerplate string.
    The `fmta` function will insert the nodes in this table, in sequential order, into the angle bracket placeholders in the boilerplate string.

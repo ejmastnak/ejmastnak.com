@@ -71,11 +71,6 @@ module.exports = {
             'code::after': {
               content: 'none',
             },
-            code: {
-              borderRadius: '4px',
-              padding: '.2rem .4rem',
-              fontWeight: 'normal',
-            },
             a: {
               textDecoration: 'none',
               // fontWeight: 'normal',

@@ -5,7 +5,7 @@
 @layer base {
   /* Inline code */
   code {
-    @apply bg-gray-200 dark:bg-gray-800 text-sm rounded py-1 px-2 font-normal
+    @apply bg-gray-200 dark:bg-gray-800 text-sm rounded py-1 px-2 font-thin
   }
   details code {
     @apply dark:bg-gray-700

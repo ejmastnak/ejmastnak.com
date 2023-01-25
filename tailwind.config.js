@@ -65,6 +65,9 @@ module.exports = {
               marginTop: '0.5rem',
               marginBottom: '0.5rem',
             },
+            code: {
+              fontWeight: 'normal',
+            },
             'code::before': {
               content: 'none',
             },

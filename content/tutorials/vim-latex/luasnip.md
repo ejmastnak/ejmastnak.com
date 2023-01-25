@@ -31,7 +31,7 @@ To help you out, here's how the article is organized:
 1. [Actually writing snippets](#writing)---you probably came for this section.
 1. [Some practical tips](#tips) from the perspective of a real-life user.
 
-Feel free to **skim or skip the boring stuff** and jump right to [actually writing snippets](#writing).
+Feel free to skim or skip the boring stuff and jump right to [actually writing snippets](#writing).
 
 {{< toc level="2" title="Contents of this article" >}}
 

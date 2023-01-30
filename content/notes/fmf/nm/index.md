@@ -6,7 +6,7 @@ date: 2021-09-17
 # Numerical methods
 
 - [Lecture notes](nm-lecture.pdf)
-- [Equation sheet](nummet-equation-sheet.pdf)
+- [Equation sheet](nm-equation-sheet.pdf)
 
 ## Course description
 

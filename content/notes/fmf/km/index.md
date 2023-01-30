@@ -4,8 +4,8 @@ date: 2021-09-17
 ---
 # Classical mechanics
 
-- [Lecture notes]({% link fmf-pdfs/year2/cm/cm-lecture.pdf %})
-- [Oral exam notes]({% link fmf-pdfs/year2/cm/cm-oral-notes.pdf %})
+- [Lecture notes](km-lecture.pdf)
+- [Oral exam notes](km-oral-notes.pdf)
 
 ## Course description
 

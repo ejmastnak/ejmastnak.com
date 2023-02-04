@@ -54,11 +54,13 @@
   </head>
   <!-- Background color to match GIF backgrounds in Vim-LaTeX tutorial -->
   <body class="leading-normal font-md text-gray-700 dark:text-gray-300 bg-neutral-50 dark:bg-gray-900">
-    <div class="max-w-[800px] mx-auto p-8 sm:p-12">
+    <div class="max-w-[800px] mx-auto pt-2 pb-8 px-4 sm:px-8">
 
-      <nav class="w-full mx-auto mb-6 flex items-center space-x-2 sm:space-x-4 px-2">
+      <nav class="w-full -ml-2 mb-6 flex items-center">
         {{ partial "topnav.html" . }}
-        {{ partial "theme-switch.html" . }}
+        <div class="ml-3">
+          {{ partial "theme-switch.html" . }}
+        </div>
       </nav>
 
       <div class="px-1">

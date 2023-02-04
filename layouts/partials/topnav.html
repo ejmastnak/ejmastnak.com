@@ -1,9 +1,29 @@
 <!-- The site's top navigation bar -->
 <header class="w-full">
-  <ul class="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg whitespace-nowrap overflow-auto md:space-x-8 px-4 py-4">
+  <ul class="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg whitespace-nowrap overflow-x-auto overflow-y-hidden my-2 px-4 py-4 sm:py-3">
+
+    <!-- Logo (mobile) -->
+    <li class="block sm:hidden w-12 h-12 flex items-center justify-center rounded-full bg-blue-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 -my-3 -ml-2 mr-4 shrink-0 grow-0">
+      <a href="/" class="dark:hidden">
+        {{ partial "logo/mobile-light.html" . }}
+      </a>
+      <a href="/" class="hidden dark:block">
+        {{ partial "logo/mobile-dark.html" . }}
+      </a>
+    </li>
+    <!-- Logo (desktop) -->
+    <li class="hidden sm:block mr-6">
+      <a href="/" class="dark:hidden">
+        {{ partial "logo/desktop-light.html" . }}
+      </a>
+      <a href="/" class="hidden dark:block">
+        {{ partial "logo/desktop-dark.html" . }}
+      </a>
+    </li>
+
     <li><a class="py-2 hover:underline hover:text-sky-600"href="/">Home</a></li>
-    <li><a class="py-2 pl-6 hover:underline hover:text-sky-600"href="/notes/fmf/fmf">Physics notes</a></li>
-    <li><a class="py-2 pl-6 hidden xs:inline hover:underline hover:text-sky-600"href="/resume.pdf">Résumé</a></li>
-    <li><a class="py-2 pl-6 hover:underline hover:text-sky-600"href="/contact">Contact</a></li>
+    <li><a class="py-2 pl-6 hover:underline hover:text-sky-600"href="/content">Content</a></li>
+    <li><a class="py-2 pl-6 hidden xs:inline hover:underline hover:text-sky-600"href="/contact">Contact</a></li>
+    <li><a class="py-2 pl-6 hover:underline hover:text-sky-600"href="/about">About</a></li>
   </ul>
 </header>

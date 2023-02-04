@@ -8,10 +8,12 @@ description: The home page of Elijan Mastnak’s website.
 
 This is Elijan J. Mastnak's personal website.
 
-- [Content you can find on the website]({{< relref "/content.md" >}})
-- [Information about me]({{< relref "/about.md" >}})
+**First time here? Here are links to:**
 
-**Here are quick links to the best content:**
+- The [content you can find on the website]({{< relref "/content.md" >}})
+- Information [about me]({{< relref "/about.md" >}})
+
+**And here are shortcuts to the best content:**
 
 - [Real-time LaTeX using (Neo)Vim]({{< relref "/tutorials/vim-latex/intro.md" >}})
   <br>

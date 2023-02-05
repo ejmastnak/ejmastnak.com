@@ -35,24 +35,58 @@ You can skim through the guide in about 15-30 minutes; a closer read-through mig
 and you'll realistically need a few weekends (or perhaps a few weeks if you're new to Vim) of dedicated focus and effort to become fully functional.
 From that point reaching the speed in this page's GIFs would probably take months of practice.
 
-### Contents
+## Contents
 
-1. Cover [**prerequisites**]({{< relref "/tutorials/vim-latex/prerequisites" >}}) for getting the most out of the series, along with references that should get you up to speed if needed.
+1. [**Prerequisites**]({{< relref "/tutorials/vim-latex/prerequisites" >}})
+   <br>
+   <span class="text-sm text-gray-500">
+   Covers prerequisites for getting the most out of the series, along with references that should get you up to speed if needed.
+   </span>
 
-1. Explain snippets, the key to real-time LaTeX.
-   Available in [**UltiSnips**]({{< relref "/tutorials/vim-latex/ultisnips" >}}) or [**LuaSnip**]({{< relref "/tutorials/vim-latex/luasnip" >}}) flavor.
+1. [**UltiSnips**]({{< relref "/tutorials/vim-latex/ultisnips" >}}) or [**LuaSnip**]({{< relref "/tutorials/vim-latex/luasnip" >}}) snippets
+   <br>
+   <span class="text-sm text-gray-500">
+   Explains snippets, the key to real-time LaTeX.
+   Both articles cover the same content---once using the UltiSnips plugin and once using the LuaSnip plugin.
+   </span>
 
-1. Introduce Vim's [**filetype plugin system**]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which will help you understand the VimTeX plugin.
+1. [**Vim's ftplugin system**]({{< relref "/tutorials/vim-latex/ftplugin" >}})
+   <br>
+   <span class="text-sm text-gray-500">
+   Introduces Vim's filetype plugin system, which will help you understand the VimTeX plugin.
+   </span>
 
-1. Cover the excellent [**VimTeX plugin**]({{< relref "/tutorials/vim-latex/vimtex" >}})---*the reason* to use Vim over another LaTeX editor.
+1. [**The VimTeX plugin**]({{< relref "/tutorials/vim-latex/vimtex" >}})
+   <br>
+   <span class="text-sm text-gray-500">
+   The excellent VimTeX plugin is *the reason* to use Vim over another LaTeX editor.
+   </span>
 
-1. Show how to [**compile LaTeX documents**]({{< relref "/tutorials/vim-latex/compilation" >}}) from within Vim.
+1. <span>[**Compilation**]({{< relref "/tutorials/vim-latex/compilation" >}})</span>
+   <br>
+   <span class="text-sm text-gray-500">
+   How to compile LaTeX documents from within Vim.
+   </span>
 
-1. Integrate Vim and a [**PDF reader**]({{< relref "/tutorials/vim-latex/pdf-reader" >}}) for viewing LaTeX documents.
+1. [**PDF reader**]({{< relref "/tutorials/vim-latex/pdf-reader" >}})
+   <br>
+   <span class="text-sm text-gray-500">
+   How to integrate Vim and a PDF reader for viewing LaTeX documents.
+   </span>
 
-1. [**A Vim configuration primer**]({{< relref "/tutorials/vim-latex/vimscript" >}}) explaining the key mappings and Vimscript functions used in this tutorial.
+1. [**Vim configuration**]({{< relref "/tutorials/vim-latex/vimscript" >}})
+   <br>
+   <span class="text-sm text-gray-500">
+   A Vim configuration guide explaining the key mappings and Vimscript functions used in this tutorial.
+   </span>
 
-#### Shut up and show me results
+<div class="text-center mx-auto mt-6 mb-8 bg-blue-50 dark:bg-gray-800 rounded-xl py-2 border border-gray-200 dark:border-gray-700">
+<p class="m-0 p-0 font-semibold"><a href="/tutorials/vim-latex/prerequisites">Begin the series!</a></p>
+</div>
+
+## More about the series
+
+### Shut up and show me results
 
 As concrete evidence that the techniques in this tutorial work in practice, here are [1500+ pages of typeset physics notes]({{< relref "/notes/fmf/fmf" >}}) from my undergraduate studies, most of them written during university lecture in real time (although grammar and style were improved later).
 Here are some examples of what these notes look like:
@@ -69,29 +103,16 @@ If you like, you can see [**more examples on YouTube**](https://www.youtube.com/
 
 **Credit where it is due**: the above GIFs are inspired by Gilles Castel's video [Fast LaTeX editing with Vim and UltiSnips](https://www.youtube.com/watch?v=a7gpx0h-BuU)---it is beautifully done and I encourage you to watch it.
 
-#### A human-friendly guide
-
-The series is written with the voice, format, notation, and explanation style I would have liked to have read if I were once again an inexperienced undergraduate learning the material for the first time myself.
-
-All of the small discoveries I inefficiently scraped together from official documentation, online tutorials, YouTube, Stack Overflow, Reddit, and other online forums are compiled here and (hopefully) synthesized into an easily-followed, self-contained work.
-I do my best to write clearly and concisely.
-References to official documentation appear throughout the guide, so you know where each technique comes from.
-I'll show you practical tips and tricks I use in everyday, real-life writing.
-You'll find plenty of examples and GIFs.
-I might even crack a joke or two.
-Basically, I'll try to teach how I would like to be taught.
-Hope it's helpful!
-
-#### The original Vim-LaTeX article
+### The original Vim-LaTeX article
 
 By the way: the seminal work on the subject of Vim and LaTeX, and my inspiration for attempting and ultimately succeeding in writing real-time LaTeX using Vim, is Gilles Castel's [*How I'm able to take notes in mathematics lectures using LaTeX and Vim*](https://castel.dev/post/lecture-notes-1/).
 You've probably seen it on the Internet if you dabble in Vim or LaTeX circles, and you should definitely read it if you haven't yet.
 
 This series builds on Castel's article by more thoroughly walking the reader through technical details of implementation (e.g. the details of setting up a PDF reader with forward and inverse search, how to use the VimTeX plugin, how to write Vimscript functions and key mappings, how Vim's `ftplugin` system works, how to manually compile LaTeX documents, and so on).
 
-#### Config
+### Config
 
-Since someone will probably be curious, here is an overview of the setup used in this series:
+Here is an overview of the setup used in this series:
 
 - Editor: [Neovim](https://neovim.io/)
 - Terminal: [Alacritty](https://alacritty.org/)
@@ -102,15 +123,16 @@ Since someone will probably be curious, here is an overview of the setup used in
 - GIF recording and screen capture: [Menyoki](https://github.com/orhun/menyoki)
 - Dotfiles: [`github.com/ejmastnak/dotfiles`](https://github.com/ejmastnak/dotfiles), where you can find both my main [Neovim config](https://github.com/ejmastnak/dotfiles/tree/main/config/nvim) and a smaller [Vim config](https://github.com/ejmastnak/dotfiles/tree/main/config/nvim) for testing Vim-specific inverse search features for this series.
 
-#### Feedback, suggestions, appreciation, criticisms, etc.
+### Feedback, suggestions, appreciation, criticisms, etc.
+
+I enjoy hearing from readers!
 
 - If this series helped you, it will make my day to hear.
 - If you suggest constructive ideas for improving the series, I will quite likely implement them, appreciate your input, and give you credit for your contributions.
-  (Many thanks to [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how improve this series.)
+  Feedback is welcome and appreciated.
+  Many thanks to [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how improve this series.
 
 - If you implement the setup in this series and show me the results, I will be very happy to see.
-
-Feedback is welcome and appreciated.
 
 You can reach me by email, in English, Spanish, or Slovene, at [`ejmastnak@gmail.com`](mailto:ejmastnak@gmail.com) or by opening an issue or pull request at [`github.com/ejmastnak/ejmastnak.com`](https://github.com/ejmastnak/ejmastnak.com)).
 

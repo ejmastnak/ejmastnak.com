@@ -1,4 +1,8 @@
 <!-- The site's top navigation bar -->
+
+<!-- Used to highlight current page in navbar -->
+{{ $currentPage := . -}}
+
 <header class="w-full">
   <ul class="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg whitespace-nowrap overflow-x-auto overflow-y-hidden my-2 px-4 py-4 sm:py-3">
 
@@ -20,10 +24,13 @@
         {{ partial "logo/desktop-dark.html" . }}
       </a>
     </li>
-    <li class="xxs:hidden"><a class="hover:underline hover:text-sky-600"href="/">Home (start here)</a></li>
-    <li class="hidden xxs:block xs:ml-2"><a class="hover:underline hover:text-sky-600"href="/">Home</a></li>
-    <li class="hidden xxs:block ml-6 xs:ml-8"><a class="hover:underline hover:text-sky-600"href="/content">Content</a></li>
-    <li class="hidden xs:block ml-6 xs:ml-8"><a class="hover:underline hover:text-sky-599"href="/contact">Contact</a></li>
-    <li class="hidden xxs:block ml-6 xs:ml-8"><a class="hover:underline hover:text-sky-600"href="/about">About</a></li>
+
+    <li class="xxs:hidden {{ if eq $currentPage.Title "Home" }}underline font-medium{{ end }}"><a class="hover:underline hover:text-sky-600"href="/">Home</a></li>
+    <li class="hidden {{ if eq $currentPage.Title "Home" }}underline font-medium{{ end }} xxs:block xs:ml-2"><a class="hover:underline hover:text-sky-600"href="/">Home</a></li>
+    <li class="hidden {{ if eq $currentPage.Title "Content" }}underline font-medium{{ end }} xxs:block ml-6 xs:ml-8"><a class="hover:underline hover:text-sky-600"href="/content">Content</a></li>
+    <li class="hidden {{ if eq $currentPage.Title "Contact" }}underline font-medium{{ end }} xs:block ml-6 xs:ml-8"><a class="hover:underline hover:text-sky-600"href="/contact">Contact</a></li>
+    <li class="hidden {{ if eq $currentPage.Title "About" }}underline font-medium{{ end }} xxs:block ml-6 xs:ml-8"><a class="hover:underline hover:text-sky-600"href="/about">About</a></li>
   </ul>
 </header>
+
+

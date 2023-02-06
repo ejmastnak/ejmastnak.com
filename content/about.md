@@ -29,7 +29,7 @@ Otherwise, if you're curious, I...
 ## About this website
 
 - The website is a static site built with the [Hugo](https://gohugo.io/) static site generator.
-  I write most of the content in Markdown and implement components like navigation bar and dark/light theme switcher directly in HTML.
+  I write most of the content in Markdown and implement components like the navigation bar and dark/light theme switcher directly in HTML and (when necessary) vanilla JavaScript.
 - I use [Tailwind CSS](https://tailwindcss.com/) for styling.
 - The font used on this site is [Inter](https://github.com/rsms/inter).
 - The website is hosted on [Netlify](https://www.netlify.com/).

@@ -17,7 +17,7 @@ The blue bar with white text shows the keys I am typing, the bottom shows the re
 More on how this works below.
 
 {{< details summary="Wait, what are you talking about, what is LaTeX?" >}}
-[LaTeX](https://www.latex-project.org/) is the industry standard typesetting software for writing articles/reports/books in mathematics, physics, computer science, and other quantitative sciences (but is mostly unknown outside this niche, so it's quite reasonable to have never heard of it).
+[LaTeX](https://www.latex-project.org/) is the industry standard typesetting software for writing papers, books, reports, etc. in mathematics, physics, computer science, and other quantitative sciences (but is mostly unknown outside this niche, so it's quite reasonable to have never heard of it).
 LaTeX has a reputation for producing high-quality documents but being clumsy to type---this series presents a framework aimed at eliminating the clumsiness.
 {{< /details >}}
 
@@ -80,8 +80,8 @@ From that point reaching the speed in this page's GIFs would probably take month
    A Vim configuration guide explaining the key mappings and Vimscript functions used in this tutorial.
    </span>
 
-<div class="text-center mx-auto mt-6 mb-8 bg-blue-50 dark:bg-gray-800 rounded-xl py-2 border border-gray-200 dark:border-gray-700">
-<p class="m-0 p-0 font-semibold"><a href="/tutorials/vim-latex/prerequisites">Begin the series!</a></p>
+<div class="text-center mx-auto mt-6 mb-8 bg-blue-50 font-semibold dark:bg-gray-800 rounded-xl py-2 border border-gray-200 dark:border-gray-700">
+<a href="/tutorials/vim-latex/prerequisites" class="block">Begin the series!</a>
 </div>
 
 ## More about the series
@@ -140,14 +140,15 @@ You can reach me by email, in English, Spanish, or Slovene, at [`ejmastnak@gmail
 
 If there is collective interest from readers of this guide, I would consider creating follow-up content expanding on this series.
 Here are two possible projects:
+
 - A GitHub repo implementing a minimum working example of the setup in this series (I'm thinking a minimal `vimrc`, a few example UltiSnips snippets to get you started writing your own, basic VimTeX configuration etc.).
   This might be less overwhelming for new users than browsing my above-linked dotfiles.
 - A write-up of how the GIFs in this series were made (using shell scripts for repeatable results and dimensions, setting colorscheme and fonts, reaching an acceptable resolution, etc.).
 
 If these or other ideas interest you, let me know---if there is enough interest from the community, I'd enjoy putting together more content like this.
 
-<div class="text-center mx-auto mt-10 mb-8 bg-blue-50 dark:bg-gray-800 rounded-xl py-2 border border-gray-200 dark:border-gray-700">
-<p class="m-0 p-0 font-semibold"><a href="/tutorials/vim-latex/prerequisites">Begin the series!</a></p>
+<div class="text-center mx-auto mt-6 mb-8 bg-blue-50 font-semibold dark:bg-gray-800 rounded-xl py-2 border border-gray-200 dark:border-gray-700">
+<a href="/tutorials/vim-latex/prerequisites" class="block">Begin the series!</a>
 </div>
 
 {{< vim-latex/license >}}

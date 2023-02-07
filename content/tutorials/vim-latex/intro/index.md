@@ -39,44 +39,44 @@ From that point reaching the speed in this page's GIFs would probably take month
 
 1. [**Prerequisites**]({{< relref "/tutorials/vim-latex/prerequisites" >}})
    <br>
-   <span class="text-sm text-gray-500">
+   <span class="text-sm text-gray-500 dark:text-gray-400">
    Covers prerequisites for getting the most out of the series, along with references that should get you up to speed if needed.
    </span>
 
-1. [**UltiSnips**]({{< relref "/tutorials/vim-latex/ultisnips" >}}) or [**LuaSnip**]({{< relref "/tutorials/vim-latex/luasnip" >}}) snippets
+1. [**UltiSnips**]({{< relref "/tutorials/vim-latex/ultisnips" >}})<span class="text-sm text-gray-500 dark:text-gray-400">/</span>[**LuaSnip**]({{< relref "/tutorials/vim-latex/luasnip" >}})
    <br>
-   <span class="text-sm text-gray-500">
+   <span class="text-sm text-gray-500 dark:text-gray-400">
    Explains snippets, the key to real-time LaTeX.
    Both articles cover the same content---once using the UltiSnips plugin and once using the LuaSnip plugin.
    </span>
 
 1. [**Vim's ftplugin system**]({{< relref "/tutorials/vim-latex/ftplugin" >}})
    <br>
-   <span class="text-sm text-gray-500">
+   <span class="text-sm text-gray-500 dark:text-gray-400">
    Introduces Vim's filetype plugin system, which will help you understand the VimTeX plugin.
    </span>
 
 1. [**The VimTeX plugin**]({{< relref "/tutorials/vim-latex/vimtex" >}})
    <br>
-   <span class="text-sm text-gray-500">
+   <span class="text-sm text-gray-500 dark:text-gray-400">
    The excellent VimTeX plugin is *the reason* to use Vim over another LaTeX editor.
    </span>
 
 1. <span>[**Compilation**]({{< relref "/tutorials/vim-latex/compilation" >}})</span>
    <br>
-   <span class="text-sm text-gray-500">
+   <span class="text-sm text-gray-500 dark:text-gray-400">
    How to compile LaTeX documents from within Vim.
    </span>
 
 1. [**PDF reader**]({{< relref "/tutorials/vim-latex/pdf-reader" >}})
    <br>
-   <span class="text-sm text-gray-500">
+   <span class="text-sm text-gray-500 dark:text-gray-400">
    How to integrate Vim and a PDF reader for viewing LaTeX documents.
    </span>
 
 1. [**Vim configuration**]({{< relref "/tutorials/vim-latex/vimscript" >}})
    <br>
-   <span class="text-sm text-gray-500">
+   <span class="text-sm text-gray-500 dark:text-gray-400">
    A Vim configuration guide explaining the key mappings and Vimscript functions used in this tutorial.
    </span>
 

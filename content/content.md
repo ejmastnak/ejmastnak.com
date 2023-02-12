@@ -16,11 +16,16 @@ A guide to turbocharged mathematical typesetting
 <br>
 Bite-sized tutorials to help you set up a functional work environment after a minimal install of Arch
 
-## Notes
+## Academic
 
 [**1500+ pages of undergraduate physics notes typeset with LaTeX**]({{< relref "/notes/fmf/fmf" >}})
 <br>
 From the final two years of undergrad at the Faculty of Math and Physics in Ljubljana
+
+[**ROF tutorstvo 2022/23**]({{< relref "/notes/fmf/fmf" >}})
+<br>
+Spletna stran tutorstva za predmet Računalniška orodja v fiziki
+
 
 ## Projects
 

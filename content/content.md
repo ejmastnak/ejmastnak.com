@@ -16,7 +16,7 @@ A guide to turbocharged mathematical typesetting
 <br>
 Bite-sized tutorials to help you set up a functional work environment after a minimal install of Arch
 
-## Academic
+## Academics
 
 [**1500+ pages of undergraduate physics notes typeset with LaTeX**]({{< relref "/notes/fmf/fmf" >}})
 <br>

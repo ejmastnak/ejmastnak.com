@@ -12,7 +12,7 @@ Spletna stran za tutorstvo pri predmetu Računalniška orodja v fiziki, leto 202
 
 Za prvo uro bo prišla prav Unix lupina (shell). Predlagam [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) ali [Zsh](https://en.wikipedia.org/wiki/Z_shell).
 
-Kot izziv **poskusi inštalirati Bash** (ali drug Unix shell, če želite in že znate) na svoj računalnik pred tutorstvom.
+Kot izziv **poskusi inštalirati Bash** (ali drug Unix shell, če želiš in že znaš) na svoj računalnik pred tutorstvom.
 Odvisno od tvojega operacijskega sistema, predlagam:
 
 - Če uporabljaš Windows: **inštaliraj WSL** ([navodila](https://learn.microsoft.com/en-us/windows/wsl/install)), ki ti omogoči dostop do Basha.

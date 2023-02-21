@@ -1,5 +1,5 @@
 ---
-title: A VimTeX Plugin Guide \| Vim and LaTeX Series Part 4
+title: A VimTeX Plugin Guide | Vim and LaTeX Series Part 4
 prevFilename: "ftplugin"
 prevDisplayName: "« 3. Vim's ftplugin system"
 nextFilename: "compilation"

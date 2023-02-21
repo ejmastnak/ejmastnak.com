@@ -1,5 +1,5 @@
 ---
-title: LuaSnip Plugin Guide for LaTeX \| Vim and LaTeX Series Part 2
+title: LuaSnip Plugin Guide for LaTeX | Vim and LaTeX Series Part 2
 prevFilename: prerequisites
 prevDisplayName: "« 1. Prerequisites"
 nextFilename: ftplugin

@@ -1,5 +1,5 @@
 ---
-title: Compiling LaTeX Documents in Vim \| Vim and LaTeX Series Part 5
+title: Compiling LaTeX Documents in Vim | Vim and LaTeX Series Part 5
 prevFilename: "vimtex"
 prevDisplayName: "« 4. The VimTeX plugin"
 nextFilename: "pdf-reader"

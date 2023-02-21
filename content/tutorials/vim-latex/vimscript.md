@@ -1,5 +1,5 @@
 ---
-title: Vim Configuration Tutorial for Filetype-Specific Workflows  \| Vim and LaTeX Series Part 7
+title: Vim Configuration Tutorial for Filetype-Specific Workflows | Vim and LaTeX Series Part 7
 prevFilename: "pdf-reader"
 prevDisplay-name: "« 6. PDF Reader"
 nextFilename: "intro"

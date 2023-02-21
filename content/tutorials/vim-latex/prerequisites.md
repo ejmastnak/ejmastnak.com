@@ -1,5 +1,5 @@
 ---
-title: Prerequisites for Vim-LaTeX Workflows \| Vim and LaTeX Series Part 1
+title: Prerequisites for Vim-LaTeX Workflows | Vim and LaTeX Series Part 1
 prevFilename: "intro"
 prevDisplayName: ""
 nextFilename: "ultisnips"

@@ -1,5 +1,5 @@
 ---
-title: PDF Reader for LaTeX and Vim \| Vim and LaTeX Series Part 6
+title: PDF Reader for LaTeX and Vim | Vim and LaTeX Series Part 6
 prevFilename: "compilation"
 prevDisplayName: "« 5. Compilation"
 nextFilename: "vimscript"

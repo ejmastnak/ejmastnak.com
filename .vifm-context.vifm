@@ -4,7 +4,9 @@ source $VIFM/personal/navigation-contexts/hugo.vifm
 
 nnoremap ;pp :cd $VIFM_CONTEXT/content/projects<CR>
 
-nnoremap ;tt :cd $VIFM_CONTEXT/content/tutorials<CR>
+nnoremap ;cr :cd $VIFM_CONTEXT/content/rof<CR>
+
+nnoremap ;ct :cd $VIFM_CONTEXT/content/tutorials<CR>
 nnoremap ;ta :cd $VIFM_CONTEXT/content/tutorials/arch<CR>
 nnoremap ;tv :cd $VIFM_CONTEXT/content/tutorials/vim-latex<CR>
 nnoremap ;tl :cd $VIFM_CONTEXT/content/tutorials/vim-latex<CR>

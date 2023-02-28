@@ -8,25 +8,13 @@ description: ROF tutorstvo za akademsko leto 2022/23
 
 Spletna stran za tutorstvo pri predmetu Računalniška orodja v fiziki, leto 2022/23.
 
-## Prva ura (sreda 22.2.2023)
-
-Za prvo uro bo prišla prav Unix lupina (shell). Predlagam [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) ali [Zsh](https://en.wikipedia.org/wiki/Z_shell).
-
-Kot izziv **poskusi inštalirati Bash** (ali drug Unix shell, če želiš in že znaš) na svoj računalnik pred tutorstvom.
-Odvisno od tvojega operacijskega sistema, predlagam:
-
-- Če uporabljaš Windows: **inštaliraj WSL** ([navodila](https://learn.microsoft.com/en-us/windows/wsl/install)), ki ti omogoči dostop do Basha.
-- Če uporabljaš macOS ali Linux: **nič ni potrebno**---macOS ima že vgrajeno Unix lupino (Zsh na novejših verzij macOSa, Bash na starejših) in vsak tipični Linux pride z Bashom.
-
-Če nisi siguren/na kar se tiče inštalacije seveda **lahko počakaš na tutorstvo** in bomo skupaj zrihtali.
+**Naslednja ura:** sreda 8.1.2023
 
 ## Osnovni podatki
 
-- S tutorstvom **začnemo v sredo 22.2.2023**, torej v drugem tednu semestra
 - Lokacija: učilnica **3.11** (tretje nadstropje matematike)
-- Termin: ob **sredah od 7.30 do 9.00** (tule je [link na urniku](https://urnik.fmf.uni-lj.si/predmet/732/)).
-  <br>
-  Tutorstvo bo predvidoma **vsak drugi teden**, načeloma lahko tudi vsak teden če vas bo zanimalo---se bomo dogovorili po prvi tutorski uri.
+- Termin: ob **sredah od 7.30 do 9.00** (tule je [link na urniku](https://urnik.fmf.uni-lj.si/predmet/732/)) **vsak drugi teden**.
+  Lahko se oglasite kadarkoli med 7.30 in 9.00---ni treba točno ob uri.
 - Moj email: [ejmastnak@gmail.com](mailto:ejmastnak@gmail.com)
 - [Glavna spletna stran predmeta](https://predmeti.fmf.uni-lj.si/racorodja)
 
@@ -46,3 +34,16 @@ Odvisno od tvojega operacijskega sistema, predlagam:
 - primere iz predmeta Matematično-fizikalni praktikum (3. letnik, nadgradnja ROFa)
 
 Lahko tudi "prelistate" [material na tej spletni strani]({{< relref "/content.md" >}})---če vas kaj zagrabi bom verjetno lahko pomagal oz. zadevo razložil.
+
+## Prva ura (sreda 22.2.2023)
+
+Za prvo uro bo prišla prav Unix lupina (shell). Predlagam [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) ali [Zsh](https://en.wikipedia.org/wiki/Z_shell).
+
+Kot izziv **poskusi inštalirati Bash** (ali drug Unix shell, če želiš in že znaš) na svoj računalnik pred tutorstvom.
+Odvisno od tvojega operacijskega sistema, predlagam:
+
+- Če uporabljaš Windows: **inštaliraj WSL** ([navodila](https://learn.microsoft.com/en-us/windows/wsl/install)), ki ti omogoči dostop do Basha.
+- Če uporabljaš macOS ali Linux: **nič ni potrebno**---macOS ima že vgrajeno Unix lupino (Zsh na novejših verzij macOSa, Bash na starejših) in vsak tipični Linux pride z Bashom.
+
+Če nisi siguren/na kar se tiče inštalacije seveda **lahko počakaš na tutorstvo** in bomo skupaj zrihtali.
+

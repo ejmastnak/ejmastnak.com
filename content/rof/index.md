@@ -8,7 +8,7 @@ description: ROF tutorstvo za akademsko leto 2022/23
 
 Spletna stran za tutorstvo pri predmetu Računalniška orodja v fiziki, leto 2022/23.
 
-**Naslednja ura:** sreda 8.1.2023
+**Naslednja ura:** sreda 8.3.2023
 
 ## Osnovni podatki
 

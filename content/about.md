@@ -10,21 +10,19 @@ description: About Elijan Mastnak and his website
 
 Here is [my résumé](/resume.pdf) and [contact info]({{< relref "/contact.md" >}}).
 
-Otherwise, if you're curious, I...
+And here is some information about me:
 
-- am **Slovene-American** and grew up between New York, Ljubljana, and California.
+- I'm **Slovene-American** and grew up between New York, California, Ljubljana.
 
-- went to **high school in Orange County, California** and returned to **Slovenia for university**, where I completed a bachelor's degree in **physics** at the University of Ljubljana.
+- I went to **high school in Orange County, California** and returned to **Slovenia for university**, where I completed a bachelor's degree in physics at the University of Ljubljana.
 
-- enjoy **sharing technical tutorials** and efficient workflows on this website.
+- I **work professionally on** extracting useful information from biomechanical time series data at [TMG-BMC](https://www.tmg-bodyevolution.com/), a biomechanics and kinesiology company that makes non-invasive sensors for quantifying muscle function in professional athletes and medical patients.
 
-- **work professionally on** extracting useful information from biomechanical time series data at [TMG-BMC](https://www.tmg-bodyevolution.com/), a biomechanics and kinesiology company that makes non-invasive sensors for quantifying muscle function in professional athletes and medical patients.
+  I also build web applications and websites, and help people learn physics and scientific computing.
 
-  I also build web applications, make websites, and help people learn physics and scientific computing.
-
-- enjoy just about any physical activity---if you're interested, here's a [90-second workout video](https://www.youtube.com/watch?v=_0XI5gKkk5A) from when I was training seriously.
-  
-  I also enjoy cooking, building things, graphic design, teaching, growing food, being outside, and of course the company of friends and family.
+- **Hobbies:** just about any physical activity (if you're interested, here's a [90-second workout video](https://www.youtube.com/watch?v=_0XI5gKkk5A) from when I was training seriously),
+  the company of friends and family,
+  food and cooking, building things, graphic design, teaching, growing food, being outside.
 
 ## About this website
 

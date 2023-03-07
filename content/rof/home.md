@@ -2,13 +2,20 @@
 title: "ROF"
 date: 2023-02-12
 description: ROF tutorstvo za akademsko leto 2022/23
+aliases:
+    - /rof
 ---
 
 # ROF tutorstvo
 
 Spletna stran za tutorstvo pri predmetu Računalniška orodja v fiziki, leto 2022/23.
 
-**Naslednja ura:** sreda 8.3.2023
+**Naslednja ura:** sreda 8.3.2023 ob 7:30
+
+## Gradivo
+
+1. [Uvodna ura]({{< relref "/rof/intro" >}})
+1. [Python zgled prve domače naloge]({{< relref "/rof/benford" >}})
 
 ## Osnovni podatki
 
@@ -34,16 +41,3 @@ Spletna stran za tutorstvo pri predmetu Računalniška orodja v fiziki, leto 202
 - primere iz predmeta Matematično-fizikalni praktikum (3. letnik, nadgradnja ROFa)
 
 Lahko tudi "prelistate" [material na tej spletni strani]({{< relref "/content.md" >}})---če vas kaj zagrabi bom verjetno lahko pomagal oz. zadevo razložil.
-
-## Prva ura (sreda 22.2.2023)
-
-Za prvo uro bo prišla prav Unix lupina (shell). Predlagam [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) ali [Zsh](https://en.wikipedia.org/wiki/Z_shell).
-
-Kot izziv **poskusi inštalirati Bash** (ali drug Unix shell, če želiš in že znaš) na svoj računalnik pred tutorstvom.
-Odvisno od tvojega operacijskega sistema, predlagam:
-
-- Če uporabljaš Windows: **inštaliraj WSL** ([navodila](https://learn.microsoft.com/en-us/windows/wsl/install)), ki ti omogoči dostop do Basha.
-- Če uporabljaš macOS ali Linux: **nič ni potrebno**---macOS ima že vgrajeno Unix lupino (Zsh na novejših verzij macOSa, Bash na starejših) in vsak tipični Linux pride z Bashom.
-
-Če nisi siguren/na kar se tiče inštalacije seveda **lahko počakaš na tutorstvo** in bomo skupaj zrihtali.
-

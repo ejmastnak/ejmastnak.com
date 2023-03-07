@@ -22,7 +22,7 @@ Bite-sized tutorials to help you set up a functional work environment after a mi
 <br>
 From the final two years of undergrad at the Faculty of Math and Physics in Ljubljana
 
-[**ROF tutorstvo 2022/23**]({{< relref "/rof" >}})
+[**ROF tutorstvo 2022/23**]({{< relref "/rof/home" >}})
 <br>
 Spletna stran tutorstva za predmet Računalniška orodja v fiziki
 

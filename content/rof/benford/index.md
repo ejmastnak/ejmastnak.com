@@ -15,12 +15,24 @@ Za rešitev z Gnuplot ste pa odgovorni vi :)
 
 ## Priprava podatkov
 
-```bash
-# Vzamemo samo prvo številko iz vsake vrstice in shranimo rezultat v
-# `leading.txt` (ang. "leading digit" pomeni "prva številka")
-$ cut -c 1 "benford.txt" > "leading.txt"
+(Namenoma ne objavljam celotne rešitve za ta korak, ampak samo namig.)
 
-# Prvih 5 vrstice iz `benford.txt`...
+Za računanje histograma predlagam da iz `benford.txt` izluščite samo prvo številko vsake vrstice.
+
+Jaz sem naredil takole: prvo cifro iz vsake vrstice v `benford.txt` sem shranil v novo datoteko `leading.txt` (ang. "leading digit" pomeni "prva številka"), in v nadaljevanju uporabljal `leading.txt` kot vhodno datoteko za risanje histograma.
+
+Za občutek, kako zgleda `leading.txt`:
+
+<!-- # Vzamemo samo prvo številko iz vsake vrstice in shranimo rezultat v -->
+<!-- # `leading.txt` (ang. "leading digit" pomeni "prva številka") -->
+<!-- $ cut -c 1 "benford.txt" > "leading.txt" -->
+
+```bash
+$ ls
+benford.txt  # originalni podatki
+leading.txt  # prva cifra vsake vrstice v `benford.txt`
+
+# Prvih 5 vrstic iz `benford.txt`...
 $ head -5 benford.txt
 1.531190
 1.053729

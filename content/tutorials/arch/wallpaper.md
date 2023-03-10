@@ -103,7 +103,7 @@ First create the shell script `~/scripts/change-wallpaper.sh` (or use any other 
 DISPLAY=:0 feh --no-fehbg --bg-fill --randomize ~/Pictures/wallpapers/*.jpg
 ```
 
-Then create the `systemd` user service `~/.config/systemd/change-wallpaper.service`, and inside it place the following:
+Then create the `systemd` user service `~/.config/systemd/user/change-wallpaper.service`, and inside it place the following:
 
 ```systemd
 [Unit]
@@ -122,7 +122,7 @@ WantedBy=graphical.target
 This service unit runs the `change-wallpaper.sh` script; setting the unit's `Type` to `oneshot` ensures the battery alert service completes before any other `systemd` units run; `Type=oneshot` is standard practice for units that start short-running shell scripts.
 The `~/.config/systemd/user` directory is the standard location for user units.
 
-Next create the corresponding `systemd` user timer `~/.config/systemd/change-wallpaper.timer`, and inside it place the following:
+Next create the corresponding `systemd` user timer `~/.config/systemd/user/change-wallpaper.timer`, and inside it place the following:
 
 ```systemd
 [Unit]

@@ -15,7 +15,7 @@ date: 2022-09-27
 
 You might be interested in this article for two reasons:
 
-1. As a standalone guide to writing snippets with the LuaSnip plugin (this article is LaTeX-heavy, but it is applicable to any language).
+1. As a standalone guide to writing snippets with the LuaSnip plugin (although the examples in this article are LaTeX-themed, the underlying techniques apply to any language).
 1. As part two in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
 
 [There is also an UltiSnips version of this article.]({{< relref "/tutorials/vim-latex/ultisnips" >}})
@@ -35,6 +35,13 @@ Feel free to skim or skip the boring stuff and jump right to [actually writing s
 
 {{< toc level="2" title="Contents of this article" >}}
 
+<!-- ## Two ways to read this article -->
+<!---->
+<!-- You could either: -->
+<!---->
+<!-- 1. Read the theoretical material first---in this case just keep going and read the article linearly from start to finish. -->
+<!-- 1. [Jump directly to examples](#examples), then come back and fill in the theory later. -->
+
 ## What snippets do {#what-snippets-do}
 
 [I know what snippets do, next section please.](#hello-world)
@@ -49,9 +56,10 @@ And here is a simple example using snippets to create and navigate through a LaT
 
 ## TLDR hello world example {#hello-world}
 
+*If you prefer to begin with fundamentals, you can skip this example and jump to [getting started with LuaSnip](#getting-started).*
+
 I'm beginning with a hello world snippet instead of a bunch of theory.
 For now feel free to just copy and paste along with the article, and we'll explain what's going on in much more detail later.
-(Or if you prefer to begin with fundamentals, you can skip this hello world example and jump to [getting started with LuaSnip](#getting-started).)
 
 In a very TLDR style, here's a LuaSnip-flavored hello world:
 
@@ -60,11 +68,12 @@ In a very TLDR style, here's a LuaSnip-flavored hello world:
 
 1. In your `init.vim`/`init.lua`, set key bindings to trigger and navigate through snippets: 
 
-   {{< details summary="I use an `init.lua`." >}}
+   {{< details summary="Key bindings for `init.lua`." >}}
    Place this in your `init.lua`:
 
    ```lua
-   -- Yes, we're just executing a bunch of Vimscript using vim.cmd
+   -- Yes, we're just executing a bunch of Vimscript, but this is the officially
+   -- endorsed method; see https://github.com/L3MON4D3/LuaSnip#keymaps
    vim.cmd[[
    " Use Tab to expand and jump through snippets
    imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
@@ -77,7 +86,7 @@ In a very TLDR style, here's a LuaSnip-flavored hello world:
    ```
    {{< /details >}}
 
-   {{< details summary="I use an `init.vim`." >}}
+   {{< details summary="Key bindings for `init.vim`." >}}
    Place this in your `init.vim`:
 
    ```vim
@@ -117,25 +126,25 @@ In a very TLDR style, here's a LuaSnip-flavored hello world:
    
    {{< details summary="I use an `init.lua`." >}}
    ```lua
-   -- Place this in your init.lua
+   -- Load snippets from ~/.config/nvim/LuaSnip/
    require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})
    ```
    {{< /details >}}
 
    {{< details summary="I use an `init.vim`." >}}
    ```vim
-   " Place this in your init.vim
+   " Load snippets from ~/.config/nvim/LuaSnip/
    lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})
    ```
    {{< /details >}}
 
-1. Open a new Neovim instance (any file name/extension will work here because `all.lua` is a special snippet file that applies to all filetypes).
+1. Open a new Neovim instance (any file type will work here because snippets in `all.lua` apply to all filetypes).
 
 1. Enter insert mode and write `hi` (because we wrote a snippet with trigger `trig="hi"`).
    With your cursor at the end of `hi`, press the Tab key (because the Tab key was mapped to snippet expansion a few steps up).
    The word `hi` should expand into `Hello, world!`.
 
-I glossed over a mountain of details here for the sake of a TLDR example.
+I glossed over a mountain of details here in the TLDR spirit.
 For a more thorough introduction to LuaSnip, buckle up and read on.
 
 *Going forward, I'll perform configuration mostly in Lua.
@@ -143,14 +152,7 @@ If you use Vimscript, I assume you know how to call Lua from within Vimscript us
 
 ## Getting started with LuaSnip {#getting-started}
 
-**Should I use UltiSnips or LuaSnip?**
-
-- Vim users: use UltiSnips---LuaSnip only works with Neovim
-- Neovim users: I suggest LuaSnip---it integrates better into the Neovim ecosystem, is free of external dependencies (UltiSnips requires Python), has more features, and is a bit faster (no, I don't have benchmarks).
-  That said, UltiSnips still works fine in Neovim, and its syntax is easier to learn.
-
 There is also an [UltiSnips version of this article]({{< relref "/tutorials/vim-latex/ultisnips" >}}) if you prefer.
-
 
 ### Installation {#install}
 
@@ -160,18 +162,13 @@ LuaSnip has no external dependencies and should be ready to go immediately after
 
 LuaSnip is a snippet engine only and intentionally **ships without snippets**---you have to write your own or use an existing snippet database.
 It is possible to use existing snippet repositories (e.g. [`rafamadriz/friendly-snippets`](https://github.com/rafamadriz/friendly-snippets)) with some additional configuration---see the [LuaSnip README's add snippets section](https://github.com/L3MON4D3/LuaSnip#add-snippets) and `:help luasnip-loaders` if interested.
-I encourage you to write your own snippets,
-but whether you download someone else's snippets, write your own, or use a mixture of both, you should know:
 
-1. where the text files holding your snippets are stored on your local file system, and
-1. how to write, edit, and otherwise tweak snippets to suit your particular needs, so you are not stuck using someone else's without the possibility of customization.
-
-This article answers both questions.
+I encourage you to write your own snippets, but even if you use someone else's snippets, you should probably still know how to write, edit, and otherwise tweak snippets to suit your particular needs instead of blindly copying and pasting.
 
 ### Two config settings for later {#config}
 
-There are two LuaSnip configuration changes we'll need for later in this guide---one enables autotriggered snippets and the other enables visual selection.
-You can make these changes by placing the following code somewhere in your Neovim startup configuration, e.g. in your `init.lua`.
+There are two LuaSnip configuration settings we'll need for later in this guide---one enables autotriggered snippets and the other enables visual selection.
+Make these changes by placing the following code somewhere in your Neovim startup configuration, e.g. in your `init.lua`.
 
 ```lua
 -- Somewhere in your Neovim startup, e.g. init.lua
@@ -435,10 +432,9 @@ but will transition to the abbreviations later---just remember that the mysterio
 
 **Think in terms of nodes:**
 LuaSnip snippets are composed of *nodes*---think of nodes as building blocks that you put together to make snippets.
-(Actual node syntax is described soon.)
-LuaSnip provides around 10 types of nodes.
+LuaSnip provides around 10 types of nodes, and I explain node syntax soon.
 Each node offers a different feature, and your job is to combine these nodes in ways that create useful snippets.
-(Fortunately, only about 4 nodes are needed for most use cases.)
+(Fortunately, only about 4 nodes should cover most use cases.)
 
 You create snippets by specifying:
 
@@ -471,7 +467,7 @@ I'll first cover the `snip_params` table, then spend most of the remainder of th
 
 **TLDR** (if you're familiar with Lua):
 `snip_params` is a Lua table;
-the data type and purpose of each table key is clearly stated in `:help luasnip-snippets` (just scroll down just a bit).
+the data type and purpose of each table key is clearly stated towards the end of `:help luasnip-snippets`.
 You can now [jump to the next section](#shortcut).
 **End TLDR**.
 
@@ -531,25 +527,27 @@ and if you only need to set `trig` and leave the other keys with their default v
 
 ```lua
 return {
-  -- Shorthand example: the same snippet as above, but only setting the `trig` param
-  s("hi", -- the snip_param table is replaced by a single string holding `trig`
-    { -- Table 2: snippet nodes
-      t("Hello, world!"),
-    }
+  -- Shorthand
+  s("hi",  -- LuaSnip expands this to {trig = "hi"}
+    { t("Hello, world!"), }
+  ),
+  -- Here is the equivalent longhand
+  s({trig = "hi"}  -- explicitly setting trigger via params table
+    { t("Hello, world!"), }
   ),
 }
 ```
 
-Explanation: notice that the `snip_param` table of snippet parameters is now gone---if you only need to set the `trig` key, you can optionally replace the parameter table with a single string, and LuaSnip will interpret this string as the value of the `trig` key.
+If you only want to set the `trig` key, you can optionally replace the parameter table with a single string. 
+LuaSnip will interpret this string as the value of the `trig` key and leave all other parameters with their default values.
 You'll see this syntax a lot in the LuaSnip docs and on the Internet, so I wanted to show it here, but in this article I'll always explicitly specify the `trig` key and use a parameter table, which I think is clearer for new users.
 
 That's all for setting snippet parameters---let's write some actual snippets!
 
 ## Actually writing snippets {#writing}
 
-**Goal of this section:** explain enough syntax to cover what a typical user will ever need from LuaSnip;
-after reading it you should have all the tools you need to set up an efficient LaTeX workflow.
-Keep in mind that LuaSnip has many power user features not covered in this article, which I leave to [more](https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua) [advanced](https://github.com/L3MON4D3/LuaSnip/wiki) [guides](https://www.youtube.com/watch?v=KtQZRAkgLqo).
+**Goal of this section:** explain enough syntax to cover what a typical user will need from LuaSnip.
+There are some power user features I'm leaving out here; I leave these features to [more](https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua) [advanced](https://github.com/L3MON4D3/LuaSnip/wiki) [guides](https://www.youtube.com/watch?v=KtQZRAkgLqo).
 
 <!-- what a typical user would need for a good LaTeX workflow, including static text insertion, tabstops, mirrored nodes, visual placeholders. -->
 
@@ -896,7 +894,7 @@ s({trig="env", snippetType="autosnippet"},
 }
 ```
 
-Note: for text in the repeated node **to update as you type** (e.g. like in the `\end{}` field in the above GIF) you should set `update_events = 'TextChanged,TextChangedI'` [in your LuaSnip config](#config).
+Heads up: for text in the repeated node to update as you type (e.g. like in the `\end{}` field in the above GIF) you must set `update_events = 'TextChanged,TextChangedI'` [in your LuaSnip config](#config).
 The default update event is `InsertLeave`, which will update repeated nodes only after leaving insert mode.
 Repeated nodes are are documented, in passing, in the section `:help luasnip-extras`.
 
@@ -961,9 +959,7 @@ See the end of `:help luasnip-insertnode` for documentation of insert node place
 
 <!-- https://github.com/L3MON4D3/LuaSnip/issues/511 -->
 
-We've barely scratched the surface of what LuaSnip can do.
-Using three nodes called *function nodes*, *dynamic nodes*, and *snippet nodes*, you can create nodes that call custom Lua functions and even recursively return other nodes, which opens up a world of possibilities.
-This section explains, cookbook-style, how to port an UltiSnips feature called the *visual placeholder* to LuaSnip.
+This section explains, cookbook-style, how to implement an UltiSnips feature called the *visual placeholder* using LuaSnip.
 
 The visual placeholder lets you use text selected in Vim's visual mode inside the content of a snippet body.
 A typical **use case** is to quickly surround existing text with a snippet (e.g. to surround a word with quotation marks, surround a paragraph in a LaTeX environment, etc.).
@@ -999,7 +995,7 @@ Here's **how to use visual placeholder snippets** (it sounds really complicated 
 1. Type the trigger to expand the previously-written snippet that included the dynamic node calling the `get_visual` function.
    The snippet expands, and the text you had selected in visual mode and stored in `SELECT_RAW` appears in place of the dynamic node in the snippet body.
 
-Here's the above GIF again---see if you can identify steps 3 (`V`), 4 (Tab), and 5 (trigger):
+Here's the above GIF again---see if you can identify steps 3 (enter visual mode), 4 (Tab), and 5 (trigger):
 
 {{< img-centered src="images/vim-latex/snippets/visual-placeholder.gif" width="100%" global="1" alt="GIF demonstrating the visual placeholder." >}}
 
@@ -1050,70 +1046,14 @@ Here's the great thing: you can still use any snippet that includes the `d(1, ge
 **Docs:** This use of dynamic nodes and `SELECT_RAW` to create a visual-selection snippet is not explicitly mentioned in the LuaSnip docs at the time of writing, but you can read about `SELECT_RAW` at `:help luasnip-variables` and about dynamic nodes, as mentioned earlier, at `:help luasnip-dynamicnode`.
 The `store_selection_keys` config key is documented in the [LuaSnip README's config section](https://github.com/L3MON4D3/LuaSnip#config).
 
-{{< details summary="Bonus: avoiding repetition with `get_visual` functions." >}}
-
-Problem: redefining `local get_visual = function(args, parent)` in multiple snippet files leads to excessive code repetition.
-
-Solution: create a "global" version of `get_visual`, which you then source from individual snippet files.
-Here's what to do:
-
-1. Create a file at e.g. `~/.config/nvim/lua/luasnip-helper-funcs.lua`, and inside it place
-
-   ```lua
-   -- ~/.config/nvim/lua/luasnip-helper-funcs.lua
-   local M = {}
- 
-   -- Be sure to explicitly define these LuaSnip node abbreviations!
-   local ls = require("luasnip")
-   local sn = ls.snippet_node
-   local i = ls.insert_node
- 
-   function M.get_visual(args, parent)
-     if (#parent.snippet.env.SELECT_RAW > 0) then
-       return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
-     else
-       return sn(nil, i(1, ''))
-     end
-   end
- 
-   return M
-   ```
-
-   You could add other helper functions here too if you define them later.
-   (The `local M = {}` construction is a standard practice when constructing and return Lua modules for use as Neovim plugins.)
-
-2. Source `get_visual` from within snippet files as follows (for example, here is the same `\textit{}` snippet from just above):
-
-   ```lua
-   -- From any snippet file, source `get_visual` from global helper functions file
-   local helpers = require('luasnip-helper-funcs')
-   local get_visual = helpers.get_visual
-   
-   return {
-   s({trig = "tii", dscr = "Expands 'tii' into LaTeX's textit{} command."},
-     fmta("\\textit{<>}",
-       {
-         d(1, get_visual),
-       }
-     )
-   ),
-   }
-   ```
-
-   (The line `require('luasnip-helper-funcs')` sources the file `~/.config/nvim/lua/luasnip-helper-funcs.lua`; this is standard syntax for loading Lua modules and documented in the [Neovim Lua guide](https://neovim.io/doc/user/lua-guide.html#lua-guide-modules).)
-
-
-{{< /details >}}
 
 ## Conditional snippet expansion
 
 ### The problem and the solution
 
-If you haven't noticed already, sooner or later you'll run into the following problem: 
+If you haven't noticed already, sooner or later you'll run into the following problem: *Short, easy-to-type snippet triggers tend to interfere with words typed in regular text.*
 
-> *Short, easy-to-type snippet triggers tend to interfere with words typed in regular text.*
-
-This problem becomes particularly noticeable if you use autotrigger snippets, (which I strongly encourage if you need to type LaTeX quickly and conveniently).
+This problem becomes particularly noticeable if you use autotrigger snippets, (which I strongly encourage if you [need to type LaTeX quickly and conveniently](#tips)).
 For example:
 
 - `ff` is a great choice to trigger a `\frac{}{}` snippet---it's a short, convenient trigger with good semantics---but you wouldn't want `ff` to spontaneously expand to `\frac{}{}` in the middle of typing the word "offer" in regular text, for example.
@@ -1141,7 +1081,7 @@ I'll use the terms "regex" and "Lua pattern" interchangeably in this article.
 A formal explanation of regular expressions and Lua patterns falls beyond the scope of this article, and I offer the examples below in a "cookbook" style in the hope that you can adapt the ideas to your own use cases.
 Regex tutorials abound on the internet; if you need a place to start, I recommend first watching [Corey Schafer's YouTube tutorial on traditional regexes](https://www.youtube.com/watch?v=sa-TUpSx1JA), then reading the Programming in Lua book's [section on Lua patterns](https://www.lua.org/pil/20.2.html).
 
-For future reference, here the Lua pattern keywords needed for this article:
+For future reference, here are the Lua pattern keywords needed for this article:
 
 <div style="display: flex; justify-content: center;">
 <div>
@@ -1517,7 +1457,7 @@ In no particular order, here are some useful tips based on my personal experienc
 
      You can see the `\diff` snippet playing a minor supporting role as the differential in this variation of the fundamental theorem of calculus:
 
-     <image src="/assets/images/vim-latex/show-off/calc.gif" alt="Example use of a differential in the fundamental theorem of calculus" />
+    {{< img-centered src="images/vim-latex/snippets/calc.gif" width="100%" global="1" alt="Example use of a differential in the fundamental theorem of calculus" >}}
 
      As a side note, using a `\diff` command also makes redefinition of the differential symbol very easy---for example to adapt an article for submission to a journal that uses italic instead of upright differentials, one could just replace `\operatorname{d}\!` with `\,d` in the command definition instead of rummaging through LaTeX source code changing individual differentials.
 
@@ -1551,7 +1491,59 @@ In no particular order, here are some useful tips based on my personal experienc
   Of course `jk` is two key presses instead of one, but it rolls of the fingers so quickly that I don't notice a slowdown.
   (And you don't have `jk` reserved for exiting Vim's insert mode because you've [remapped Caps Lock to Escape on a system-wide level](https://www.dannyguo.com/blog/remap-caps-lock-to-escape-and-control/) and use that to exit insert mode, right?)
 
-### Tip: Refreshing snippets from a separate Vim instance
+### Avoiding repetition of `get_visual` functions.
+
+Problem: redefining `local get_visual = function(args, parent)` in multiple snippet files leads to excessive code repetition.
+
+Solution: create a "global" version of `get_visual`, which you then source from individual snippet files.
+Here's what to do:
+
+1. Create a file at e.g. `~/.config/nvim/lua/luasnip-helper-funcs.lua`, and inside it place
+
+   ```lua
+   -- ~/.config/nvim/lua/luasnip-helper-funcs.lua
+   local M = {}
+ 
+   -- Be sure to explicitly define these LuaSnip node abbreviations!
+   local ls = require("luasnip")
+   local sn = ls.snippet_node
+   local i = ls.insert_node
+ 
+   function M.get_visual(args, parent)
+     if (#parent.snippet.env.SELECT_RAW > 0) then
+       return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+     else
+       return sn(nil, i(1, ''))
+     end
+   end
+ 
+   return M
+   ```
+
+   You could add other helper functions here too if you define them later.
+   (The `local M = {}` construction is a standard practice when constructing and return Lua modules for use as Neovim plugins.)
+
+2. Source `get_visual` from within snippet files as follows (for example, here is the same `\textit{}` snippet from just above):
+
+   ```lua
+   -- From any snippet file, source `get_visual` from global helper functions file
+   local helpers = require('luasnip-helper-funcs')
+   local get_visual = helpers.get_visual
+   
+   return {
+   s({trig = "tii", dscr = "Expands 'tii' into LaTeX's textit{} command."},
+     fmta("\\textit{<>}",
+       {
+         d(1, get_visual),
+       }
+     )
+   ),
+   }
+   ```
+
+   (The line `require('luasnip-helper-funcs')` sources the file `~/.config/nvim/lua/luasnip-helper-funcs.lua`; this is standard syntax for loading Lua modules and documented in the [Neovim Lua guide](https://neovim.io/doc/user/lua-guide.html#lua-guide-modules).)
+
+### Refreshing snippets from a separate Vim instance
 
 In addition to initially loading snippets, the Lua loader functions `load` and `lazy_load` (covered [at the start of this article](#loading)) will refresh the snippets in the current Vim instance to reflect the contents of your snippets directory.
 Here's an example use case:

@@ -15,29 +15,40 @@ date: 2021-10-08
 
 You might be interested in this article for two reasons:
 
-1. As a standalone guide to writing snippets with the UltiSnips plugin (this article is LaTeX-heavy, but is applicable to any language).
+1. As a standalone guide to writing snippets with the UltiSnips plugin (although the examples in this article are LaTeX-themed, the underlying techniques apply to any language).
 1. As part two in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
 
 [There is also a LuaSnip version of this article.]({{< relref "/tutorials/vim-latex/luasnip" >}})
 
 {{< toc level="2" title="Contents of this article" >}}
 
+## Two ways to read this article
+
+You could either:
+
+1. Read the theoretical material first---in this case just keep going and read the article linearly from start to finish.
+1. [Jump directly to examples](#examples), then come back and fill in the theory later.
+
 ## What snippets do
 
-Snippets are templates of commonly used code (for example the boilerplate code for typical LaTeX environments and commands) inserted into text dynamically using short (e.g. two- or three-character) triggers.
+[I know what snippets do, next section please.](#getting-started)
+
+Just in case it's your first time hearing about them: snippets are templates of commonly used code (for example the boilerplate code for typical LaTeX environments and commands) inserted into text dynamically using short (e.g. two- or three-character) triggers.
 Without wishing to overstate the case, good use of snippets is the single most important step in the process of writing LaTeX efficiently and painlessly. 
 Here is a simple example:
 
 {{< img-centered src="images/vim-latex/snippets/demo.gif" width="100%" global="1" alt="GIF demonstrating writing LaTeX efficiently using snippets." >}}
 
-## Getting started with UltiSnips
+## Getting started with UltiSnips {#getting-started}
 
 This tutorial will use [the UltiSnips plugin](https://github.com/SirVer/ultisnips), which is the most mature out of the menagerie of Vim snippet plugins.
-If you use Neovim, note that UltiSnips's support of Neovim is "best-effort only".
-Don't let this discourage you---although I have since [switched to LuaSnip]({{< relref "/tutorials/vim-latex/luasnip" >}}), both I and many other Neovim users have daily driven Ultisnips and Neovim without any issues, and things will probably be fine for you, too.
-If you use regular Vim, you should be fine in any case.
 
-Neovim users: there is also a [LuaSnip version of this article]({{< relref "/tutorials/vim-latex/luasnip" >}}) if you prefer.
+{{< details summary="**Two notes for Neovim users**" >}}
+- There is also a [LuaSnip version of this article]({{< relref "/tutorials/vim-latex/luasnip" >}}) if you prefer.
+
+- UltiSnips's support of Neovim is officially "best-effort only".
+And while LuaSnip probably does fit better in the Neovim ecosystem, don't let this discourage you---both I and many other Neovim users have daily driven Ultisnips and Neovim without any issues, and things will probably be fine for you, too.
+{{< /details >}}
 
 ### Installation
 
@@ -49,13 +60,7 @@ Because the UltiSnips plugin uses Python...
   Note that Neovim comes with `python3` enabled by default.
 
 UltiSnips is a snippet engine only and intentionally ships without snippets---you have to write your own or use an existing snippet database.
-The canonical source of existing snippets is GitHub user `honza`'s [`vim-snippets`](https://github.com/honza/vim-snippets) repository.
-Whether you download someone else's snippets, write your own, or use a mixture of both, you should know:
-
-1. where the text files holding your snippets are stored on your local file system, and
-1. how to write, edit, and otherwise tweak snippets to suit your particular needs, so you are not stuck using someone else's without the possibility of customization.
-
-Both questions are answered in this article.
+The canonical source of existing snippets is GitHub user `honza`'s [`vim-snippets`](https://github.com/honza/vim-snippets) repository, but even if you use someone else's snippets, you should probably still know how to write, edit, and otherwise tweak snippets to suit your particular needs instead of blindly copying and pasting.
 
 ### First steps: snippet trigger and tabstop navigation keys
 
@@ -74,17 +79,16 @@ let g:UltiSnipsJumpForwardTrigger  = '<Tab>'    " use Tab to move forward throug
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'  " use Shift-Tab to move backward through tabstops
 ```
 
-Explanation: this code would make the `<Tab>` key trigger snippets *and* navigate forward through snippet tabstops (yes, UltiSnips lets you use the same key for both expansion and tabstop navigation), and make the key combination `<Shift>`+`<Tab>` navigate backward through tabstops.
-
-In the above GIF, I am actually using `jk` as the `g:UltiSnipsJumpForwardTrigger` key.
-I find this home-row combination more efficient than `<Tab>`, but it takes some getting used to;
-scroll down to the [(Subjective) practical tips for fast editing](#tips) at the bottom of this article for more on using `jk` as a jump-forward key and similar tips.
+Explanation: this code would make the `<Tab>` key trigger snippets *and* navigate forward through snippet tabstops (UltiSnips lets you use the same key for both expansion and tabstop navigation), and make the key combination `<Shift>`+`<Tab>` navigate backward through tabstops.
+(What are tabstops? They're [explained below](#tabstops).)
 
 See `:help UltiSnips-trigger-key-mappings` for official documentation of trigger keys.
 For fine-grained control one can also work directly with functions controlling expand and jump behavior; for more information on this see `:help UltiSnips-trigger-functions`.
 For most users just setting the three global trigger key variables, as in the example above, should suffice.
 
-### A home for your snippets
+### Where to put snippet files
+
+*Just show me some [example snippets first](#examples).*
 
 You store snippets in text files with the `.snippets` extension.
 The file's base name determines which Vim `filetype` the snippets apply to.
@@ -155,7 +159,8 @@ I strongly suggest your watch them---you will find many of the features describe
 
 ## Writing Snippets
 
-**TLDR:** create a `{filetype}.snippets` file in your `UltiSnips` directory (e.g. `tex.snippets`) and write your snippets inside this file using the syntax described in `:help UltiSnips-basic-syntax`.
+If you just want to see some example snippets first, [here you go](#examples).
+Otherwise, here is a summary of the snippet-writing process.
 
 ### Anatomy of an UltiSnips snippet
 
@@ -222,7 +227,7 @@ Based on my (subjective) experience, with a focus on LaTeX files, here are some 
   If `priority` is not specified anywhere in a file, the implicit value is `priority 0`.
   You can read more about the `priority` keyword in `:help UltiSnips-basic-syntax`.
 
-### Tabstops
+### Tabstops {#tabstops}
 
 Tabstops are predefined positions within a snippet body to which you can move by pressing the key mapped to `g:UltiSnipsJumpForwardTrigger`.
 Tabstops allow you to efficiently navigate through a snippet's variable content while skipping the positions of static content.
@@ -242,9 +247,12 @@ Paraphrasing from `:help UltiSnips-tabstops`:
 
 As far as I'm aware, this is a similar tabstop syntax to that used in Visual Studio Code.
 
-#### Some example LaTeX snippets
+#### Some example LaTeX snippets {#examples}
 
-For orientation, here are two examples: one maps `tt` to the `\texttt` command and the other maps `ff` to the `\frac` command.
+Here are two examples.
+(If you're jumping to here from earlier in the article, you might want to eventually scroll back up and read the theory in between.)
+
+One snippet maps `tt` to the `\texttt` command and the other maps `ff` to the `\frac` command.
 Note that (at least for me) the snippet expands correctly without escaping the `\`, `{`, and `}` characters as suggested in `:help UltiSnips-character-escaping` (see the second bullet in [Assorted snippet syntax rules](#syntax)).
 
 ```yaml
@@ -265,7 +273,7 @@ Here are the above `\texttt{}` and `\frac{}{}` snippets in action:
 
 #### Useful: tabstop placeholders
 
-Placeholders are used to enrich a tabstop with a description or default text.
+Use placeholders to enrich a tabstop with a description or default text.
 The syntax for defining placeholder text is `${1:placeholder}`.
 Placeholders are documented at `:help UltiSnips-placeholders`.
 Here is a real-world example I used to remind myself the correct order for the URL and display text in the `hyperref` package's `href` command:
@@ -499,7 +507,7 @@ In case it looks unfamiliar, the above code snippet is a Vim *key mapping*, a st
 
 ## (Subjective) practical tips for fast editing {#tips}
 
-I'm writing this with math-heavy LaTeX in real-time university lectures in mind, where speed is crucial; these tips might be overkill for more relaxed use cases.
+I'm writing this with math-heavy, real-time university lectures in mind, where speed is crucial; these tips might be overkill for more relaxed use cases.
 In no particular order, here are some useful tips based on my personal experience:
 
 - Use automatic completion whenever possible.
@@ -536,7 +544,7 @@ In no particular order, here are some useful tips based on my personal experienc
 
      You can see the `\diff` snippet playing a minor supporting role as the differential in this variation of the fundamental theorem of calculus:
 
-     <image src="/assets/images/vim-latex/show-off/calc.gif" alt="Example use of a differential in the fundamental theorem of calculus" />
+    {{< img-centered src="images/vim-latex/snippets/calc.gif" width="100%" global="1" alt="Example use of a differential in the fundamental theorem of calculus" >}}
 
      As a side note, using a `\diff` command also makes redefinition of the differential symbol very easy---for example to adapt an article for submission to a journal that uses italic instead of upright differentials, one could just replace `\operatorname{d}\!` with `\,d` in the command definition instead of rummaging through LaTeX source code changing individual differentials.
 
@@ -595,7 +603,7 @@ $0
 endsnippet
 ```
 
-but this would make the UltiSnips parser think that the line `snippet ${1:trigger}...` starts a new snippet definition, when the goal is to insert the literal string `snippet ${1:trigger}...` into another file.
+...but this would make the UltiSnips parser think that the line `snippet ${1:trigger}...` starts a new snippet definition, when the goal is to insert the literal string `snippet ${1:trigger}...` into another file.
 In any case, this problem is specific to using the string `snippet` inside a snippet, and most snippets are much easier to write than this.
 
 {{< vim-latex/navbar >}}

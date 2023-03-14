@@ -14,9 +14,8 @@ date: 2022-01-24
 {{< date-last-mod >}}
 
 This is part one in a [seven-part series]({{< relref "/tutorials/arch/about" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
-I wrote this series with beginners in mind, but some prerequisite knowledge is unavoidable.
-Each prerequisites is listed below and includes a suggestion or mini-tutorial for getting up to speed.
-You should be comfortable with the material below to get the most out of this series.
+Some prerequisite knowledge is unavoidable here, and I cover suggested prerequisites below, always with a suggestion or mini-tutorial for getting up to speed.
+You should be comfortable with the material in this article to get the most out of this series.
 
 {{< toc level="2" title="Contents of this article" >}}
 
@@ -152,10 +151,11 @@ For more information, read `:help 01.1`, which explains the basics of the Vim do
 
 *If you're only interested in the snippet and VimTeX articles you can ignore this prerequisite; it applies mainly to PDF reader integration.*
 
-**Prerequisite:** you are working on Linux, macOS, or some other Unix variant.
+**Prerequisite:** To follow this series's guides on PDF reader integration, you should be using Linux, macOS, or some other Unix variant.
 
 {{< details summary="**Suggestion** (click arrow to expand)" >}}
-If you use Windows, I suggest you follow along with the series as is; you will still find plenty of helpful techniques and ideas, and if XYZ doesn't work as expected, search the Internet for “how to use XYZ Vim/LaTeX/shell feature on Windows”. I do not have formal experience with Windows and cannot offer advice at the level of detail required for this series, but there should be plenty of Windows users on the Internet more knowledgeable than I am who have figured out a solution or workaround.
+If you use Windows, I suggest you follow along with the series as is---aside from the PDF reader article, most of the series will be directly applicable and you should still find plenty of helpful techniques and ideas.
+But you will need to find another resource for PDF reader integration on Windows---I suggest the VimTeX documentation.
 
 If you use some exotic flavor of Unix, I assume you know enough of what you are doing to adapt this series’s Linux-based suggestions to your platform.
 {{< /details >}}
@@ -163,10 +163,10 @@ If you use some exotic flavor of Unix, I assume you know enough of what you are 
 
 ## Python 3 installation
 
-*Python is only required if you plan on using UltiSnips for snippets.
+*This is relevatn only if you plan on using UltiSnips for snippets.
 You can ignore this Python dependency if you plan on using Luasnip as a snippet plugin (described later in the series).*
 
-**Prerequisite:** you have a working Python 3+ installation and are able to use `pip/pip3` to install Python packages.
+**Prerequisite:** If you'll use UltiSnips for snippets, you need a working Python 3+ installation and access to `pip/pip3` to install Python packages.
 
 {{< details summary="**Suggestion** (click arrow to expand)" >}}
 I suggest installing Python using your distribution's package manager on Linux and using Homebrew on macOS.

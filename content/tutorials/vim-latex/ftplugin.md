@@ -14,23 +14,42 @@ date: 2022-03-20
 {{< date-last-mod >}}
 
 This is part three in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
-This article covers Vim's `ftplugin` system, which allows you to create customizations that apply only to LaTeX files (or any other file type).
-Understanding this article will give you a clearer mental model of how the VimTeX plugin works.
+This is a short article covers a few concepts related to Vim plugins and file-type plugins; the goal is to help you better understand how the VimTeX plugin works and to show you how to write LaTeX-specific Vim configuration.
 
 {{< toc level="2" title="Contents of this article" >}}
 
+## The goal of this article...
+
+...is to briefly explain a few Vim concepts that will help you better understand the VimTeX plugin (covered in the [next article]({{< relref "/tutorials/vim-latex/vimtex" >}})).
+
+This article covers:
+
+- What is a Vim plugin?
+- What is Vim's runtimepath?
+- What is a filetype specific Vim plugin?
+
+If these terms are familiar to you, you can probably skip to the [next article]({{< relref "/tutorials/vim-latex/vimtex" >}}).
+
 ## What is a plugin?
 
-Officially, as defined in `:help plugin`, a *plugin* is the name for a Vimscript file that is loaded when you start Vim.
-If you have ever created a `vimrc`, `init.vim`, or `init.lua` file, which are just simple Vimscript files, you have technically written a Vim plugin.
-Just like your `vimrc`, a plugin's purpose is to extend Vim's default functionality to meet your personal needs.
+Officially, using the definitions in the Vim docs:
 
-A *package*, as defined in `:help packages`, is a set of Vimscript files.
-To be pedantic, what most people (myself included) refer to in everyday usage as a Vim plugin is technically a package.
-That's irrelevant; the point is that plugins and packages are just Vimscript files used to extend Vim's default functionality, and, if you have ever written a `vimrc` or `init.vim`, it is within your means to write more advanced plugins, too.
+- A *plugin* is the name for a Vimscript (or Lua) file that is loaded when you start Vim (source: see `:help plugin`).
+  If you have ever created a `vimrc`, `init.vim`, or `init.lua` file, you have technically written a Vim plugin.
+  The purpose of a plugin is to extend Vim's default functionality to meet your personal needs.
+
+- A *package* is a set of Vimscript (or Lua) files (source: see `:help packages`).
+
+In practice, most people (myself included) use the word "plugin" for both single Vimscript files (which are *officially* plugins) and collections of Vimscript files (which are officially packages).
+
+Terminology aside, the point here is that plugins and packages are just Vimscript files used to extend Vim's default functionality, and, if you have ever written a `vimrc` or `init.vim`, it is within your means to write more advanced plugins, too.
 
 {{< details summary="I use Neovim and write my config in Lua. Where does Lua fit into this discussion?" >}}
-Basically everything Vimscript-themed in this article also works with Lua, I just focused on Vimscript in this article because (1) Vimscript works for both Vim and Neovim users and (2) the VimTeX plugin uses Vimscript.
+Basically everything Vimscript-themed in this article also works with Lua, I just focused on Vimscript in this article because 
+
+1. Vimscript works for both Vim and Neovim users and 
+2. the VimTeX plugin uses Vimscript.
+
 You can mostly replace any `.vim` with a `.lua` equivalent (e.g. replace the Vimscript file `ftplugin/tex.vim` with a Lua file `ftplugin/tex.lua`) and (assuming your Neovim is relatively up to date, e.g. 0.7+) Neovim should recognize and source the `.lua` file out of the box.
 {{< /details >}}
 
@@ -52,25 +71,25 @@ Below is a list of some directories on Vim's default `runtimepath`, taken from `
 | `spell/` | Files related to spell-checking | 
 | `syntax/` | Contains scripts related to syntax highlighting | 
 
-You can view your current `runtimepath` with `:echo &runtimepath`.
-If you want a plugin to load automatically when you open Vim, you must place the plugin in an appropriate location in your `runtimepath`.
+For the purposes of this series, the most important directory in your `runtimepath` is the `ftplugin/` directory in your Vim config folder, i.e. the directory `~/.vim/ftplugin/` on Vim and `~/.config/nvim/ftplugin/` on Neovim---this is where you place filetype-specific configuration.
 
-For the purposes of this series, the most important directory in your `runtimepath` is the `ftplugin/` directory in your Vim config folder, i.e. the directory `~/.vim/ftplugin/` on Vim and `~/.config/nvim/ftplugin/` on Neovim.
-Here's why it is so important: `ftplugin/` is the correct directory to place LaTeX-specific configuration (or in general any configuration that you wish to apply only to a single file type), and this entire series is all about LaTeX-specific configuration.
+You can view your current `runtimepath` with `:echo &runtimepath`.
+If you want a plugin to load automatically when you open Vim, you must place the plugin in a directory in your `runtimepath`.
 
 ## Vim's filetype plugin system
 
-Say you've written some customizations that you want to apply only to LaTeX files, and not to any other file types.
-To keep your LaTeX customizations specific to only LaTeX files, you should use Vim's *filetype plugin system*.
+Use case: you use Vim's filetype plugin (`ftplugin`) system for Vim configuration that you want to apply only to a single filetype.
 
 ### Filetype plugin basic recipe
 
 Say you want to write a plugin that applies only to LaTeX files.
 Here's what to do:
+
 1. Add the following lines to your `vimrc`
    (these settings are enabled by default on Neovim---see `:help nvim-defaults`---but it can't hurt to place them in your `init.vim`, too):
 
    ```vim
+   " This is enabled by default in Neovim by the way
    filetype on             " enable filetype detection
    filetype plugin on      " load file-specific plugins
    filetype indent on      " load file-specific indentation
@@ -83,31 +102,33 @@ Here's what to do:
    " With Vim's filetype-specific functionality enabled, the output looks like this
    filetype detection:ON  plugin:ON  indent:ON
    ```
-  See `:help filetype` for more information on filetype plugins.
 
-1. Create the file structure `~/.vim/ftplugin/tex.vim`.
-   Your LaTeX-specific mappings and functions will go in `~/.vim/ftplugin/tex.vim`.
-   That's it! Assuming you followed step 1, anything in `tex.vim` will be loaded only when editing files with the `tex` filetype (i.e. LaTeX and related files), and will not interfere with your other filetype plugins.
+   See `:help filetype` for more information on filetype plugins.
 
-   Optional tip: You can also split up your `tex` customizations among multiple files (instead of having a single, cluttered `tex.vim` file).
-   To do this, create the file structure `~/.vim/ftplugin/tex/*.vim`.
-   Any Vimscript files inside `~/.vim/ftplugin/tex/` will then load automatically when editing files with the `tex` filetype.
-   As a concrete example, you might design your `ftplugin` directory like this:
+1. Create the file `~/.vim/ftplugin/tex.vim` (or `~/.config/nvim/ftplugin/tex.vim` on Neovim) and place LaTeX-specific mappings, functions, and other settings in this file.
+   That's it!
+   Anything in `tex.vim` will be loaded only when editing files with the `tex` filetype (i.e. LaTeX and related files), and will not interfere with your other filetype plugins.
 
-   ```bash
-   # Two ways to have LaTeX-specific configuration;
-   # note the dedicated `tex` folder in the second example
-   ftplugin/                  ftplugin/
-   ├── tex.vim                ├── markdown.vim
-   ├── markdown.vim           ├── python.vim
-   └── python.vim             └── tex
-                                  ├── vimtex.vim
-                                  └── main.vim
-   ```
+#### Tip: use subdirectories for better organization
 
-   The first example uses a single `tex.vim` file inside `ftplugin`.
-   In the second example, the `tex`-specific configuration is divided into two files---`vimtex.vim` might store configuration related to the VimTeX plugin and `main.tex` would store general settings for the `tex` filetype.
+You can also split up your `tex` customizations among multiple files (instead of having a single, cluttered `tex.vim` file).
+To do this, create the file structure `~/.vim/ftplugin/tex/*.vim`.
+Any Vimscript files inside `~/.vim/ftplugin/tex/` will then load automatically when editing files with the `tex` filetype.
+As a concrete example, you might design your `ftplugin` directory like this:
 
+```bash
+# You can split up filetype configuration into filetype-specific
+# subdirectories of ftplugin
+ftplugin/
+├── markdown.vim
+├── python.vim
+└── tex
+   ├── foo.vim
+   ├── bar.vim
+   └── main.vim
+```
+
+In this example the the files `foo.vim`, `bar.vim`, and `main.vim` will all be loaded when you edit a `tex` file.
    
 The following sections explain how loading filetype plugins works under the hood.
 <!-- See `h: add-filetype-plugin` and `h: write-filetype-plugin` for further information. -->

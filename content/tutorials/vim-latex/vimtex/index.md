@@ -14,13 +14,14 @@ date: 2021-11-24
 {{< date-last-mod >}}
 
 This is part four in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
-This article describes the excellent [VimTeX plugin](https://github.com/lervag/vimtex/), a modular Vim and Neovim plugin that implements a host of useful features for writing LaTeX files.
+This article covers the excellent [VimTeX plugin](https://github.com/lervag/vimtex/), a modular Vim and Neovim plugin with a boatload of useful features for writing LaTeX files.
+VimTeX is probably *the* reason to chose Vim or Neovim as a LaTeX editor.
 
 {{< toc level="2" title="Contents of this article" >}}
 
 **Background knowledge:** this article will make regular references to the file `ftplugin/tex.vim`, which we will use to implement LaTeX-specific Vim configuration through Vim's filetype plugin system.
 To get the most out of this article, you should understand the purpose of the `ftplugin/tex.vim` file and have a basic understanding of Vim's filetype plugin system.
-In case you are just dropping in now and these topics sound unfamiliar, consider first reading through the [previous article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which covers what you need to know.
+In case you are just dropping in now and words like "plugin", "ftplugin", and "runtimepath" sound unfamiliar, consider first reading through the [previous article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which covers what you need to know.
 
 {{< details summary="I use Neovim and prefer Lua; can I configure VimTeX with Lua?" >}}
 Certainly.
@@ -145,12 +146,11 @@ I recommend skimming through the table in `:help vimtex-default-mappings`, then 
 
 ## Doing practical stuff with VimTeX {#doing-stuff}
 
-Following is a summary, with examples, of useful functionality provided by VimTeX that you should know exists.
+Following is a summary, with examples, of useful functionality provided by VimTeX.
 Again, nothing in this section is particularly original---you can find everything in the VimTeX documentation.
 
-**Customization is easy:** Before listing the VimTeX actions, I want to point out that every shortcut used to access them can easily customized to anything you like.
-I show how to do this a few paragraphs below in the section [Customization is easy](#customization).
-
+**Customization is easy:**
+By the way, every shortcut used to access them can easily customized to anything you like---as described a few paragraphs below in the section [Customization is easy](#customization).
 But first, here is some practical LaTeX wizardry using VimTeX!
 
 ### Change and delete stuff

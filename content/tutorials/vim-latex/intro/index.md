@@ -88,7 +88,7 @@ From that point reaching the speed in this page's GIFs would probably take month
 
 ### Shut up and show me results
 
-As concrete evidence that the techniques in this tutorial work in practice, here are [1500+ pages of typeset physics notes]({{< relref "/notes/fmf/fmf" >}}) from my undergraduate studies, most of them written during university lecture in real time (although grammar and style were improved later).
+As concrete evidence that the techniques in this tutorial work, here are [1500+ pages of typeset physics notes]({{< relref "/notes/fmf/fmf" >}}) from my undergraduate studies, most of them written during university lecture in real time (although grammar and style were improved later).
 Here are some examples of what these notes look like:
 
 {{< vim-latex/carousel items="1" height="108" unit="%" duration="7000" >}}
@@ -108,7 +108,7 @@ If you like, you can see [**more examples on YouTube**](https://www.youtube.com/
 By the way: the seminal work on the subject of Vim and LaTeX, and my inspiration for attempting and ultimately succeeding in writing real-time LaTeX using Vim, is Gilles Castel's [*How I'm able to take notes in mathematics lectures using LaTeX and Vim*](https://castel.dev/post/lecture-notes-1/).
 You've probably seen it on the Internet if you dabble in Vim or LaTeX circles, and you should definitely read it if you haven't yet.
 
-This series builds on Castel's article by more thoroughly walking the reader through technical details of implementation (e.g. the details of setting up a PDF reader with forward and inverse search, how to use the VimTeX plugin, how to write Vimscript functions and key mappings, how Vim's `ftplugin` system works, how to manually compile LaTeX documents, and so on).
+This series builds on Castel's article by more thoroughly walking you through the technical implementation details (e.g. the details of setting up a PDF reader with forward and inverse search, how to use the VimTeX plugin, how to write Vimscript functions and key mappings, how Vim's `ftplugin` system works, how to compile LaTeX documents, and so on).
 
 ### Config
 
@@ -125,10 +125,10 @@ Here is an overview of the setup used in this series:
 
 ### Feedback, suggestions, appreciation, criticisms, etc.
 
-I enjoy hearing from readers!
+*I enjoy hearing from readers!*
 
 - If this series helped you, it will make my day to hear.
-- If you suggest constructive ideas for improving the series, I will quite likely implement them, appreciate your input, and give you credit for your contributions.
+- If you suggest constructive ideas for improving the series, I will quite likely implement them, appreciate your input, and give you a shoutout for your contributions.
   Feedback is welcome and appreciated.
   Many thanks to [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how improve this series.
 
@@ -136,18 +136,7 @@ I enjoy hearing from readers!
 
 You can reach me by email, in English, Spanish, or Slovene, at [`ejmastnak@gmail.com`](mailto:ejmastnak@gmail.com) or by opening an issue or pull request at [`github.com/ejmastnak/ejmastnak.com`](https://github.com/ejmastnak/ejmastnak.com)).
 
-#### Have ideas for future projects?
-
-If there is collective interest from readers of this guide, I would consider creating follow-up content expanding on this series.
-Here are two possible projects:
-
-- A GitHub repo implementing a minimum working example of the setup in this series (I'm thinking a minimal `vimrc`, a few example UltiSnips snippets to get you started writing your own, basic VimTeX configuration etc.).
-  This might be less overwhelming for new users than browsing my above-linked dotfiles.
-- A write-up of how the GIFs in this series were made (using shell scripts for repeatable results and dimensions, setting colorscheme and fonts, reaching an acceptable resolution, etc.).
-
-If these or other ideas interest you, let me know---if there is enough interest from the community, I'd enjoy putting together more content like this.
-
-<div class="text-center mx-auto mt-6 mb-8 bg-blue-50 font-semibold dark:bg-gray-800 rounded-xl py-2 border border-gray-200 dark:border-gray-700">
+<div class="text-center mx-auto mt-8 mb-8 bg-blue-50 font-semibold dark:bg-gray-800 rounded-xl py-2 border border-gray-200 dark:border-gray-700">
 <a href="/tutorials/vim-latex/prerequisites" class="block">Begin the series!</a>
 </div>
 

@@ -19,6 +19,7 @@ This article covers compilation and should explain what you need to get started 
 {{< toc level="2" title="Contents of this article" >}}
 
 **Background knowledge:**
+
 - This article will make occasional references to the file `ftplugin/tex.vim`, which we will use to implement LaTeX-specific Vim configuration through Vim's filetype plugin system.
   In case you are just dropping in now and Vim's `ftplugin` system sounds unfamiliar, consider first reading through the article [3. Vim's `ftplugin` system]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which covers what you need to know.
 
@@ -30,17 +31,19 @@ This article covers compilation and should explain what you need to get started 
 
 There are two parts in this article: 
 
-1. Using the compilation interface provided by the VimTeX, which should work out of the box and satisfy the use cases of most users with minimal configuration;
-   I cover it in the first part of this article.
+1. Compiling via VimTeX: how to use VimTeX's default compilation interface, which should work out of the box and satisfy the use cases of most users with minimal configuration.
 
-1. How you can manually set up Vim's built-in `compiler` and `make` features to compile LaTeX documents "manually", without relying on the VimTeX interface (which does the same thing).
+1. Compiling manually: how you can manually set up Vim's built-in `compiler` and `make` features to compile LaTeX documents "manually", without relying on the VimTeX interface (which does the same thing).
 
-You should only read the second part of this article if...
+   *You only need to read the second part of this article if...*
+   
+   - you are interested in understanding (a basic picture of) what happens under the hood when you call `:VimtexCompile`, and/or
+   - you want to write a custom compilation interface that offers you more flexibility than what ships with VimTeX.
 
-- you are interested in understanding (a basic picture of) what happens under the hood when you call `:VimtexCompile`, and/or
-- you want to write a custom compilation interface that offers you more flexibility than what ships with VimTeX.
+{{< details summary="**My suggestion for new users**" >}}
+Only worry about the [first part of this article](#vimtex).
 
-{{< details summary="**My suggestion for new users**: use VimTeX's built-in compilation interface and only read the [first part of this article](#vimtex)." >}}
+Guys, don't roll your own compilation plugin.
 VimTeX's compilation features are tested by thousands of users, thoroughly debugged, and require minimal work to set up on your part, and so are good place to begin as a new user.
 As you get more comfortable, you can come back to the second part of this article and experiment with your own compilation plugin if you're interested.
 
@@ -53,22 +56,22 @@ This was great as a learning experience but completely impractical, since it gen
 
 ### TLDR
 
-Here is a short summary:
-
 - Ensure the `latexmk` and `pdflatex` programs are installed on your system ([reminder of the prerequisites for this series]({{< relref "/tutorials/vim-latex/prerequisites" >}})).
 - Compile LaTeX documents from within Vim using the command `:VimtexCompile`, which you can either type directly as a Vim command or access with the default VimTeX mapping `<localleader>ll`.
 
-  {{< details summary="If words like `:map`, `<leader>`, and `<localleader>` are unfamiliar to you..." >}}
+- Optionally, if you don't like `<localleader>ll` as the compilation shortcut, [define a custom mapping](#compilation-shortcut) to call `:VimtexCompile` and use that instead.
+
+  {{< details summary="If words like `:map` and `<localleader>` are unfamiliar to you..." >}}
   ...consider taking a detour and reading through the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}), which explains everything you need to know about Vim key mappings to understand this series (the `<leader>` and `<localleader>` concepts also apply if you use Neovim and Lua).
   {{< /details >}}
 
-- Optionally, if you don't like `<localleader>ll` as the compilation shortcut, [define a custom mapping](#compilation-shortcut) to call `:VimtexCompile` and use that instead.
+**End TLDR**
 
 Following is a more detailed description.
 
 ### How VimTeX's compilation interface works
 
-VimTeX provides a variety of compilation backends, which can in turn use different LaTeX engines to perform actual compilation.
+VimTeX offers multiple compilation backends, and each backend can use different LaTeX engines to perform actual compilation.
 Here is a short summary:
 
 - VimTeX's uses `latexmk` as the default compiler backend.
@@ -79,6 +82,7 @@ Here is a short summary:
 
 - VimTeX offers both continuous and "single-shot" compilation via the commands `:VimtexCompile` and `:VimtexCompileSS`, respectively.
   In continuous compilation mode, which you turn on with `:VimtexCompile`, `latexmk` automatically recompiles your LaTeX document after every file change until you call `:VimtexStop`.
+
   In single-shot mode, `latexmk` will only compile your document when you explicitly call `:VimtexCompileSS`, which is roughly the equivalent of running `latexmk your-document.tex` on a command line.
   
   In a continuous compilation workflow, you would typically open your document, call `:VimtexCompile` once, and forget about compilation until you close the document.
@@ -86,7 +90,7 @@ Here is a short summary:
 
   For more information, consult `:help vimtex-compiler` and the references therein.
 
-- You can configure VimTeX's `latexmk` compiler using the dictionary-like variable `g:vimtex_compiler_latexmk`; see `:help g:vimtex_compiler_latexmk` if interested.
+- You can configure VimTeX's `latexmk` compiler via the dictionary-like variable `g:vimtex_compiler_latexmk`; see `:help g:vimtex_compiler_latexmk` if interested.
   The default values should work well for most users.
 
   You can get a summary of your compiler status using the command `VimtexInfo`;
@@ -106,11 +110,15 @@ Here is a short summary:
     executable: latexmk  # the name of the `latexmk` executable
   ```
 
-  If interested, you can read more about what these options do [in the second part of this article](#pdflatex-latexmk).
+  If interested, you can read more about what these options do under the hood [in the second part of this article](#pdflatex-latexmk).
 
 ### Shortcut for compilation {#compilation-shortcut}
-You can always manually type out the commands `:VimtexCompile` or `:VimtexCompileSS` to start compilation.
-But since all that typing is inefficient, VimTeX offers  `<localleader>ll` as a default shortcut for calling `:VimtexCompile`, meaning you can type `<localleader>ll` (in normal mode) to trigger the `:VimtexCompile` command.
+
+**Problem:** manually typing out the commands `:VimtexCompile` or `:VimtexCompileSS` to start compilation is tedious.
+
+**Solution:** map the `:VimtexCompile` or `:VimtexCompileSS` commands to a keyboard shortcut.
+
+VimTeX offers  `<localleader>ll` as a default shortcut for calling `:VimtexCompile`, meaning you can type `<localleader>ll` (in normal mode) to trigger the `:VimtexCompile` command.
 
 If you prefer, setting your own shortcut is really easy!
 For example, to use `<localleader>c` to trigger compilation, place the following code in your `ftplugin/tex.vim` file:
@@ -142,7 +150,7 @@ The final article in the series, [7. A Vim Configuration Primer for Filetype-Spe
 
 After compiling with `:VimtexCompile` or `:VimtexCompileSS`, VimTeX will automatically open the QuickFix menu if warnings or errors occurred during compilation (the QuickFix menu stays closed if compilation completes successfully).
 For most compilation errors, the QuickFix menu will display the error's line number and a (hopefully) useful error message.
-In such cases you can use the Vim commands `:cc` and `:cn` (short for `:cnext`, which also works), to jump directly to the offending line.
+In such cases you can use the Vim commands `:cc` and `:cn` to jump directly to the offending line (much more info at `:help quickfix` in the Vim docs).
 
 Here is an example in which VimTeX detects missing inline math around the math-mode `\int` command,
 recognizes that the error occurs on line `8`,
@@ -152,7 +160,8 @@ After the error is fixed, the QuickFix menu disappears.
 {{< img-centered src="quickfix-error-short.gif" width="100%" alt="GIF demonstrating the QuickFix menu showing LaTeX errors after failed compilation." >}}
 
 Here are two VimTeX-related QuickFix settings you might be interested in tweaking:
-- By default, VimTeX opens the QuickFix menu if compilation produces warning messages but no error messages.
+
+- **Don't open QuickFix for warnings:** by default, VimTeX opens the QuickFix menu if compilation produces warning messages but no error messages.
   LaTeX's warning messages are often unhelpful, so some users will want to open the QuickFix menu only if compilation fails with error messages.
   To do this, place the following code in your `ftplugin/tex.vim` file:
 
@@ -163,10 +172,10 @@ Here are two VimTeX-related QuickFix settings you might be interested in tweakin
 
   See `:help g:vimtex_quickfix_open_on_warning` for the official documentation.
 
-- VimTeX makes it easy to filter out undesirable warning messages produced during LaTeX compilation.
+- **Filter out selected warnings:** VimTeX makes it easy to filter out undesirable warning messages produced during LaTeX compilation.
   To do so, use the variable `g:vimtex_quickfix_ignore_filters` to define a set of Vim regular expression filters;
   the compilation messages that match these filters will then disappear from the QuickFix menu.
-  See `:help regular-expression` for a review of Vim's regular expression syntax; here are some examples to get you started:
+  See `:help regular-expression` for a review of Vim's regular expression syntax; here are some examples to get you started (you would put this in your e.g. `ftplugin/tex.vim` file):
 
   ```vim
   " Filter out some compilation warning messages from QuickFix display
@@ -189,7 +198,7 @@ VimTeX offers plenty of compilation goodies beyond the scope of this article tha
 
 ## How to use `pdflatex` and `latexmk` {#pdflatex-latexmk}
 
-This section is written for new users who have not worked directly with  `pdflatex` and `latexmk` before;
+This section is a crash course in the `pdflatex` and `latexmk` programs;
 if you are familiar with these programs, feel free to jump ahead to the section [Writing a simple LaTeX compiler plugin](#compiler).
 
 ### About pdflatex and latexmk
@@ -203,8 +212,8 @@ This guide covers two related compilation programs:
   The `latexmk` script actually calls `pdflatex` (or similar programs) under the hood, and automatically determines exactly how many `pdflatex` runs are needed to properly compile a document.
   In practice, one uses `latexmk` to ensure all cross-reference are resolved and that a document's bibliography renders correctly.
 
-Online and GUI LaTeX editors you might already know, such as Overleaf, TeXShop, or Texmaker, also compile LaTeX documents with `latexmk` or `pdflatex` (or similar command line programs) under the hood.
-You just don't see this directly because the `pdflatex` calls are hidden behind a graphical interface.
+Online and GUI LaTeX editors you might already know, such as Overleaf, TeXShop, or Texmaker, also compile LaTeX documents with `latexmk` or `pdflatex` (or similar command line programs) under the hood (Overleaf, for example, uses `latexmk`).
+You just don't see this directly because the `pdflatex` or `latexmk` calls are hidden behind a graphical interface.
 
   To get useful functionality from `pdflatex` and `latexmk` you'll need to specify some command line options.
   The two sections below explain the options for both `pdflatex` and `latexmk` that have served me well over the past few years---these could be a good starting point if you are new to command line compilation.

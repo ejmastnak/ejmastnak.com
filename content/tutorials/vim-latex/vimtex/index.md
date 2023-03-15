@@ -14,8 +14,7 @@ date: 2021-11-24
 {{< date-last-mod >}}
 
 This is part four in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
-This article covers the excellent [VimTeX plugin](https://github.com/lervag/vimtex/), a modular Vim and Neovim plugin with a boatload of useful features for writing LaTeX files.
-VimTeX is probably *the* reason to chose Vim or Neovim as a LaTeX editor.
+This article covers the excellent [VimTeX plugin](https://github.com/lervag/vimtex/), a modular Vim and Neovim plugin with heaps of useful features for writing LaTeX files.
 
 {{< toc level="2" title="Contents of this article" >}}
 
@@ -34,11 +33,15 @@ In any case, this article is written from a Vimscript perspective (even though I
 
 You might also want to skim over the [suggested prerequisite knowledge]({{< relref "/tutorials/vim-latex/prerequisites" >}}) for reading this series.
 
+## Two ways to read this article
+
+You could either:
+
+1. Read the administrative material first (e.g. installing and configuring VimTeX and accessing the documentation, and other boring stuff)---in this case just keep going and read the article linearly from start to finish.
+1. [Jump directly to examples](#doing-stuff), then come back and fill in the theory later.
+
+
 ## The point of this article
-
-[Skip this introduction and jump right to doing cool stuff with VimTeX.](#doing-stuff)
-
-This article gives an overview of the features VimTeX provides, offers some ideas of how to use these features from the practical perspective of a real-life user, and shows where to look in the documentation for details.
 
 Given VimTeX's superb documentation, what is the point of this guide?
 My reasoning is that many new users---I am often guilty of this too---quickly become overwhelmed when reading extensive plain-text documentation as a means of learning new software, and perhaps the Markdown syntax, animated GIFs, highlighted code blocks, and more personal tone in this article will make it easier for new users to digest what VimTeX offers.
@@ -97,7 +100,7 @@ This article will cover the following features:
 - Snippet-like insert mode mappings
 - Syntax highlighting, including support for common LaTeX packages and the potential for math context detection for snippet triggers
 
-VimTeX also provides a compilation interface and PDF viewer support, which I have left out of this article and describe in two [dedicated]({{< relref "/tutorials/vim-latex/compilation" >}}) [articles]({{< relref "/tutorials/vim-latex/pdf-reader" >}}) later in the series.
+VimTeX also provides a compilation interface and PDF viewer support, which I describe in two [dedicated]({{< relref "/tutorials/vim-latex/compilation" >}}) [articles]({{< relref "/tutorials/vim-latex/pdf-reader" >}}) later in the series.
 
 ## How to read VimTeX's documentation of mappings
 
@@ -125,20 +128,37 @@ To have a clear mental image of what's going on here, you should understand how 
 what the `<leader>` and `<localleader>` keys do, and what the `<Plug>` keyword means.
 If you want to learn about these topics now, take a detour and read through the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}).
 
-For the present purposes, here is how to interpret the table:
+For our present purposes, here is how to interpret the table:
 
-- Each entry in the middle (`RHS`) column is a Vim `<Plug>` mapping corresponding to a specific VimTeX feature (e.g. a command, action, or text object).
+- Each entry in the middle (`RHS`) column is a Vim `<Plug>` mapping corresponding to a specific VimTeX feature.
   For example, `<Plug>(vimtex-info)` displays status information about the VimTeX plugin and `<Plug>(vimtex-ac)` corresponds to VimTeX's "a command" text object (analogous to Vim's built-in `aw` for "a word" or `ap` for "a paragraph").
   
-  The meaning of every entry in the `RHS` column is described in a dedicated section of the VimTeX documentation, which can be jumped to by hovering over a `RHS` entry and pressing `<Ctrl>]`.
+  Each entry in the `RHS` column also links to a dedicated section of the VimTeX documentation, which you can jump to by hovering over a `RHS` entry and pressing `<Ctrl>]`.
 
 - By default, VimTeX maps each entry in the `RHS` column to the short key combination in the `LHS` column.
   You are meant to use the convenient `LHS` shortcut to trigger the action in the `RHS`.
-  For example, the key combination `<localleader>li` will display status information about VimTeX, while `ac` is the shortcut for VimTeX's "a command" text object.
+  Here's an example:
+
+  ```bash
+  LHS              RHS                    MODE
+  <localleader>li  <Plug>(vimtex-info)    n
+  ac               <Plug>(vimtex-ac)      xo
+  ```
+
+  In this example, the key combination `<localleader>li` will call the VimtexInfo command to display status information about VimTeX, and the key combination `ac` maps to VimTeX's "a command" text object.
 
 - Each mapping works only in a given Vim mode;
   this mode is specified in the `MODE` column using Vim's conventional single-letter abbreviations for mode names.
-  For example, `ae <Plug>(vimtex-ae) xo` works in visual (`x`) and operator-pending (`o`) mode, while `tse <Plug>(vimtex-env-toggle-star) n` works in normal (`n`) mode.
+
+  Consider this example again:
+
+  ```bash
+  LHS              RHS                    MODE
+  <localleader>li  <Plug>(vimtex-info)    n
+  ac               <Plug>(vimtex-ac)      xo
+  ```
+
+  In this example, `<localleader>li <Plug>(vimtex-info)` mapping works in normal (`n`) mode, and `ac Plug>(vimtex-ac)` works in works in visual (`x`) and operator-pending (`o`) mode.
   For more information about map modes and key mappings, see the Vim documentation section `:help map-listing` and the [Vim configuration article]({{< relref "/tutorials/vim-latex/vimscript" >}}) later in this series.
 
 The VimTeX documentation sections `COMMANDS` (accessed with `:help vimtex-commands`) and `MAP DEFINITIONS` (accessed with `:help vimtex-mappings`) list and explain the commands and mappings in the `RHS` of the above table.
@@ -147,11 +167,6 @@ I recommend skimming through the table in `:help vimtex-default-mappings`, then 
 ## Doing practical stuff with VimTeX {#doing-stuff}
 
 Following is a summary, with examples, of useful functionality provided by VimTeX.
-Again, nothing in this section is particularly original---you can find everything in the VimTeX documentation.
-
-**Customization is easy:**
-By the way, every shortcut used to access them can easily customized to anything you like---as described a few paragraphs below in the section [Customization is easy](#customization).
-But first, here is some practical LaTeX wizardry using VimTeX!
 
 ### Change and delete stuff
 
@@ -411,19 +426,19 @@ You can:
 
 ### Customization is easy {#customization}
 
-After seeing the VimTeX actions and mappings, I want to show how to customize the default shortcut you trigger them with.
-To customize the shortcut for a VimTeX action or motion, you need to know three things:
+Every shortcut and key binding show above can be easily customized to anything you like.
+To define a custom key binding, you need to know three things:
 
-1. The motion's `<Plug>` mapping, given above for each action and also shown in the three-column table in `:help vimtex-default-mappings`.
+1. The command/text object/motion's `<Plug>` mapping, given above for each action and also shown in the three-column table in `:help vimtex-default-mappings`.
 1. The Vim mapping mode (e.g. normal, visual, operator-pending, etc.) the `<Plug>` mapping works in; again from the table at `:help vimtex-default-mappings` or earlier in this article.
 1. The action's default shortcut (from `:help vimtex-default-mappings` or earlier in this article) and the custom shortcut you would like to use to replace it.
 
 **Example:** Since that might sound abstract, here is a concrete example of setting a custom shortcut to trigger the "delete surrounding math" action.
-Following the steps listed above,
+Using `:help vimtex-default-mappings` for reference,
 
 1. The action's `<Plug>` map is `<Plug>(vimtex-env-delete-math)`
 1. The action works in normal mode, so we will use `nmap` for remapping it (use `xmap` for visual mode, `omap` for operator-pending mode, etc.)
-1. We will replace the default mapping, `ds$` (which makes semantic sense but is a bit difficult to type), with the more convenient `dsm`.
+1. We will replace the default mapping, `ds$` (which is a bit difficult to type), with the more convenient `dsm`.
 
 To implement this change, place the following code in your `ftplugin/tex.vim` (or similar):
 
@@ -434,22 +449,19 @@ nmap dsm <Plug>(vimtex-env-delete-math)
 
 That's it!
 You could then use `dsm` in normal mode to delete surrounding math.
-(For a background of what's going on here, you can consult the final article this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}).)
+VimTeX won't apply the default `LHS` shortcut to any `<Plug>` mapping you map to manually (this behavior is explained in `:help vimtex-default-mappings`), so `dsm` will completely override the default `ds$`.
 
-The key when redefining default mappings is to use your own, personally-intuitive LHS mapping (e.g. `dsm`) with VimTeX's default `<Plug>` mapping (e.g. `<Plug>(vimtex-env-delete-math)`).
-VimTeX won't apply the default `LHS` shortcut to any `<Plug>` mapping you map to manually (this behavior is explained in `:help vimtex-default-mappings`).
+(For a background of what's going under the hood, check out the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}).)
 
 ## Text objects
 
-VimTeX provides a number of wildly useful LaTeX-specific text objects.
+VimTeX provides a number of extremely useful LaTeX-specific text objects.
+
 If you don't yet know what text objects are, stop what you're doing and go learn about them.
 As suggested in `:help vimtex-text-objects`, a good place to start would be the Vim documentation section `:help text-objects` and the famous Stack Overflow answer [*Your problem with Vim is that you don't grok vi*](https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118).
 
-VimTeX's text objects are listed in the table in `:help vimtex-default-mappings` and described in more detail in `:help vimtex-mappings`;
+VimTeX's text objects are listed in the table at `:help vimtex-default-mappings` and described in more detail in `:help vimtex-mappings`;
 the text objects behave exactly like Vim's built-in text objects (which are explained in `:help text-objects`) and work in both operator-pending and visual mode.
-
-The section `:help vimtex-text-objects` gives a general overview of how text objects work, but does not actually list the text objects.
-For the curious, VimTeX's mappings, including text objects, are defined in the VimTeX source code at around [line 120 of `vimtex/autoload/vimtex.vim`](https://github.com/lervag/vimtex/blob/master/autoload/vimtex.vim#L121) in the function `s:init_default_mappings()` at the time of writing.
 
 ### Table of VimTeX text objects
 
@@ -474,20 +486,20 @@ Here is a visual mode example of the delimiter and environment text objects:
 Every default mapping provided by VimTeX can be changed to anything you like, using the exact same procedure described a few sections above in [Customization is easy](#customization).
 As an example to get you started with changing default mappings, VimTeX uses `am` and `im` for the item text objects (i.e. items in `itemize` or `enumerate` environments) and `a$` and `i$` for the math objects.
 
-You might prefer to use (say) `am`/`im` for math (since `$` is a bit difficult to reach) and `ai`/`ii` for items, and could implement this change by placing the following code in `ftplugin/tex.vim` (or similar):
+You might prefer to use (say) `ai`/`ii` for items and `am`/`im` for math, and could implement this change by placing the following code in `ftplugin/tex.vim` (or similar):
 
 ```vim
-" Use `am` and `im` for the inline math text object
-omap am <Plug>(vimtex-a$)
-xmap am <Plug>(vimtex-a$)
-omap im <Plug>(vimtex-i$)
-xmap im <Plug>(vimtex-i$)
-
 " Use `ai` and `ii` for the item text object
 omap ai <Plug>(vimtex-am)
 xmap ai <Plug>(vimtex-am)
 omap ii <Plug>(vimtex-im)
 xmap ii <Plug>(vimtex-im)
+
+" Use `am` and `im` for the inline math text object
+omap am <Plug>(vimtex-a$)
+xmap am <Plug>(vimtex-a$)
+omap im <Plug>(vimtex-i$)
+xmap im <Plug>(vimtex-i$)
 ```
 
 You could then use the `am` and `im` mapping to access the math text object, or `ai` an `ii` to access items.
@@ -497,7 +509,7 @@ Note that the mappings should be defined in both operator-pending and visual mod
 
 VimTeX also makes it easy to disable *all* default mappings, then selectively enable only the mappings you want, using the LHS of your choice.
 You might do this, for example, to avoid cluttering the mapping namespace with mappings you won't use.
-From `:help vimtex-default-mappings`:
+Quoting from `:help vimtex-default-mappings`:
 
 > If one prefers, one may disable all the default mappings through the option `g:vimtex_mappings_enabled`. Custom mappings for all desired features must then be defined through the listed RHS <Plug>-maps or by mapping the available commands.
 
@@ -564,7 +576,7 @@ the documentation is clear and largely self-explanatory, and you should skim thr
 
 ### Example: Disabling default features
 
-The most common use case for VimTeX options is disabling default VimTeX features.
+The most common use case for VimTeX options is disabling a few default VimTeX features that you don't need.
 Here is the general workflow:
 
 1. While skimming through the VimTeX documentation, identify a feature you wish to disable.
@@ -588,7 +600,7 @@ Here is the general workflow:
 
 ### Example: Changing the default delimiter toggle list {#example-change-delim}
 
-Here is another real-life example: to add `\big \big` to the delimiter toggle list used by VimTeX's "toggle surrounding delimiter" feature (see the earlier section on [Toggle-style mappings](#toggle)), add the following code to you `ftplugin/tex.vim` file (or similar):
+Here is another real-life example: to add `\big \big` to the delimiter toggle list used by VimTeX's "toggle surrounding delimiter" feature (see the earlier section on [Toggle-style mappings](#toggle)), add the following code to your `ftplugin/tex.vim` file (or similar):
 
 ```vim
 " Example: adding `\big` to VimTeX's delimiter toggle list
@@ -605,7 +617,7 @@ Hopefully the above two examples give you a feel for setting VimTeX options; the
 
 ## Commands
 
-The VimTeX plugin provides a number of user-defined commands, and these are listed and described in the documentation section `:help vimtex-commands`.
+The VimTeX plugin provides a number of user commands, and these are listed and described in the documentation section `:help vimtex-commands`.
 The commands mostly cover compilation, PDF reader integration, and system and plugin status;
 we will return to VimTeX's commands when explaining 
 [compilation]({{< relref "/tutorials/vim-latex/compilation" >}}) and [PDF reader integration]({{< relref "/tutorials/vim-latex/pdf-reader" >}}) in the next two articles in this series.
@@ -652,12 +664,12 @@ Here are a few more features to look into to learn about once you master the bas
 - VimTeX provides completion of citations and reference labels, together with integration with common autocompletion plugins.
   See `:help vimtex-completion` for more information.
 
-- VimTeX's code-folding features are covered at `:help vimtex-folding` and the references therein.
-  You have a lot of power here if you like code folding, but you may have to configure a few things yourself before the feature is practically useful.
+- VimTeX's provides code folding---see `:help vimtex-folding` and the references therein.
+  You have a lot of power here if you like code folding, but you'll probably have to configure a few things yourself before the feature is practically useful.
 
 - VimTeX provides indentation features that improve on Vim's default indentation plugin for LaTeX.
   You can read about VimTeX's indentation at `:help vimtex-indent`, which is just a list of references to associated configuration settings.
-  VimTeX's indentation is enabled by default and should "just work" for most use cases, but there are plenty of configuration option for those who so choose.
+  VimTeX's indentation is enabled by default and should "just work" for most use cases, but there are plenty of configuration options for interested users.
 
 - Solutions for linting and grammar checking are described at `:help vimtex-lint` and `:help vimtex-grammar`, respectively;
   I have not used these features myself and cannot offer any advice.
@@ -673,16 +685,15 @@ Here are a few more features to look into to learn about once you master the bas
 
 ## Appendix: Troubleshooting failed VimTeX loading {#appendix}
 
-If you are new to Vim, the VimTeX plugin loads without any problem, and you have no idea what I'm talking about here, don't worry and skip it.
-The point is to make sure that VimTeX loads, and if VimTeX loads for you without issues, you're good to go.
+*You can safely ignore this section if VimTeX loads without issues.*
 
-Warning aside, here is the potential problem: the VimTeX plugin respects (and will not override) a user-defined `tex` filetype plugin.
+Here is the potential problem: the VimTeX plugin respects (and will not override) a user-defined `tex` filetype plugin.
 You must be careful though---there is a risk of *your* `tex` filetype plugin overriding VimTeX!
 Namely, VimTeX will not load if you set the Vimscript variable `let b:did_ftplugin = 1` in your user-defined `tex` plugin, for example with the common piece of boilerplate code shown below
 
 ```vim
-" This common piece of boilerplate code would prevent VimTeX from loading if...
-" ...placed in a user-defined LaTeX filetype plugin, e.g. `~/.vim/ftplugin/tex.vim`.
+" This common piece of boilerplate code would prevent VimTeX from loading if
+" placed in a user-defined LaTeX filetype plugin, e.g. `~/.vim/ftplugin/tex.vim`.
 if exists("b:did_ftplugin")
   finish
 endif

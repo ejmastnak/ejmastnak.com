@@ -24,10 +24,10 @@ The article is a selection of the Vimscript and Vim configuration concepts neede
 Me too!
 But I focused on Vimscript in this article...
 
-1. so that both Vim and Neovim users can benefit from it and 
-1. because the VimTeX plugin (which predates Lua in Neovim) uses Vimscript and is a bit easier to configure in Vimscript.
+1. so that both Vim and Neovim users can benefit from it, and 
+1. because the VimTeX plugin (which predates the introduction of first-class Lua in Neovim 0.5) uses Vimscript and is a bit easier to configure in Vimscript.
 
-Keep in mind that the same concepts covered in this article also apply to Lua-configured Neovim, you just have to [translate the Vimscript to Lua](https://neovim.io/doc/user/lua-guide.html#lua-guide) if you so wish.
+The concepts covered in this article still apply perfectly well to Lua-configured Neovim, you just have to [translate the Vimscript syntax to Lua](https://neovim.io/doc/user/lua-guide.html#lua-guide) if you so wish.
 And remember that you can always [include snippets of Vimscript in an otherwise Lua-based config](https://neovim.io/doc/user/lua-guide.html#lua-guide-vimscript).
 {{< /details >}}
 
@@ -42,7 +42,7 @@ By the way, nothing in this article is particularly LaTeX-specific and would gen
 ## Key mappings
 
 Vim key mappings allow you to map arbitrary logic to keyboard keys,
-and I would count them among the fundamental Vim configuration tools.
+and I would count key mappings among the fundamental Vim configuration tools.
 In the context of this series, key mappings are mostly used to define shortcuts for calling commands and functions that would be tedious to type out in full (similar to aliases in, say, the Bash shell).
 This section is a whirlwind tour through Vimscript key mappings, from the basic definition syntax to practical mappings actually used in this tutorial.
 
@@ -78,53 +78,61 @@ noremap j gj
 noremap k gk
 ```
 
-Using `noremap` instead of `map` is a standard Vimscript best practice, described in the following section immediately below.
+Using `noremap` instead of `map` is a standard Vimscript best practice and described in the section immediately below.
 
 #### Remapping: `map` and `noremap`
 
-I will cover this topic only briefly (it's really not too complicated in practice), and refer you to Steve Losh's nice description of the same content in [Chapter 5 of Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com/chapters/05.html) for a more thorough treatment.
+Vim offers two types of mapping commands:
 
-Here is the TLDR version:
+1. The *recursive* commands `map`, `nmap`, `imap`, and their other `*map` relatives.
+2. The *non-recursive* commands `noremap`, `nnoremap`, `inoremap`, and their other `*noremap` relatives.
 
-- Vim offers two types of mapping commands:
+Both `:map {lhs} {rhs}` and `:noremap {lhs} {rhs}` will map `{lhs}` to `{rhs}`, but here is the difference:
+- `map`: If any keys in the `{rhs}` of a `:map` mapping have been used the `{lhs}` of a *different* mapping (e.g. somewhere else in your Vim config or in third-party plugin), then the second mapping will in turn be triggered as a result of the first (often with unexpected results!).
 
-  1. The *recursive* commands `map`, `nmap`, `imap`, and their other `*map` relatives.
-  2. The *non-recursive* commands `noremap`, `nnoremap`, `inoremap`, and their other `*noremap` relatives.
+- `noremap`: Using `:noremap {lhs} {rhs}` is safer---it ensures a mapping's `{rhs}` is interpreted literally and won't unexpectedly trigger other mappings.
 
-- Both `:map {lhs} {rhs}` and `:noremap {lhs} {rhs}` will map `{lhs}` to `{rhs}`, but here is the difference:
-  - `map`: If any keys in the `{rhs}` of a `:map` mapping have been used the `{lhs}` of a *second* mapping (e.g. somewhere else in your Vim config or in third-party plugin), then the second mapping will in turn be triggered as a result of the first (often with unexpected results!).
+*Best practice: always use `noremap` or its relatives (e.g. `vnoremap`) unless you have an explicit reason not to* (e.g. when working with `<Plug>` or `<SID>` mappings, which are *meant* to be remapped---more on `<Plug>` and `<SID>` later in this article).
 
-  - `noremap`: Using `:noremap {lhs} {rhs}` is safer---it ensures that even if `{rhs}` contains the `{lhs}` of a second mapping, the second mapping won't interfere with the first.
-    In everyday terms, `noremap` and its relatives ensure mappings do what you meant them to do.
-  
-- *Best practice: always use* `noremap` *or its* `*noremap` *relatives unless you have a very good reason not to* (e.g. when working with `<Plug>` or `<SID>` mappings, which are meant to be remapped, and which I cover later in this article).
+For more on `noremap`, see Steve Losh's nice description in [Chapter 5 of Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com/chapters/05.html) which is a bit dated, but still relevant in this context.
 
-Again, if desired, consult [Chapter 5 of Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com/chapters/05.html) for a more thorough discussion of `map` and `noremap`.
+#### Notation for special keys
 
-#### Two tips for choosing LHS keys
+Certain keys can be used in key mappings only if you refer to them with a special keyword.
+Here are some examples:
 
-- **Notation for special keys:** Certain keys can be used in key mappings only if you refer to them with a special notation.
-  Some examples follow below:
-  
-  | Key | Vim mapping notation |
-  | - | - |
-  | Space | `<Space>` |
-  | Enter | `<CR>` |
-  | Escape | `<Esc>` |
-  | Tab | `<Tab>` |
-  | Backspace | `<BS>` |
+| Key | Vim mapping keyword |
+| - | - |
+| Space | `<Space>` |
+| Enter | `<CR>` |
+| Escape | `<Esc>` |
+| Tab | `<Tab>` |
+| Backspace | `<BS>` |
 
-  See `:help keycodes` for a full list of special keys and their Vim notation, and `:help <>` for the rules behind Vim's `<>` notation for special keys.
-  Note that the Vim names are case-insensitive---`<cr>` is the same as `<CR>`, for example.
-  
-- **Seeing what keys are already used by Vim:** Vim defines a great deal of keyboard shortcuts, which can cause problems when defining your own mappings---you don't want the mapping's `{lhs}` to override a built-in Vim command.
-  
-  You can use the Vim command `:help {key}<C-D>` (where `<C-D>` is Vim notation for `<Ctrl>d`) to see if `{key}` is used for some built-in or plugin-defined Vim command.
-  For example `:help s<C-D>` shows a multi-column list of all commands beginning with `s` (there are a lot!).
-  You can then type out the full version of any command you see in this list and press enter to go its help page. 
-  This useful tip is tucked away at the bottom of `:help map-which-keys`.
+For example: to map `<Space>q` to the `:quit` command in normal mode, followed by the <Enter> key to execute the command, you would write:
 
-  It also helps to use Vim's leader key functionality to avoid conflicts with built-in Vim commands---the leader key is described a few paragraphs below in the section [The leader key](#leader).
+```vim
+" map `<Space>q` to the `:quit` command using the <Enter> and <CR> keywords
+nnoremap <Space>q :quit<CR>
+```
+
+See `:help keycodes` for a full list of special keys and their Vim notation, and `:help <>` for the rules behind Vim's `<>` notation for special keys.
+Note that the Vim names are case-insensitive---`<cr>` is the same as `<CR>`, for example.
+
+Disclaimer: the above example mapping is actually poor Vimscript---Vim offer a better way to call commands from key mappings using a special `<Cmd>` keyword.
+But because I haven't introduced it yet, the above mappings use `:` to enter Command mode.
+We'll fix this later in this article in the section [The useful `<Cmd>` keyword](#cmd).
+
+#### Seeing what shortcuts are already used by Vim
+
+**Problem:** Vim comes with a bunch of default keyboard shortcuts, and you don't want the mapping's `{lhs}` to override a built-in Vim command.
+
+**Solution:** You can use the Vim command `:help {key}<C-D>` (where `<C-D>` is Vim notation for `<Ctrl>d`) to see if `{key}` is used for some built-in or plugin-defined Vim command.
+For example `:help s<C-D>` shows a multi-column list of all commands beginning with `s` (there are a lot!).
+You can then type out the full version of any command you see in this list and press enter to go its help page. 
+This useful tip is tucked away at the bottom of `:help map-which-keys`.
+
+It also helps to use Vim's leader key functionality to avoid conflicts with built-in Vim commands---the leader key is described a few paragraphs below in the section [The leader key](#leader).
 
 #### Map modes
 
@@ -132,7 +140,7 @@ Not every mapping will expand in every Vim mode;
 you control the Vim mode in which a given key mapping applies with your choice of `nmap`, `imap`, `map`, etc., which each correspond to a different mode.
 The Vim documentation at `:help map-modes` states exactly which map command corresponds to which Vim mode(s).
 For your convenience, here is a table summarizing which command applies to which mode, taken from `:help map-table`.
-You don't need to memorize it, of course---just remember it exists at `:help map-table`, and come back for refresher when needed.
+You don't need to memorize it, of course---just remember that you can find it at `:help map-table`, or come back to this page for a refresher when needed.
 
   |       | normal | insert | command | visual | select | operator-pending | terminal | lang-arg |
   | -----------  |------|-----|-----|-----|-----|-----|------|------| 
@@ -152,15 +160,15 @@ This series will use mostly `noremap` and `nnoremap`,  and occasionally `omap`, 
 
 #### The leader key {#leader}
 
-Vim offers something called a *leader key*, which works as a prefix you can use to begin the `{lhs}` of key mappings.
-The leader key works as a sort of unique identifier that helps prevent your own key mapping shortcuts from clashing with Vim's default key bindings, and it is common practice to begin the `{lhs}` of your custom key mappings with a leader key.
+Vim offers a tool called the *leader key*, which is basically a prefix you can use to begin the `{lhs}` of key mappings.
+The leader key works should be used a unique identifier that helps prevent your own key mapping shortcuts from clashing with Vim's default key bindings, and it is common practice to begin the `{lhs}` of your custom key mappings with a leader key.
 For official documentation, see `:help mapleader`.
 
 Here's how the leader key business works in practice:
 
 1. Decide on a key to use as your leader key.
-   You will have to make a compromise: the key should be convenient and easily typed, but it shouldn't clash with keys used for built-in Vim actions.
    Common values are the space bar (`<Space>`), the comma (`,`) and the backslash (`\`), which aren't used in default Vim commands.
+   You will have to make a compromise: the key should be convenient and easily typed, but it shouldn't clash with keys used for built-in Vim actions.
    A key like `j`, `f`, or `d` wouldn't work well, since these keys are already used by Vim for motion and deletion.
  
 1. In your `vimrc` or `init.vim`, store your chosen leader key in Vim's built-in `mapleader` variable.
@@ -177,9 +185,9 @@ Here's how the leader key business works in practice:
    let mapleader = "\"
    ```
 
-   The default leader key is the backslash, but many users prefer to use either the space bar or comma, since the backslash is a bit out of the way.
+   The default leader key is the backslash, but many users prefer to use either the space bar or comma, since the backslash is a bit difficult to type.
    You can view the current value of the leader key with `:echo mapleader`.
-   (Caution: if you use space as your leader key, the output of `:echo mapleader` will look blank, but has really printed a space character).
+   (Caution: if you use space as your leader key, the output of `:echo mapleader` will look blank, but the command has really printed a space character).
 
 1. Use the leader key in key mappings with the special `<leader>` keyword in the mapping's `{lhs}`.
    You can think of `<leader>` as a sort of alias for the content of the `mapleader` variable.
@@ -212,9 +220,13 @@ We'll fix this later in this article in the section [The useful `<Cmd>` keyword]
 Vim is flexible, and allows you (if you wanted) to define a different leader key for each Vim buffer.
 You would do this with the built-in variable `maplocalleader` and the corresponding keyword `<localleader>`, which are the buffer-local equivalents of `mapleader` and `<localleader>`, and you can use them in the exactly same way.
 
-The local leader key gives you the possibility of a different leader key for each filetype (for example `<Space>` as a local leader in LaTeX files, `,` in Python files, and optionally a different key, say `\`, as a global leader key).
+When would you use local leader?
 
-The VimTeX plugin uses `<localleader>` in its default mappings (as a precaution to avoid override your own `<leader>` mappings), so it is important to set a local leader key for LaTeX files.
+- As an end user, you'd usually use the local leader key, if you so wanted, to create custom leader key different filetypes (for example `<Space>` as a local leader in LaTeX files, `,` in Python files, and optionally a different key, say `\`, as a global leader key).
+- As a plugin author, you might use `<localleader>` as a precaution to avoid overriding the plugin user's own `<leader>` mappings.
+  VimTeX does precisely this.
+
+The VimTeX plugin uses `<localleader>` in its default mappings, so it is important to set a local leader key for LaTeX files.
 To do this, add the following code to your `ftplugin/tex.vim` file:
 
 ```vim
@@ -614,6 +626,8 @@ Here is the basic workflow for using autoload functions:
   If a match is found, a function is loaded into memory, can be called by the user, and should be visible with `:function`.
 
 You can find official documentation of autoload functions at `:help autoload-functions`.
+
+This concludes the series---good luck with your Vimming!
 
 {{< vim-latex/navbar >}}
 

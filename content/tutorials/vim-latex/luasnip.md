@@ -35,13 +35,6 @@ Feel free to skim or skip the boring stuff and jump right to [actually writing s
 
 {{< toc level="2" title="Contents of this article" >}}
 
-<!-- ## Two ways to read this article -->
-<!---->
-<!-- You could either: -->
-<!---->
-<!-- 1. Read the theoretical material first---in this case just keep going and read the article linearly from start to finish. -->
-<!-- 1. [Jump directly to examples](#examples), then come back and fill in the theory later. -->
-
 ## What snippets do {#what-snippets-do}
 
 [I know what snippets do, next section please.](#hello-world)

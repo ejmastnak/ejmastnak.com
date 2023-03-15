@@ -44,7 +44,7 @@ Note, however, that many more Linux-compatible PDF readers exist---see the VimTe
 
 ### A PDF reader on macOS
 
-The canonical option on macOS is [Skim](https://skim-app.sourceforge.io/), which you can download as a macOS `dmg` file from its [homepage](https://skim-app.sourceforge.io/) or from [SourceForge](https://sourceforge.net/projects/skim-app/).
+Use [Skim](https://skim-app.sourceforge.io/), which you can download as a macOS `dmg` file from its [homepage](https://skim-app.sourceforge.io/) or from [SourceForge](https://sourceforge.net/projects/skim-app/).
 (The default macOS PDF reader, Preview, does not listen for document changes, nor, to the best of my knowledge, does it integrate nicely with SyncTeX.)
 
 {{< details summary="You *might* also have success using Zathura on macOS..." >}}
@@ -64,7 +64,7 @@ but you can find an overview of PDF reader possibilities on Windows in the VimTe
 
 ## Summary: What works on what platform
 
-I tested 9 combinations of editor, OS, and PDF reader when preparing this article, and the results are summarized in the table below---the more green check marks the better.
+I tested 9 combinations of editor, OS, and PDF reader when preparing this article, and the results are summarized in the table below---the more check marks the better.
 
 **Recommendations based on my testing:**
 
@@ -124,7 +124,8 @@ You will hear two bits of jargon throughout this article:
 *Forward search* is the process of jumping from the current cursor position in the LaTeX source file to the corresponding position in the PDF reader displaying the compiled document.
 In everyday language, forward search is a text editor telling a PDF reader: "hey, PDF reader, display the position in the PDF file corresponding to my current position in the LaTeX file".
 
-The following GIF demonstrates forward search; here's what you're seeing:
+The following GIF demonstrates forward search.
+Here's what you're seeing:
 
 - I first move in the LaTeX source code (left) from "Section I don't want to see" to the section "Hello, forward search!".
 - I then use the VimTeX command `:VimtexView` to move the PDF reader (right) to the "Hello, forward search!" section, without ever leaving Vim.
@@ -136,7 +137,8 @@ The following GIF demonstrates forward search; here's what you're seeing:
 *Inverse search* (also called *backward search*) is the process of switching focus from a line in the PDF document to the corresponding line in the LaTeX source file. 
 Informally, inverse search is like the user asking, "hey, PDF viewer, please take me to the position in the LaTeX source file corresponding to my current position in the PDF file".
 
-The following GIF demonstrates inverse search; here's what you're seeing:
+The following GIF demonstrates inverse search.
+Here's what you're seeing:
 
 - Both Vim (left) and the PDF reader (right) begin at "Section I don't want to see".
 
@@ -166,18 +168,17 @@ The details of implementation vary between Vim and Neovim
 but in both cases Vim or Neovim must run a *server* that listens for and processes requests from other programs (such as a PDF reader).
 
 In this article and in the Vim and VimTeX documentation you will hear talk about a server---what we are referring to is the server Vim/Neovim must run to communicate with a PDF reader.
-Remembering that an RPC protocol and client-server model are required under the hood may help clarify your mental image of inverse search.
 
-### Ensure you have a clientserver-enabled Vim {#vim-clientserver}
+### Vim users: ensure you have a clientserver-enabled Vim {#vim-clientserver}
 
 *Neovim, gVim, and MacVim come with client-server functionality by default; if you use any of these programs, lucky you.
 You can [skip to the next section.](#zathura)*
 
 If you use terminal Vim, run `vim --version`.
 If the output includes `+clientserver`, your Vim version is compiled with client-server functionality and ~~can~~ might be able to perform inverse search---see the [macOS caveat below](#caveat-macvim).
-If the output includes `-clientserver`, your Vim version does not have client-server functionality.
+If the output instead includes `-clientserver`, your Vim version does not have client-server functionality.
 You will need to install a new version of Vim to use inverse search.
-Getting a `+clientserver` version of terminal Vim is easy on Linux and beyond the scope of this article on macOS:
+Getting a `+clientserver` version of terminal Vim is easy on Linux but beyond the scope of this article on macOS:
 
 - **On Linux:** Use your package manager of choice to install `gvim`, which will include both the GUI program gVim *and* a regular command-line version of Vim compiled with client-server functionality---you will be able to keep using regular terminal `vim` as usual.
   After installing `gvim`, check the output of `vim --version` again;
@@ -215,7 +216,7 @@ Note that Homebrew used to offer `brew install vim --with-client-server` (and yo
 It may well be possible to compile a version of terminal Vim from source that includes `+clientserver`, and, in combination with XQuartz, get inverse search to work on macOS using terminal Vim, but that falls beyond the scope of this tutorial.
 {{< /details >}}
 
-### Ensure Vim starts a server (for terminal Vim on Linux) {#ensure-vim-server}
+### Vim users: ensure Vim starts a server (for terminal Vim on Linux) {#ensure-vim-server}
 
 Neovim, gVim, and MacVim start a server on startup automatically; if you use any of these programs, lucky you---feel free to [skip to the next section](#zathura).
 
@@ -324,7 +325,8 @@ Here's what to do:
 ### Ensure your Zathura is SyncTeX-enabled {#ensure-zathura-synctex}
 
 *Zathura must be compiled with `libsynctex` for forward and inverse search to work properly.*
-Most Linux platforms should ship a version with `libsynctex` support and this shouldn't be a problem for you, but it isn't 100% guaranteed---see the note towards the bottom of `:help vimtex-view-zathura` for more information.
+
+Most Linux distributions should ship a Zathura version with `libsynctex` support and this shouldn't be a problem for you, but it isn't 100% guaranteed---see the note towards the bottom of `:help vimtex-view-zathura` for more information.
 You can check that your version of Zathura has SyncTeX support using the `ldd` program, which checks for shared dependencies;
 just issue the following command on the command line:
 
@@ -337,7 +339,7 @@ If the output returns something like `libsynctex.so.2 => /usr/lib/libsynctex.so.
 If the output is blank, your Zathura does not have SyncTeX support, and forward and inverse search will not work---you will need a new version of Zathura or a different PDF reader.
 
 Note that VimTeX performs this check automatically and will warn you if your Zathura version lacks SyncTeX support;
-for the curious, this check is implemented in the VimTeX source code in the file `vimtex/autoload/vimtex/view/zathura.vim`, on [line 27](https://github.com/lervag/vimtex/blob/master/autoload/vimtex/view/zathura.vim#L27) at the time of writing.
+for the curious, this check is implemented in the VimTeX source code in the file `vimtex/autoload/vimtex/view/zathura.vim`, on [line 19](https://github.com/lervag/vimtex/blob/master/autoload/vimtex/view/zathura.vim#L19) at the time of writing.
 See `:help g:vimtex_view_zathura_check_libsynctex` for reference.
 
 ### Optional tip: Return focus to Vim/Neovim after forward search {#refocus-vim-after-forward-search}
@@ -455,7 +457,7 @@ Here is how to fix both problems (some steps are the same as for terminal Vim/Ne
 
 ## Skim (read this on macOS) {#skim}
 
-*You can also try your luck with [Zathura on macOS](#zathura-macos), but it is unreliable and you should know what you're doing.*
+*Power users: you can also try your luck with [Zathura on macOS](#zathura-macos), but it is unreliable and you should know what you're doing if you attempt this.*
 
 Here is how to set up Skim to work with Vim/Neovim running VimTeX.
 Some of the steps are the same as for Zathura on Linux, so excuse the repetition:
@@ -499,7 +501,7 @@ Some of the steps are the same as for Zathura on Linux, so excuse the repetition
   You could then use `<localleader>v` to trigger forward search---of course you could replace `<localleader>v` with whatever shortcut you prefer.
 
   *If forward search is not working, ensure Skim is fully up to date.*
-  VimTeX switched to a new forward search implementation at the end of 2021 (see [refactor skim viewer #2289](https://github.com/lervag/vimtex/pull/2289)) that requires an up-to-date Skim version to work properly.
+  VimTeX switched to a new forward search implementation at the end of 2021 (see [VimTeX pull request #2289](https://github.com/lervag/vimtex/pull/2289)) that requires an up-to-date Skim version to work properly.
   <!-- - [Skim forward search not working on macOS 12.1 #2279](https://github.com/lervag/vimtex/issues/2279) -->
   <!-- - [#1438 Crash when calling displayline: Internal table overflow](https://sourceforge.net/p/skim-app/bugs/1438/) -->
 
@@ -541,7 +543,7 @@ You can still build Zathura on a Macs without much difficulty, but there is a ch
 
 ### Building Zathura and dependencies on macOS
 
-For Intel Macs, building Zathura is described in the VimTeX documentation at `:help vimtex-faq-zathura-macos`, and I can confirm the process works (at least from my own testing on an Intel CPU MacBook Pro 11,5 running macOS 12.1).
+**For Intel Macs**, building Zathura is described in the VimTeX documentation at `:help vimtex-faq-zathura-macos`---I have tested this successfully on an Intel CPU MacBook Pro 11,5 running macOS 12.1, but your mileage may vary.
 
 **For Apple Silicon Macs**, a slightly more complicated process setting up Zathura is described in [Homebrew Zathura issue 99](https://github.com/zegervdv/homebrew-zathura/issues/99#issuecomment-1356384136).
 

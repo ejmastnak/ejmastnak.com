@@ -710,4 +710,6 @@ If you want to use both VimTeX and your own `tex` filetype plugin and currently 
 
 {{< vim-latex/navbar >}}
 
+{{< vim-latex/thank-you >}}
+
 {{< vim-latex/license >}}

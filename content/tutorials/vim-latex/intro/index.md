@@ -123,18 +123,27 @@ Here is an overview of the setup used in this series:
 - GIF recording and screen capture: [Menyoki](https://github.com/orhun/menyoki)
 - Dotfiles: [`github.com/ejmastnak/dotfiles`](https://github.com/ejmastnak/dotfiles), where you can find both my main [Neovim config](https://github.com/ejmastnak/dotfiles/tree/main/config/nvim) and a smaller [Vim config](https://github.com/ejmastnak/dotfiles/tree/main/config/nvim) for testing Vim-specific inverse search features for this series.
 
-### Feedback, suggestions, appreciation, criticisms, etc.
+### Feedback, suggestions, etc.
 
-*I enjoy hearing from readers!*
+If you have ideas for improving the series, I will quite likely implement them, appreciate your input, and give you a shoutout for your contributions.
+Feedback is welcome and appreciated.
 
-- If this series helped you, it will make my day to hear.
-- If you suggest constructive ideas for improving the series, I will quite likely implement them, appreciate your input, and give you a shoutout for your contributions.
-  Feedback is welcome and appreciated.
-  Many thanks to [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how improve this series.
-
-- If you implement the setup in this series and show me the results, I will be very happy to see.
+Shoutouts to previous readers: many thanks to [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how improve this series.
 
 You can reach me by email, in English, Spanish, or Slovene, at [`ejmastnak@gmail.com`](mailto:ejmastnak@gmail.com) or by opening an issue or pull request at [`github.com/ejmastnak/ejmastnak.com`](https://github.com/ejmastnak/ejmastnak.com)).
+
+### Want to say thank you? {#thank-you}
+
+You could:
+
+- [Send me an email!]({{< relref "/contact" >}})
+  Seriously, if this material helped you, it will make my day to know.
+  I love hearing from readers, and you'll almost certainly get a message back from me.
+
+- [Give me money.](https://www.buymeacoffee.com/ejmastnak)
+  Based on reader input, there are in fact people out there interested in compensating me financially for this guide.
+  That's awesome---thank you!
+  You can [Buy Me a Coffee here.](https://www.buymeacoffee.com/ejmastnak)
 
 <div class="text-center mx-auto mt-8 mb-8 bg-blue-50 font-semibold dark:bg-gray-800 rounded-xl py-2 border border-gray-200 dark:border-gray-700">
 <a href="/tutorials/vim-latex/prerequisites" class="block">Begin the series!</a>

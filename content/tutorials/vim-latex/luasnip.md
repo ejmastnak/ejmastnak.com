@@ -1569,4 +1569,6 @@ In case they look unfamiliar, the above code snippets are Vim *key mappings*, a 
 
 {{< vim-latex/navbar >}}
 
+{{< vim-latex/thank-you >}}
+
 {{< vim-latex/license >}}

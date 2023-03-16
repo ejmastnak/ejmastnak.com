@@ -813,4 +813,6 @@ setlocal errorformat+=%-G%.%#
 
 {{< vim-latex/navbar >}}
 
+{{< vim-latex/thank-you >}}
+
 {{< vim-latex/license >}}

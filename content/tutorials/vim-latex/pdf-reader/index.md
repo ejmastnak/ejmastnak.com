@@ -786,4 +786,6 @@ let g:vimtex_view_automatic = 0
 
 {{< vim-latex/navbar >}}
 
+{{< vim-latex/thank-you >}}
+
 {{< vim-latex/license >}}

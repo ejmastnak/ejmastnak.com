@@ -608,4 +608,6 @@ In any case, this problem is specific to using the string `snippet` inside a sni
 
 {{< vim-latex/navbar >}}
 
+{{< vim-latex/thank-you >}}
+
 {{< vim-latex/license >}}

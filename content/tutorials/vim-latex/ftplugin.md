@@ -14,13 +14,13 @@ date: 2022-03-20
 {{< date-last-mod >}}
 
 This is part three in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
-This is a short article covers a few concepts related to Vim plugins and file-type plugins; the goal is to help you better understand how the VimTeX plugin works and to show you how to write LaTeX-specific Vim configuration.
+This article covers a few concepts related to Vim plugins and file-type plugins.
 
 {{< toc level="2" title="Contents of this article" >}}
 
 ## The goal of this article...
 
-...is to briefly explain a few Vim concepts that will help you better understand the VimTeX plugin (covered in the [next article]({{< relref "/tutorials/vim-latex/vimtex" >}})).
+...is to briefly explain a few Vim concepts that will help you better understand the VimTeX plugin (covered in the [next article]({{< relref "/tutorials/vim-latex/vimtex" >}})) and how to write filetype-specific Vim configuration.
 
 This article covers:
 
@@ -194,5 +194,7 @@ Think of the `ftplugin` files as a `vimrc` for one file type only,
 and keep your actual `vimrc` for global settings you want to apply to *all* file types.
 
 {{< vim-latex/navbar >}}
+
+{{< vim-latex/thank-you >}}
 
 {{< vim-latex/license >}}

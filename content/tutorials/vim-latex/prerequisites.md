@@ -238,4 +238,6 @@ The abbreviations you should know for this series are:
 
 {{< vim-latex/navbar >}}
 
+{{< vim-latex/thank-you >}}
+
 {{< vim-latex/license >}}

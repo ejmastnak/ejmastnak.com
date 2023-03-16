@@ -2,7 +2,7 @@
 title: Vim Configuration Tutorial for Filetype-Specific Workflows | Vim and LaTeX Series Part 7
 prevFilename: "pdf-reader"
 prevDisplay-name: "« 6. PDF Reader"
-nextFilename: "intro"
+nextFilename: "thank-you"
 nextDisplay-name: "Introduction"
 date: 2021-10-08
 ---
@@ -630,5 +630,7 @@ You can find official documentation of autoload functions at `:help autoload-fun
 This concludes the series---good luck with your Vimming!
 
 {{< vim-latex/navbar >}}
+
+{{< vim-latex/thank-you >}}
 
 {{< vim-latex/license >}}

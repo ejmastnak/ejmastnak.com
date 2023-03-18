@@ -184,7 +184,7 @@ For our purposes:
 - After the `filetype` option is set, Vim checks the contents of your `~/.vim/ftplugin` directory, if you have one.
   If Vim finds either...
 
-  - a file `ftplugin/{filetype}.vim` (e.g. `filetype/tex.vim` for `filetype=tex`), then Vim loads the contents of `{filetype}.vim`, or
+  - a file `ftplugin/{filetype}.vim` (e.g. `ftplugin/tex.vim` for `filetype=tex`), then Vim loads the contents of `{filetype}.vim`, or
 
   - a directory `ftplugin/{filetype}` (e.g. `ftplugin/tex` for the `filetype=tex`), then Vim loads all `.vim` files inside the `{filetype}` directory.
 

@@ -139,7 +139,7 @@ picom -b
 ```
 
 Using the `-b` flag starts `picom` as a daemon process that forks to the background after initialization.
-This has two practical benefits: the `picom` process won't freeze up the shell you ran it from, and the process will survive (i.e. `picom` will continue running) even if you close the shell.
+This has two practical benefits: the `picom` process won't freeze up the shell you ran it from, and the process will survive (i.e. `picom` will continue running) even if you close the shell you started it from.
 
 **Tip:** `picom` performs live updates when you write changes to your `picom.conf` file, so you can experiment with tweaks to your config without having to manually restart `picom`.
 

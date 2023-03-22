@@ -25,19 +25,16 @@ You're welcome to read this anyway, and perhaps you'll learn something useful ab
 
 ## Adjust backlight brightness from a shell
 
-Plan: first show how to adjust laptop brightness from a command-line shell, then set up key bindings to do this automatically.
+Plan: first show how to adjust laptop brightness manually from a command-line shell, then set up key bindings to do this with a single key press.
 
 You can interact with your backlight through the Linux `sysfs` file system, using the contents of the directory `/sys/class/backlight`.
 
 (`sysfs` is pseudo file system located in the `/sys` directory, and provides an interface for interacting with harware devices, drivers, kernel modules, and all sorts of other goodies using virtual files.
 I suggest taking 10 minutes and browsing through [Wikipedia: Sysfs](https://en.wikipedia.org/wiki/Sysfs) and `man 5 sysfs` if you haven't heard of `sysfs` yet---it's a really neat feature of the Linux kernel.)
 
-<!-- Linux being Linux and graphics cards being finicky, you might need to do some troubleshooting before a directory appears inside `/sys/class/backlight`. -->
-<!-- Check the ArchWiki -->
+### Identify your backlight directory
 
-### Identify your backlight interface directory
-
-Every computer should have a backlight directory inside of `/sys/class/backlight`, but the name depends on the graphics card's manufacturer and model.
+Every computer should have a backlight interface directory inside of `/sys/class/backlight`, but the name depends on the graphics card's manufacturer and model.
 Standard names I've seen in the wild are:
 
 - Intel graphics: `/sys/class/backlight/intel_backlight`
@@ -55,8 +52,8 @@ power/
 subsystem/
 actual_brightness
 bl_power
-brightness      # useful!
-max_brightness  # useful!
+brightness      # useful for this guide!
+max_brightness  # useful for this guide!
 scale
 type
 uevent
@@ -67,11 +64,11 @@ We'll be using the files `brightness` and `max_brightness` in this guide.
 ### Using backlight brightness files
 
 The `max_brightness` and `brightness` files each contain a single integer number.
-The number in `brightness` represents you current backlight brightness, on a scale from `0` (backlight turned off) to the value in `max_brightness` (maximum brightness).
+The number in `brightness` represents you current backlight brightness on a scale from `0` (backlight turned off) to the value in `max_brightness` (maximum brightness).
 *If you change the value in the* `brightness` *file, your physical backlight brightness will change accordingly.*
 
 The value of `max_brightness` varies from manufacturer to manufacturer.
-I think (but cannot confirm) that the values are arbitrary, i.e. they do not correspond directly to any physical quantity.
+I think (but cannot confirm) that the max brightness values are arbitrary, i.e. they do not correspond directly to any physical quantity.
 
 Do two things:
 
@@ -85,7 +82,7 @@ $ cd /sys/class/brightness/intel_backlight
 $ cat max_brightness
 852  # (on my laptop; might be different on yours)
 
-# You must elevate to root privileges to change brightness
+# IMPORTANT: You need root privileges to change brightness
 $ su
 
 # Playing around with brightness as a root user
@@ -102,6 +99,7 @@ See [this Stack Overflow answer](https://stackoverflow.com/a/82278) for more inf
 Instead of using `su` to elevate to a root shell, you could also combine `tee` with plain `sudo` as a temporary solution, e.g.
 
 ```bash
+# Another way to elevate privileges
 $ echo 42 | sudo tee /sys/class/backlight/intel_backlight/brightness 
 ```
 
@@ -109,10 +107,10 @@ $ echo 42 | sudo tee /sys/class/backlight/intel_backlight/brightness
   
 ### Allow regular users to modify backlight brightness
 
-Problem: by default, only root users can write to the backlight's `brightness` file,
+**Problem:** by default, only root users can write to the backlight's `brightness` file,
 and it's supremely inconvenient to elevate to root privileges for a task as simple and frequent as adjusting your backlight brightness.
 
-Solution: as suggested in [ArchWiki: Backlight/ACPI](https://wiki.archlinux.org/title/backlight#ACPI), you can first add backlight-privileged users to the `video` user group,
+**Solution:** as suggested in [ArchWiki: Backlight/ACPI](https://wiki.archlinux.org/title/backlight#ACPI), add backlight-privileged users to the `video` user group,
 then create a `udev` rule that allows unprivileged users in the `video` group to adjust backlight brightness.
 
 To give regular users backlight permissions...
@@ -124,8 +122,8 @@ First add any users who should get backlight-adjusting privileges to the `video`
 ```bash
 # Replace <username> with the target username(s)
 sudo usermod -aG video <username>
-# Example: add user foobar to the video group
-sudo usermod -aG video foobar
+# Example: add user foo to the video group
+sudo usermod -aG video foo
 ```
 
 The `video` group should exist on your system by default, and is described briefly in [ArchWiki: Users and groups/Pre-systemd groups](https://wiki.archlinux.org/title/users_and_groups#Pre-systemd_groups).
@@ -183,7 +181,7 @@ For our purposes, here is what they mean:
 - ACPI (which stands for Advanced Configuration and Power Interface) is a standard interface that gives your operating system a way to interact with your hardware (e.g. your backlight and function keys in our context).
   Reference: [Wikipedia: ACPI](https://en.wikipedia.org/wiki/Advanced_Configuration_and_Power_Interface).
 
-- A daemon (at the risk of stating the obvious) is a computer program that runs as a background process, and typically listens for and responds to events, e.g. network requests or hardware activity.
+- A *daemon* is a name for a computer program that runs as a background process, and typically listens for and responds to events, e.g. network requests or hardware activity.
   In our context, we'll use the `acpid` daemon to detect and respond to ACPI events resulting from brightness key presses.
   References: [Wikipedia: Daemon (computing)](https://en.wikipedia.org/wiki/Daemon_(computing)) in general; [ArchWiki: acpid](https://wiki.archlinux.org/title/Acpid) and `man 8 acpid` in our context.
 
@@ -219,7 +217,7 @@ and the `action` key's value should be a valid shell command, which will be invo
 By default, the directory `/etc/acpi/events/` contains a single file, called `anything`, with the following contents:
 
 ```bash
-# Pass all events to our one handler script
+# Pass all events to the ACPI handler script
 event=.*
 action=/etc/acpi/handler.sh %e
 ```

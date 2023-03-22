@@ -27,7 +27,7 @@ You should first [set up X]({{< relref "tutorials/arch/startx" >}}) if you have 
 
 {{< toc level="2" title="Contents of this article" >}}
 
-First make sure you have the [`xorg-xrandr` package](https://archlinux.org/packages/extra/x86_64/xorg-xrandr/) installed (note that `xorg-xrandr` ships with the commonly-installed `xorg` group, so you might already have it on your system).
+First make sure you have the [`xorg-xrandr` package](https://archlinux.org/packages/extra/x86_64/xorg-xrandr/) installed (the `xorg-xrandr` package ships with the commonly-installed `xorg` group, so you might already have it on your system).
 We'll need this package to access the `xrandr` utility.
 
 ## Explanation of what's involved
@@ -40,7 +40,7 @@ which is a software abstraction of either a physical video port (e.g. HDMI, Disp
 Very loosely, here is what happens under the hood when you properly connect a monitor:
 
 1. The `xrandr` utility sends the X display to one of your computer's video ports.
-1. The X display travels from the video port into the monitor as an electrical carried by a physical cable (e.g. HDMI).
+1. The X display travels from the video port into the monitor as an electrical signal carried by a physical cable (e.g. HDMI).
 1. The circuitry inside the monitor converts the signal into the visible pixel display you see when you use the monitor.
 
 This guide covers step 1, i.e. making `xrandr` send the X display to a physical video output port.

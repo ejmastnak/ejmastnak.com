@@ -28,10 +28,12 @@ Most anything associated with modern desktop computing requires a window system.
 
 ## What's involved
 
+*Feel free to skip the introductory theory and [skip directly to installing stuff]({{< relref "#install" >}}).*
+
 ### Making sense of all the Xs
 
-**Note:** Feel free to [skip to installation]({{< relref "#install" >}}).
-The technical details in this section don't matter much once you actually begin using a window system, and you usually won't think about them or need them from the perspective of an everyday user.
+Note: for most users the technical details in this section don't matter much once you actually begin using a window system, and you usually won't think about them or need them from the perspective of an everyday user.
+But I'm including this section because it might help to have a general idea of what's going on.
 
 Confusingly, the X Window System, display server, and display server communication protocol are all called X in everyday usage.
 [Wikipedia](https://en.wikipedia.org/wiki/Windowing_system) [does](https://en.wikipedia.org/wiki/X_Window_System) [a good job](https://en.wikipedia.org/wiki/X.Org_Server) of explaining what's involved;
@@ -58,8 +60,7 @@ here's my everyday-language summary:
   All of these things are colloquially called X :)
 
   Note: the only established alternative to the X Window System is [Wayland](https://wiki.archlinux.org/title/Wayland).
-  Wayland may well replace X in the future, but at the time of writing X is still the de-facto standard for a window system.
-  Use X if you want to follow along with the tutorials on this website.
+  Wayland may well replace X in the future, but at the time of writing X is still the de-facto standard for a window system, and the tutorials in thes series all use X.
 
 ### Choices: Standalone window manager vs. desktop environment
 
@@ -75,19 +76,19 @@ A DE always includes a (potentially boring) window manager, and might also inclu
 
 Common DEs include [GNOME](https://wiki.archlinux.org/title/GNOME), [KDE Plasma](https://wiki.archlinux.org/title/KDE), and [Xfce](https://wiki.archlinux.org/title/Xfce) (there are [many more](https://wiki.archlinux.org/title/desktop_environment#List_of_desktop_environments));
 common standalone window managers include [Bspwm](https://wiki.archlinux.org/title/Bspwm), [i3](https://wiki.archlinux.org/title/I3), and [dwm](https://wiki.archlinux.org/title/Dwm)
-(there are [*many* more](https://wiki.archlinux.org/title/Window_manager#List_of_window_managers)).
+(there are [*many, many* more](https://wiki.archlinux.org/title/Window_manager#List_of_window_managers)).
 
 I lied above.
 You really have three choices, not two:
-
-1. Install a standalone window manager, then install any desired tool bars, widgets, etc. individually.
-   You get a cool window manager and maximum customizability.
-   This is what I'll do in this tutorial.
 
 1. Install a DE and use its default window manager, which will do the job but might be boring. (Every DE will have a built-in window manager.)
    Desktop-related bells and whistles will be set up for you without requiring much work on your part.
    <br>
    Typical DE use case: you don't want to install and configure its components individually, and don't mind potentially less customizability, a larger memory footprint, and (\*shudder\*) a bit more "bloat".
+
+1. Install a standalone window manager, then install any desired tool bars, widgets, etc. individually.
+   You get a cool window manager and maximum customizability.
+   This is what I'll do in this tutorial.
 
 1. Install a DE *and* a separate stand-alone window manager, and use the stand-alone window manager instead of the default DE version.
    In principle you get the convenience of a DE and the full functionality of a cool window manager, 
@@ -96,7 +97,7 @@ You really have three choices, not two:
 Need help choosing a desktop environment or window manager?
 You can browse through a bunch of options on Ermanno Ferrari's excellent [desktop customization playlist](https://www.youtube.com/playlist?list=PL-odKaUzOz3Knbk8vs_T1pItsTZtkO6ZL).
 
-### Choices: Display manager or not?
+### Choices, choices: Display manager or not?
 
 It depends on how you want to log in.
 After a standard Arch install you log in by typing your username and password into a text-based console prompt displayed at the end of the boot process.
@@ -112,7 +113,7 @@ You can always install a DM after setting up your window manager and/or desktop 
 
 ## Installing Xorg and i3 {#install}
 
-Here's the minimal window setup I'll cover on this page:
+Here's the minimal and opinionated window setup I'll cover on this page:
 
 - Display server: Xorg
 - Display server initialization: `xinit`
@@ -188,12 +189,12 @@ We'll use the default `xinitrc` file in `/etc/X11/xinit/` as a starting point, a
    You should install a terminal emulator now to ensure you'll have one available after you start your first X window session.
    You *don't* want to start X and then realize you don't have a graphical terminal emulator available.
 
-1. After creating an `xinitrc` file, you can start the X Window System by running `startx` from the Linux console.
-   This will dump you into a new session of your window manager or desktop environment.
+1. After creating an `xinitrc` file, you can **start the X Window System** by running `startx` from the Linux console.
+   This will place you in a new X session with the window manager or desktop environment of your choice.
 
-   If you've followed along with this tutorial and installed i3, you'll probably be prompted to set your modifier key (`Alt` by default), and then you'll see a blank screen with a spinning cursor.
+   If you've followed along with this tutorial and installed i3, you'll probably be prompted to set your i3 modifier key (`Alt` by default), and then you'll see a blank screen with a spinning cursor.
    Don't worry, nothing's wrong---you just don't have any windows open yet.
-   You can start a terminal with the key combination `Mod`-`Enter`, where `Mod` is the key you chose as your i3 modifier.
+   You can start a terminal with the key combination `<Mod>-<Enter>`, where `Mod` is the key you chose as your i3 modifier.
 
 ### Next steps
 

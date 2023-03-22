@@ -10,14 +10,14 @@ date: 2022-05-11
 {{< date-last-mod >}}
 
 **Goal:** understand how to programmatically adjust audio playback volume from the command line either through ALSA or PulseAudio, then create convenient key bindings to do this for you.
-Best served with this series's [media player control]({{< relref "/tutorials/arch/playerctl" >}}).
+This article is best if paired with this series's article on [media player control]({{< relref "/tutorials/arch/playerctl" >}}).
 
 **Read this if:** your laptop has keyboard functions keys for increasing and decreasing audio volume, but these keys have no effect on your volume after a standard install of Arch.
 If your volume keys already work (perhaps your window manager or desktop environment configured them for you), you probably don't need this guide.
 
 **References:**
 - [ArchWiki: ALSA](https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture)
-- [ArchWiki: acpid](https://wiki.archlinux.org/title/Acpid)
+- [ArchWiki: Xbindkeys](https://wiki.archlinux.org/title/Xbindkeys).
 - [Wikipedia: Sound server](https://en.wikipedia.org/wiki/Sound_server)
 
 <!-- (Note: this page closely parallels my guide to [controlling a laptop's backlight brightness]({{< relref "/tutorials/arch/backlight" >}}), since both rely `acpid` to set key bindings.) -->

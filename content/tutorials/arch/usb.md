@@ -20,9 +20,9 @@ date: 2022-04-29
 
 {{< toc level="2" title="Contents of this article" >}}
 
-**Drives must be mounted:** to interact with the files on a USB drive from your computer, you have to mount the file system stored on the USB drive's data partition onto a dedicated *mount point* on your computer's file system (Windows/macOS and most desktop environments usually do this for you).
+**Drives must be mounted:** to interact with the files on a USB drive from your computer, you have to mount the file system stored on the USB drive's data partition onto a dedicated *mount point* on your computer's file system (Windows/macOS and most desktop environments usually do this for you, but the same mechanism is used under the hood).
 
-You can mount drives manually or automate the process with an auxiliary program.
+You can either mount drives manually or automate the process with an auxiliary program.
 In practice most people will automount (I show how to do this with `udiskie` at the end of the article), but you'll probably learn something if you go through the manual process at least a few times first.
 
 ## Mounting a USB drive
@@ -31,8 +31,10 @@ Here's how to mount a USB drive manually:
 
 ### Detect the USB drive's block device name
 
-**TLDR:** plug in the USB drive and use `lsblk` to identify (1) the USB drive and (2) its data partition, which might look something like (1) `sdb` and (2) `sdb1`.
+**TLDR:**
+plug in the USB drive and use `lsblk` to identify (1) the USB drive and (2) its data partition, which might look something like (1) `sdb` and (2) `sdb1`, respectively.
 You can now [jump to mounting the USB drive](#mount-the-usb-drive).
+**End TLDR**
 
 First some terminology: the Linux kernel classifies a USB drive as a *block device* 
 (because data is written to and read from the drive in fixed-sized blocks).
@@ -131,7 +133,7 @@ First **unmount the drive's data partition** with the `umount` command:
 ```bash
 # Unmount the drive's partitions---choose one option.
 
-# Option 1
+# Option 1 (yup, "umount" and not "unmount")
 umount /mnt/usbdrive  # by specifying mount point (preferred)
 
 # Option 2
@@ -164,9 +166,10 @@ For more discussion of the power-off line see [this StackExchange answer](https:
 At this point the article has covered everything you need to know to interact with USB drives.
 You can safely stop reading.
 
-Or, if you're interested, here is a **more modern way to mount, unmount, and eject drives** using the [`udisks2` package](https://archlinux.org/packages/extra/x86_64/udisks2/);
+Or, if you're interested, here is a more modern way to mount, unmount, and eject drives using the [`udisks2` package](https://archlinux.org/packages/extra/x86_64/udisks2/);
 it is similar, but perhaps a bit cleaner, than the traditional `mount` and `umount` workflow described above.
-I'll assume **you're familiar with the mount/unmount/eject material earlier in the article** and continue using `/dev/sdx` to identify a USB drive and `/dev/sdxN` to identify the drive's data partition.
+
+I'll assume you're familiar with the mount/unmount/eject material earlier in the article and continue using `/dev/sdx` to identify a USB drive and `/dev/sdxN` to identify the drive's data partition.
 
 Here is the basic operation mount/unmount/power-off workflow with `udisks2`.
 You perform all commands with the CLI tool `udisksctl`:
@@ -180,7 +183,7 @@ You perform all commands with the CLI tool `udisksctl`:
    udisksctl mount -b /dev/sdxN
    ```
 
-   You'll **find the drive's files** in the directory `/run/media/$USER/$DEVICE_UUID`.
+   You'll find the drive's files in the directory `/run/media/$USER/$DEVICE_UUID`.
 
 3. To eject a drive, **unmount its data partition and power off the drive**:
 

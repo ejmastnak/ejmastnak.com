@@ -37,23 +37,23 @@ The `networkmanager` package contains a few things: the `NetworkManager` daemon 
 
 ### Use `systemd-resolved` for DNS resolution
 
-I recommend using the [`systemd-resolved`](https://wiki.archlinux.org/title/Systemd-resolved) service, which NetworkManager can then use for DNS resolution, i.e. converting human-readable domain names into computer-friendly IP addresses.
+I recommend using the [`systemd-resolved`](https://wiki.archlinux.org/title/Systemd-resolved) service, which NetworkManager can then use for [DNS](https://en.wikipedia.org/wiki/Domain_Name_System) resolution, i.e. converting human-readable domain names into computer-friendly IP addresses.
 
 - You probably won't need to install anything---`systemd-resolved` is part of the `systemd` package, which is installed by default on an Arch system [(Source)](https://wiki.archlinux.org/title/Systemd-resolved#Installation).
 
-- Start and enable the `systemd-resolved` service if necessary:
+- Start and enable the `systemd-resolved` service (if necessary):
 
   ```bash
   # Check service status
   systemctl status systemd-resolved.service
 
-  # If the service is not active (running), enable and start it
+  # If the service is not active and running, enable and start it
   systemctl enable --now systemd-resolved.service
   ```
 
 ### Disable currently running network daemons (if needed)
 
-Context: if you had previously enabled other services for network configuration (e.g. `dhcpcd`), these would conflict with NetworkManager.
+Explanation: if you had previously used other services for network configuration, these services' daemons would conflict with NetworkManager.
 See [ArchWiki: NetworkManager/Installation](https://wiki.archlinux.org/title/NetworkManager#Installation) for a discussion of this issue.
 
 If you're on a fresh install of Arch Linux you should have nothing to worry about,
@@ -63,7 +63,7 @@ Common network configuration services include `dhcpcd` and `systemd-networkd`; h
 ```bash
 # Check the service is inactive (dead) or not found
 systemctl status dhcpcd.service
-systemctl disable dhcpcd.service  # disable if (active)
+systemctl disable dhcpcd.service  # disable if active
 
 # And so on for other services...
 systemctl status systemd-networkd.service
@@ -97,7 +97,7 @@ You can list network interfaces with the `ip link` command:
 ```bash
 # List network interfaces
 ip link       
-ip -c link    # the `-c` flag gives better-readable colored output
+ip -c link    # you can use the `-c` flag for colored output
 ```
 
 You should expect a loopback, Ethernet, and wireless interface; here is an example `ip link` output on my computer:

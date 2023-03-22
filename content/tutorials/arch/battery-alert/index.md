@@ -58,7 +58,7 @@ Then you need a standalone notification server---here's what to do:
    Exec=/usr/lib/notification-daemon-1.0/notification-daemon
    ```
 
-After this a shell command like `notify-send "Hello world!"` should produce a visible GUI desktop notification.
+After this (you may need to restart your X session) a shell command like `notify-send "Hello world!"` should produce a visible GUI desktop notification.
 Reference: [ArchWiki: Desktop notifications: standalone](https://wiki.archlinux.org/title/Desktop_notifications#Standalone).
 
 ### Check battery level programmatically
@@ -185,7 +185,7 @@ If anyone reading this knows the best-practice way to run a `Type=oneshot` servi
 
 #### Reload and start timer
 
-Use `deamon-reload` to tell `systemd` you've created new unit files, then start and enable the timer service:
+Use `daemon-reload` to tell `systemd` you've created new unit files, then start and enable the timer service:
 
 ```bash
 systemctl --user daemon-reload

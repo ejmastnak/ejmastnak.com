@@ -24,7 +24,7 @@ You should first [set up X]({{< relref "tutorials/arch/startx" >}}) if you have 
 
 ## An X clipboard crash course {#x-clipboard-crash-course}
 
-(To help new users coming from Windows and macOS; feel free to skip.)
+(To help new users coming from Windows and macOS; [feel free to skip](#gui) if words like "CLIPBOARD" and "PRIMARY" are familiar to you.)
 
 **TLDR:** X has two clipboards, called `CLIPBOARD` and `PRIMARY`. Use `CLIPBOARD` for Windows/macOS-style copy and paste and `PRIMARY` for text selected by the mouse.
 **End TLDR.**
@@ -48,9 +48,9 @@ Many users, especially those interested in a Windows/macOS-like experience, will
 
 The rest of this article shows how to get text into and out of `CLIPBOARD` in various programs, allowing you to copy and paste between programs via the `CLIPBOARD` buffer.
 
-## GUI applications
+## GUI applications {#gui}
 
-In most X GUI applications (e.g. a web browser):
+Easiest first: in most X GUI applications (e.g. a web browser):
 
 - Copy text into `CLIPBOARD` with `<Ctrl>-C` or a "Copy" option in a GUI menu.
 - Paste text stored in `CLIPBOARD` with `<Ctrl>-V` or "Paste" menu option.
@@ -64,7 +64,7 @@ In most X GUI applications (e.g. a web browser):
 
 - Paste text stored in `CLIPBOARD` with `<Ctrl>-<Shift>-V` (and not `<Ctrl>-V`)
 
-{{< details summary="**Custom Alacritty key bindings** (click to expand)" >}}
+{{< details summary="**How to set custom Alacritty key bindings**" >}}
 
 You can change Alacritty’s default `CLIPBOARD` copy/paste keys in the `key_bindings:` section of the `alacritty.yml` config file---you’ll need to bind keys to Alacritty’s `Paste` and `Copy` actions.
 Here are the default bindings to give you a feel for the syntax:
@@ -93,7 +93,7 @@ Here are the tools you need:
 
 ## Vim and Neovim
 
-Goal: Make Vim/Neovim's yank, delete, and change operations copy into system `CLIPBOARD`, and make Neovim's put (paste) operation paste from the `CLIPBOARD`.
+Goal: Make Vim/Neovim's "yank", "delete", and "change" operations copy into the system `CLIPBOARD`, and make Neovim's put (paste) operation paste from the `CLIPBOARD`.
 Example use case: copy a URL in a web browser with `<Ctrl>-C`, then paste the URL into Neovim with the default `p` action.
 
 ### Requirements {#requirements}

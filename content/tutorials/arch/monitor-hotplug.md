@@ -32,7 +32,7 @@ and part 2 in a two-part monitor sequence. You should be familiar with [part 1](
 ## Procedure
 
 I'll first concisely describe the steps to get things working, and then explain the reasoning and some of the technicalities at [the end of this guide](#appendix-technicalities).
-By the way, the approach used here comes from [Arch Forums: udev rule doesn't work (hotplug monitor)](https://bbs.archlinux.org/viewtopic.php?id=170294).
+Source: the approach used here comes from [Arch Forums: udev rule doesn't work (hotplug monitor)](https://bbs.archlinux.org/viewtopic.php?id=170294).
 
 **TLDR:**
 
@@ -65,11 +65,11 @@ There should be a `status` file inside `card0` directory that shows the `connect
 For example:
 
 ```bash
-# *Connects HDMI cable to computer*
+# After connecting HDMI cable to computer...
 $ cat /sys/class/drm/card0-HDMI-A-1
 connected
 
-# *Unplugs HDMI cable from computer*
+# After disconnecting HDMI cable from computer...
 $ cat /sys/class/drm/card0-HDMI-A-1
 disconnected
 ```
@@ -79,9 +79,9 @@ We'll need this name in the following shell script.
 
 <!-- The value of a device's `status` file should agree with corresponding video output's `connected`/`disconnected` state shown by `xrandr` in [part 1]({{< relref "/tutorials/arch/displays" >}}). -->
 
-### Hotplug script
+### Example hotplug script
 
-Here's the shell script to implement hotplug and display-switching logic (explanation follows).
+Here's an example shell script to implement hotplug and display-switching logic (explanation follows).
 
 I'd suggest naming the script `hotplug-monitor.sh` and placing it in `/usr/local/bin` (a conventional location for local user programs not controlled by a package manager), but any system-wide readable location should work.
 

@@ -11,7 +11,7 @@ date: 2022-04-29
 
 **Goal:** use the `caps2esc` utility to make the Caps Lock key act like the Escape key when pressed alone and act like the Control key when pressed in combination with other keys.
 
-**Motivation:** pleasant and ergonomic access system-wide to the very useful escape and control keys and a better Vim or Emacs experience.
+**Motivation:** pleasant, ergonomic, system-wide access to the very useful escape and control keys and a better Vim or Emacs experience.
 
 **References:**
 - [The caps2esc GitLab page](https://gitlab.com/interception/linux/plugins/caps2esc)
@@ -20,7 +20,8 @@ date: 2022-04-29
 
 ## Procedure
 
-The `caps2esc` utility allows you to remap Caps Lock to Escape and Control at the level of the `libevdev` library---just above the kernel---so this solution works both in the Linux console and in a graphical session of the X Window System.
+The `caps2esc` utility allows you to remap Caps Lock to Escape and Control at the level of the `libevdev` library.
+Bonus: because `libevdev` is relatively low level---just above the operating system kernel---this solution works in a plain Linux console in addition to graphical environments.
 Here's what to do:
 
 ### Installation
@@ -54,7 +55,7 @@ The shell command uses the `intercept` program to grab the Caps Lock or Escape k
 (You can read through [Interception Tools/How it works](https://gitlab.com/interception/linux/tools#how-it-works) for details.)
 {{< /details >}}
 
-**Tip:** using `caps2esc` in the above `udevmon` job will make Caps Lock works as Escape and Control, and *also* make Escape work as Caps Lock.
+**Tip:** the above `udevmon` configuration will make Caps Lock work as Escape and Control, and *also* make Escape work as Caps Lock.
 If you want the Escape key to still behave as Escape, you can replace `caps2esc` with `caps2esc -m 1`, which uses the `caps2esc` "minimal mode" and leaves the Escape key unaffected (see `caps2esc -h` for documentation).
 
 You now just need to start the `udevmon` program, which we will do using a `systemd` unit.

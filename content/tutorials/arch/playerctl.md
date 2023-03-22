@@ -146,7 +146,7 @@ Then define key bindings in `xbindkeysrc` file with the general syntax:
   KEYSYM
 ```
 
-Here is example:
+Here is an example:
 
 ```bash
 # Use XF86Search for play/pause

@@ -82,7 +82,8 @@ Some comments:
 
 - You can of course update the glob matching pattern as needed, e.g. `*.png` to match PNG files, `*.{png,jpg}` for both PNG and JPEG files, `*` to match all files, etc.
 - `--randomize` is a randomization flag documented in the `OPTIONS` section of `man feh`.
-- `DISPLAY=:0` ensures the `feh` command applies to the primary X display on the local computer.
+- `DISPLAY=:0` ensures the `feh` command applies to the primary X display on the local computer
+  (`DISPLAY=:0` is standard X lingo for the first display on the local computer).
   You could adjust the value of `DISPLAY` to also set the wallpaper on multi-monitor setups.
 
 Try repeatedly running the script manually and checking that your background updates accordingly.
@@ -141,7 +142,7 @@ WantedBy=timers.target
 This timer will run the `change-wallpaper` service 5 minutes after the timer first activates (from `OnActiveSec`), and then periodically every 5 minutes after that (from `OnUnitActiveSec`).
 You may want to set short intervals (e.g. ten seconds `10s`) when testing that the timer works properly, then set a longer time after that.
 
-Use `deamon-reload` to tell `systemd` you've created new unit files, then start and enable the timer service:
+Use `daemon-reload` to tell `systemd` you've created new unit files, then start and enable the timer service:
 
 ```bash
 systemctl --user daemon-reload

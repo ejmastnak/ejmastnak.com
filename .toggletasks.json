@@ -1,16 +1,22 @@
 {
   "tasks": [
     {
-      "name": "Project",
-      "cmd": "xdg-open http://localhost:1313/ && hugo serve --enableGitInfo",
-      "tags": ["project"],
+      "name": "Start Hugo server",
+      "cmd": "hugo serve --enableGitInfo",
+      "tags": ["serve"],
       "count": 1
     },
     {
       "name": "Compile Tailwind CSS",
       "cmd": "npm run compile-tailwind",
-      "tags": ["compile"],
+      "tags": ["build"],
       "count": 2
+    },
+    {
+      "name": "Project",
+      "cmd": "xdg-open http://localhost:1313/",
+      "tags": ["view"],
+      "count": 3
     }
   ]
 }

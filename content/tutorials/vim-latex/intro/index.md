@@ -80,8 +80,8 @@ From that point reaching the speed in this page's GIFs would probably take month
    A Vim configuration guide explaining the key mappings and Vimscript functions used in this tutorial.
    </span>
 
-<div class="text-center mx-auto mt-6 mb-8 bg-blue-50 font-semibold dark:bg-gray-800 rounded-xl py-2 border border-gray-200 dark:border-gray-700">
-<a href="/tutorials/vim-latex/prerequisites" class="block">Begin the series!</a>
+<div class="text-center mx-auto mt-6 mb-8 bg-blue-50 font-semibold dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+<a href="/tutorials/vim-latex/prerequisites" class="block py-2">Begin the series!</a>
 </div>
 
 ## More about the series

@@ -163,7 +163,7 @@ If you use some exotic flavor of Unix, I assume you know enough of what you are 
 
 ## Python 3 installation
 
-*This is relevatn only if you plan on using UltiSnips for snippets.
+*This is relevant only if you plan on using UltiSnips for snippets.
 You can ignore this Python dependency if you plan on using Luasnip as a snippet plugin (described later in the series).*
 
 **Prerequisite:** If you'll use UltiSnips for snippets, you need a working Python 3+ installation and access to `pip/pip3` to install Python packages.

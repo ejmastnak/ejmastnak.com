@@ -123,7 +123,7 @@ Here is an overview of the setup used in this series:
 - GIF recording and screen capture: [Menyoki](https://github.com/orhun/menyoki)
 - Dotfiles: [`github.com/ejmastnak/dotfiles`](https://github.com/ejmastnak/dotfiles), where you can find both my main [Neovim config](https://github.com/ejmastnak/dotfiles/tree/main/config/nvim) and a smaller [Vim config](https://github.com/ejmastnak/dotfiles/tree/main/config/nvim) for testing Vim-specific inverse search features for this series.
 
-### Feedback, suggestions, etc.
+### Feedback, suggestions, etc. {#feedback}
 
 If you have ideas for improving the series, I will quite likely implement them, appreciate your input, and give you a shoutout for your contributions.
 Feedback is welcome and appreciated.

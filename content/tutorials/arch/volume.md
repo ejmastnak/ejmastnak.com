@@ -17,7 +17,7 @@ If your volume keys already work (perhaps your window manager or desktop environ
 
 **References:**
 - [ArchWiki: ALSA](https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture)
-- [ArchWiki: Xbindkeys](https://wiki.archlinux.org/title/Xbindkeys).
+- [ArchWiki: Xbindkeys](https://wiki.archlinux.org/title/Xbindkeys)
 - [Wikipedia: Sound server](https://en.wikipedia.org/wiki/Sound_server)
 
 <!-- (Note: this page closely parallels my guide to [controlling a laptop's backlight brightness]({{< relref "/tutorials/arch/backlight" >}}), since both rely `acpid` to set key bindings.) -->

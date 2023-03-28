@@ -118,6 +118,7 @@ def fit(x, y):
 
     """
     # See https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html
+    p0 = (1.0, 1.0)  # initial guess for a and b
     popt, pcov = curve_fit(benford, x, y)
 
     # Extract optimal parameter values

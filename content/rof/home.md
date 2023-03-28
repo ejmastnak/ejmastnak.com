@@ -16,6 +16,7 @@ Spletna stran za tutorstvo pri predmetu Računalniška orodja v fiziki, leto 202
 
 1. [Uvodna ura]({{< relref "/rof/intro" >}})
 1. [Python zgled prve domače naloge]({{< relref "/rof/benford" >}})
+1. [Praktična uporaba Matplotlib/Numpy za FizPrak]({{< relref "/rof/fotoefekt" >}})
 
 ## Osnovni podatki
 

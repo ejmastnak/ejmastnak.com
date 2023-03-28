@@ -1,5 +1,5 @@
 ---
-title: "ROF: Photoelectric effect"
+title: "Photoelectric effect"
 date: 2023-03-28
 description: Using Numpy, Scipy, and Matplotlib to analyze the photoelectric effect.
 ---

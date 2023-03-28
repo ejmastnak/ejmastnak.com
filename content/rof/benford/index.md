@@ -1,7 +1,7 @@
 ---
-title: "ROF"
+title: "Benford's law"
 date: 2023-03-07
-description: Benford's law
+description: Experimenting with Benford's law using Matplotlib, Numpy, and SciPy
 ---
 
 # Benford's law

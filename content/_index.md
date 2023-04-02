@@ -6,7 +6,7 @@ description: The home page of Elijan Mastnak’s website.
 
 # Home
 
-This is Elijan J. Mastnak's personal website.
+This is Elijan J. Mastnak's website.
 
 **First time here? Here are links to:**
 

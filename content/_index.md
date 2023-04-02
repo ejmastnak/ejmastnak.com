@@ -15,7 +15,7 @@ This is Elijan J. Mastnak's website.
 
 **And here are shortcuts to the best content:**
 
-- [Real-time LaTeX using (Neo)Vim]({{< relref "/tutorials/vim-latex/intro.md" >}})
+- [Supercharged LaTeX using (Neo)Vim]({{< relref "/tutorials/vim-latex/intro.md" >}})
   <br>
   A guide to turbocharged mathematical typesetting
 

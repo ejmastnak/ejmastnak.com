@@ -44,7 +44,7 @@ Missing: Laboratory 3, Laboratory 4, Modern physics 1, Modern physics 2, Electro
 
 - Wait you wrote 1500 pages of LaTeX lecture notes in three semesters?
 
-  Yeah I guess it turned out that way, here's a guide to how I did it: [**Real-time LaTeX with (Neo)Vim**]({{< relref "/tutorials/vim-latex/intro" >}}).
+  Yeah I guess it turned out that way, here's a guide to how I did it: [**Supercharged LaTeX with (Neo)Vim**]({{< relref "/tutorials/vim-latex/intro" >}}).
   1500 pages of notes is nothing too special by the way---check out [Dexter Chua's Cambridge notes](https://dec41.user.srcf.net/notes/) for something *really* cool.
 
 - Če si študent/študentka FMFja in te zanima karkoli v zvezi z računalniškimi orodij/workflowi za izdelavo teh zapiskov in spletne strani:

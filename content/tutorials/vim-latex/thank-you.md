@@ -12,7 +12,7 @@ You could:
   Seriously, if this material helped you, it will make my day to know.
   I love hearing from readers, and you'll almost certainly get a message back from me.
 
-- [Give me money.](https://www.buymeacoffee.com/ejmastnak)
+- [Contribute financially.](https://www.buymeacoffee.com/ejmastnak)
   Based on reader input, there are in fact people out there interested in compensating me financially for my freely-distributed work.
   That's awesome---thank you!
   You can [Buy Me a Coffee here.](https://www.buymeacoffee.com/ejmastnak)

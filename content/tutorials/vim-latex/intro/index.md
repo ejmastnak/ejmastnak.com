@@ -1,12 +1,12 @@
 ---
-title: "Real-time LaTeX using Vim/Neovim, VimTeX, and snippets"
+title: "Supercharged LaTeX using Vim/Neovim, VimTeX, and snippets"
 date: 2021-10-08
 ---
 
 <script type="text/javascript" src="/helpers/carousel.js"></script>
 <link rel="stylesheet" href="/helpers/carousel.css">
 
-# Real-time LaTeX using (Neo)Vim, VimTeX, and snippets
+# Supercharged LaTeX using (Neo)Vim, VimTeX, and snippets
 
 This is a tutorial series to help you set up the Vim or Neovim text editors for efficiently writing LaTeX documents.
 Here is an example of what I have in mind:
@@ -140,7 +140,7 @@ You could:
   Seriously, if this material helped you, it will make my day to know.
   I love hearing from readers, and you'll almost certainly get a message back from me.
 
-- [Give me money.](https://www.buymeacoffee.com/ejmastnak)
+- [Contribute financially.](https://www.buymeacoffee.com/ejmastnak)
   Based on reader input, there are in fact people out there interested in compensating me financially for this guide.
   That's awesome---thank you!
   You can [Buy Me a Coffee here.](https://www.buymeacoffee.com/ejmastnak)

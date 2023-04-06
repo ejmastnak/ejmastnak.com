@@ -209,7 +209,7 @@ Based on my (subjective) experience, with a focus on LaTeX files, here are some 
 - UltiSnips supports comments, which start with `#` and can be used to document snippets (see `:help UltiSnips-basic-syntax` for reference).
 
 - According to `:help UltiSnips-character-escaping`, the characters `'`, `{`, `$`, and `\` need to be escaped by prepending a backslash `\`.
-  The actual rules of what needs to be escaped when are a little more subtle (see [UltiSnips Issue #1437](https://github.com/SirVer/ultisnips/issues/1437) for context) and more lenient in practice, 
+  The actual rules determining which characters must be escaped in which circumstances are a little more subtle (see [UltiSnips Issue #1437](https://github.com/SirVer/ultisnips/issues/1437) for details) and considerably more lenient in practice, 
   so you can often get away with using `'`, `{`, and `\` in snippet bodies without escaping them.
 
 - Including the line

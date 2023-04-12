@@ -10,7 +10,7 @@ aliases:
 
 Spletna stran za tutorstvo pri predmetu Računalniška orodja v fiziki, leto 2022/23.
 
-**Naslednja ura:** sreda 19.4.2023 ob 7:30
+**Naslednja ura:** sreda 19.4.2023 ob 7:15
 
 ## Gradivo
 
@@ -21,8 +21,8 @@ Spletna stran za tutorstvo pri predmetu Računalniška orodja v fiziki, leto 202
 ## Osnovni podatki
 
 - Lokacija: učilnica **3.11** (tretje nadstropje matematike)
-- Termin: ob **sredah od 7.30 do 9.00** (tule je [link na urniku](https://urnik.fmf.uni-lj.si/predmet/732/)) **vsak drugi teden**.
-  Lahko se oglasite kadarkoli med 7.30 in 9.00---ni treba točno ob uri.
+- Termin: ob **sredah od 7.15 do 9.00** (tule je [link na urniku](https://urnik.fmf.uni-lj.si/predmet/732/)) **vsak drugi teden**.
+  Lahko se oglasite kadarkoli med 7.15 in 9.00---ni treba točno ob uri.
 - Moj email: [ejmastnak@gmail.com](mailto:ejmastnak@gmail.com)
 - [Glavna spletna stran predmeta](https://predmeti.fmf.uni-lj.si/racorodja)
 

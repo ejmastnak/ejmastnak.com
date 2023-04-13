@@ -20,9 +20,9 @@ And here is some information about me:
 
   I also build web applications and websites, and help people learn physics and scientific computing.
 
-- **Hobbies:** just about any physical activity (if you're interested, here's a [90-second workout video](https://www.youtube.com/watch?v=_0XI5gKkk5A) from when I was training seriously),
+- **Hobbies include:** just about any physical activity (here's a [90-second workout video](https://www.youtube.com/watch?v=_0XI5gKkk5A) from when I was training seriously),
   the company of friends and family,
-  food and cooking, building things, graphic design, teaching, growing food, being outside.
+  food and cooking, teaching, building things, graphic design, growing food, being outside.
 
 ## About this website
 

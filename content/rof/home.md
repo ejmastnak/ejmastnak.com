@@ -10,7 +10,7 @@ aliases:
 
 Spletna stran za tutorstvo pri predmetu Računalniška orodja v fiziki, leto 2022/23.
 
-**Naslednja ura:** sreda 19.4.2023 ob 7:15
+**Naslednja ura:** uradno sreda 26.4.2023, vendar bom takrat v tujini. Za vsakega, ki je zainteresiran za tutorstvo, bom naredil čas za spletni sestanek---samo napišite mail.
 
 ## Gradivo
 

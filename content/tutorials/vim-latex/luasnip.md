@@ -976,7 +976,7 @@ require("luasnip").config.set_config({ -- Setting LuaSnip config
 })
 ```
 
-Pressing `<Tab>` in visual mode will then store the visually-selected text in a LuaSnip variable called `SELECT_RAW`, which we will reference later to retrieve the visual selection.
+Pressing `<Tab>` in visual mode will then store the visually-selected text in a LuaSnip variable called `LS_SELECT_RAW`, which we will reference later to retrieve the visual selection.
 
 Here's **how to use visual placeholder snippets** (it sounds really complicated when written out, but should make more sense in the GIF below and will quickly become part of your muscle memory):
 
@@ -984,9 +984,9 @@ Here's **how to use visual placeholder snippets** (it sounds really complicated 
 1. Use Vim to open a file in which you want to test out the just-created snippet.
 1. Use Vim's visual mode to select some text.
 1. Press the Tab key (or whatever other key you set earlier with `store_selection_keys`).
-   The selected text is deleted and stored in the LuaSnip variable `SELECT_RAW`, and you are placed into Vim's insert mode.
+   The selected text is deleted and stored in the LuaSnip variable `LS_SELECT_RAW`, and you are placed into Vim's insert mode.
 1. Type the trigger to expand the previously-written snippet that included the dynamic node calling the `get_visual` function.
-   The snippet expands, and the text you had selected in visual mode and stored in `SELECT_RAW` appears in place of the dynamic node in the snippet body.
+   The snippet expands, and the text you had selected in visual mode and stored in `LS_SELECT_RAW` appears in place of the dynamic node in the snippet body.
 
 Here's the above GIF again---see if you can identify steps 3 (enter visual mode), 4 (Tab), and 5 (trigger):
 
@@ -999,13 +999,13 @@ Here is the corresponding snippet code:
 ```lua
 -- This is the `get_visual` function I've been talking about.
 -- ----------------------------------------------------------------------------
--- Summary: When `SELECT_RAW` is populated with a visual selection, the function
+-- Summary: When `LS_SELECT_RAW` is populated with a visual selection, the function
 -- returns an insert node whose initial text is set to the visual selection.
--- When `SELECT_RAW` is empty, the function simply returns an empty insert node.
+-- When `LS_SELECT_RAW` is empty, the function simply returns an empty insert node.
 local get_visual = function(args, parent)
-  if (#parent.snippet.env.SELECT_RAW > 0) then
-    return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
-  else  -- If SELECT_RAW is empty, return a blank insert node
+  if (#parent.snippet.env.LS_SELECT_RAW > 0) then
+    return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
+  else  -- If LS_SELECT_RAW is empty, return a blank insert node
     return sn(nil, i(1))
   end
 end
@@ -1036,9 +1036,14 @@ A few comments:
 
 Here's the great thing: you can still use any snippet that includes the `d(1, get_visual)` dynamic node without going through the select-and-Tab procedure described above---if there is no active visual selection, the dynamic node simply acts as a regular insert node.
 
-**Docs:** This use of dynamic nodes and `SELECT_RAW` to create a visual-selection snippet is not explicitly mentioned in the LuaSnip docs at the time of writing, but you can read about `SELECT_RAW` at `:help luasnip-variables` and about dynamic nodes, as mentioned earlier, at `:help luasnip-dynamicnode`.
+**Docs:** This use of dynamic nodes and `LS_SELECT_RAW` to create a visual-selection snippet is not explicitly mentioned in the LuaSnip docs at the time of writing, but you can read about `LS_SELECT_RAW` at `:help luasnip-variables` and about dynamic nodes, as mentioned earlier, at `:help luasnip-dynamicnode`.
 The `store_selection_keys` config key is documented in the [LuaSnip README's config section](https://github.com/L3MON4D3/LuaSnip#config).
 
+{{< details summary="Warning: old versions of LuaSnip use `SELECT_RAW` and not `LS_SELECT_RAW`.">}}
+The `LS_SELECT_RAW` variable was originally called `SELECT_RAW`;
+the change to `LS_SELECT_RAW` happened in September 2022 (see [this GitHub comment for details](https://github.com/L3MON4D3/LuaSnip/issues/81#issuecomment-1235595467)).
+If you're using a LuaSnip version from before September 2022, use `SELECT_RAW` instead of `LS_SELECT_RAW`.
+{{< /details >}}
 
 ## Conditional snippet expansion
 
@@ -1503,8 +1508,8 @@ Here's what to do:
    local i = ls.insert_node
  
    function M.get_visual(args, parent)
-     if (#parent.snippet.env.SELECT_RAW > 0) then
-       return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+     if (#parent.snippet.env.LS_SELECT_RAW > 0) then
+       return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
      else
        return sn(nil, i(1, ''))
      end

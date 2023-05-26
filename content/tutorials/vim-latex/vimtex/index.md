@@ -567,12 +567,24 @@ Although most users following this series will probably end up disabling VimTeX'
 ## Options {#options}
 
 VimTeX's options are used to manually enable, disable, or otherwise configure VimTeX features (e.g. the delimiter toggle list, the compilation method, the PDF reader, etc.).
-VimTeX's options are controlled by setting the values of global Vim variables somewhere in your Vim `runtimepath` before VimTeX loads (a good place would be `ftplugin/tex.vim`).
+VimTeX's options are controlled by setting the values of global Vim variables somewhere in your Vim `runtimepath` before VimTeX loads (a good place would be `plugin/tex.vim` for global VimTeX options and `ftplugin/tex.vim` for buffer-local options).
 You disable VimTeX features by un-setting a Vim variable controlling the undesired feature.
 Upon loading, VimTeX reads the values of any option variables you set manually and updates its default behavior accordingly.
 
 VimTeX's options are documented at `:help vimtex-options`;
 the documentation is clear and largely self-explanatory, and you should skim through it to see which options are available.
+
+{{< details summary="Where should I put my VimTeX configuration?" >}}
+In practice, you can just dump everything in your `vimrc` and be fine.
+
+But if you are comfortable with the use of the `plugin` and `ftplugin` directories (see the [previous article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}})) and the concept of Vim buffers, a cleaner setup might be to:
+
+1. Use a file in your `plugin` directory (e.g. `plugin/tex.vim`, `plugin/vimtex.vim`; the name is your choice) to set all *global* VimTeX options (those that match `g:*`).
+1. Use the file `ftplugin/tex.vim` for other VimTeX-related configuration that you want to apply only in buffers with the `tex` filetype (e.g. LaTeX-specific keymaps and text objects).
+
+Placing global options in `plugin/` ensures that (1) these options load before VimTeX and (2) do not needlessly load multiple times when editing multiple LaTeX files in the same Vim session (see the discussion in [VimTeX issue #2714](https://github.com/lervag/vimtex/issues/2714) for details); while placing things like keymaps in `ftplugin` ensures these keymaps only apply in LaTeX files and don't interfere with mappings you might have set in for other file types.
+
+{{< /details >}}
 
 ### Example: Disabling default features
 

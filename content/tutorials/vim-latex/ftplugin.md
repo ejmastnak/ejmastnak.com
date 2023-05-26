@@ -76,6 +76,17 @@ You can find a full list of runtimepath directories in `:help runtimepath`, and 
 For the purposes of this series, the most important directories in your `runtimepath` are the `plugin` and `ftplugin/` directories in your Vim config folder, i.e. the directories `~/.vim/plugin/` and `~/.vim/ftplugin/` (for Vim) and `~/.config/nvim/plugin/` and `~/.config/nvim/ftplugin/` (for Neovim).
 We will use these directories for global configuration of VimTeX and for LaTeX-specific settings.
 
+## `plugin` vs `ftplugin`
+
+Here are the important differences for the practical purposes of configuring VimTeX (in the next article):
+
+- `plugin` is for global Vim configuration (that applies to *all* filetypes);
+  `ftplugin` is for filetype-specific configuration.
+- Files in `plugin` load before files in `ftplugin`.
+- Files in `plugin` load once per Vim session; files in `ftplugin` load every time you switch to a new buffer (and thus can load multiple times per Vim session if you switch between multiple buffers).
+
+For thorough documentation see `:help plugin` and `:help ftplugin`.
+
 ## Vim's filetype plugin system
 
 You use Vim's filetype plugin (`ftplugin`) system for Vim configuration that you want to apply only to a single filetype (e.g. only to LaTeX files, only to Python files, only to Markdown files, etc.).

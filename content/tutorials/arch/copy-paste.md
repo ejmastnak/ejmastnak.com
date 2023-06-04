@@ -145,11 +145,11 @@ This means you can use operations like `"+p` to paste the contents of `CLIPBOARD
 You can configure Vim/Neovim to use the `*` and/or `+` registers for copy and paste through the built-in `clipboard` option.
 You have three choices---in your `vimrc` or `init.vim`...
 
-1. Set `clipboard=unnamedplus` to make Vim use the `+` register (and thus the `CLIPBOARD` selection) for all yank, delete, change and put operations.
+1. Use `set clipboard=unnamedplus` to make Vim use the `+` register (and thus the `CLIPBOARD` selection) for all yank, delete, change and put operations.
 
-1. Set `clipboard=unnamed` to make Vim use the `*` register (and thus the `PRIMARY` selection) for all yank, delete, change and put operations.
+1. Use `set clipboard=unnamed` to make Vim use the `*` register (and thus the `PRIMARY` selection) for all yank, delete, change and put operations.
 
-1. Set `clipboard=unnamed,unnamedplus` to make Vim's yank, delete, and change operations copy into both `+` and `*`, and make the put operations paste from `+`.
+1. Use `set clipboard=unnamed,unnamedplus` to make Vim's yank, delete, and change operations copy into both `+` and `*`, and make the put operations paste from `+`.
 
 That should be it---Vim's native yank/delete/change/put operations should now interact with the X `CLIPBOARD` and `PRIMARY` selections.
 For documentation of `unnamed` and `unnamedplus` see `:help 'clipboard'` (make sure to include the single quotes!).

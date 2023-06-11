@@ -130,7 +130,7 @@ Feedback is welcome and appreciated.
 
 Shoutouts to previous readers: many thanks to [Albert Gu](https://github.com/albertfgu), Pano Otis, Jason Yao, [@Glirastes](https://github.com/Glirastes), [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how improve this series.
 
-You can reach me by email at [ejmastnak@gmail.com](mailto:ejmastnak@gmail.com) or by opening an issue or pull request at [github.com/ejmastnak/ejmastnak.com](https://github.com/ejmastnak/ejmastnak.com)).
+You can reach me by email at [elijan@ejmastnak.com](mailto:elijan@ejmastnak.com) or by opening an issue or pull request at [github.com/ejmastnak/ejmastnak.com](https://github.com/ejmastnak/ejmastnak.com)).
 
 ### Want to say thank you? {#thank-you}
 

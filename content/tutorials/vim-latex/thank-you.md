@@ -13,6 +13,6 @@ You could:
   I love hearing from readers, and you'll almost certainly get a message back from me.
 
 - [Contribute financially.](https://www.buymeacoffee.com/ejmastnak)
-  Based on reader input, there are in fact people out there interested in compensating me financially for my freely-distributed work.
+  Based on reader input, there are in fact people out there interested in compensating me financially for my tutorials.
   That's awesome---thank you!
   You can [Buy Me a Coffee here.](https://www.buymeacoffee.com/ejmastnak)

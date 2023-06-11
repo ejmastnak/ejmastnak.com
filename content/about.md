@@ -12,7 +12,7 @@ Here is [my résumé](/resume.pdf) and [contact info]({{< relref "/contact.md" >
 
 And here is some information about me:
 
-- I'm **Slovene-American** and grew up between New York, California, Ljubljana.
+- I'm **Slovene-American** and grew up between New York, Ljubljana, and California.
 
 - I went to **high school in Orange County, California** and returned to **Slovenia for university**, where I completed a bachelor's degree in physics at the University of Ljubljana.
 

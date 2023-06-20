@@ -104,7 +104,8 @@ If you are comfortable with the use of the `plugin` and `ftplugin` directories (
 1. Use a file in your `plugin` directory (e.g. `plugin/tex.vim`, `plugin/vimtex.vim`; the name is your choice) to set all *global* VimTeX options (those that start with `g:`, e.g. `g:vimtex_view_method`, `g:vimtex_delim_toggle_mod_list`, etc.).
 1. Use the file `ftplugin/tex.vim` for other VimTeX-related configuration that you want to apply only in buffers with the `tex` filetype (e.g. LaTeX-specific keymaps and text objects).
 
-Placing global options in `plugin/` ensures that (1) these options load before VimTeX and (2) do not needlessly load multiple times when editing multiple LaTeX files in the same Vim session (see the discussions in VimTeX issues [#2714](https://github.com/lervag/vimtex/issues/2714) and [#2725](https://github.com/lervag/vimtex/issues/2725) for more on why this might be a good idea); while placing things like keymaps in `ftplugin` ensures these keymaps only apply in LaTeX files and don't interfere with mappings you might have set in for other file types.
+Placing global options in `plugin/` ensures that (1) these options load before VimTeX and (2) do not needlessly load multiple times when editing multiple LaTeX files in the same Vim session (see the discussions in VimTeX issues [#2714](https://github.com/lervag/vimtex/issues/2714) and [#2725](https://github.com/lervag/vimtex/issues/2725) for more on why this might be a good idea);
+placing settings like custom keymaps in `ftplugin` ensures these keymaps only apply in LaTeX files and don't interfere with mappings you might have set for other file types.
 {{< /details >}}
   
 ## Overview of features

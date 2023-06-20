@@ -18,8 +18,8 @@ This article covers the excellent [VimTeX plugin](https://github.com/lervag/vimt
 
 {{< toc level="2" title="Contents of this article" >}}
 
-**Background knowledge:** this article will make regular references to the file `ftplugin/tex.vim`, which we will use to implement LaTeX-specific Vim configuration through Vim's filetype plugin system.
-To get the most out of this article, you should understand the purpose of the `ftplugin/tex.vim` file and have a basic understanding of Vim's filetype plugin system.
+**Background knowledge:** this article will make regular references to the `ftplugin` and `plugin` directories, which we will use to implement LaTeX-specific Vim configuration.
+To get the most out of this article, you should understand the purpose of these directories.
 In case you are just dropping in now and words like "plugin", "ftplugin", and "runtimepath" sound unfamiliar, consider first reading through the [previous article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which covers what you need to know.
 
 {{< details summary="I use Neovim and prefer Lua; can I configure VimTeX with Lua?" >}}
@@ -86,6 +86,26 @@ As you get started with the VimTeX plugin, here are a few things to keep in mind
 
 - As described in `:help vimtex-tex-flavor`, VimTeX overrides Vim's internal `ftplugin`, i.e. the one in `$VIMRUNTIME/ftplugin`,
   but respects any user-defined LaTeX configuration in `ftplugin/tex.vim`.
+
+### How to configure VimTeX {#configuration}
+
+This question comes up regularly enough on the VimTeX GitHub page that I feel it deserves its own section (I'll refer back to this section later in this article and series)
+Here are my suggestions:
+
+{{< details summary="Option 1: put everything in your vimrc" >}}
+You can put all VimTeX- and LaTeX-related Vim configuration in your `vimrc` (or `init.vim` or `init.lua` for Neovim users) and be fine---the only downside is a potentially cluttered `vimrc`.
+
+This is the option I'd suggest if you're not yet familiar with topic like Vim buffers, buffer-local vs. global Vim variables, and the `ftplugin` and `plugin` directories.
+{{< /details >}}
+
+{{< details summary="Option 2: if you're familiar with `ftplugin`, `plugin`, and Vim buffers" >}}
+If you are comfortable with the use of the `plugin` and `ftplugin` directories (see the [previous article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}})) and the concept of Vim buffers, here is a cleaner setup:
+
+1. Use a file in your `plugin` directory (e.g. `plugin/tex.vim`, `plugin/vimtex.vim`; the name is your choice) to set all *global* VimTeX options (those that start with `g:`, e.g. `g:vimtex_view_method`, `g:vimtex_delim_toggle_mod_list`, etc.).
+1. Use the file `ftplugin/tex.vim` for other VimTeX-related configuration that you want to apply only in buffers with the `tex` filetype (e.g. LaTeX-specific keymaps and text objects).
+
+Placing global options in `plugin/` ensures that (1) these options load before VimTeX and (2) do not needlessly load multiple times when editing multiple LaTeX files in the same Vim session (see the discussions in VimTeX issues [#2714](https://github.com/lervag/vimtex/issues/2714) and [#2725](https://github.com/lervag/vimtex/issues/2725) for more on why this might be a good idea); while placing things like keymaps in `ftplugin` ensures these keymaps only apply in LaTeX files and don't interfere with mappings you might have set in for other file types.
+{{< /details >}}
   
 ## Overview of features
 
@@ -440,7 +460,7 @@ Using `:help vimtex-default-mappings` for reference,
 1. The action works in normal mode, so we will use `nmap` for remapping it (use `xmap` for visual mode, `omap` for operator-pending mode, etc.)
 1. We will replace the default mapping, `ds$` (which is a bit difficult to type), with the more convenient `dsm`.
 
-To implement this change, place the following code in your `ftplugin/tex.vim` (or similar):
+To implement this change, place the following code in [an appropriate config file](#configuration):
 
 ```vim
 " Use `dsm` to delete surrounding math (replacing the default shorcut `ds$`)
@@ -486,7 +506,7 @@ Here is a visual mode example of the delimiter and environment text objects:
 Every default mapping provided by VimTeX can be changed to anything you like, using the exact same procedure described a few sections above in [Customization is easy](#customization).
 As an example to get you started with changing default mappings, VimTeX uses `am` and `im` for the item text objects (i.e. items in `itemize` or `enumerate` environments) and `a$` and `i$` for the math objects.
 
-You might prefer to use (say) `ai`/`ii` for items and `am`/`im` for math, and could implement this change by placing the following code in `ftplugin/tex.vim` (or similar):
+You might prefer to use (say) `ai`/`ii` for items and `am`/`im` for math, and could implement this change by placing the following code in [an appropriate config file](#configuration):
 
 ```vim
 " Use `ai` and `ii` for the item text object
@@ -513,16 +533,15 @@ Quoting from `:help vimtex-default-mappings`:
 
 > If one prefers, one may disable all the default mappings through the option `g:vimtex_mappings_enabled`. Custom mappings for all desired features must then be defined through the listed RHS <Plug>-maps or by mapping the available commands.
 
-To disable all VimTeX default mappings, place `g:vimtex_mappings_enabled = 0` in your `ftplugin/tex.vim` (or similar), then manually redefine only those mappings you want using the same mapping syntax shown above in the Example section on [Changing a default text object mapping](#example-change-text-obj).
+To disable all VimTeX default mappings, place `g:vimtex_mappings_enabled = 0` in [an appropriate config file](#configuration), then manually redefine only those mappings you want using the same mapping syntax shown above in the Example section on [Changing a default text object mapping](#example-change-text-obj).
 In case that sounds abstract, here is an example to get you started:
 
 ```vim
-" An example of disabling all default VimTeX mappings, then selectively
-" defining your own. This code could go in ftplugin/tex.vim.
-
 " Disable VimTeX's default mappings
 let g:vimtex_mappings_enabled = 0
+```
 
+```vim
 " Manually redefine only the mappings you wish to use
 " --------------------------------------------- "
 " Some text objects
@@ -552,8 +571,7 @@ VimTeX mappings provide a similar (but less feature-rich) functionality to snipp
 If you use a snippets plugin, you can probably safely disable VimTeX's insert mode mappings without any loss of functionality.
 
 VimTeX's insert mode mappings are enabled by default;
-disable them by setting `g:vimtex_imaps_enabled = 0` in your `ftplugin/tex.vim` file (configuring VimTeX's option variables is covered in more detail in the [Options](#options) section just below).
-
+disable them by setting `g:vimtex_imaps_enabled = 0` in [an appropriate config file](#configuration).
 Although most users following this series will probably end up disabling VimTeX's insert mode mappings, here are a few things to keep in mind:
 
 - Use the command `:VimtexImapsList` (which is only defined if insert mode mappings are enabled) to list all active VimTeX-provided insert mode mappings.
@@ -567,24 +585,12 @@ Although most users following this series will probably end up disabling VimTeX'
 ## Options {#options}
 
 VimTeX's options are used to manually enable, disable, or otherwise configure VimTeX features (e.g. the delimiter toggle list, the compilation method, the PDF reader, etc.).
-VimTeX's options are controlled by setting the values of global Vim variables somewhere in your Vim `runtimepath` before VimTeX loads (a good place would be `plugin/tex.vim` for global VimTeX options and `ftplugin/tex.vim` for buffer-local options).
+VimTeX's options are controlled by setting the values of global Vim variables somewhere in your Vim `runtimepath` before VimTeX loads (a good place would be your `vimrc` or `plugin/tex.vim` for global VimTeX options and `ftplugin/tex.vim` for buffer-local settings; [more details here](#configuration)).
 You disable VimTeX features by un-setting a Vim variable controlling the undesired feature.
 Upon loading, VimTeX reads the values of any option variables you set manually and updates its default behavior accordingly.
 
 VimTeX's options are documented at `:help vimtex-options`;
 the documentation is clear and largely self-explanatory, and you should skim through it to see which options are available.
-
-{{< details summary="Where should I put my VimTeX configuration?" >}}
-In practice, you can just dump everything in your `vimrc` and be fine.
-
-But if you are comfortable with the use of the `plugin` and `ftplugin` directories (see the [previous article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}})) and the concept of Vim buffers, a cleaner setup might be to:
-
-1. Use a file in your `plugin` directory (e.g. `plugin/tex.vim`, `plugin/vimtex.vim`; the name is your choice) to set all *global* VimTeX options (those that match `g:*`).
-1. Use the file `ftplugin/tex.vim` for other VimTeX-related configuration that you want to apply only in buffers with the `tex` filetype (e.g. LaTeX-specific keymaps and text objects).
-
-Placing global options in `plugin/` ensures that (1) these options load before VimTeX and (2) do not needlessly load multiple times when editing multiple LaTeX files in the same Vim session (see the discussion in [VimTeX issue #2714](https://github.com/lervag/vimtex/issues/2714) for details); while placing things like keymaps in `ftplugin` ensures these keymaps only apply in LaTeX files and don't interfere with mappings you might have set in for other file types.
-
-{{< /details >}}
 
 ### Example: Disabling default features
 
@@ -594,25 +600,24 @@ Here is the general workflow:
 1. While skimming through the VimTeX documentation, identify a feature you wish to disable.
    (Most of VimTeX's features are enabled by default, and it is up to the user to disable them.)
 1. From the documentation, identify the Vim variable controlling a VimTeX feature; the variable is usually clearly listed in the documentation.
-1. Set the appropriate variable value (usually this step amounts to setting a `g:vimtex_*_enabled` variable equal to zero) somewhere in your `ftplugin/tex.vim` file (or similar).
+1. Set the appropriate variable value (usually this step amounts to setting a `g:vimtex_*_enabled` variable equal to zero) in [an appropriate config file](#configuration).
 
-  As a concrete example, one could disable VimTeX's indent, insert mode mapping, completion, and syntax concealment features by placing the following code in `ftplugin/tex.vim`:
+As a concrete example, one could disable VimTeX's indent, insert mode mapping, completion, and syntax concealment features with the following code:
 
-  ```vim
-  " A few examples of disabling default VimTeX features.
-  " The code could go in `ftplugin/tex.vim`.
-  let g:vimtex_indent_enabled   = 0      " turn off VimTeX indentation
-  let g:vimtex_imaps_enabled    = 0      " disable insert mode mappings (e.g. if you use UltiSnips)
-  let g:vimtex_complete_enabled = 0      " turn off completion
-  let g:vimtex_syntax_enabled   = 0      " disable syntax conceal
-  ```
+```vim
+" A few examples of disabling default VimTeX features.
+let g:vimtex_indent_enabled   = 0      " turn off VimTeX indentation
+let g:vimtex_imaps_enabled    = 0      " disable insert mode mappings (e.g. if you use UltiSnips)
+let g:vimtex_complete_enabled = 0      " turn off completion
+let g:vimtex_syntax_enabled   = 0      " disable syntax conceal
+```
 
-  These are just examples to get you started;
-  in practice, you would of course tweak the settings to your liking after identifying the appropriate variables in the VimTeX documentation.
+These are just examples to get you started;
+in practice, you would of course tweak the settings to your liking after identifying the appropriate variables in the VimTeX documentation.
 
 ### Example: Changing the default delimiter toggle list {#example-change-delim}
 
-Here is another real-life example: to add `\big \big` to the delimiter toggle list used by VimTeX's "toggle surrounding delimiter" feature (see the earlier section on [Toggle-style mappings](#toggle)), add the following code to your `ftplugin/tex.vim` file (or similar):
+Here is another real-life example: to add `\big \big` to the delimiter toggle list used by VimTeX's "toggle surrounding delimiter" feature (see the earlier section on [Toggle-style mappings](#toggle)), add the following code to [an appropriate config file](#configuration):
 
 ```vim
 " Example: adding `\big` to VimTeX's delimiter toggle list
@@ -638,11 +643,10 @@ There is nothing much I have to say about the commands themselves that the docum
 
 As a side note, most but not all VimTeX commands can be triggered by default using a shortcut in the `LHS` of the three-column list in `:help vimtex-default-mappings`.
 For those commands without a default shortcut mapping, defining one can be as simple as a single line of Vimscript.
-Here is an example, which you could place in `ftplugin/tex.vim`, that makes the key combination `<leader>wc` call the VimTeX command `VimtexCountWords`:
+Here is an example (put it in [an appropriate config file](#configuration)) that makes the key combination `<leader>wc` call the VimTeX command `VimtexCountWords`:
 
 ```vim
 " Example: make `<leader>wc` call the command `VimtexCountWords`;
-" you might place this code in ftplugin/tex.vim.
 noremap <leader>wc <Cmd>VimtexCountWords<CR>
 ```
 

@@ -20,8 +20,10 @@ This article covers compilation and should explain what you need to get started 
 
 **Background knowledge:**
 
-- This article will make occasional references to the file `ftplugin/tex.vim`, which we will use to implement LaTeX-specific Vim configuration through Vim's filetype plugin system.
-  In case you are just dropping in now and Vim's `ftplugin` system sounds unfamiliar, consider first reading through the article [3. Vim's `ftplugin` system]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which covers what you need to know.
+- This article will make regular references to the `ftplugin` and `plugin` directories, which we will use to implement LaTeX-specific Vim configuration.
+  To get the most out of this article, you should understand the purpose of these directories.
+  In case you are just dropping in now and words like "plugin", "ftplugin", and "runtimepath" sound unfamiliar, consider first reading through the [third article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which covers what you need to know.
+
 
 - We will also define some Vim key mappings in this article---if Vim keywords like `:map`, `<leader>`, `<localleader>`, and `<Plug>` are unfamiliar to you, consider taking a detour and reading through the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}), which explains everything you need to know about Vim key mappings to understand this series.
 
@@ -121,7 +123,7 @@ Here is a short summary:
 VimTeX offers  `<localleader>ll` as a default shortcut for calling `:VimtexCompile`, meaning you can type `<localleader>ll` (in normal mode) to trigger the `:VimtexCompile` command.
 
 If you prefer, setting your own shortcut is really easy!
-For example, to use `<localleader>c` to trigger compilation, place the following code in your `ftplugin/tex.vim` file:
+For example, to use `<localleader>c` to trigger compilation, place the following code in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
 ```vim
 " Use `<localleader>c` to trigger continuous compilation...
@@ -163,7 +165,7 @@ Here are two VimTeX-related QuickFix settings you might be interested in tweakin
 
 - **Don't open QuickFix for warnings:** by default, VimTeX opens the QuickFix menu if compilation produces warning messages but no error messages.
   LaTeX's warning messages are often unhelpful, so some users will want to open the QuickFix menu only if compilation fails with error messages.
-  To do this, place the following code in your `ftplugin/tex.vim` file:
+  To do this, place the following code in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
   ```vim
   " Don't open QuickFix for warning messages if no errors are present
@@ -175,7 +177,7 @@ Here are two VimTeX-related QuickFix settings you might be interested in tweakin
 - **Filter out selected warnings:** VimTeX makes it easy to filter out undesirable warning messages produced during LaTeX compilation.
   To do so, use the variable `g:vimtex_quickfix_ignore_filters` to define a set of Vim regular expression filters;
   the compilation messages that match these filters will then disappear from the QuickFix menu.
-  See `:help regular-expression` for a review of Vim's regular expression syntax; here are some examples to get you started (you would put this in your e.g. `ftplugin/tex.vim` file):
+  See `:help regular-expression` for a review of Vim's regular expression syntax; here are some examples to get you started (put them in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}})):
 
   ```vim
   " Filter out some compilation warning messages from QuickFix display
@@ -368,6 +370,7 @@ For orientation, here are the relevant parts of my Vim directory tree:
 ```bash
 ${HOME}/.vim/       # or ${HOME}/.config/nvim/ for Neovim
 ├── compiler/
+├── plugin/
 │   └── tex.vim
 └── ftplugin/
     └── tex.vim
@@ -595,7 +598,7 @@ Here's what to do:
 1. Install Tim Pope's [Dispatch plugin](https://github.com/tpope/vim-dispatch) just like you would any other Vim plugin.
 
 1. Assuming that you used `compiler/tex.vim` as the name of the compiler plugin described earlier in this article in the section [Writing a simple LaTeX compiler plugin](#compiler),
-   somewhere inside `ftplugin/tex.vim` include the line
+   include the following line somewhere in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
    ```vim
    " Load the compiler settings in the file `compiler/tex.vim`

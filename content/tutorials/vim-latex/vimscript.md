@@ -119,7 +119,7 @@ nnoremap <Space>q :quit<CR>
 See `:help keycodes` for a full list of special keys and their Vim notation, and `:help <>` for the rules behind Vim's `<>` notation for special keys.
 Note that the Vim names are case-insensitive---`<cr>` is the same as `<CR>`, for example.
 
-Disclaimer: the above example mapping is actually poor Vimscript---Vim offer a better way to call commands from key mappings using a special `<Cmd>` keyword.
+Disclaimer: the above example mapping is actually poor Vimscript---Vim offers a better way to call commands from key mappings using a special `<Cmd>` keyword.
 But because I haven't introduced it yet, the above mappings use `:` to enter Command mode.
 We'll fix this later in this article in the section [The useful `<Cmd>` keyword](#cmd).
 

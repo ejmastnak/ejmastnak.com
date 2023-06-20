@@ -20,8 +20,9 @@ This article explains, for both Linux and macOS, how to set up a PDF reader for 
 
 **Background knowledge:** 
 
-- This article will make regular references to the file `ftplugin/tex.vim`, which we will use to implement LaTeX-specific Vim configuration through Vim's filetype plugin system.
-  In case you are just dropping in now and Vim's `ftplugin` system sounds unfamiliar, consider first reading through [an earlier article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which covers what you need to know about `ftplugin`.
+- This article will make regular references to the `ftplugin` and `plugin` directories, which we will use to implement LaTeX-specific Vim configuration.
+  To get the most out of this article, you should understand the purpose of these directories.
+  In case you are just dropping in now and words like "plugin", "ftplugin", and "runtimepath" sound unfamiliar, consider first reading through the [third article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}}), which covers what you need to know.
 
 - We will also define some Vim key mappings in this article---if Vim keywords like `:map`, `<leader>`, `<localleader>`, and `<Plug>` are unfamiliar to you, consider taking a detour and reading through the final article in this series, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}), which explains everything you need to know about Vim key mappings to understand this series (the same concepts apply if you use Neovim and Lua).
 
@@ -220,7 +221,7 @@ It may well be possible to compile a version of terminal Vim from source that in
 
 Neovim, gVim, and MacVim start a server on startup automatically; if you use any of these programs, lucky you---feel free to [skip to the next section](#zathura).
 
-If you use a [`+clientserver`-enabled terminal Vim](#vim-clientserver) on Linux, place the following code snippet in your `vimrc`, `ftplugin/tex.vim`, or similar:
+If you use a [`+clientserver`-enabled terminal Vim](#vim-clientserver) on Linux, place the following code snippet in your `vimrc`:
 
 ```vim
 " This will only work if `vim --version` includes `+clientserver`!
@@ -281,7 +282,7 @@ Here's what to do:
   (VimTeX uses `xdotool` to make forward search work properly; see `:help vimtex-view-zathura` for reference.
   And to reiterate from the beginning of this section, you'll need to use the X Window System and not Wayland for `xdotool` to work.)
   
-- Place the following code in your `ftplugin/tex.vim` file:
+- Place the following code in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
   ```vim
   " Use Zathura as the VimTeX PDF viewer
@@ -291,7 +292,7 @@ Here's what to do:
   This line of code lets VimTeX know that you plan on using Zathura as your PDF reader.
 
 - Use the `:VimtexView` command in Vim/Neovim to trigger forward search.
-  You can either type this command manually, use the default VimTeX shortcut `<localleader>lv`, or define your own shortcut, e.g. by placing the following code in your `ftplugin/tex.vim` file:
+  You can either type this command manually, use the default VimTeX shortcut `<localleader>lv`, or define your own shortcut, e.g. by placing the following code in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
   ```vim
   " Define a custom shortcut to trigger VimtexView
@@ -351,7 +352,7 @@ Depending on your window manager and/or desktop environment, Vim may lose focus 
 If you prefer to keep focus in Vim, you can use `xdotool` and some VimTeX autocommands to solve the problem.
 Here's what to do:
 
-1. Place the following line in your `ftplugin/tex.vim`:
+1. Place the following line in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
    ```vim
    " Get Vim's window ID for switching focus from Zathura to Vim using xdotool.
@@ -364,12 +365,12 @@ Here's what to do:
    Whenever you open a LaTeX file, this code will use `xdotool` to query for an 8-digit window ID identifying the window running Vim (which is presumably the active window) and store this ID in the global Vimscript variable `g:vim_window_id`.
    The `if !exists()` block only sets the `g:vim_window_id` variable if it has not yet been set for the current Vim instance.
 
-1. Then define the following Vimscript function, also in `ftplugin/tex.vim`:
+1. Then define the following Vimscript function in the same config file:
 
    ```vim
    function! s:TexFocusVim() abort
      " Give window manager time to recognize focus moved to Zathura;
-     " tweak the 200m as needed for your hardware and window manager.
+     " tweak the 200m (200 ms) as needed for your hardware and window manager.
      sleep 200m  
 
      " Refocus Vim and redraw the screen
@@ -382,11 +383,11 @@ Here's what to do:
    then uses `xdotool`'s `windowfocus` command to immediately refocus the window holding Vim.
    Using `silent execute` instead of just `execute` suppresses `Press ENTER or type command to continue` messages, although you may want to start with just `execute` for debugging purposes.
    
-   Although it is hacky, I have empirically found the `sleep 200m` wait ensures the subsequent window focus executes properly (you may want to tweak the exact sleep time for your hardware and window manager).
+   Although it is hacky, I have empirically found a 200 millisecond wait ensures the subsequent window focus executes properly (you may want to tweak the exact sleep time for your hardware and window manager).
    The `redraw!` command refreshes Vim's screen.
    If interested, you can read more about writing Vimscript functions in this series's [Vim configuration article]({{< relref "/tutorials/vim-latex/vimscript" >}}), which is the next and final article in the series.
 
-1. Finally, define the following Vimscript autocommand group in your `ftplugin/tex.vim`:
+1. Finally, define the following Vimscript autocommand group in the same config file used above:
 
    ```vim
    augroup vimtex_event_focus
@@ -406,7 +407,7 @@ You'll also need the X Window System (and not Wayland) for `xdotool` to work.
 From my testing (using the i3 window manager; YMMV) gVim lost focus after forward search and failed to regain focus after inverse search.
 Here is how to fix both problems (some steps are the same as for terminal Vim/Neovim above, in which case I will refer to the above descriptions to avoid repetition):
 
-1. Place the following line in your `ftplugin/tex.vim`:
+1. Place the following line in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
    ```vim
    " Get Vim's window ID for switching focus from Zathura to Vim using xdotool.
@@ -418,7 +419,7 @@ Here is how to fix both problems (some steps are the same as for terminal Vim/Ne
 
    For an explanation, see the analogous step for Vim/Neovim above.
 
-1. Then define the following Vimscript function, also in `ftplugin/tex.vim`:
+1. Then define the following Vimscript function in the same config file:
 
    ```vim
    function! s:TexFocusVim(delay_ms) abort
@@ -434,7 +435,7 @@ Here is how to fix both problems (some steps are the same as for terminal Vim/Ne
    This function plays as similar role to the one in the analogous step for Vim/Neovim (see above for an explanation), but allows for a variable sleep time using the `delay_ms` argument, which is the number of milliseconds passed to Vim's `sleep` command.
    The function uses a variable sleep time because (at least in my testing) post-inverse-search refocus does not require any delay to work properly, while post-forward-search refocus does.
 
-1. Finally, define the following Vimscript autocommand group in your `ftplugin/tex.vim`:
+1. Finally, define the following Vimscript autocommand group in the config file used above:
 
    ```vim
    augroup vimtex_event_focus
@@ -480,7 +481,7 @@ Some of the steps are the same as for Zathura on Linux, so excuse the repetition
 
   Note that VimTeX's PDF viewer interface is enabled by default; if `:echo g:vimtex_view_enabled` prints `0`, you have probably manually set `let g:vimtex_view_enabled = 0` somewhere in your Vim config and will have to track that down and remove it before proceeding.
 
-- Place the following code in your `ftplugin/tex.vim` file:
+- Place the following code in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
   ```vim
   " Use Skim as the VimTeX PDF viewer
@@ -491,7 +492,7 @@ Some of the steps are the same as for Zathura on Linux, so excuse the repetition
 
 - Use the `:VimtexView` command in Vim/Neovim to trigger forward search.
   You can either type this command manually, use the default VimTeX shortcut `<localleader>lv`, or define your own shortcut;
-  to define your own shortcut place the following code in your `ftplugin/tex.vim` file:
+  to define your own shortcut place the following code in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
   ```vim
   " Define a custom shortcut to trigger VimtexView
@@ -640,7 +641,7 @@ Assuming your build succeeded, here is how to set up Zathura on macOS (many step
 - Install the [`xdotool`](https://github.com/jordansissel/xdotool) program with `brew install xdotool`.
   (VimTeX uses `xdotool` to make forward search work properly; see `:help vimtex-view-zathura` for reference.)
   
-- Place the following code in your `ftplugin/tex.vim` file:
+- Place the following code in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
   ```vim
   " Use Zathura as the VimTeX PDF viewer
@@ -651,7 +652,7 @@ Assuming your build succeeded, here is how to set up Zathura on macOS (many step
 
 - Use the `:VimtexView` command in Vim/Neovim to trigger forward search.
   You can either type this command manually, use the default VimTeX shortcut `<localleader>lv`, or define your own shortcut.
-  To define your own shortcut place the following code in your `ftplugin/tex.vim` file:
+  To define your own shortcut place the following code in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
   ```vim
   " Define a custom shortcut to trigger VimtexView
@@ -681,7 +682,7 @@ Here is how to fix this problem (some steps are similar to refocusing solutions 
 
 - Identify the name of your terminal (e.g. `iTerm`, `Alacritty`, `Terminal`, etc.);
   this is just the name of the macOS application for your terminal.
-  Then define the following Vimscript function in `ftplugin/tex.vim`...
+  Then define the following Vimscript function in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
   ```vim
   function! s:TexFocusVim() abort
@@ -697,7 +698,7 @@ Here is how to fix this problem (some steps are similar to refocusing solutions 
   The above code snippet runs the macOS `open` utility with the `-a` flag, which specifies an application, to refocus to your terminal, then redraws Vim's screen.
   Using `silent execute` instead of just `execute` suppresses `Press ENTER or type command to continue` messages, although you may want to start with just `execute` for debugging purposes.
 
-- Then define the following Vimscript autocommand group in your `ftplugin/tex.vim`:
+- Then define the following Vimscript autocommand group in the same config file:
 
   ```vim
   augroup vimtex_event_focus
@@ -718,7 +719,7 @@ Here is how to fix the problem (the steps are similar to those for Neovim just a
 
 - Identify the name of your terminal (e.g. `iTerm`, `Alacritty`, `Terminal`, etc.);
   this is name of the macOS application for your terminal.
-  Then define the following Vimscript function in `ftplugin/tex.vim`:
+  Then define the following Vimscript function in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
   ```vim
   function! s:TexFocusVim() abort
@@ -759,7 +760,7 @@ Here is how to fix the problem (the steps are similar to those for Neovim just a
 
   After this, `open -a MacVim` should work correctly, and you can continue with the post-inverse-search refocus solution.
 
-- Finally, define the following Vimscript autocommand group in your `ftplugin/tex.vim`:
+- Finally, define the following Vimscript autocommand group to the above config file:
 
   ```vim
   augroup vimtex_event_focus
@@ -777,7 +778,7 @@ I suggest you read through the VimTeX documentation beginning at `:help g:vimtex
 Although not all of the material will be relevant to your operating system or PDF reader, you will still find plenty of interesting information and configuration options.
 
 Here is an example: VimTeX automatically opens your PDF reader when you first compile a document, even if you have not called `:VimtexView`.
-If you prefer to disable this behavior, place the following code in your `ftplugin/tex.vim`:
+If you prefer to disable this behavior, place the following code in [an appropriate config file]({{< relref "/tutorials/vim-latex/vimtex#configuration" >}}):
 
 ```vim
 " Don't automatically open PDF viewer after first compilation

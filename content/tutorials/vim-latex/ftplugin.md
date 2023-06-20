@@ -73,15 +73,14 @@ Below is a selection of some directories on Vim's default `runtimepath`---you wi
 
 You can find a full list of runtimepath directories in `:help runtimepath`, and you can view your current `runtimepath` with `:echo &runtimepath` (warning: it is probably long and hard to parse).
 
-For the purposes of this series, the most important directories in your `runtimepath` are the `plugin` and `ftplugin/` directories in your Vim config folder, i.e. the directories `~/.vim/plugin/` and `~/.vim/ftplugin/` (for Vim) and `~/.config/nvim/plugin/` and `~/.config/nvim/ftplugin/` (for Neovim).
-We will use these directories for global configuration of VimTeX and for LaTeX-specific settings.
+## `plugin` and `ftplugin`
 
-## `plugin` vs `ftplugin`
+The `plugin` and `ftplugin` directories are the most important directories in your `runtimepath` for the purposes of this series---(we will use these directories for LaTeX-specific Vim configuration.)
 
-Here are the important differences for the practical purposes of configuring VimTeX (in the next article):
+Here are the important practical differences between `plugin` and `ftplugin`:
 
-- `plugin` is for global Vim configuration (that applies to *all* filetypes);
-  `ftplugin` is for filetype-specific configuration.
+- `plugin` is intended for global Vim configuration (i.e. config that applies to *all* filetypes),
+   while `ftplugin` is intended for filetype-specific configuration.
 - Files in `plugin` load before files in `ftplugin`.
 - Files in `plugin` load once per Vim session; files in `ftplugin` load every time you switch to a new buffer (and thus can load multiple times per Vim session if you switch between multiple buffers).
 
@@ -91,9 +90,9 @@ For thorough documentation see `:help plugin` and `:help ftplugin`.
 
 You use Vim's filetype plugin (`ftplugin`) system for Vim configuration that you want to apply only to a single filetype (e.g. only to LaTeX files, only to Python files, only to Markdown files, etc.).
 
-### Filetype plugin basic recipe
+### How to use ftplugin
 
-Here's the `ftplugin` recipe (I'll use LaTeX files for concreteness, but this same recipe works for any filetype):
+Here's how to use the `ftplugin` directory for filetype-specific configuration (I'll use LaTeX files for concreteness, but this same recipe works for any filetype):
 
 1. Vim users: add the following lines to your `vimrc`
    (these settings are enabled by default in Neovim---see `:help nvim-defaults`---so Neovim users can skip this step):

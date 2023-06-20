@@ -93,7 +93,7 @@ This question comes up regularly enough on the VimTeX GitHub page that I feel it
 Here are my suggestions:
 
 {{< details summary="Option 1: put everything in your vimrc" >}}
-You can put all VimTeX- and LaTeX-related Vim configuration in your `vimrc` (or `init.vim` or `init.lua` for Neovim users) and be fine---the only downside is a potentially cluttered `vimrc`.
+You can put all VimTeX- and LaTeX-related Vim configuration in your `vimrc` (or `init.vim` or `init.lua` for Neovim users) and be fine---the main disadvantage is a potentially cluttered `vimrc`.
 
 This is the option I'd suggest if you're not yet familiar with topic like Vim buffers, buffer-local vs. global Vim variables, and the `ftplugin` and `plugin` directories.
 {{< /details >}}

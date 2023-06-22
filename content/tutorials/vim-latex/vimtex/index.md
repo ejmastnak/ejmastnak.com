@@ -89,25 +89,32 @@ As you get started with the VimTeX plugin, here are a few things to keep in mind
 
 ### How to configure VimTeX {#configuration}
 
-This question comes up regularly enough on the VimTeX GitHub page that I feel it deserves its own section (I'll refer back to this section later in this article and series)
+This question comes up regularly enough on the VimTeX GitHub page that I feel it deserves its own section (I'll refer back to this section later in this article and series).
 Here are my suggestions:
 
 {{< details summary="Option 1: put everything in your vimrc" >}}
 You can put all VimTeX- and LaTeX-related Vim configuration in your `vimrc` (or `init.vim` or `init.lua` for Neovim users) and be fine---the main disadvantage is a potentially cluttered `vimrc`.
 
 This is the option I'd suggest if you're not yet familiar with topics like Vim buffers, buffer-local vs. global Vim variables, and the `ftplugin` and `plugin` directories.
+By using your `vimrc`, you'll ensure your configuration is loaded and ready to go before VimTeX starts---and thus avoid potential misconfiguration traps caused by incorrect loading order (see the linked issues below for examples).
 {{< /details >}}
 
 {{< details summary="Option 2: if you're familiar with `ftplugin`, `plugin`, and Vim buffers" >}}
-If you are comfortable with the use of the `plugin` and `ftplugin` directories (see the [previous article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}})) and the concept of Vim buffers, here is a cleaner setup:
+If you are comfortable with the `plugin` and `ftplugin` directories (see the [previous article in this series]({{< relref "/tutorials/vim-latex/ftplugin" >}})) and the concept of Vim buffers, here is a cleaner setup:
 
-1. Use a file in your `plugin` directory (e.g. `plugin/tex.vim`, `plugin/vimtex.vim`; the name is your choice) to set all *global* VimTeX options (those that start with `g:`, e.g. `g:vimtex_view_method`, `g:vimtex_delim_toggle_mod_list`, etc.).
-1. Use the file `ftplugin/tex.vim` for other VimTeX-related configuration that you want to apply only in buffers with the `tex` filetype (e.g. LaTeX-specific keymaps and text objects).
+1. Use a file in your `plugin` directory (e.g. `plugin/tex.vim`, `plugin/vimtex.vim`; the name is your choice) to set all global VimTeX options (those that start with `g:`, e.g. `g:vimtex_view_method`, `g:vimtex_delim_toggle_mod_list`, etc.).
+   The key idea here is to use the `plugin` directory for all configuration that should be set *before* VimTeX loads.
+1. Use the file `ftplugin/tex.vim` for other LaTeX-related configuration that you want to apply only in buffers with the `tex` filetype (e.g. LaTeX-specific keymaps and text objects).
 
-Placing global options in `plugin/` ensures that (1) these options load before VimTeX and (2) do not needlessly load multiple times when editing multiple LaTeX files in the same Vim session (see the discussions in VimTeX issues [#2714](https://github.com/lervag/vimtex/issues/2714) and [#2725](https://github.com/lervag/vimtex/issues/2725) for more on why this might be a good idea);
-placing settings like custom keymaps in `ftplugin` ensures these keymaps only apply in LaTeX files and don't interfere with mappings you might have set for other file types.
+Placing global VimTeX configuration options in `plugin/` ensures that (1) these options load before VimTeX and (2) do not needlessly load multiple times when editing multiple LaTeX files in the same Vim session.
+Meanwhile, placing settings like custom keymaps in `ftplugin` ensures these keymaps only apply in LaTeX files and don't interfere with mappings you might have set for other file types.
 {{< /details >}}
-  
+
+I would encourage all readers to browse VimTeX issues [#2740](https://github.com/lervag/vimtex/issues/2740), [#2725](https://github.com/lervag/vimtex/issues/2725), and [#2714](https://github.com/lervag/vimtex/issues/2714) to see the importance of setting global VimTeX options *before* VimTeX loads (you'll also find useful discussion on VimTeX configuration in general).
+
+Historical note: I was previously guilty of suggesting `ftplugin` for *all* VimTeX configuration when either `plugin` (or simply the `vimrc`) would have been better options.
+You can see mention of this in [#2740](https://github.com/lervag/vimtex/issues/2740#issuecomment-1601687456) and [#2733](https://github.com/lervag/vimtex/issues/2733#issuecomment-1596609694) ;)
+
 ## Overview of features
 
 The VimTeX plugin offers more than any one user will probably ever require;

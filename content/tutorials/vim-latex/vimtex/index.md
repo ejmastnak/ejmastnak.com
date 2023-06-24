@@ -113,7 +113,7 @@ Meanwhile, placing settings like custom keymaps in `ftplugin` ensures these keym
 I would encourage all readers to browse VimTeX issues [#2740](https://github.com/lervag/vimtex/issues/2740), [#2725](https://github.com/lervag/vimtex/issues/2725), and [#2714](https://github.com/lervag/vimtex/issues/2714) to see the importance of setting global VimTeX options *before* VimTeX loads (you'll also find useful discussion on VimTeX configuration in general).
 
 Historical note: I was previously guilty of suggesting `ftplugin` for *all* VimTeX configuration when either `plugin` (or simply the `vimrc`) would have been better options.
-You can see mention of this in [#2740](https://github.com/lervag/vimtex/issues/2740#issuecomment-1601687456) and [#2733](https://github.com/lervag/vimtex/issues/2733#issuecomment-1596609694) ;)
+This was fixed following [#2733](https://github.com/lervag/vimtex/issues/2733#issuecomment-1596609694); apologies to any readers I may have misled.
 
 ## Overview of features
 

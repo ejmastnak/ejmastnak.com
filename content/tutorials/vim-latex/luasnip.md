@@ -22,7 +22,7 @@ You might be interested in this article for two reasons:
 
 ## Warning: the article is long {#warning}
 
-This article is *long*, which kind of sucks, I know.
+This article is *long*. Sorry.
 To help you out, here's how the article is organized:
 
 1. A [short intro to snippets](#what-snippets-do) for people reading along with the LaTeX series

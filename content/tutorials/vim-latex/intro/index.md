@@ -22,7 +22,7 @@ LaTeX has a reputation for producing high-quality documents but being clumsy to 
 {{< /details >}}
 
 **Goal of this guide:** make writing LaTeX as easy (fast, efficient, enjoyable...) as writing math by hand.
-Tech stack: the Vim text editor using the UltiSnips snippet plugin and the VimTeX plugin's LaTeX editing features.
+Tech stack: the Vim text editor using the UltiSnips or LuaSnip snippet plugin and the VimTeX plugin's LaTeX editing features.
 The series should help if you...
 
 - are interested in taking real-time lecture notes using LaTeX, à la [Gilles Castel](https://castel.dev/),
@@ -43,7 +43,7 @@ From that point reaching the speed in this page's GIFs would probably take month
    Covers prerequisites for getting the most out of the series, along with references that should get you up to speed if needed.
    </span>
 
-1. [**UltiSnips**]({{< relref "/tutorials/vim-latex/ultisnips" >}})<span class="text-sm text-gray-500 dark:text-gray-400">/</span>[**LuaSnip**]({{< relref "/tutorials/vim-latex/luasnip" >}})
+1. [**UltiSnips**]({{< relref "/tutorials/vim-latex/ultisnips" >}})<span class="text-sm text-gray-500 dark:text-gray-400"> or </span>[**LuaSnip**]({{< relref "/tutorials/vim-latex/luasnip" >}})
    <br>
    <span class="text-sm text-gray-500 dark:text-gray-400">
    Explains snippets, the key to real-time LaTeX.

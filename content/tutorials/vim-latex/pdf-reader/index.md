@@ -255,12 +255,9 @@ Reminder: on macOS, MacVim's version of terminal Vim can misleadingly display bo
 
 *If you use macOS, see the section on [configuring Skim](#skim).*
 
-*Caveat: at the time of writing, you'll need the X Window System (and not Wayland) to get Zathura working properly with VimTeX.
-This is because VimTeX relies on [`xdotool`](https://github.com/jordansissel/xdotool) for integration with Zathura, and `xdotool` only works with X.
-For details see [VimTeX issue #2046](https://github.com/lervag/vimtex/issues/2046).
-Note that Ubuntu and other major distros are switching to Wayland by default, but you can usually manually choose to use Xorg when logging in.*
+*Note: At one point, Zathura and VimTeX would work well together only on the X Window System (and not Wayland; see [VimTeX issue #2046](https://github.com/lervag/vimtex/issues/2046) for details). But this should now be resolved following [PR #2639](https://github.com/lervag/vimtex/pull/2639), and it seems that Zathura and VimTeX now work well together on Wayland, too.*
 
-Good news: Assuming you're using the X Window System, VimTeX makes connecting Zathura and Vim/Neovim/gVim very easy.
+VimTeX makes connecting Zathura and Vim/Neovim/gVim very easy.
 Here's what to do:
 
 - You will, obviously, need Zathura installed---do this with the package manager of your choice.

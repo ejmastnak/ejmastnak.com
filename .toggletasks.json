@@ -13,10 +13,17 @@
       "count": 2
     },
     {
-      "name": "Project",
+      "name": "Open web browser at project root",
       "cmd": "xdg-open http://localhost:1313/",
       "tags": ["view"],
+      "count": 3
+    },
+    {
+      "name": "Open web browser and point to current file",
+      "cmd": "xdg-open http://localhost:1313/${file:.:r:s?content/??}",
+      "tags": ["viewfile"],
       "count": 3
     }
   ]
 }
+

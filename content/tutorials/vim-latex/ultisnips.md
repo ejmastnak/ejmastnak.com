@@ -110,7 +110,7 @@ For example, to use `MySnippets` as a snippet directory, you would place the fol
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "MySnippets"]
 ```
 
-UltiSnips would then load `*.snippet` files from all `UltiSnips` and `MySnippets` directories in your Vim `runtimepath`.
+UltiSnips would then load all `*.snippets` files from all `UltiSnips` and `MySnippets` directories in your Vim `runtimepath`.
 
 Possible optimization: if, like me, you use only a single predefined snippet directory and don't need UltiSnips to scan your entire `runtimepath` each time you open Vim (which can slow down Vim's start-up time), set `g:UltiSnipsSnippetDirectories` to use a *single*, *absolute* path to your snippets directory, for example
 

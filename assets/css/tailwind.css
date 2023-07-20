@@ -70,10 +70,10 @@
 .chroma .o   { color: #d8dee9; }    /* Operator */
 .chroma .ow  { color: #81a1c1; }    /* Operator.Word */
 .chroma .p   { color: #d8dee9; }    /* Punctuation */
-.chroma .cm  { color: #616E88; }    /* Comment.Multiline */
-.chroma .cp  { color: #5e81ac; }    /* Comment.Preproc */
-.chroma .c1  { color: #616E88; }    /* Comment.Single */
-.chroma .cs  { color: #616E88; }    /* Comment.Special */
+.chroma .cm  { color: #94a3b8; }    /* Comment.Multiline */
+.chroma .cp  { color: #94a3b8; }    /* Comment.Preproc */
+.chroma .c1  { color: #94a3b8; }    /* Comment.Single */
+.chroma .cs  { color: #94a3b8; }    /* Comment.Special */
 .chroma .g   { color: #d8dee9; }    /* Generic */
 .chroma .gd  { color: #ebcb8b; }    /* Generic.Deleted */
 .chroma .gr  { color: #bf616a; }    /* Generic.Error */

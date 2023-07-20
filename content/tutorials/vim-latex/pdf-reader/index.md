@@ -7,16 +7,15 @@ nextDisplayName: "7. Vimscript »"
 date: 2021-10-08
 ---
 
-{{< vim-latex/navbar >}}
-
 # 6. Setting Up a PDF Reader for Writing LaTeX with Vim
 
-{{< date-last-mod >}}
+{{< vim-latex/header part="six" >}}
+{{< vim-latex/navbar >}}
 
-This is part six in a [seven part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
 This article explains, for both Linux and macOS, how to set up a PDF reader for displaying the PDF file associated with the LaTeX source file being edited in Vim.
+The article was last modified on {{< date-last-mod-span >}}.
 
-{{< toc level="2" title="Contents of this article" >}}
+{{< vim-latex/toc level="2" title="Contents of this article" >}}
 
 **Background knowledge:** 
 

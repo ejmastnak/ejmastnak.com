@@ -7,11 +7,12 @@ nextDisplayName: "3. Vim's ftplugin system »"
 date: 2022-09-27
 ---
 
-{{< vim-latex/navbar >}}
-
 # 2. A LuaSnip guide for LaTeX workflows
 
-{{< date-last-mod >}}
+{{< vim-latex/header part="two" >}}
+{{< vim-latex/navbar >}}
+
+This article covers the LuaSnip snippets plugin with a focus on writing LaTeX documents, and was last modified on {{< date-last-mod-span >}}.
 
 You might be interested in this article for two reasons:
 

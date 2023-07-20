@@ -7,16 +7,15 @@ nextDisplay-name: "Introduction"
 date: 2021-10-08
 ---
 
-{{< vim-latex/navbar >}}
-
 # 7. A Vim Configuration Primer for Filetype-Specific Workflows
 
-{{< date-last-mod >}}
+{{< vim-latex/header part="seven" >}}
+{{< vim-latex/navbar >}}
 
-This is part seven in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
-This article provides a theoretical background for use of Vimscript in filetype-specific workflows and aims to give you a foundation for understanding the filetype plugin system, key mapping syntax, and Vimscript functions used earlier in this series.
+This article is a guide to using Vimscript in filetype-specific workflows and aims to give you a foundation for understanding key mapping syntax, Vimscript functions, and other configuration used earlier in this series.
+The article was last modified on {{< date-last-mod-span >}}.
 
-{{< toc level="2" title="Contents of this article" >}}
+{{< vim-latex/toc level="2" title="Contents of this article" >}}
 
 The article is a selection of the Vimscript and Vim configuration concepts needed to understand the content of this series, presented in a way that should hopefully be easier for a new user to understand than tackling the Vim documentation directly, together with references of exactly where in the Vim docs to find more information.
 

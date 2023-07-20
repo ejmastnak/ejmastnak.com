@@ -7,11 +7,12 @@ nextDisplayName: "3. Vim's ftplugin system »"
 date: 2021-10-08
 ---
 
-{{< vim-latex/navbar >}}
-
 # 2. An UltiSnips guide for LaTeX workflows
 
-{{< date-last-mod >}}
+{{< vim-latex/header part="two" >}}
+{{< vim-latex/navbar >}}
+
+This article covers the Ultisnips snippets plugin with a focus on writing LaTeX documents, and was last modified on {{< date-last-mod-span >}}.
 
 You might be interested in this article for two reasons:
 
@@ -20,7 +21,7 @@ You might be interested in this article for two reasons:
 
 [There is also a LuaSnip version of this article.]({{< relref "/tutorials/vim-latex/luasnip" >}})
 
-{{< toc level="2" title="Contents of this article" >}}
+{{< vim-latex/toc level="2" title="Contents of this article" >}}
 
 ## Two ways to read this article
 

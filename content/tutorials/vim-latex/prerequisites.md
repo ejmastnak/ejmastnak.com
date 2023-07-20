@@ -7,17 +7,17 @@ nextDisplayName: "2. Snippets »"
 date: 2022-01-24
 ---
 
-{{< vim-latex/navbar >}}
-
 # 1. Suggested Prerequisites for Writing LaTeX in Vim
 
-{{< date-last-mod >}}
+{{< vim-latex/header part="one" >}}
+{{< vim-latex/navbar >}}
 
-This is part one in a [seven-part series]({{< relref "/tutorials/arch/about" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
-Some prerequisite knowledge is unavoidable here, and I cover suggested prerequisites below, always with a suggestion or mini-tutorial for getting up to speed.
-You should be comfortable with the material in this article to get the most out of this series.
+This article covers prerequisite knowledge for following along with the series, and was last modified on {{< date-last-mod-span >}}.
 
-{{< toc level="2" title="Contents of this article" >}}
+Unfortunately, some prerequisite knowledge is unavoidable here, and I cover suggested prerequisites below (but always with a suggestion or mini-tutorial for getting up to speed).
+I believe you should be comfortable with the material in this article to get the most out of this series.
+
+{{< vim-latex/toc level="2" title="Contents of this article" >}}
 
 ## LaTeX knowledge
 

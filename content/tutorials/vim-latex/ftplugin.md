@@ -7,16 +7,14 @@ nextDisplayName: "4. The VimTeX plugin »"
 date: 2022-03-20
 ---
 
-{{< vim-latex/navbar >}}
-
 # 3. Vim's ftplugin system
 
-{{< date-last-mod >}}
+{{< vim-latex/header part="three" >}}
+{{< vim-latex/navbar >}}
 
-This is part three in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
-This article covers a few concepts related to Vim plugins and file-type plugins.
+This article covers a few concepts related to Vim plugins and file-type plugins and was last modified on {{< date-last-mod-span >}}.
 
-{{< toc level="2" title="Contents of this article" >}}
+{{< vim-latex/toc level="2" title="Contents of this article" >}}
 
 ## The goal of this article...
 

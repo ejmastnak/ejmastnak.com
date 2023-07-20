@@ -7,16 +7,15 @@ nextDisplayName: "5. Compilation »"
 date: 2021-11-24
 ---
 
-{{< vim-latex/navbar >}}
-
 # 4. Getting started with the VimTeX plugin
 
-{{< date-last-mod >}}
+{{< vim-latex/header part="four" >}}
+{{< vim-latex/navbar >}}
 
-This is part four in a [seven-part series]({{< relref "/tutorials/vim-latex/intro" >}}) explaining how to use the Vim or Neovim text editors to efficiently write LaTeX documents.
 This article covers the excellent [VimTeX plugin](https://github.com/lervag/vimtex/), a modular Vim and Neovim plugin with heaps of useful features for writing LaTeX files.
+The article was last modified on {{< date-last-mod-span >}}.
 
-{{< toc level="2" title="Contents of this article" >}}
+{{< vim-latex/toc level="2" title="Contents of this article" >}}
 
 **Background knowledge:** this article will make regular references to the `ftplugin` and `plugin` directories, which we will use to implement LaTeX-specific Vim configuration.
 To get the most out of this article, you should understand the purpose of these directories.

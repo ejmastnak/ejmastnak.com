@@ -1,0 +1,2 @@
+{{ $date := .Page.Date.Format "2 January 2006" }}
+{{ $lastmod := .Page.Lastmod.Format "2 January 2006" }}{{ if (time .Page.Lastmod).After (time .Page.Date) }}{{ $lastmod }}{{else}}{{ $date }}{{ end }}{{- "" -}}

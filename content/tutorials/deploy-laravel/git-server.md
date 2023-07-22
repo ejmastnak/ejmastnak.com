@@ -5,13 +5,12 @@ nextFilename: "git-dev"
 date: 2023-07-18
 ---
 
-{{< deploy-laravel/navbar >}}
-
 # Server-side Git setup for deploying a Laravel web application
 
 {{< deploy-laravel/header >}}
+{{< deploy-laravel/navbar >}}
 
-Credit: the Git workflow used in this guide is based on https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers
+Credit: the Git workflow used in this guide is based on https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers (which in turm seems to be inspired by https://devmarketer.io/learn/deploy-laravel-5-app-lemp-stack-ubuntu-nginx/)
 
 Install Git in the unlikely event it's not already installed on your server:
 

@@ -5,11 +5,18 @@ nextFilename: "composer"
 date: 2023-07-18
 ---
 
-{{< deploy-laravel/navbar >}}
 
 # Configure nginx for serving a Laravel web application
 
 {{< deploy-laravel/header >}}
+{{< deploy-laravel/navbar >}}
+
+```bash
+apt install nginx
+
+# Enable and start web server
+systemctl enable --now nginx.service
+```
 
 [Laravel's example Nginx config](https://laravel.com/docs/10.x/deployment#nginx) works great and I see no reason to change it.
 This article is basically walking through Laravel's example nginx config with short explanations of what each line does.
@@ -124,4 +131,16 @@ The new `sites-enabled` link will then take effect, and nginx will begin serving
 sudo systemctl restart nginx.service
 ```
 
-Reminder: You should also have [disabled Apache]({{< relref "lemp#remove-apache" >}}) if it is installed and running by default.
+## Disable and remove Apache {#remove-apache}
+
+Your VPS might be using Apache as the default web server.
+You should disable Apache (and optionally uninstall it) if you're using nginx.
+
+```bash
+# Stop the apache daemon
+systemctl stop apache2.service
+
+# Optionally, remove all apache related packages
+apt purge apache2*
+apt autoremove
+```

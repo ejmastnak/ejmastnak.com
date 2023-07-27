@@ -19,13 +19,21 @@ The guide should be applicable, with minor adjustments, to other frontend framew
 - Database: your choice of [MySQL](https://www.mysql.com/) (well, [MariaDB](https://mariadb.org/)), [PostgreSQL](https://www.postgresql.org/), [SQLite](https://www.sqlite.org/index.html)
 
 **Prerequisite**:
+
 - You willing and able to operate in a Linux command line environment.
 - You have root access to a Linux machine to use as a web server.
 - In the very likely case you are logging into the server over SSH, you should have basic SSH knowledge (generating a public/private keypair; copying your public key to the `authorized_keys` file on the server; logging in over SSH).
 
 **Conventions**:
 
+I'm using `vim` to edit files. Replace with your editor of choice!
+Actually kiddo just change this to `nano`---experiences users will know to change this to their editor of choice.
+
 ```bash
+# You on your development machine
+you@dev$ whoami
+you
+
 # A shell command issued as root user on the server
 root@server$ whoami
 root
@@ -43,7 +51,7 @@ laravel@server:/var/www$ pwd
 /var/www
 ```
 
-## Overview
+## Contents
 
 Click on an individual article for details.
 
@@ -53,12 +61,12 @@ Click on an individual article for details.
 1. [Set up Git on server]({{< relref "git-server" >}})
 1. [Set up Git on development machine]({{< relref "git-dev" >}}), configure a Git remote point to server, push code to server 
 1. [Set Laravel directory permissions]({{< relref "permissions" >}})
-1. [Install and configure Nginx]({{< relref "nginx" >}})
 1. [Set up Composer]({{< relref "composer" >}}): install Composer and use it install PHP packages
 1. [Set up NPM]({{< relref "npm" >}}): install NPM and use it install NodeJS packages
 1. [Set up Laravel environment]({{< relref "env" >}}): create and configure `.env` file; cache routes and config; migrate and seed database.
+1. [Install and configure Nginx]({{< relref "nginx" >}})
 1. [Set up a maintenance mode]({{< relref "maintenance-mode" >}}): display a custom message during mainteance mode when deploying new code
-1. [Double check post-receive hooks]({{< relref "double-check" >}}) work (checkout, package installation, artisan commands...)
+1. [Set up automatic redeployment]({{< relref "git-server-2" >}})
 1. [Set a custom domain name]({{< relref "dns" >}}): set DNS records to point a domain name to your server's IP address
 1. [Set up HTTPS]({{< relref "https" >}})
 

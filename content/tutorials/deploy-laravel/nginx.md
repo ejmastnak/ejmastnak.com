@@ -1,116 +1,115 @@
 ---
-title: "Configure nginx for serving a Laravel web application"
+title: "Configure Nginx for serving a Laravel web application"
 prevFilename: "permissions"
 nextFilename: "composer"
 date: 2023-07-18
 ---
 
-
-# Configure nginx for serving a Laravel web application
+# Configure Nginx for serving a Laravel web application
 
 {{< deploy-laravel/header >}}
 {{< deploy-laravel/navbar >}}
 
-```bash
-apt install nginx
-
-# Enable and start web server
-systemctl enable --now nginx.service
-```
-
-[Laravel's example Nginx config](https://laravel.com/docs/10.x/deployment#nginx) works great and I see no reason to change it.
+This article shows how to configure Nginx for serving a Laravel web app.
+We'll be using [Laravel's example Nginx config](https://laravel.com/docs/10.x/deployment#nginx)---it works great and I see no reason to reinvent the wheel here.
 This article is basically walking through Laravel's example nginx config with short explanations of what each line does.
 
-File locations:
+First install and start Nginx:
 
-- `/etc/nginx/sites-available` contains config files for all sites.
-- `/etc/nginx/sites-enabled` contains a symlink to the config in `sites-available` corresponding to the site you want Nginx to serve.
+```bash
+# Install, enable and start Nginx
+laravel@server$ sudo apt install nginx
+laravel@server$ sudo systemctl enable --now nginx.service
+```
 
-Create an Nginx config:
+<!-- File locations: -->
+<!---->
+<!-- - `/etc/nginx/sites-available` contains config files for all sites. -->
+<!-- - `/etc/nginx/sites-enabled` contains a symlink to the config in `sites-available` corresponding to the site you want Nginx to serve. -->
+
+Create an Nginx config file for your web app:
 
 ```bash
 # Create an Nginx config:
-vim /etc/nginx/sites-available/landmarks
+laravel@server$ sudoedit /etc/nginx/sites-available/project
 ```
 
 Inside paste [Laravel's example Nginx config](https://laravel.com/docs/10.x/deployment#nginx) (I've added some comments)
 
 ```bash
-# Inside /etc/nginx/sites-available/landmarks
+# Inside /etc/nginx/sites-available/project
 server {
   # Listen for connections on port 80 (HTTP)
   listen 80;
   # Add this if using IPv6
   # listen [::]:80;
 
-  # IP address domain name of your server
-  # You'll want to update this to your server's IP address
+  # IP address (or domain name) of your server.
+  # Set this to your server's IP address (or domain name, if you've set up DNS).
   server_name 1.2.3.4;
+  # server_name example.com;  # if using a domain name
 
-  # You can also use the domain name of your server once you have set up the
-  # appropriate DNS records, e.g.
-  # server_name example.com;
+  # The root directory for incoming web requests.
+  # Set this to your Laravel app's `public` subdirectory, which is the entry
+  # point to Laravel application from the public web.
+  root /srv/www/project/public;
 
-  # This is the site's root directory and should point to public subdirectory
-  # of your Laravel appliation
-  root /var/www/landmarks/public;
-
-  # These is a header for HTTP responses
-  # This setting supposedly serves to prevent click-jacking attacks.
-  # The page can be embedded in a frame only if the site including it in a
-  # frame is the same as the one serving the page.
+  # This sets the X-Frame-Options HTTP response header such that your site can
+  # be embedded in a frame only if the site including it is the same as the one
+  # serving the page.
+  # This supposedly serves to prevent click-jacking attacks; for details see
   # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
   add_header X-Frame-Options "SAMEORIGIN";
 
-  # These is a header for HTTP responses
-  # This setting supposedly serves to prevent MIME type sniffing.
+  # This sets the X-Content-Type-Options HTTP response header to help revent
+  # MIME type sniffing. For details see
   # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
   add_header X-Content-Type-Options "nosniff";
 
-  # Serve the index.php file as the entrypoint to your application,
-  # since index.php is entrypoint to Laravel apps
+  # Use PHP (and not HTML) index files (likely because Laravel is PHP-based)
   index index.php;
 
-  # Use UTF-8 character encoding
+  # Specify UTF-8 character encoding in Content-Type HTTP response header fields.
   charset utf-8;
 
-  # How nginx should respond to URIs
+  # The order in which Nginx translates URIs to files on the server
   location / {
     try_files $uri $uri/ /index.php?$query_string;
   }
 
-  # I believe this suppresses nginx logging errors for missing favicon and
-  # robots.txt files
+  # Disable logging related to favicon and robots.txt files.
   location = /favicon.ico { access_log off; log_not_found off; }
   location = /robots.txt  { access_log off; log_not_found off; }
 
   # Redirect to the home page (i.e. /index.php) on 404 errors
-  # You might or might now want this.
-  # This might also be redundant after already using
-  # try_files $uri $uri/ /index.php?$query_string;
   error_page 404 /index.php;
 
-  # TODO: what is this?
-  # IMPORTANT: set the correct version of PHP (e.g. 8.1, 8.2, etc.)
+  # Settings for handling requrests for PHP files.
+  # IMPORTANT: set the correct version of PHP (e.g. 8.1, 8.2, etc., depending
+  # on the PHP version you have installed on your server).
   location ~ \.php$ {
     fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
     fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
     include fastcgi_params;
   }
 
-  # TODO: what is this?
+  # Denies all attempts to access hidden files that are not associated with
+  # well-known services.
+  # See e.g. https://en.wikipedia.org/wiki/Well-known_URI
   location ~ /\.(?!well-known).* {
     deny all;
   }
 }
 ```
 
+Helpful: [Nginx directives](http://nginx.org/en/docs/dirindex.html)
+
 Use the Laravel config as the active nginx config file:
 
 ```bash
 # Make nginx serve the Laravel app
 # Specify full path when creating the symlink
-sudo ln -s /etc/nginx/sites-available/landmarks /etc/nginx/sites-enabled/landmarks
+sudo ln -s /etc/nginx/sites-available/project /etc/nginx/sites-enabled/project
 
 # Remove the active link to the default nginx splash page
 sudo rm /etc/nginx/sites-enabled/default

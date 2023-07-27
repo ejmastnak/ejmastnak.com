@@ -121,7 +121,7 @@ Two things to do here: (1) allow the `laravel` user to log in to the server over
    These steps are standard SSH best practice---I'm assuming you've seen this a million times before and won't go into long explanations.
    (New to SSH? I'd recommend [this Digital Ocean SSH guide](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server) to learn the basics.)
 
-### Easier SSH access from your dev machine
+### Tip: easier SSH access from your dev machine
 
 You probably want to set up an alias in the SSH config on your development machine to make it easier to connect to your server over SSH.
 

@@ -12,6 +12,8 @@ date: 2023-07-18
 
 This article shows how to set up a Git repository on the server to which we will push code from your development machine, and a post-receive Git hook to automate (re)deploying your app on every Git push to the server.
 
+## Preview
+
 For orientation, here's the Git and deployment workflow we'll use in this guide:
 
 1. You develop your app on your dev machine.
@@ -23,7 +25,10 @@ The Git workflow used in this guide is based on [Farhan Hasin Chowdhury's guide 
 I encourage you to read through both guides.
 {{< /details >}}
 
-First check Git is installed on your server, and install if needed:
+## Install Git
+
+First check Git is installed on your server (it probably will be).
+Install if needed:
 
 ```bash
 # Check if Git is installed (very likely---most distros come with Git preinstalled)
@@ -39,11 +44,11 @@ We'll first create a bare Git repository to hold the web app's code on the serve
 I'm placing the Git repo in a dedicated `repo` subdirectory of the `laravel` user's home directory, but the location is arbitrary---anywhere on the server would work.
 
 ```bash
-# Create a folder to hold the Git repo
-laravel@server$ mkdir -p ~/repo/landmarks.git
+# Create a folder to hold the Laravel project's Git repo
+laravel@server$ mkdir -p ~/repo/laravel-project.git
 
 # Initialize a bare Git repo for project
-laravel@server$ cd ~/repo/landmarks.git && git init --bare
+laravel@server$ cd ~/repo/laravel-project.git && git init --bare
 ```
 
 Note that we created a *bare* Git repo.
@@ -66,10 +71,10 @@ a deeper appreciation of bare repos requires some familiarity with Git concepts 
 Then create a separate directory in `/srv/www/` from which to serve the app:
 
 ```bash
-# Create directory to hold app files on server
-# and give ownership to the laravel user.
-laravel@server$ sudo mkdir -p /srv/www/landmarks
-laravel@server$ sudo chown laravel:laravel /srv/www/landmarks
+# Create directory to hold app files on server and give ownership to the
+# laravel user.
+laravel@server$ sudo mkdir -p /srv/www/laravel-project
+laravel@server$ sudo chown laravel:laravel /srv/www/laravel-project
 ```
 
 {{< details summary="Why use `/srv/www`?" >}}
@@ -82,14 +87,14 @@ Use whichever you prefer.
 Note that both the server-side Git repo and the `/srv/www/` directory are currently empty.
 We'll populate them in the next article.
 
-Our workflow will be to push code to the bare Git repo `~/repo/landmarks.git`, then use post-receive hooks to `git checkout` the `HEAD` of your app's Git repo into the `/srv/www/landmarks` directory from which you app is served.
+Our workflow will be to push code to the bare Git repo `~/repo/laravel-project.git`, then use post-receive hooks to `git checkout` the `HEAD` of your app's Git repo into the `/srv/www/laravel-project` directory from which you app is served.
 
 {{< details summary="Please translate the last sentence to non-jargon" >}}
 For our purposes, the phrase
 
-> `git checkout` the `HEAD` of your app's Git repo into the `/srv/www/landmarks` directory 
+> `git checkout` the `HEAD` of your app's Git repo into the `/srv/www/laravel-project` directory 
 
-translates to updating the files in `/srv/www/landmarks/` (from where your app is served) to match the version just pushed to the Git repo.
+translates to updating the files in `/srv/www/laravel-project/` (from where your app is served) to match the version just pushed to the Git repo.
 Or even simpler: copying your app's code from the Git repo into the server directory.
 
 Caveat: this assumes you haven't manually changed the `HEAD` of the Git repo on the server to point to something other than your main branch, in which case you probably know what you're doing anyway.
@@ -97,27 +102,27 @@ Caveat: this assumes you haven't manually changed the `HEAD` of the Git repo on 
 
 And why use separate Git and server directories in the first place?
 This setup decouples the Git repo (which has your app's entire commit history) from the most recent version of your app being served to the public Web.
-Aside from just being cleaner in principle than serving your app directly from a Git repo, this considerably simplifies managagement of Laravel's `.env` file, the PHP `vendor` directory, and NPM's `node_modules` directory for your production app (none of these files should be placed in a Git repo in the first place).
+Aside from being cleaner in principle than serving your app directly from a Git repo, this considerably simplifies managagement of Laravel's `.env` file, the PHP `vendor` directory, and NPM's `node_modules` directory for your production app (none of these files should be placed in a Git repo in the first place).
 
 ## Create post-receive hook
 
 We then just need to create a Git hook to checkout your app from the Git repo to the server directory.
+We'll do this with a `post-receive` hook (the exact name is important here), which Git will automatically run after every push to the server.
 
 {{< details summary="What is a Git hook?" >}}
 Git hooks are simply shell scrips that automatically run in response to specific Git-related events (pushes, pulls, commits, etc.).
 They're super useful for automating Git-related tasks.
 
 This guide uses a `post-receive` hook to automatically redeploy your web app on every Git push to the server.
-There are many other applications of Git hooks---consult [the Git Book](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) for details.
+There are many other applications of Git hooks---see [the Git Book](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) for details.
 {{< /details >}}
 
-We'll do this with a `post-receive` hook (the exact name is important here), which Git will automatically run after every push to the server.
 Here's what to do:
 
 ```bash
 # Change into your Git repo's hooks directory.
 # (There will be many sample scripts you can look through for inspiration.)
-laravel@server$ cd ~/repo/landmarks.git/hooks
+laravel@server$ cd ~/repo/laravel-project.git/hooks
 
 # Create the post-receive hook script.
 # (This exact name is needed for the hook to run after Git pushes.)
@@ -133,12 +138,12 @@ Then open the `post-receive` script for editing, and inside place:
 ```bash
 #!/bin/sh
 # Copy app from Git repo to server directory
-git --work-tree=/srv/www/landmarks --git-dir=/home/laravel/repo/landmarks.git checkout --force
+git --work-tree=/srv/www/laravel-project --git-dir=/home/laravel/repo/laravel-project.git checkout --force
 ```
 
 {{< details summary="Please translate the command to non-jargon" >}}
 In practice, the command in the `checkout` script copies the most recently-pushed version of your app from the Git repo to the server directory.
-(See also the note above.)
+(See also the earlier note on `git checkout` and `HEAD`.)
 
 We're basically running `git checkout` with a few extra options:
 

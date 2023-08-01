@@ -43,14 +43,15 @@ laravel@server$ sudo apt install php-sqlite3
 
 # If PostgreSQL
 laravel@server$ sudo apt install php-pgsql
-
-# Note:
-# If you explicitly installed a specific version of PHP (e.g. `php8.2`), install
-# the versions of each PHP extension that matches your PHP version (e.g.
-# explicitly install `php8.2-curl`, `php8.2-fpm`, etc. if you installed `php8.2`).
 ```
 
-### Summary of Laravel-related PHP extensions
+Ensure your PHP version matches the version of your PHP extensions.
+You only need to worry about this if you explicitly installed a specific version of PHP (e.g. if you explicitly install `php8.2`, then explicitly install `php8.2-curl`, `php8.2-fpm`, etc.).
+
+At this point you can move on to the next article.
+But if you're curious here's a bit more on PHP extensions.
+
+### More on Laravel-related PHP extensions
 
 On an Ubuntu 22.10 Digital Ocean droplet at the time of writing...
 

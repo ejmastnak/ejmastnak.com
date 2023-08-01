@@ -60,13 +60,12 @@ Click on an individual article for details.
 1. [Set up database]({{< relref "db" >}}): install a database management system (MySQL, PostgreSQL, or SQLite) and create a database and database user if required by your DBMS.
 1. [Set up Git on server]({{< relref "git-server" >}})
 1. [Set up Git on development machine]({{< relref "git-dev" >}}), configure a Git remote point to server, push code to server 
-1. [Set Laravel directory permissions]({{< relref "permissions" >}})
 1. [Set up Composer]({{< relref "composer" >}}): install Composer and use it install PHP packages
 1. [Set up NPM]({{< relref "npm" >}}): install NPM and use it install NodeJS packages
 1. [Set up Laravel environment]({{< relref "env" >}}): create and configure `.env` file; cache routes and config; migrate and seed database.
+1. [Set Laravel directory permissions]({{< relref "permissions" >}})
 1. [Install and configure Nginx]({{< relref "nginx" >}})
-1. [Set up a maintenance mode]({{< relref "maintenance-mode" >}}): display a custom message during mainteance mode when deploying new code
-1. [Set up automatic redeployment]({{< relref "git-server-2" >}})
+1. [Set up automatic redeployment]({{< relref "deploy" >}})
 1. [Set a custom domain name]({{< relref "dns" >}}): set DNS records to point a domain name to your server's IP address
 1. [Set up HTTPS]({{< relref "https" >}})
 
@@ -76,3 +75,5 @@ Click on an individual article for details.
 - https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers
 
 Another decent guide: https://mhmdomer.com/the-ultimate-laravel-deployment-guide
+
+And another really nice one: https://lorisleiva.com/deploy-your-laravel-app-from-scratch/deploy-with-zero-downtime

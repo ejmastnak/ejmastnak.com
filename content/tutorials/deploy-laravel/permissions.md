@@ -1,7 +1,7 @@
 ---
 title: "Directory ownership and permissions for deploying a Laravel web application"
-prevFilename: "git-dev"
-nextFilename: "composer"
+prevFilename: "env"
+nextFilename: "nginx"
 date: 2023-07-18
 ---
 
@@ -21,7 +21,7 @@ First change the group ownership of the served directory to the `www-data` group
 
 ```bash
 # Change group ownership of app directory to www-data
-laravel@server$ sudo chown -R :www-data /srv/www/laravel
+laravel@server$ sudo chown -R :www-data /srv/www/laravel-project
 ```
 
 Then give the owning group (i.e. `www-data`) write permissions on two special directories:
@@ -29,8 +29,8 @@ Then give the owning group (i.e. `www-data`) write permissions on two special di
 ```bash
 # Give the web group write privileges on the storage and cache directories
 # This allows Laravel to write to these directories during normal operation.
-laravel@server$ sudo chmod -R 775 /srv/www/laravel/storage
-laravel@server$ sudo chmod -R 775 /srv/www/laravel/bootstrap/cache
+laravel@server$ sudo chmod -R 775 /srv/www/laravel-project/storage
+laravel@server$ sudo chmod -R 775 /srv/www/laravel-project/bootstrap/cache
 ```
 
 Laravel needs to write to these two directories as part of normal operation, and you'll run into errors if the directories are not writable to the `www-data` user.
@@ -45,7 +45,7 @@ You can solve this by moving the app's SQLite database to a directory writable b
 
 ```bash
 # Change into server-side Laravel app's database directory
-laravel@server$ cd /srv/www/laravel/database
+laravel@server$ cd /srv/www/laravel-project/database
 
 # Create an SQLite subdirectory and database
 laravel@server$ mkdir sqlite  # the directory name is your choice
@@ -60,7 +60,7 @@ Be sure to update the Laravel `.env` file with the new path to the SQLite databa
 The relevant `.env` file setting should look something like this:
 
 ```bash
-DB_DATABASE=/srv/www/project/database/sqlite/database.sqlite
+DB_DATABASE=/srv/www/laravel-project/database/sqlite/database.sqlite
 ```
 
 {{< deploy-laravel/navbar >}}

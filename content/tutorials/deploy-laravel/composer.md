@@ -1,6 +1,6 @@
 ---
 title: "Install Composer for deploying a Laravel web application"
-prevFilename: "permissions"
+prevFilename: "git-dev"
 nextFilename: "npm"
 date: 2023-07-18
 ---
@@ -27,13 +27,15 @@ laravel@server$ sudo mkswap /swapfile
 laravel@server$ sudo swapon /swapfile
 ```
 
-To make the swap file permanent, you need to add an entry in the `/etc/fstab` file.
+If you want to permanently keep the swap file, you need to add an entry in the `/etc/fstab` file.
 To do this, open `/etc/fstab` and at the bottom (carefully!) place the following line:
 
 ```bash
 # Place this line at the bottom of /etc/fstab
 /swapfile none swap defaults 0 0
 ```
+
+If you won't need the swap file after installing Composer, you can disable the swap file with `swapoff` (after installing Composer!), remove any relevant entries from `/etc/fstab`, and delete the swap file.
 
 ## Install Composer
  
@@ -76,14 +78,22 @@ Assuming the installer was verified, you're safe to run the installer:
 laravel@server$ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 ```
 
+The last step installs Composer at `/usr/local/bin/composer`.
+You can safely delete the `composer-setup.php` script after completing the installation.
+
 ## Use Composer to install PHP packages
 
 Then change into the directory from which your app is served and use Composer to install your Laravel app's PHP dependencies.
 
 ```bash
 # Install Composer packages
-laravel@server$ cd /srv/www/project
+laravel@server$ cd /srv/www/laravel-project
 laravel@server$ composer install --optimize-autoloader --no-dev
 ```
+
+This command looks in your Laravel project's `composer.json` file and installs the project's PHP dependencies into a `vendor` directory in your project's root.
+The options are [recommended by Laravel](https://laravel.com/docs/10.x/deployment#autoloader-optimization); `--optimize-autoloader` speeds up autoloading and `--no-dev` ignores development dependencies that won't be needed in production.
+
+(Note that `optimize-autoloader` is probably turned on by default in the `config` section of your `composer.json` file, but it can't hurt to specify it explicitly.)
 
 {{< deploy-laravel/navbar >}}

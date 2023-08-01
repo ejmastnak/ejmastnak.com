@@ -24,16 +24,20 @@ We'll use NPM to install your application's Javascript depedencies.
 laravel@server$ sudo apt install npm
 ```
 
-## Install Node.js packages and build app
+## Install Node.js packages
 
 Then change into the directory from which your app is served and use NPM to install your app's Javascript dependencies:
 
 ```bash
-# Install Node.js packages.
+# Install your app's Node.js dependencies
 # (They should be installed in your project's `node_modules` directory.)
 laravel@server$ cd /srv/www/laravel-project
 laravel@server:laravel-project$ npm install
 ```
+
+This command looks in your Laravel project's `package.json` file and installs the project's Node.js dependencies into a `node_modules` directory in your project's root.
+
+## Build your app
 
 Finally build your app for production (this assumes you have a `build` script defined in your project's `package.json` file, which a Laravel-Vue or Laravel-React project should come with by default):
 
@@ -43,11 +47,11 @@ Finally build your app for production (this assumes you have a `build` script de
 laravel@server:laravel-project$ npm run build
 ```
 
-## Remove `public/hot` if necessary
+## Remove `public/hot`, if necessary
 
-One final detail: ensure there is no `public/hot` directory in your server-side Laravel project; delete it if necessary.
+One final detail: double check that there is no `public/hot` directory in your server-side Laravel project; delete it if necessary.
 
-This directory is used by Vite for hot reloading during development, but will cause problems on a production machine.
-(It shouldn't end up on your server because it is ignored in Laravel's default `.gitignore`, but check just in case.)
+(This directory is used by Vite for hot reloading during development, but will cause problems on a production machine.
+It shouldn't end up on your server because it is ignored in Laravel's default `.gitignore`, but check just in case.)
 
 {{< deploy-laravel/navbar >}}

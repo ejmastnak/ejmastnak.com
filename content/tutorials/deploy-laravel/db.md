@@ -11,13 +11,14 @@ date: 2023-07-17
 {{< deploy-laravel/navbar >}}
 
 This article covers the installation and basic set up a database management system.
+
 I've included sections on three common DBMSs---use whichever you prefer out of:
 
 1. [MySQL (MariaDB)](#mysql)
 1. [PostgreSQL](#psql)
 1. [SQLite](#sqlite)
 
-If you're using MySQL, consider also reading through [Digital Ocean's guide to setting up MySQL on an Ubuntu machine](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04).
+If you're using MySQL, you might also like [Digital Ocean's guide to setting up MySQL on an Ubuntu machine](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04), which covers similar material.
 
 ## MySQL {#mysql}
 
@@ -40,7 +41,7 @@ laravel@server$ sudo mysql
 Then create a dedicated database and DB account for your web app.
 
 {{< details summary="Disclaimer: I'm showing a simple setup" >}}
-I'm showing only a basic setup, i.e.:
+I'm showing only a basic setup in this guide, encompassing:
 
 - Password-based authentication using MySQL's default authentication plugin ([`caching_sha2_password`](https://dev.mysql.com/doc/refman/8.0/en/caching-sha2-pluggable-authentication.html) at the time of writing).
 - Granting all privileges on the web app's DB to the non-root account.
@@ -184,7 +185,7 @@ postgres=# ALTER DATABASE foo OWNER TO foouser;
 ```
 
 {{< details summary="Disclaimer: this setup is simple" >}}
-I'm showing only a basic setup, i.e.:
+I'm showing only a basic setup in this guide, encompassing:
 
 - Password-based authentication (that will only work with local host-based connections on the server).
   This means you'll need to add an `-h` flag when using `psql`.
@@ -215,13 +216,13 @@ This is a consequence of how we've set up the PostgreSQL user combined with the 
 
 ## SQLite {#sqlite}
 
-This is easy compared to MySQL and PostgreSQL---since SQLite doesn't use a database server, we don't have to deal with account and privilege management; all we have to do is install SQLite:
+SQLite is easy compared to MySQL and PostgreSQL---since SQLite doesn't use a database server, we don't have to deal with account and privilege management; all we have to do is install SQLite:
 
 ```bash
 # Install SQLite
 laravel@server$ sudo apt install sqlite3
 ```
 
-That's literally all you need for now---I'm assuming you'll be bring along an existing `*.sqlite` database file with a Laravel app.
+That's all you need for now---I'm assuming you'll be bring along an existing `*.sqlite` database file with a Laravel app.
 
 {{< deploy-laravel/navbar >}}

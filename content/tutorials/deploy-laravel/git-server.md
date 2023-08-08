@@ -18,11 +18,19 @@ For orientation, here's the Git and deployment workflow we'll use in this guide:
 
 1. You develop your app on your dev machine.
 1. You push code from your dev machine to a dedicated Git repo on your server.
-1. Post-receive Git hooks automatically copy your app's code to the `/srv/www/` directory from which Nginx will serve your app to the public Web.
+1. A post-receive Git hook automatically copy your app's code to the `/srv/www/` directory from which Nginx will serve your app to the public Web.
 
 {{< details summary="Credit where credit is due" >}}
 The Git workflow used in this guide is based on [Farhan Hasin Chowdhury's guide to deploying a Laravel web app on a VPS](https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers) (which in turm seems to be inspired by [J. Alexander Curtis's guide to deploying a Laravel 5.3 app on a LEMP stack](https://devmarketer.io/learn/deploy-laravel-5-app-lemp-stack-ubuntu-nginx/)).
 I encourage you to read through both guides.
+{{< /details >}}
+
+{{< details summary="What if I want to host my Git repo on GitHub?" >}}
+No problem, you can do that too!
+Just set up multiple remotes on your dev machine.
+E.g. `origin` (GitHub) and `prod` (server).
+
+You could even [base your deployment workflow on GitHub actions](https://stefanzweifel.dev/posts/2021/05/24/deployer-on-github-actions), but that is a whole 'nother can of worms.
 {{< /details >}}
 
 ## Install Git
@@ -87,7 +95,7 @@ Use whichever you prefer.
 Note that both the server-side Git repo and the `/srv/www/` directory are currently empty.
 We'll populate them in the next article.
 
-Our workflow will be to push code to the bare Git repo `~/repo/laravel-project.git`, then use post-receive hooks to `git checkout` the `HEAD` of your app's Git repo into the `/srv/www/laravel-project` directory from which you app is served.
+Our workflow will be to push code to the bare Git repo `~/repo/laravel-project.git`, then use a post-receive hook to `git checkout` the `HEAD` of your app's Git repo into the `/srv/www/laravel-project` directory from which you app is served.
 
 {{< details summary="Please translate the last sentence to non-jargon" >}}
 For our purposes, the phrase
@@ -110,7 +118,7 @@ We then just need to create a Git hook to checkout your app from the Git repo to
 We'll do this with a `post-receive` hook (the exact name is important here), which Git will automatically run after every push to the server.
 
 {{< details summary="What is a Git hook?" >}}
-Git hooks are simply shell scrips that automatically run in response to specific Git-related events (pushes, pulls, commits, etc.).
+Git hooks are just shell scrips that automatically run in response to specific Git-related events (pushes, pulls, commits, etc.).
 They're super useful for automating Git-related tasks.
 
 This guide uses a `post-receive` hook to automatically redeploy your web app on every Git push to the server.
@@ -137,8 +145,13 @@ Then open the `post-receive` script for editing, and inside place:
 
 ```bash
 #!/bin/sh
+
+# Server and Git repo directories
+SRV="/srv/www/laravel-project"
+REPO="/home/laravel/repo/laravel-project.git"
+
 # Copy app from Git repo to server directory
-git --work-tree=/srv/www/laravel-project --git-dir=/home/laravel/repo/laravel-project.git checkout --force
+git --work-tree=${SRV} --git-dir=${REPO} checkout --force
 ```
 
 {{< details summary="Please translate the command to non-jargon" >}}

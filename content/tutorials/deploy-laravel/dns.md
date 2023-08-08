@@ -1,6 +1,6 @@
 ---
 title: "Set up a custom domain name for a Laravel web application"
-prevFilename: "deploy"
+prevFilename: "deploy-simple"
 nextFilename: "https"
 date: 2023-07-18
 ---

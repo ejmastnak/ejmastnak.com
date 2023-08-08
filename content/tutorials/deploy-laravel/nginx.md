@@ -1,7 +1,7 @@
 ---
 title: "Configure Nginx for serving a Laravel web application"
 prevFilename: "env"
-nextFilename: "deploy"
+nextFilename: "deploy-simple"
 date: 2023-07-18
 ---
 
@@ -73,7 +73,7 @@ See [this StackOverflow thread](https://serverfault.com/questions/527630/differe
 
 Inside `/etc/nginx/sites-available/laravel-project` paste [Laravel's example Nginx config](https://laravel.com/docs/10.x/deployment#nginx) (I've added some comments---feel free to remove them).
 
-```bash
+```nginx
 server {
   # Listen for connections on port 80 (HTTP)
   listen 80;

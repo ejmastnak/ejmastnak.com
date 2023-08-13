@@ -1,5 +1,5 @@
 ---
-title: "Automated Git deployment for a Laravel web application"
+title: "Simple automated deployment of a Laravel web application"
 prevFilename: "nginx"
 nextFilename: "dns"
 date: 2023-07-18
@@ -30,16 +30,15 @@ Experienced users probably want to jump directly to zero-down redeployment.
 
 ## Prerequisite
 
-You have read, implemented, and understood the earlier article on [server-side Git setup]({{< relref "git-server" >}}).
+You should have read, implemented, and understood the earlier article on [server-side Git setup]({{< relref "git-server" >}}).
 In particular you have a working `post-receive` hook in your server-side Git repo and understand what the hook does, i.e. copy your app to the production directory in `/srv/www/` after every Git push.
 
 ## The redeployment workflow
 
-This redeployment workflow uses the `post-receive` hook in your server-side Git repo.
-The redeployment workflow is:
+This redeployment workflow relies on the `post-receive` hook in your server-side Git repo and looks something like this:
 
 1. You develop your app on your dev machine.
-2. You push code from your dev machine to your app's server-side Git repo.
+2. You push code from your dev machine to your app's server-side Git repo, triggering the `post-receive` hook.
 3. The `post-receive` hook first copies your updated app to the production directory in `/srv/ww/` (as in [the server-side Git setup article]({{< relref "git-server" >}})), then runs the standard Laravel (re)deployment recipe, i.e. Composer and NPM installs, rebuilding your app, caching routes and config, etc.
 
 We're basically collecting all of the deployment commands we've run manually over the past few articles, and adding them to the `post-receive` hook in your app's Git repo.

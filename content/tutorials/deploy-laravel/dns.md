@@ -62,7 +62,7 @@ servername: 1.2.3.4 foobar.com;
 Test the syntax of the updated Nginx config, then reload Nginx:
 
 ```bash
-# Test syntax is ok, then reload Nginx config
+# Test Nginx config syntax is ok, then reload config
 sudo nginx -t
 sudo nginx -s reload
 ```

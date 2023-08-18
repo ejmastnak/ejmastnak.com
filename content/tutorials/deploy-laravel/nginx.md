@@ -148,11 +148,11 @@ Create a symlink to enable your Laravel site:
 
 ```bash
 # Create a symlink enabling your Laravel app
-# Specify the full path when creating the symlink!
-laravel@server$ sudo ln -s /etc/nginx/sites-available/laravel-project /etc/nginx/sites-enabled/laravel-project
+laravel@server$ cd /etc/nginx/sites-enabled
+laravel@server:sites-enabled$ sudo ln -s ../sites-available/laravel-project laravel-project
 
 # Remove the active link to the default Nginx splash page
-sudo rm /etc/nginx/sites-enabled/default
+sudo rm default
 ```
 
 Then test the syntax of the active nginx config file:

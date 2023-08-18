@@ -144,28 +144,20 @@ here is what your directory structure should look like:
     └── storage/
 ```
 
-**TODO:** ownership reset?
-I.e. something like `laravel@server:laravel-project$ sudo chown :www-data /releases/initial`.
-How about ownership when creating new releases programmatically?
-Hey, does `www-data` even need to own `/srv/www/laravel-project/releases/*/` or just the contents thereoff?
-Wouldn't you still have to change permissions on `storage` and `bootstrap/cache` after each release?
-
 ### Link shared files into place
 
 Link your shared files into place (in the future a redeployment script will do this for you, but you have to do it manually for the initial release).
 Here's an example shell session:
 
-**TODO:** figure out relative or absolute paths for symlinking.
-https://askubuntu.com/questions/994103/why-does-the-ln-command-need-an-absolute-path
-
 ```bash
-laravel@server$ cd laravel-project/
+# Change into initial release directory
+laravel@server$ cd laravel-project/releases/initial
 
-laravel@server:laravel-project$ ln -s shared/.env releases/initial/.env
-laravel@server:laravel-project$ ln -s shared/storage/ releases/initial/storage/
+laravel@server:initial$ ln -s ../../shared/.env .env
+laravel@server:laravel-project$ ln -s ../../shared/storage/ storage
 
 # If using SQLite
-laravel@server:laravel-project$ ln -s shared/database.sqlite releases/initial/database/sqlite/database.sqlite
+laravel@server:laravel-project$ ln -s ../../shared/database.sqlite database/sqlite/database.sqlite
 ```
 
 ### Create a `active` symlink
@@ -174,8 +166,19 @@ Activate your initial release by creating the `active` symlink:
 
 ```bash
 # Create a symlink activating your initial release
-laravel@server:laravel-project$ ln -sf  /srv/www/laravel-project/releases/initial/ /srv/www/laravel-project/active
+laravel@server$ cd laravel-project/
+laravel@server:laravel-project$ ln -sf  releases/initial/ active
 ```
+
+### Ownership and permission reset
+
+```bash
+laravel@server:laravel-project$ sudo chown :www-data /releases/initial
+```
+
+Hey, does `www-data` even need to own `/srv/www/laravel-project/releases/*/` or just the contents thereoff?
+Wouldn't you still have to change permissions on `storage` and `bootstrap/cache` after each release?
+
 
 ### Update your Nginx config
 
@@ -191,11 +194,28 @@ Test the syntax of the updated Nginx config, then reload Nginx:
 
 ```bash
 # Test Nginx config syntax is ok, then reload config
-sudo nginx -t
-sudo nginx -s reload
+laravel@server$ sudo nginx -t
+laravel@server$ sudo systemctl restart nginx.service
 ```
 
-**TODO:** app should be live at this point, no?
+### TODO errors
+
+At this point Laravel was still trying to look for logs at `/srv/www/nutria/app/storage/logs`, i.e. my old Nginx root directive.
+I restarted FPM but this did not solve the problem.
+
+```bash
+laravel@server$ sudo systemctl restart php8.1-fpm.service
+```
+
+After this, I ran the following sequence of commands (after resetting permissions on cache directory) and the app came back up (i.e. began using the correct logs directory), but I'm not sure which of the commands did the trick.
+I'd imagine `cache:clear`, but the funky thing is that `cache:clear` was failing with permission errors even after resetting permissions on the cache directory... as if I needed to clear and recache config for cache to realize it had appropriate permissions.
+Anyway this is to be tested.
+
+```bash
+php artisan config:clear
+php artisan config:cache
+php artisan cache:clear
+```
 
 ## Automating redeployment
 

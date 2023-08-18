@@ -75,10 +75,10 @@
 .chroma .c1  { color: #94a3b8; }    /* Comment.Single */
 .chroma .cs  { color: #94a3b8; }    /* Comment.Special */
 .chroma .g   { color: #d8dee9; }    /* Generic */
-.chroma .gd  { color: #ebcb8b; }    /* Generic.Deleted */
+.chroma .gd  { color: #bf616a; }    /* Generic.Deleted */
 .chroma .gr  { color: #bf616a; }    /* Generic.Error */
 .chroma .gh  { color: #88c0d0; }    /* Generic.Heading */
-.chroma .gi  { color: #d8dee9; }    /* Generic.Inserted */
+.chroma .gi  { color: #a3be8c; }    /* Generic.Inserted */
 .chroma .go  { color: #d8dee9; }    /* Generic.Output */
 .chroma .gp  { color: #d8dee9; }    /* Generic.Prompt */
 .chroma .gu  { color: #81a1c1; }    /* Generic.Subheading */

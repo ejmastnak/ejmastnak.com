@@ -2,7 +2,7 @@
   <summary class="text-sky-600 dark:text-neutral-300 font-medium cursor-pointer"> 
     {{.Get `summary` | markdownify }}
   </summary>
-
-  {{ .Inner | markdownify }}
-
+  <div class="mt-1">
+    {{ .Inner | markdownify }}
+  </div>
 </details>

@@ -42,7 +42,7 @@ module.exports = {
             '--tw-prose-invert-body': theme('colors.gray[300]'),
             '--tw-prose-invert-headings': theme('colors.neutral[200]'),
             '--tw-prose-invert-lead': theme('colors.gray[400]'),
-            '--tw-prose-invert-links': theme('colors.sky[500]'),
+            '--tw-prose-invert-links': theme('colors.sky[50]'),
             '--tw-prose-invert-bold': theme('colors.neutral[300]'),
             '--tw-prose-invert-counters': theme('colors.gray[400]'),
             '--tw-prose-invert-bullets': theme('colors.gray[400]'),

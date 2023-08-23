@@ -1,0 +1,8 @@
+<details class="my-8 py-2.5 px-4 border border-gray-500 dark:border-gray-500 rounded-lg overflow-hidden bg-red-200 dark:bg-red-900">
+  <summary class="text-red-950 dark:text-neutral-300 font-medium cursor-pointer"> 
+    {{.Get `summary` | markdownify }}
+  </summary>
+  <div class="mt-1">
+    {{ .Inner | markdownify }}
+  </div>
+</details>

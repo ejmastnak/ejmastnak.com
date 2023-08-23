@@ -15,13 +15,13 @@ date: 2023-07-18
 This short article shows how to install NPM, the standard package manager for the Node.js Javascript runtime environment.
 We'll use NPM to install your application's Javascript depedencies.
 
-(This is trivial if you've done it before, and I feel a bit silly for making a dedicated article for this. But I want to make sure to document every step so everyone can follow along.)
+(This is trivial if you've done it before, and it might be overkill to make a dedicated article for this. But I want to document every step so everyone can follow along.)
 
-## Install NPM
+## Install Node.js
 
 ```bash
-# Install npm
-laravel@server$ sudo apt install npm
+# Install Node.js, which will also include NPM 
+laravel@server$ sudo apt install nodejs
 ```
 
 ## Install Node.js packages
@@ -37,6 +37,13 @@ laravel@server:laravel-project$ npm install
 
 This command looks in your Laravel project's `package.json` file and installs the project's Node.js dependencies into a `node_modules` directory in your project's root.
 
+{{< details-danger summary="Warning: problems with outdated Node.js on Ubuntu LTS and Debian stable" >}}
+The version of Node.js shipped with Ubuntu LTS and stable Debian (which I imagine many readers are using) tends to be quite outdated.
+This could cause problems when running `npm install` if your app's `package.json` requires a recent version of Node---in this case NPM will warn you that your Node.js is outdated.
+
+You can solve this by first uninstalling your outdated version of Node.js (e.g. using `apt purge nodejs && apt autoremove`), then following the instructions in [this Digital Ocean article on installing Node.js](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04) to install a more up-to-date version---probably the simplest choice is Option 2, "Installing Node.js with Apt Using a NodeSource PPA".
+{{< /details-danger >}}
+
 ## Build your app
 
 Finally build your app for production (this assumes you have a `build` script defined in your project's `package.json` file, which a Laravel-Vue or Laravel-React project should come with by default):
@@ -46,6 +53,13 @@ Finally build your app for production (this assumes you have a `build` script de
 # (Assets should be outputted to your project's `public/build/` directory)
 laravel@server:laravel-project$ npm run build
 ```
+
+{{< details-danger summary="Warning: `npm run build` can fail because of too little RAM" >}}
+The `npm run build` command can unexpectedly fail (it will exit with the message `Killed`, and fail to produce a `public/build` directory) if your machine has too little RAM, which might happen on lightweight servers.
+
+The solution is the same as when [installing Composer]({{< relref "composer" >}}#swap)---create a swap file with more RAM (1 GB should be plenty).
+See the [Composer article]({{< relref "composer" >}}#swap) for details.
+{{< /details-danger >}}
 
 ## Remove `public/hot`, if necessary
 

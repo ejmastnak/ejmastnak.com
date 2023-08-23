@@ -10,7 +10,8 @@ date: 2023-07-18
 {{< deploy-laravel/header >}}
 {{< deploy-laravel/navbar >}}
 
-I have three options for you.
+This guide covers three workflows for (re)deployment of your app.
+Read through the summaries below and pick the best one for you.
 
 ## Option 1: Super simple redeployment
 

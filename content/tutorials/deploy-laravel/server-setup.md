@@ -10,20 +10,21 @@ date: 2023-07-17
 {{< deploy-laravel/header >}}
 {{< deploy-laravel/navbar >}}
 
-This article covers a few administrative steps on a new server used to host a web app.
+This article takes you through setting up the server used to host and serve your web app.
 You might also benefit from Digital Ocean's [guide to setting up an Ubuntu server]( https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04), which covers similar material.
 
-## What I'm expecting from you
+## Prerequisites
 
-**Your responsibility:** get SSH access to either a VPS or a dedicated physical server to host your web app.
+To follow this guide, you'll need SSH access to either a virtual private server (VPS) or a dedicated physical server to host your web app.
+You should also read through the [conventions]({{< relref "about" >}}#conventions) used in this guide if you haven't yet.
 
-Also: I'll be assuming a Debian-based Linux distribution that uses `apt` for package management, since this what most readers are probably using.
-It's on you to adapt package installation as necessary if you're using a Linux distro with a different package managers.
+## Log in to your server over SSH
 
-**My responsibility:** take you from you first SSH into your server to deploying your Laravel application.
-How you get your hands on the server is up to you, but not covered in this guide.
-
-With that out of the way, let's begin with your first login to a fresh server.
+```bash
+# Log in to your server over SSH.
+# Do this however you like, e.g. something along the lines of:
+you@dev$ ssh root@1.2.3.4 -i ~/path/to/your/ssh-key
+```
 
 ## Update package lists and upgrade software
 
@@ -81,69 +82,99 @@ root@server$ su laravel
 
 ## SSH configuration
 
-Two things to do here: (1) allow the `laravel` user to log in to the server over SSH and (2) a bit of standard SSH hardening to better secure the server.
+### Register your SSH key in the non-root user's `authorized_keys` file
 
-1. There are many ways to complete this step.
-   The end goal (i.e. what will allow SSH login as the `laravel` user) is to copy the appropriate public SSH key from your development machine into the `/home/laravel/.ssh/authorized_keys` file on the server.
+**TLDR:** Register the public SSH key you use to access your server in the `laravel` user's `authorized_keys` file on your server.
+Then set appropriate SSH file permissions.
+You can now [jump to the next section](#ssh-hardening).
+**End TLDR.**
 
-   If you've done this before and have a preferred method, go ahead.
-   Here's an example shell session with a few options:
+There are a few ways to do this---choose whichever you prefer:
 
-   ```bash
-   # Change into laravel user's home directory and create an SSH directory
-   laravel@server$ cd ~
-   laravel@server:~$ mkdir .ssh
+1. Option 1: use `ssh-copy-id` from your development machine (I'm assuming you've done this before).
+1. Option 2: copy the root user's `authorized_keys` file.
+   Your cloud provider (e.g. Digital Ocean) may have already created an `authorized_keys` file for the root user when provisioning your server.
+   In this case you can just copy the root user's authorized_keys file---but make sure to update permissions:
 
-   # Option 1
-   # Manually open (or create) the laravel user's authorized_keys file.
-   # Inside manually type out or paste the relevant public SSH key from your
-   # development machine.
-   laravel@server:~$ vim .ssh/authorized_keys
+   ```sh
+   # Create an SSH directory for the laravel user, if needed
+   laravel@server:~$ mkdir .shh
 
-   # Option 2
-   # Your cloud provider (e.g. Digital Ocean) may have already created an
-   # authorized_keys file for the root user when provisioning your server.
-   # In this case you can just copy the root user's authorized_keys file---
-   # ---but make sure to update permissions (below).
+   # Copy the root user's authorized_keys file, which should already have your
+   # public SSH key
    laravel@server:~$ sudo cp /root/.ssh/authorized_keys .ssh/authorized_keys
 
-   # Option 3
-   # Use ssh-copy-id from your development machine (I'm assuming you know how)
+   # Make sure the laravel user owns their SSH directory and its contents!
+   laravel@server:~$ sudo chown -R laravel:laravel .ssh
    ```
 
-   In all three cases you'll want to set correct SSH-related permissions:
+1. Option 3: create an `authorized_keys` and manually type out or paste the appropriate SSH key from your development machine.
 
    ```bash
-   # Change into laravel user's home directory
-   laravel@server$ cd ~
-
-   # Ensure laravel user owns their SSH directory and all files within
-   laravel@server$ sudo chown -R laravel:laravel .ssh
-
-   # Give the owning user (i.e. laravel) read, write, and execute permissions
-   # on their SSH directory
-   laravel@server$ chmod 700 .ssh
-
-   # Give the owning user (i.e. laravel) read and write permissions 
-   laravel@server$ chmod 600 .ssh/authorized_keys
+   # Manually open (or create) the laravel user's authorized_keys file and
+   # place the appropriate public SSH key inside
+   laravel@server:~$ vim .ssh/authorized_keys
    ```
 
-   The permissions I've used for `.ssh/` and `authorized_keys` are standard best practice---see e.g. the `FILES` section of `man ssh` for an authoritative source.
+In all three cases you'll want to set correct SSH-related permissions:
 
-1. And two technically optional, but strongly suggested SSH hardening steps: open `/etc/ssh/sshd_config` (you'll need root privileges) and disable both (1) SSH password-based authentication and (2) root user login.
+```bash
+# Change into laravel user's home directory
+laravel@server$ cd ~
 
-   ```bash
-   # Both settings should be changed from "yes" to "no"
-   PasswordAuthentication no
-   PermitRootLogin no
-   ```
-   
-   These steps are standard SSH best practice---I'm assuming you've seen this a million times before and won't go into long explanations.
-   (New to SSH? I'd recommend [this Digital Ocean SSH guide](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server) to learn the basics.)
+# Ensure laravel user owns their SSH directory and all files within
+laravel@server$ sudo chown -R laravel:laravel .ssh
+
+# Give the owning user (i.e. laravel) read, write, and execute permissions
+# on their SSH directory
+laravel@server$ chmod 700 .ssh
+
+# Give the owning user (i.e. laravel) read and write permissions 
+laravel@server$ chmod 600 .ssh/authorized_keys
+```
+
+The permissions I've used for `.ssh/` and `authorized_keys` are standard best practice---see e.g. the `FILES` section of `man ssh` for an authoritative source.
+
+### Basic SSH hardening {#ssh-hardening}
+
+First confirm you can log in to your server from your dev machine as the `laravel` user over SSH using public-key authentication. (Otherwise you run the risk of locking yourself out of your server!)
+
+Assuming you can indeed access your server as the `laravel` user, you can now complete the two classic SSH hardening steps everyone (rightly) nags you about: open `/etc/ssh/sshd_config` (you'll need root privileges) and
+
+- disable SSH password-based authentication
+- disable root user login.
+
+The updated settings in your server-side `sshd_config` should look like this:
+
+```bash
+# Both settings should be changed from "yes" to "no"
+PasswordAuthentication no
+PermitRootLogin no
+```
+
+These steps are standard SSH best practice---I'm assuming you've seen this a million times before and won't go into long explanations.
+(New to SSH? I'd recommend [this Digital Ocean SSH guide](https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server) to learn the basics.)
+
+{{< details-danger summary="Possible footgun: locking yourself out of your server." >}}
+If you disable password-based authentication, you (obviously) won't be able to log in to your server over SSH using a user's password.
+This is why you should confirm you can access your server with public-key authentication before setting `PasswordAuthentication no`.
+
+If you disable root login, you won't be able to log in to your server over SSH as the root user, even using public key authentication.
+This is why you should confirm you can access your server as the `laravel` user before setting `PermitRootLogin no`.
+
+You'll be safe as long as you double check you can access your server from your dev machine as the non-root user using public key authentication:
+
+```bash
+# Confirm you can log in to your server as the `laravel` user over SSH using
+# public-key authentication.
+you@dev$ ssh laravel@1.2.3.4 -i ~/path/to/your/ssh-key
+```
+{{< /details-danger >}}
+
 
 ### Tip: easier SSH access from your dev machine
 
-And an optional tip for SSH easer access to your server from your development machine:
+Here's an optional tip for easer SSH access to your server from your development machine:
 create an alias in the SSH config on your dev machine.
 
 In `~/.ssh/config` on your development machine add:
@@ -181,7 +212,7 @@ You might also benefit from Digital Ocean's [guide to setting up a firewall on a
 We'll use [UFW](https://en.wikipedia.org/wiki/Uncomplicated_Firewall) to manage firewalls.
 You will very likely have UFW preinstalled on a new server (check with `apt list ufw` or `which ufw`), but can always install it with `apt install ufw`.
 
-I'd suggest first resetting your UFW configuration to a clean slate, so that we're all starting with the safe configuration:
+I'd suggest first resetting your UFW configuration to a clean slate, so that we're all starting with the same configuration:
 
 ```bash
 # Reset UFW to clean slate: deny all incoming and allow all outgoing traffic
@@ -189,35 +220,19 @@ laravel@server$ sudo ufw default deny incoming
 laravel@server$ sudo ufw default allow outgoing
 ```
 
-UFW comes with preconfigured firewall rules for common services;
-You can check available preconfigured firewall rules with:
-
-```bash
-# List "pre-configured" firewall profiles for common applications
-laravel@server$ sudo ufw app list
-
-# Example output...
-# ...
-Nginx HTTP
-Nginx HTTPS
-Nginx Full  # both HTTP and HTTPS
-OpenSSH
-# ...
-```
-
 I would suggest the following for a basic web application:
 
 ```bash
 # Allow OpenSSH and Web traffic
-laravel@server$ sudo ufw allow 'OpenSSH'
-laravel@server$ sudo ufw allow 'Nginx Full'  # includes HTTP and HTTPS
-
-# FYI: you could get the same result by manually specify each application's
-# port number
 laravel@server$ sudo ufw allow 22    # OpenSSH
 laravel@server$ sudo ufw allow 80    # HTTP
 laravel@server$ sudo ufw allow 443   # HTTPS
 ```
+
+{{< details-danger summary="Possible footgun: locking yourself out of your server." >}}
+If you run `ufw default deny incoming` and don't subsequently allow any incoming services, you'll lock yourself out of your server.
+Make sure you leave yourself at least one way to reach your server (e.g. allowing incoming OpenSSH traffic over port 22).
+{{< /details-danger >}}
 
 Finally, enable the firewall:
 
@@ -230,7 +245,7 @@ sudo ufw status
 ```
 
 {{< details summary="PSA: Digital Ocean firewalls are different from UFW firewalls" >}}
-I imagine many readers will be using Digital Ocean, so I wanted to drop a note on this (because it confused me when I was starting out!).
+I imagine many readers will be using Digital Ocean, so I wanted to mention this (because it confused me when I was starting out!).
 
 Digital Ocean provides a free service called [Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/) that you can easily apply to any Digital Ocean droplet (you do this from the "Networking" section of the admin panel on Digital Ocean's website; here is a [quickstart guide](https://docs.digitalocean.com/products/networking/firewalls/quickstart/) and here are [full docs](https://docs.digitalocean.com/products/networking/firewalls/)).
 

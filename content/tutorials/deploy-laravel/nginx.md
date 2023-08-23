@@ -1,7 +1,7 @@
 ---
 title: "Configure Nginx for serving a Laravel web application"
 prevFilename: "env"
-nextFilename: "deploy-simple"
+nextFilename: "deploy"
 date: 2023-07-18
 ---
 
@@ -16,7 +16,24 @@ This article is basically walking through Laravel's example Nginx config with sh
 
 ## Install Nginx
 
-First install and start Nginx:
+Your VPS might be using Apache as the default web server.
+If so, you should disable Apache to avoid conflicts with Nginx.
+
+```bash
+# Stop and disable Apache
+laravel@server$ sudo systemctl stop apache2.service
+laravel@server$ sudo systemctl disable apache2.service
+```
+
+You might also want to uninstall Apache entirely, since you probably won't need it going forward now that you are using Nginx:
+
+```bash
+# Remove all Apache-related packages
+laravel@server$ sudo apt purge apache2*
+laravel@server$ sudo apt autoremove
+```
+
+You can then install and start Nginx:
 
 ```bash
 # Install, enable, and start Nginx
@@ -24,22 +41,6 @@ laravel@server$ sudo apt install nginx
 laravel@server$ sudo systemctl enable --now nginx.service
 ```
 
-Your VPS might be using Apache as the default web server.
-If so, you should disable Apache to avoid conflicts with Nginx.
-
-```bash
-# Stop and disable Apache
-systemctl stop apache2.service
-systemctl disable apache2.service
-```
-
-You might also want to uninstall Apache entirely, since you probably won't need it going forward now that you are using Nginx:
-
-```bash
-# Remove all Apache-related packages
-apt purge apache2*
-apt autoremove
-```
 
 You can then test that Nginx is up and running by pasting your app's IP address into a web browser's address bar.
 You should see the default "Welcome to nginx!" page.
@@ -152,23 +153,51 @@ laravel@server$ cd /etc/nginx/sites-enabled
 laravel@server:sites-enabled$ sudo ln -s ../sites-available/laravel-project laravel-project
 
 # Remove the active link to the default Nginx splash page
-sudo rm default
+laravel@server:sites-enabled$ sudo rm default
 ```
 
-Then test the syntax of the active nginx config file:
+Then test the syntax of the active Nginx config file:
 
 ```bash
 # Test syntax of Nginx config file for errors/misconfiguration
-sudo nginx -t
+laravel@server$ sudo nginx -t
 ```
 
 Assuming the test succeeded, you can restart Nginx.
 
 ```bash
 # Restart Nginx
-sudo systemctl restart nginx.service
+laravel@server$ sudo systemctl restart nginx.service
 ```
 
 The new `sites-enabled` link will take effect after restarting Nginx, and Nginx will begin serving your Laravel application.
+
+### Moment of truth
+
+Point a web browser to your server's IP address.
+Assuming you've correctly followed the steps so far, your web app should be live and working properly.
+
+{{< details summary="Ran into problems?" >}}
+There are, of course, a lot of moving parts here---far more than I could fully cover---but here are two common problems:
+
+- An error along the lines of "File not found" means that Nginx cannot find your app's root directory, and you'll have to fix something with your Nginx setup.
+  At the risk of being annoying, read through this article and double-check you've followed each step---ensure you've removed Apache, that all paths and addresses in your Nginx config are correct, and that your app's Nginx config is properly symlinked into place in `sites-enabled`.
+
+- A "HTTP 500 Internal Server Error" means that Nginx is properly set up and serving your Laravel app, but that there is a problem with the app itself.
+
+  The best advice I can offer (besides the annoying suggestion to double check the past few articles) is to temporarily reenable debug mode to help diagnose the problem:
+
+  1. Open your app's server-side `.env` file.
+  1. Set `APP_DEBUG=true` and exit the `.env` file.
+  1. Run `php artisan config:cache` to update your config cache.
+  1. Refresh your app in the web browser. You should see a more detailed error trace, which should have useful debugging information.
+
+  Common problems include errors when appending to your application log (you'll need to give the `www-data` group write permissions on your app's `storage/log` directory---revisit the [permissions article]({{< relref "permissions" >}})) or failure to connect to your database (make sure the database connection settings in your app's `.env` file (covered in the [environment configuration article]({{< relref "env" >}})) match the database created in the [database article]({{< relref "db" >}})).
+
+   Even if these common issues don't apply to you, Laravel's debug messages can hopefully give you a lead. In any case, you should disable debug mode when you diagnose and fix the problem.
+
+And if you're sure you've exactly followed the guide so far and your app is still down, please [let me know](/contact)---I've done my best to battle-test this guide and triple-check everything works, but there could still be mistakes or unexpected failure modes, which I would want to address.
+{{< /details >}}
+
 
 {{< deploy-laravel/navbar >}}

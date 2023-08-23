@@ -26,15 +26,20 @@ laravel@server$ sudo apt install php
 Then install the [list of PHP extensions required by Laravel](https://laravel.com/docs/10.x/deployment#server-requirements).
 At the time of writing on a Debian-based system, do this with:
 
-**TODO:** is `php-zip` required for Laravel to run?
-I'm trying without, and then will check back later if it is needed.
-
 ```bash
 # Install PHP extensions required for Laravel to run.
-# As far as I can tell, php-fpm is not listed in the Laravel docs but in my
-# experience is still required for Laravel to run
-laravel@server$ sudo apt install php-curl php-mbstring php-xml php-fpm php-zip
+# As far as I can tell, php-fpm is not listed in the Laravel docs but is still
+# required for Laravel to run.
+laravel@server$ sudo apt install php-curl php-mbstring php-xml php-fpm
+```
 
+Ensure your PHP version matches the version of your PHP extensions.
+You only need to worry about this if you explicitly installed a specific version of PHP (e.g. if you explicitly install `php8.2`, then explicitly install `php8.2-curl`, `php8.2-fpm`, etc.).
+
+You'll also need a PHP extension for your database management system.
+This depends on your choice of MySQL/MariaDB, SQLite, or PostgreSQL:
+
+```bash
 # If using MySQL/MariaDB
 laravel@server$ sudo apt install php-mysql
 
@@ -45,8 +50,6 @@ laravel@server$ sudo apt install php-sqlite3
 laravel@server$ sudo apt install php-pgsql
 ```
 
-Ensure your PHP version matches the version of your PHP extensions.
-You only need to worry about this if you explicitly installed a specific version of PHP (e.g. if you explicitly install `php8.2`, then explicitly install `php8.2-curl`, `php8.2-fpm`, etc.).
 
 At this point you can move on to the next article.
 But if you're curious here's a bit more on PHP extensions.

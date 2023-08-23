@@ -27,7 +27,7 @@ Host laravel_project_git
   HostName 1.2.3.4
   # Update to the full path to the private SSH key used to access your server
   IdentityFile ~/.ssh/LaravelApp_id_ed25519
-  # Leave as is
+  # Leave this line as is
   IdentitiesOnly yes
 ```
 
@@ -68,7 +68,7 @@ you@dev:laravel-project$ git remote set-url production ssh://laravel@laravel_pro
 {{< /details >}}
 
 
-## Moment of truth
+## Moment of truth {#push}
 
 Time to test if Git setup from the last two articles is working properly.
 

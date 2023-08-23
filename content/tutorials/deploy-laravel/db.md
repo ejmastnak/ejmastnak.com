@@ -45,7 +45,7 @@ I'm showing only a basic setup in this guide, encompassing:
 
 - Password-based authentication using MySQL's default authentication plugin ([`caching_sha2_password`](https://dev.mysql.com/doc/refman/8.0/en/caching-sha2-pluggable-authentication.html) at the time of writing).
 - Granting all privileges on the web app's DB to the non-root account.
-  Note: we're intentionally restricting the non-root account's privileges to only the web app's database (i.e. using `GRANT ALL PRIVILEGES ON foo.*`) and not granting privilege for *all* databases on the server (which would be `GRANT ALL PRIVILEGES ON *.*`).
+  Note: we're intentionally restricting the non-root account's privileges to only the web app's database (i.e. using `GRANT ALL PRIVILEGES ON laraveldb.*`) and not granting privilege for *all* databases on the server (which would be `GRANT ALL PRIVILEGES ON *.*`).
 
 This is all you need to run a Laravel web app and should work well for most users, but keep in mind that there are many more possible authentication methods and privilege grants to choose from.
 Consider reading through [these](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04) [two](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql) Digital Ocean guides if you're new to managing MySQL databases.
@@ -54,14 +54,14 @@ Consider reading through [these](https://www.digitalocean.com/community/tutorial
 ```sql
 -- Create a database for your web app.
 -- (Update the database name as desired.)
-CREATE DATABASE foo;
+CREATE DATABASE laraveldb;
 
 -- Create a dedicated DB account to manage the app's DB.
 -- (Update the account's username and password as desired.)
-CREATE USER 'foouser'@'localhost' IDENTIFIED BY 'supersecretpassword';
+CREATE USER 'laravel'@'localhost' IDENTIFIED BY 'supersecretpassword';
 
 -- Grant the DB user all privileges on the app's database
-GRANT ALL PRIVILEGES ON foo.* TO 'foouser'@'localhost';
+GRANT ALL PRIVILEGES ON laraveldb.* TO 'laravel'@'localhost';
 ```
 
 {{< details summary="Hardening your MySQL installation with `mysql_secure_installation`" >}}
@@ -94,7 +94,7 @@ You should be able to log in to a MySQL shell:
 ```bash
 # Log in to MySQL shell; connect to just-created database with just-created account.
 # Specify password when prompted.
-laravel@server$ mysql -D foo -u foouser -p
+laravel@server$ mysql -D laraveldb -u laravel -p
 ```
 
 ## PostgreSQL {#psql}
@@ -173,15 +173,15 @@ Then create a dedicated database and DB account for your web app (remember the s
 ```sql
 -- Create a database for your web app.
 -- (Update the database name as desired.)
-postgres=# CREATE DATABASE foo;
+postgres=# CREATE DATABASE laraveldb;
 
 -- Create a dedicated DB account to manage the app's DB.
 -- (Update the account's username and password as desired.)
-postgres=# CREATE USER foouser WITH ENCRYPTED PASSWORD 'supersecretpassword';
+postgres=# CREATE USER laravel WITH ENCRYPTED PASSWORD 'supersecretpassword';
 
 -- A simple way of granting the DB user privileges on the app's database---we
 -- just make the user the owner of the database.
-postgres=# ALTER DATABASE foo OWNER TO foouser;
+postgres=# ALTER DATABASE laraveldb OWNER TO laravel;
 ```
 
 {{< details summary="Disclaimer: this setup is simple" >}}
@@ -208,7 +208,7 @@ You should then be able to log in to a PostgreSQL shell as follows:
 # Log in to PostgreSQL shell and connect to just-created DB.
 # IMPORTANT: you need the `-h` flag to initiate a host-based connection.
 # Specify password when prompted.
-laravel@server$ psql -U foouser -d foo -h localhost
+laravel@server$ psql -U laravel -d laraveldb -h localhost
 ```
 
 Assuming you've followed along with the guide, you need the `-h` flag to initiate a host-based connection---`psql` would otherwise attempt a socket-pased connection with `peer` authentication, which will fail.

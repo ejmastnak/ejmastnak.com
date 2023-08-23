@@ -14,7 +14,7 @@ This article shows how to install [Composer](https://getcomposer.org/), the stan
 
 You might also like [this guide from Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-debian-11) on the same topic.
 
-## Possibly create a swap file
+## Possibly create a swap file {#swap}
 
 Rumor has it you need about 2 GB of RAM to comfortably install Composer packages.
 If your server has less than 2 GB RAM, consider creating and activating a swap file (which lets the server use hard disk space to supplement RAM):

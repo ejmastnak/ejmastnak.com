@@ -1,6 +1,6 @@
 ---
 title: "Configure a Laravel web app environment for production"
-prevFilename: "env"
+prevFilename: "npm"
 nextFilename: "permissions"
 date: 2023-07-18
 ---
@@ -50,9 +50,9 @@ APP_ENV=production
 # See e.g. https://laravel.com/docs/10.x/configuration#debug-mode
 APP_DEBUG=false
 
-# Set this to either your server's IP address or domain name, if you have one.
-APP_URL=1.2.3.4
-# APP_URL=foo.com  # if you have a domain name
+# Set this to your server's IP address. We'll change this to your app's
+# domain name when we set that up a few articles later.
+APP_URL=http://1.2.3.4
 ```
 
 ### Establish a database connection
@@ -124,10 +124,10 @@ DB_PASSWORD=baz
 
 ### Disclaimer: there are many other config settings...
 
-This is just a disclaimer that the settings in this article should work well for most users and are all you need to get a basic Laravel up and running...
+The settings in this article should work well for most users and are all you need to get a basic Laravel app up and running...
 
 ...but there are *lots* of other settings (Logging, Redis, email, AWS integration, etc.) you could reasonably tweak from the `.env` file or `config` folder.
-These are beyond the scope of this guide (and if you're using these more advanced features you probably know what you're doing); consider poking around your app's `config` folder and reading through [Laravel docs](https://laravel.com/docs/10.x/configuration) as a starting point for learning more.
+These are beyond the scope of this guide (and if you're using these more advanced features you probably know what you're doing anyway); consider poking around your app's `config` folder and reading through [Laravel docs](https://laravel.com/docs/10.x/configuration) as a starting point for learning more.
 
 ## Generate an encryption key
 
@@ -170,8 +170,11 @@ laravel@server:laravel-project$ php artisan route:cache
 
 # Cache your Laravel configuration settings
 laravel@server:laravel-project$ php artisan config:cache
+
+# Precompile your Blade views for faster loading
+laravel@server:laravel-project$ php artisan view:cache
 ```
 
-These two cache commands should be rerun after each (re)deployment---we'll take care of that in a future article.
+These optimizations should be rerun after each (re)deployment---we'll take care of that in a future article.
 
 {{< deploy-laravel/navbar >}}

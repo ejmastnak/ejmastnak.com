@@ -1,11 +1,11 @@
 ---
-title: "Server-side Git setup for deploying a Laravel web application, Part 1"
+title: "Server-side Git setup for deploying a Laravel web application"
 prevFilename: "db"
 nextFilename: "git-dev"
 date: 2023-07-18
 ---
 
-# Server-side Git setup for deploying a Laravel web app, Part 1
+# Server-side Git setup for deploying a Laravel web app
 
 {{< deploy-laravel/header >}}
 {{< deploy-laravel/navbar >}}
@@ -39,10 +39,10 @@ First check Git is installed on your server (it probably will be).
 Install if needed:
 
 ```bash
-# Check if Git is installed (very likely---most distros come with Git preinstalled)
+# Check if Git is installed (which it probably will be)
 laravel@server$ apt list git
 
-# Install Git (in the unlikely event it's not installed yet)
+# Install Git (you probably won't need to)
 laravel@server$ sudo apt install git-all
 ```
 

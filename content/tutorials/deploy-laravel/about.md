@@ -22,7 +22,7 @@ You can read more about the guide [below](#about), or [jump right in]({{< relref
 1. [NPM]({{< relref "npm" >}}): install NPM and use it to install NodeJS packages.
 1. [Laravel environment setup]({{< relref "env" >}}): take care of your `.env` file, database migrations, and a few predeployment optimizations.
 1. [Set Laravel directory permissions]({{< relref "permissions" >}}): a few permission tweaks for Laravel to run.
-1. [Nginx]({{< relref "nginx" >}}): instal Nginx; create and activate your app's Nginx config.
+1. [Nginx]({{< relref "nginx" >}}): install Nginx; create and activate your app's Nginx config.
 1. [Automated redeployment]({{< relref "deploy" >}}): three options for automated redeployment.
 1. [Custom domain name]({{< relref "dns" >}}): set up DNS records needed for a custom domain name.
 1. [HTTPS]({{< relref "https" >}}): set up a free, autorenewing HTTPS certificate with Certbot.
@@ -50,10 +50,12 @@ The guide should be applicable, with minor adjustments, to other frontend framew
 - You have root access to a Linux server.
 - You can access the server over SSH and have the basic SSH knowledge (e.g. generating a public/private keypair; copying your public key to the `authorized_keys` file on the server; logging in over SSH) required to do so.
 
-## Conventions
+## Conventions {#conventions}
 
 I'm using `vim` to edit files. Replace with your editor of choice!
 Actually kiddo just change this to `nano`---experiences users will know to change this to their editor of choice.
+
+Server's IP is 1.2.3.4
 
 ```bash
 # You on your development machine

@@ -220,12 +220,12 @@ There's a chance you unintentionally tweaked directory ownership and/or permissi
 Since Laravel is a bit finicky in this regard, you should run a quick double-check that you are still using [correct Laravel permissions]({{< relref "permissions" >}}):
 
 ```bash
-# Give Nginx group ownership of all of your app's files
-laravel@server:laravel-project$ sudo chown -R :www-data releases/ shared/
+# Give Nginx group ownership of your app's files
+laravel@server:laravel-project$ sudo chgrp -R www-data releases/ shared/
 
-# Laravel-specific directory permissions
-laravel@server$ sudo chmod -R 775 releases/initial/storage
-laravel@server$ sudo chmod -R 775 releases/initial/bootstrap/cache
+# Grant owning group write access for special directories
+laravel@server$ sudo chmod -R g=rwX releases/initial/storage
+laravel@server$ sudo chmod -R g=rwX releases/initial/bootstrap/cache
 ```
 
 ### Update your Laravel cache
@@ -267,14 +267,14 @@ laravel@server$ sudo systemctl restart nginx.service
 At this point Nginx should have picked up on the updated zero-downtime redeployment directory structure, and your app should again be live when you visit your server's IP address from a web browser.
 
 {{< details summary="Ran into problems?" >}}
-At the risk of being super annoying, give this article (including the prerequisites!) a reread and double-check every setting is correct---there are a lot of moving parts here and one misconfiguration will bring your app down.
+At the risk of being super annoying, give this article (*including the prerequisites!*) a reread and double-check every setting is correct---there are a lot of moving parts here and one misconfiguration will bring your app down.
 
 If you're sure you've exactly followed this article and your app is still down, please [let me know](/contact)---I've done my best to battle-test this guide to make triple-check everything works, but there could still be mistakes, which I would want to fix.
 {{< /details >}}
 
 ## Automating redeployment
 
-We can now create a script to automate zero-downtime redeployment.
+We're now ready to create a script to automate zero-downtime redeployment.
 We'll use the same `post-receive` hook [from the server-side Git setup article]({{< relref "git-server" >}}), but will have to modify it to accommodate the zero-downtime directory structure.
 
 Go ahead and open the `post-receive` in your server-side Git repo with a text editor and implement the zero-downtime redeployment workflow.
@@ -301,7 +301,7 @@ RELEASE="${SRV}/releases/`date -u +%Y-%m-%d`_`git --git-dir=${REPO} rev-parse --
 
 
 # --------------------------------------------------------------------------- #
-# Set up zero-downtime redeployment directory structure
+# Set up zero-downtime directory structure
 # --------------------------------------------------------------------------- #
 # Create directory for latest release
 mkdir -p ${RELEASE}
@@ -334,15 +334,12 @@ php artisan migrate --force
 # --------------------------------------------------------------------------- #
 # Grant web server write privileges on storage and bootstrap/cache directories
 # --------------------------------------------------------------------------- #
-# Grant group ownership of special directories to www-data
-sudo chgrp -R www-data "${RELEASE}/storage"
-sudo chgrp -R www-data "${RELEASE}/bootstrap/cache"
+# Grant group ownership of your app's files to www-data
+sudo chgrp -R www-data "${RELEASE}"
 
 # Grant owning group write access for special directories
-find "${RELEASE}/storage" -type f -exec sudo chmod 664 {} \;
-find "${RELEASE}/storage" -type d -exec sudo chmod 775 {} \;
-find "${RELEASE}/bootstrap/cache" -type f -exec sudo chmod 664 {} \;
-find "${RELEASE}/bootstrap/cache" -type d -exec sudo chmod 775 {} \;
+ sudo chmod -R g=rwX "${RELEASE}/storage"
+ sudo chmod -R g=rwX "${RELEASE}/bootstrap/cache"
 # --------------------------------------------------------------------------- #
 
 
@@ -356,46 +353,121 @@ ln -sfn ${RELEASE} ${ACTIVE}
 Comments: 
 
 - The script is really just a Bash implementation of the zero-downtime redeployment procedure [described earlier in this article](#how-it-works), followed by the standard Laravel redeployment commands and permission tweaks we've issued manually over the past few articles.
-  Most of the commands should look familiar from previous articles---I've just collected them in one place here.
+  Most of the commands should look familiar from previous articles---they're just collected in one place here.
 - I've chosen to name the releases by the date they are published followed by the SHA of the corresponding Git commit.
   For example, a release with commit SHA `a44fb73` published on 8 August 2023  would be named `2023-08-23_a44fb73`---naming by date allows easy sorting, and adding the commit SHA ensures each release is uniquely named.
   Of course, feel free to change this naming convention if you like.
-
-- The owndership and permissions changes require `sudo`.
-  `sudoers`
-
 - The `-f` flag in the final `ln` command is used to force an overwrite of the previous release link.
   The `-n` flag stops `ln` from trying to dereference and follow the previous release symlink; this is important---leave this out and you'll get a symlink *inside* of the existing `active` release, instead of in `/srv/www/laravel-project/` where it should be!
+- Note that we need `sudo` for the `chgrp` and `chmod` commands.
+  This is a bit inconvenient---normally you use `sudo` by entering your password at an interactive shell prompt, but during automated redeployment from your dev machine you don't have access to a shell prompt on your app's server.
 
-### sudo permissions
+  Not to worry---this is a standard problem with a standard solution---in the next section we'll allow specifically those `chgrp` and `chmod` commands to run with `sudo` privileges without requiring a password.
 
-Open `sudoers`.
+### Allowing passwordless sudo for `chgrp` and `chmod`
+
+**Problem:** the `post-receive` redeployment script needs `sudo` privileges to run the `chgrp` and `chmod` commands, but during redeployment you don't have access to an interactive prompt from which to enter a `sudo` password.
+
+**Solution:** use the `sudoers` file to allow specifically those `chgrp` and `chmod` commands to run with `sudo` privileges without requiring a password.
+
+{{< details summary="Wait, what is `sudoers`?" >}}
+I'm referring to the standard file `/etc/sudoers`, which is used to manage which users have `sudo` privileges and the extent of these privileges.
+I'm assuming a bit of familiarity with `sudoers` in this article, but if you've never worked with `sudoers` before, consider taking a detour and reading [this Digital Ocean guide to the sudoers file](https://www.digitalocean.com/community/tutorials/how-to-edit-the-sudoers-file).
+{{< /details >}}
+
+Go ahead and open the `sudoers` file for editing.
 
 ```bash
-# Use visudo to safely open the sudoers file for editing
+# Use visudo to safely open the sudoers file for editing.
+# By default this uses the root user's $EDITOR...
 laravel@server$ sudo visudo
+
+# ...but you can easily override this with your preferred $EDITOR
+laravel@server$ sudo EDITOR=nano visudo
+laravel@server$ sudo EDITOR=vi visudo
+laravel@server$ sudo EDITOR=vim visudo
 ```
 
-Inside the `sudoers` file (e.g. at the bottom), place the following lines:
+{{< details summary="What is `visudo`?" >}}
+A utility for safely editing the `sudoers` file.
+
+In case this is your first time, the established best practice is to *always* edit the `sudoers` file with `visudo` (as opposed to directly using your preferred text editor).
+Why?
+Making mistakes in `sudoers` can lock you out of your system, and `visudo` lets you edit `sudoers` in a safe way.
+See `man visudo` for details.
+
+As an aside:
+One inconvenience with `visudo` (because it runs as `root`) is that you'll usually be thrown into the root user's default text editor (as opposed to your preferred `$EDITOR`). You can get around this by manually setting `$EDITOR` before running `visudo`, as I've done above.
+{{< /details >}}
+
+Inside the `sudoers` file (e.g. towards the bottom, but anywhere should work), place the following lines:
 
 ```bash
-# Allow laravel user to change owning group of release directories to www-data
-laravel ALL=NOPASSWD: /usr/bin/chgrp -R www-data /srv/www/nutria/releases/**/*
+# Allow laravel user to change owning group of release directories
+laravel ALL=NOPASSWD: /usr/bin/chgrp -R www-data /srv/www/nutria/releases/*
 
 # Allow laravel user to change file permissions in release directories
-laravel ALL=NOPASSWD: /usr/bin/chmod 664 /srv/www/nutria/releases/**/*
-laravel ALL=NOPASSWD: /usr/bin/chmod 775 /srv/www/nutria/releases/**/*
+laravel ALL=NOPASSWD: /usr/bin/chmod -R g\=rwX /srv/www/nutria/releases/**/*
 ```
 
-[Digital Ocean guide to the sudoers file](https://www.digitalocean.com/community/tutorials/how-to-edit-the-sudoers-file)
+Comments:
+
+- We're targeting the `laravel` user, because the `post-receive` script runs as the `laravel` user (recall that you SSH into your server as the `laravel` user).
+- The backslash in `g\=rwX` is intentional---you need to escape the `=` sign---see the "Other special characters and reserved words section" in the excellent `man sudoers` for details.
+
+You can then save and exit the `sudoers` file.
+I suggest testing the updated `sudoers` settings: run the whitelisted commands as `sudo` and confirm that you are not prompted for a password.
+
+```bash
+# Clear potentially cached sudo password
+laravel@server$ sudo -k
+
+# Test that you can run the chgrp and chmod without a password.
+# Note that you need the full paths to match the globs in `sudoers`.
+sudo chgrp -R www-data /srv/www/laravel-project/releases/initial/
+sudo chmod -R g=rwX /srv/www/laravel-project/releases/initial/storage/
+sudo chmod -R g=rwX /srv/www/laravel-project/releases/initial/bootstrap/cache/
+```
+
+Still need being prompted for a `sudo` password? Something is wrong with either your `sudoers` setup or the commands you entered---double check this section.
 
 ### Moment of truth
 
 Time to test if this zero-downtime redeployment setup is working properly.
 
+Make a test change to your app on your dev machine (add a new feature, change some text, tweak a color, etc.---anything you'll easily notice), commit the change, then push the new version of your app to the server.
+
 ```bash
 # On your dev machine, push your app's main branch to the production server.
 you@dev:laravel-project$ git push production main
 ```
+
+Here's what should happen (the first few steps are the same as in the [dev-side Git setup article]({{< relref "git-dev" >}})):
+
+- Git on your dev machine recognizes which SSH key to use to connect to the server, and prompts you for the key's password, if needed.
+- Your app is pushed to the server-side Git repo (SSH into the server and check the contents of `/home/laravel/repo/laravel-project.git`).
+- Pushing code to the server triggers the server-side `post-receive` hook.
+- The `post-receive` script creates a new release directory, into which it copies the latest version of your app.
+  The script then runs through each of the deployment steps covered in this article---you should be able to follow along as the script's standard output appears in your SSH session; obviously, you want each deployment step to complete successfully.
+- The previous version of your app should continue to be live during the 30-60 seconds that the `post-receive` script is executing.
+
+- Immediately after the `post-receive` script completes, your latest app release should be live, and you should be able to SSH into your server and confirm the latest release directory is present.
+
+{{< details summary="Ran into problems?" >}}
+Disclaimer: there are, of course, a million things that could go wrong, and it's best to manually inspect and try to understand any error messages (which are often helpful) and adjust accordingly.
+
+With that said:
+
+- Is your SSH connection failing? Check the troubleshooting section [in the dev-side Git setup article]({{< relref "git-dev" >}}#push).
+- The server-side `post-receive` hook is executable, right?
+- All paths and usernames are correct (and not still using the generic names from this guide), right?
+- Is the `npm run build` command failing? Make sure your Node.js is reasonably up to date and then your server has sufficient RAM (covered in the [NPM article]({{< relref "npm" >}})).
+- Check that you've properly performed the manual steps for [setting up zero-downtime redeployment](#preparations) (you've made a `shared` directory, all your symlinks are current, etc.).
+
+Other than that, at the risk of being super annoying, give this article (*including the prerequisites!*) a reread and double-check every setting is correct---there are a lot of moving parts here and one misconfiguration will bring your app down.
+
+And if you're sure you've exactly followed the guide so far and your app is still down, please [let me know](/contact)---I've done my best to battle-test this guide and triple-check that everything works, but there could still be mistakes or unexpected failure modes, which I would want to address.
+{{< /details >}}
+
 
 {{< deploy-laravel/navbar >}}

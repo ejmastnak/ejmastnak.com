@@ -114,6 +114,7 @@ At this the `post-receive` hook should successfully take care of updating and re
 ### Moment of truth
 
 Time to test if this simple redeployment setup is working properly.
+
 Make a test change to your app on your dev machine (add a new feature, change some text, tweak a color, etc.---anything you'll easily notice), commit the change, then push the new version of your app to the server.
 
 ```bash
@@ -125,7 +126,7 @@ Here's what should happen (the first few steps are the same as in the [dev-side 
 
 - Git on your dev machine recognizes which SSH key to use to connect to the server, and prompts you for the key's password, if needed.
 - Your app is pushed to the server-side Git repo (SSH into the server and check the contents of `/home/laravel/repo/laravel-project.git`).
-- Pushing code to the server triggered the server-side `post-receive` hook.
+- Pushing code to the server triggers the server-side `post-receive` hook.
 - The `post-receive` hook begins executing---it first places your app in maintenance mode (which you can test by visiting your app in a browser during the redeployment process) and then begins running through each of the deployment steps added in this article.
   You should be able to follow along as the script's standard output appears in your SSH session; obviously, you want each deployment step to complete successfully.
 

@@ -21,7 +21,7 @@ You can read more about the guide [below](#about), or [jump right in]({{< relref
 1. [Composer]({{< relref "composer" >}}): install Composer and use it to install PHP packages.
 1. [NPM]({{< relref "npm" >}}): install NPM and use it to install NodeJS packages.
 1. [Laravel environment setup]({{< relref "env" >}}): take care of your `.env` file, database migrations, and a few predeployment optimizations.
-1. [Set Laravel directory permissions]({{< relref "permissions" >}}): a few permission tweaks for Laravel to run.
+1. [Directory permissions]({{< relref "permissions" >}}): a few ownership and permission tweaks for Laravel to run.
 1. [Nginx]({{< relref "nginx" >}}): install Nginx; create and activate your app's Nginx config.
 1. [Automated redeployment]({{< relref "deploy" >}}): three options for automated redeployment.
 1. [Custom domain name]({{< relref "dns" >}}): set up DNS records needed for a custom domain name.

@@ -81,7 +81,7 @@ Here's what should happen:
 
 - Git on your dev machine recognizes which SSH key to use to connect to the server (you might be prompted for the SSH key's password, or `ssh-agent` might take of this for you under the hood, depending on your SSH setup).
 - Your app is pushed to the server-side Git repo (SSH into the server and check the contents of `/home/laravel/repo/laravel-project.git`).
-- Pushing code to the server triggered the `post-receive` hook in the server-side Git repo, which copied your app into the `/srv/www/laravel-project` directory on the server. (Again, check this manually by SSHing into the server and inspecting `/srv/www/laravel-project`.)
+- Pushing code to the server triggers the `post-receive` hook in the server-side Git repo, which copied your app into the `/srv/www/laravel-project` directory on the server. (Again, check this manually by SSHing into the server and inspecting `/srv/www/laravel-project`.)
 
 {{< details summary="Ran into problems?" >}}
 - Errors with Git's SSH connection to the server are probably due to an SSH or Git misconfiguration on your dev machine.

@@ -56,11 +56,15 @@ mkdir -p ${RELEASE}
 # Copy latest app release into new release directory
 git --work-tree=${RELEASE} --git-dir=${REPO} checkout --force
 
-# Link shared files into place
+# Link shared env file into place
 ln -s ${SHARED}/.env ${RELEASE}/.env
+
+# Replace release's boilerplate storage directory with shared storage directory
+rm -rf ${RELEASE}/storage
 ln -s ${SHARED}/storage ${RELEASE}/storage
-# If your app uses SQLite; remove if not needed
-ln -s ${SHARED}/database.sqlite ${RELEASE}/database/sqlite/database.sqlite`
+
+# If your app uses SQLite, link database into place
+ln -s ${SHARED}/database.sqlite ${RELEASE}/database/sqlite/database.sqlite
 # --------------------------------------------------------------------------- #
 
 
@@ -69,7 +73,7 @@ ln -s ${SHARED}/database.sqlite ${RELEASE}/database/sqlite/database.sqlite`
 # --------------------------------------------------------------------------- #
 cd ${RELEASE}
 composer install --no-dev --optimize-autoloader
-npm install
+npm ci
 npm run build
 php artisan config:cache
 php artisan route:cache
@@ -79,13 +83,12 @@ php artisan migrate --force
 
 
 # --------------------------------------------------------------------------- #
-# Grant web server write privileges on storage and bootstrap/cache directories
+# Grant web server write privileges on the release's bootstrap/cache directory
 # --------------------------------------------------------------------------- #
 # Grant group ownership of your app's files to www-data
 sudo chgrp -R www-data "${RELEASE}"
 
-# Grant owning group write access for special directories
- sudo chmod -R g=rwX "${RELEASE}/storage"
+# Grant owning group write access for the release's bootstrap/cache directory
  sudo chmod -R g=rwX "${RELEASE}/bootstrap/cache"
 # --------------------------------------------------------------------------- #
 
@@ -135,6 +138,8 @@ Comments:
 - I've chosen to name the releases by the date they are published followed by the SHA of the corresponding Git commit.
   For example, a release with commit SHA `a44fb73` published on 8 August 2023  would be named `2023-08-23_a44fb73`---naming by date allows easy sorting, and adding the commit SHA ensures each release is uniquely named.
   Of course, feel free to change this naming convention if you like.
+- We're installing Node.js dependencies with `npm ci` instead of `npm install`.
+  This is standard best practice in production environments---see e.g. [this Stack Overflow answer](https://stackoverflow.com/questions/52499617/what-is-the-difference-between-npm-install-and-npm-ci) for details.
 - The `-f` flag in the final `ln` command is used to force an overwrite of the previous release link.
   The `-n` flag stops `ln` from trying to dereference and follow the previous release symlink; this is important---leave this out and you'll get a symlink *inside* of the existing `active` release, instead of in `/srv/www/laravel-project/` where it should be!
 - Note that we need `sudo` for the `chgrp` and `chmod` commands.
@@ -203,13 +208,12 @@ laravel@server$ sudo -k
 # Test that you can run the chgrp and chmod without a password.
 # Note that you need the full paths to match the globs in `sudoers`.
 sudo chgrp -R www-data /srv/www/laravel-project/releases/initial/
-sudo chmod -R g=rwX /srv/www/laravel-project/releases/initial/storage/
 sudo chmod -R g=rwX /srv/www/laravel-project/releases/initial/bootstrap/cache/
 ```
 
 Still need being prompted for a `sudo` password? Something is wrong with either your `sudoers` setup or the commands you entered---double check this section.
 
-### Cleaning up old releases (optional)
+### Cleaning up old releases (optional-ish)
 
 **Problem:** you could run out of disk space.
 The zero-downtime redeployment workflow described above does not remove old releases, and given that a typical Laravel app with a JavaScript frontend weighs in on the order of 100 MB, you could easily exhaust the disk space on a lightweight server after, say, a year of regular releases.
@@ -217,7 +221,7 @@ The zero-downtime redeployment workflow described above does not remove old rele
 **Solution:** 
 I'd suggest adding a few lines to the end of your `post-receive` script to remove old releases after each redeployment, but I suppose you could also use a Systemd service/timer, or just manually SSH into your server every once in a while and manually delete old releases.
 
-Below are two options to give you something to start with---modify as desired.
+Below are two options to give you something to start with---pick one and modify as desired.
 
 **Option 1: Keep only the N newest releases**
 

@@ -99,7 +99,7 @@ This technique uses the `find` command to set different permissions for regular 
 Using `find` also works perfectly well---it's just a bit harder to read and requires two passes per directory instead of just one with `chmod -R`.
 {{< /details >}}
 
-## If you're using SQLite...
+## If you're using SQLite... {#sqlite}
 
 *You can [skip to the next article]({{< relref "nginx" >}}) if you're not using SQLite for your database.*
 

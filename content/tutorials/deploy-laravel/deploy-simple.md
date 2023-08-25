@@ -71,7 +71,7 @@ composer install --no-dev --optimize-autoloader
 
 # Install node packages and build assets.
 # You can skip this if your app has no Node.js dependencies.
-npm install && npm run build
+npm ci && npm run build
 
 # Cache Laravel configuration settings, routes, and views for efficiency.
 # See https://laravel.com/docs/10.x/deployment#optimizing-configuration-loading,
@@ -89,8 +89,12 @@ php artisan migrate --force
 php artisan up
 ```
 
-The only new commands are `php artisan up|down`, used to temporarily disable your app during the redeployment (here's a [link to the Laravel docs](https://laravel.com/docs/configuration#maintenance-mode)).
-The other redeployment commands should be familiar from the past few articles.
+Comments:
+
+- Most of the redeployment commands should be familiar from the past few articles---they're just collected here in one place.
+- We're using `php artisan down` to temporarily disable your app during the redeployment, then `php artisan up` to reenable your app after the redeployment completes (here's a [link to the Laravel docs on maintenance mode](https://laravel.com/docs/configuration#maintenance-mode)).
+- We're installing Node.js dependencies with `npm ci` instead of `npm install`.
+  This is standard best practice in production environments---see e.g. [this Stack Overflow answer](https://stackoverflow.com/questions/52499617/what-is-the-difference-between-npm-install-and-npm-ci) for details.
 
 {{< details summary="A note on other deployment recipes" >}}
 The above recipe should work well for most users, but it is certainly not the only possible way to (re)deploy a Laravel app.

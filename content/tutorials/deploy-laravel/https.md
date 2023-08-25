@@ -21,30 +21,27 @@ References:
 
 ## Prerequisite
 
-You have set a DNS A record that points a custom domain name to your web server's IP address, i.e. something along the lines of
-
-```bash
-Host: foobar.com
-Answer: 1.2.3.4
-```
-
+You have set a DNS Type A record that points a custom domain name to your app server's IP address, and have verified the DNS record with a DNS lookup tool like `dig`.
 See the [previous article]({{< relref "dns" >}}) if you haven't done this yet.
 
 ## Install Snap and Certbot
 
 The de facto tool for setting up and maintaining HTTPS certificates is Certbot.
-It seems the [preferred way](https://certbot.eff.org/instructions) to install Certbot is using Snap; I know Snap is disliked by many in the Linux community, but I'm not going to fight it here.
+It seems the [preferred way](https://certbot.eff.org/instructions) to install Certbot is using Snap.
+This might cause some controversy---I know Snap is disliked by many in the Linux community---but I'm not going to fight it here and will use Snap to install Certbot in this article.
 
-### Install Snap
+### Install Snap (so that you can then install Certbot)
 
-We'll first install Snap, then use Snap to install Certbot:
+We'll first install Snap, then use Snap to install Certbot.
+I'll be following the [official instructions from Snapcraft](https://snapcraft.io/docs/installing-snapd).
+
+You might already have Snap installed; if not, you can install it on Debian-based systems as follows:
 
 ```bash
-# Install Snap (you can very likely skip this step on Ubuntu systems,  where
-# Snap is usually installed by default.)
+# Install Snap (you'll probably already have Snap on Ubuntu and can skip this step.)
 laravel@server$ sudo apt install snapd
 
-# If you needed to installed snapd, reboot your machine after installing.
+# If you needed to installed Snap, reboot your machine after the installation.
 laravel@server$ reboot
 ```
 
@@ -52,17 +49,19 @@ Then update to the latest Snap:
 
 ```bash
 # Install the core Snap to get the latest snapd
-sudo snap install core
+laravel@server$ sudo snap install core
 
-# Update core Snap
-sudo snap refresh core
+# Then update the core Snap
+laravel@server$ sudo snap refresh core
 ```
 
-Because we'll use the Snap version of Certbot, you should remove any version of Certbot managed by APT:
+### Remove non-Snap versions of Certbot, if needed
+
+Because we'll be installing the Snap version of Certbot, you should remove any version of Certbot managed by APT (or whatever other package manager you might be using):
 
 ```bash
-# Remove Certbot packages managed by APT (you probably won't have any)
-sudo apt remove certbot
+# Remove any Certbot packages managed by APT (you probably won't have any)
+laravel@server$ sudo apt remove certbot
 ```
 
 ### Install Certbot
@@ -70,16 +69,16 @@ sudo apt remove certbot
 You can finally install Certbot:
 
 ```bash
-# Install Certbot with snap
-sudo snap install --classic certbot
+# Install Certbot using Snap
+laravel@server$ sudo snap install --classic certbot
 ```
 
 You should then put the Certbot executable somewhere on your `PATH`.
-I suggest `/usr/local/bin` or `/usr/bin`:
+The choice is up to you; I would suggest using `/usr/local/bin` to avoid any ambiguity with the APT-managed packages in `/usr/bin`:
 
 ```bash
 # Link Certbot to /usr/local/bin
-sudo ln -s /snap/bin/certbot /usr/bin/certbot
+laravel@server$ sudo ln -s /snap/bin/certbot /usr/local/bin/certbot
 ```
 
 ## Set up an HTTPS certificate
@@ -89,27 +88,39 @@ This opens an interactive session with a few prompts for you to answer.
 
 ```bash
 # Run Certbot with Nginx-specific features
-sudo certbot --nginx
+laravel@server$ sudo certbot --nginx
 ```
 
-The `--nginx` flag is important---it makes Certbot take care of updating your site's Nginx config to work with HTTPS.
+The `--nginx` flag is important---it lets Certbot know you're using Nginx as your web server, which makes Certbot take care of updating your site's Nginx config to work with HTTPS.
 
 Here's how to answer the prompts:
 
 - Add an email (where you'll receive expiration notices---don't worry, you won't be spammed unless you opt in).
 - Agree to the terms of service.
-- Opt out of (or in to) EFF emails.
-- Confirm the domain name (e.g. `foobar.com`) for the HTTPS certificate. If you used the `--nginx` option, Certbot should have picked the domain name up from your Nginx config.
-- If prompted, you might want to redirect HTTP traffic to HTTPS.
+- Opt out of (or opt in to) [EFF](https://en.wikipedia.org/wiki/Electronic_Frontier_Foundation) emails---your choice.
+- Confirm the domain name (e.g. `mylaravelproject.com`) for the HTTPS certificate.
+  If you used the `--nginx` option, Certbot should have picked the domain name up from your Nginx config.
 
-Certbot takes care of renewing your HTTPS certificate for you.
-I suggest checking that auto-renew works:
+Certbot will take care of renewing your HTTPS certificate for you, but I suggest checking that auto-renew works:
 
 ```bash
 # Check if auto-renewal of your HTTPS certificate works
-sudo certbot renew --dry-run
+laravel@server$ sudo certbot renew --dry-run
 ```
 
-That's it! After a minute or so your app should be available at its domain name over HTTPS. And that wraps up this guide. Thanks for reading!
+That's it!
+After a minute or so your app should be available at its domain name over HTTPS.
+
+## Update your `APP_URL`
+
+Open your Laravel app's `.env` file and set the `APP_URL` variable to use HTTPS:
+
+```bash
+APP_URL=https://mylaravelproject.com
+```
+
+Then recache your app's config settings by running `php artisan config:cache` from your Laravel project root directory.
+
+And that wraps up this guide. Thanks for reading!
 
 {{< deploy-laravel/navbar >}}

@@ -5,7 +5,7 @@ date: 2023-07-17
 
 # Deploy a Laravel and Vue.js web app
 
-This is a guide to deploying a web application with a [Laravel](https://laravel.com/) backend and a Javascript-based frontend on a dedicated or virtual private server.
+This is a guide to deploying a web application with a [Laravel](https://laravel.com/) backend and a JavaScript-based frontend on a dedicated or virtual private server.
 
 You can read more about the guide [below](#about), or [jump right in]({{< relref "server-setup" >}}).
 
@@ -31,7 +31,7 @@ You can read more about the guide [below](#about), or [jump right in]({{< relref
 
 ### What's this?
 
-A guide to deploying a web application with a [Laravel](https://laravel.com/) backend and Javascript-based frontend (e.g. Vue.js, React, etc.) on a dedicated or virtual private server.
+A guide to deploying a web application with a [Laravel](https://laravel.com/) backend and JavaScript-based frontend (e.g. Vue.js, React, etc.) on a dedicated or virtual private server.
 My goal in writing this was to document the process for future reference and help anyone else doing the same thing.
 The guide should be applicable, with minor adjustments, to other frontend frameworks.
 
@@ -41,7 +41,7 @@ The guide should be applicable, with minor adjustments, to other frontend framew
 - Backend: [Laravel](https://laravel.com/)
 - Web server: [Nginx](https://www.nginx.com/)
 - Database: your choice of [MySQL](https://www.mysql.com/) (well, [MariaDB](https://mariadb.org/)), [PostgreSQL](https://www.postgresql.org/), [SQLite](https://www.sqlite.org/index.html)
-- Frontend: Any Javascript-based framework (e.g. [Vue.js](https://vuejs.org/), [React](https://react.dev/), etc.) for which you could reasonably define an `npm run build` script.
+- Frontend: Any JavaScript-based framework (e.g. [Vue.js](https://vuejs.org/), [React](https://react.dev/), etc.) for which you could reasonably define an `npm run build` script.
   The frontend has a relatively minor role in this guide.
 
 ## Prerequisites

@@ -96,9 +96,6 @@ The other redeployment commands should be familiar from the past few articles.
 The above recipe should work well for most users, but it is certainly not the only possible way to (re)deploy a Laravel app.
 You might find other guides online with a slightly different sequence of commands and/or slightly different commands---don't worry, they probably work, too!
 
-It's more important to understand what each command does rather than blindly memorizing exact sequences of Artisan commands.
-The [Laravel deployment docs](https://laravel.com/docs/10.x/deployment) are a good place to start.
-
 Here are a few commands to consider using if your app needs them:
 
 - `php artisan cache:clear` if using an [application cache](https://laravel.com/docs/cache)
@@ -107,6 +104,7 @@ Here are a few commands to consider using if your app needs them:
 (But if you're using these more advanced Laravel features you probably already know what your doing!)
 
 You might also want to throw in an `npm audit fix` after installing Node.js dependencies (to try to fix vulnerabilities in Node.js packages), but that depends on your personal preference.
+
 {{< /details >}}
 
 At this the `post-receive` hook should successfully take care of updating and redeploying your app everytime you push a new version to your server-side Git repo.

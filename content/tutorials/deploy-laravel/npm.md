@@ -10,10 +10,10 @@ date: 2023-07-18
 {{< deploy-laravel/header >}}
 {{< deploy-laravel/navbar >}}
 
-*(You can skip this article if your Laravel app has no Javascript dependencies.)*
+*(You can skip this article if your Laravel app has no JavaScript dependencies.)*
 
-This short article shows how to install NPM, the standard package manager for the Node.js Javascript runtime environment.
-We'll use NPM to install your application's Javascript depedencies.
+This short article shows how to install NPM, the standard package manager for the Node.js JavaScript runtime environment.
+We'll use NPM to install your application's JavaScript depedencies.
 
 (This is trivial if you've done it before, and it might be overkill to make a dedicated article for this. But I want to document every step so everyone can follow along.)
 
@@ -26,7 +26,7 @@ laravel@server$ sudo apt install nodejs
 
 ## Install Node.js packages
 
-Then change into the directory from which your app is served and use NPM to install your app's Javascript dependencies:
+Then change into the directory from which your app is served and use NPM to install your app's JavaScript dependencies:
 
 ```bash
 # Install your app's Node.js dependencies

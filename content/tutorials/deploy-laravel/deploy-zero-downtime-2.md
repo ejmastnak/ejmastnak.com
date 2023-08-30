@@ -111,8 +111,6 @@ Here are a few commands to consider using if your app needs them:
 
 (But if you're using these more advanced Laravel features you probably already know what your doing!)
 
-You might also want to throw in an `npm audit fix` after installing Node.js dependencies (to try to fix vulnerabilities in Node.js packages), but that depends on your personal preference.
-
 **A note on PHP-FPM**
 
 I've seen some guides online
@@ -291,7 +289,7 @@ With that said:
 - Is your SSH connection failing? Check the troubleshooting section [in the dev-side Git setup article]({{< relref "git-dev" >}}#push).
 - The server-side `post-receive` hook is executable, right?
 - All paths and usernames are correct (and not still using the generic names from this guide), right?
-- Is the `npm run build` command failing? Make sure your Node.js is reasonably up to date and then your server has sufficient RAM (covered in the [NPM article]({{< relref "npm" >}})).
+- Is the `npm run build` command failing? Make sure your Node.js is reasonably up to date and then your server has sufficient RAM (covered in the [Node.js article]({{< relref "nodejs" >}})).
 - Check that you've properly performed the manual steps for [setting up zero-downtime redeployment](#preparations) (you've made a `shared` directory, all your symlinks are current, etc.).
 
 Other than that, at the risk of being super annoying, give this article (*including the prerequisites!*) a reread and double-check every setting is correct---there are a lot of moving parts here and one misconfiguration will bring your app down.

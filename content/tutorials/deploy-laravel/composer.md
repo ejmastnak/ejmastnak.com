@@ -1,7 +1,7 @@
 ---
 title: "Install Composer for deploying a Laravel web application"
 prevFilename: "git-dev"
-nextFilename: "npm"
+nextFilename: "nodejs"
 date: 2023-07-18
 ---
 

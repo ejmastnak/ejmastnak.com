@@ -32,7 +32,7 @@ A more sophisticated setup would use [zero-downtime redeployment]({{< relref "de
 
 1. You should have read, implemented, and understood the earlier article on [server-side Git setup]({{< relref "git-server" >}}).
 In particular you have a working `post-receive` hook in your server-side Git repo and understand what the hook does, i.e. copy your app to the production directory in `/srv/www/` after every Git push.
-2. You should have read, followed, and understood the manual deployment steps covered in the past few articles (in particular the [Composer]({{< relref "composer" >}}), [NPM]({{< relref "npm" >}}), [Laravel environment]({{< relref "env" >}}), and [Laravel directory permissions]({{< relref "permissions" >}}), and [Nginx]({{< relref "nginx" >}})) articles), and your app should be live when you visit your server's IP address from a web browser.
+2. You should have read, followed, and understood the manual deployment steps covered in the past few articles (in particular the [Composer]({{< relref "composer" >}}), [Node.js]({{< relref "nodejs" >}}), [Laravel environment]({{< relref "env" >}}), and [Laravel directory permissions]({{< relref "permissions" >}}), and [Nginx]({{< relref "nginx" >}})) articles), and your app should be live when you visit your server's IP address from a web browser.
 
 ## The redeployment workflow
 
@@ -107,8 +107,6 @@ Here are a few commands to consider using if your app needs them:
 
 (But if you're using these more advanced Laravel features you probably already know what your doing!)
 
-You might also want to throw in an `npm audit fix` after installing Node.js dependencies (to try to fix vulnerabilities in Node.js packages), but that depends on your personal preference.
-
 {{< /details >}}
 
 At this the `post-receive` hook should successfully take care of updating and redeploying your app everytime you push a new version to your server-side Git repo.
@@ -142,7 +140,7 @@ With that said:
 - Is your SSH connection failing? Check the troubleshooting section [in the dev-side Git setup article]({{< relref "git-dev" >}}#push).
 - The server-side `post-receive` hook is executable, right?
 - All paths and usernames are correct (and not still using the generic names from this guide), right?
-- Is the `npm run build` command failing? Make sure your Node.js is reasonably up to date and then your server has sufficient RAM (covered in the [NPM article]({{< relref "npm" >}})).
+- Is the `npm run build` command failing? Make sure your Node.js is reasonably up to date and then your server has sufficient RAM (covered in the [NPM article]({{< relref "nodejs" >}})).
 {{< /details >}}
 
 **Next:** The next article shows how to set up a custom domain name for your web app.

@@ -1,6 +1,6 @@
 ---
 title: "Configure a Laravel web app environment for production"
-prevFilename: "npm"
+prevFilename: "nodejs"
 nextFilename: "permissions"
 date: 2023-07-18
 ---
@@ -32,6 +32,13 @@ You'll probably need to create a fresh `.env` file on the server---I suggest usi
 # example .env.example file file as a starting point.
 laravel@server$ cd /srv/www/laravel-project
 laravel@server:laravel-project$ cp .env.example .env
+```
+
+Then restrict the `.env` file's permissions (this file is used to store sensitive information, so it shouldn't be readable by all users); I'd suggest `640` permissions:
+
+```bash
+# Restrict the env file's permissions (rw for owning user, r for owning group)
+laravel@server:laravel-project$ chmod 640 .env
 ```
 
 Then open the `.env` file, and inside make the following changes.

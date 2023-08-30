@@ -19,7 +19,7 @@ This is part 1 of the coverage of zero-downtime redeployment in this series.
 
 1. You should have read, implemented, and understood the earlier article on [server-side Git setup]({{< relref "git-server" >}}).
 In particular you have a working `post-receive` hook in your server-side Git repo and understand what the hook does, i.e. copy your app to the production directory in `/srv/www/` after every Git push.
-2. You should have read, followed, and understood the manual deployment steps covered in the past few articles (in particular the [Composer]({{< relref "composer" >}}), [NPM]({{< relref "npm" >}}), [Laravel environment]({{< relref "env" >}}), and [Laravel directory permissions]({{< relref "permissions" >}}), and [Nginx]({{< relref "nginx" >}}) articles), and your app should be live when you visit your server's IP address from a web browser.
+2. You should have read, followed, and understood the manual deployment steps covered in the past few articles (in particular the [Composer]({{< relref "composer" >}}), [Node.js]({{< relref "nodejs" >}}), [Laravel environment]({{< relref "env" >}}), and [Laravel directory permissions]({{< relref "permissions" >}}), and [Nginx]({{< relref "nginx" >}}) articles), and your app should be live when you visit your server's IP address from a web browser.
 
 ## How zero-downtime redeployment works {#how-it-works}
 
@@ -244,6 +244,9 @@ laravel@server:laravel-project$ sudo chgrp -R www-data releases/ shared/
 # Grant owning group write access for special directories
 laravel@server$ sudo chmod -R g=rwX shared/storage
 laravel@server$ sudo chmod -R g=rwX releases/initial/bootstrap/cache
+
+# Restrict the env file's permissions (rw for owning user, r for owning group)
+laravel@server:laravel-project$ chmod 640 shared/.env
 ```
 
 ### Update your Laravel cache

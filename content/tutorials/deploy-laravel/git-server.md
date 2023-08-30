@@ -110,7 +110,7 @@ Caveat: this assumes you haven't manually changed the `HEAD` of the Git repo on 
 
 And why use separate Git and server directories in the first place?
 This setup decouples the Git repo (which has your app's entire commit history) from the most recent version of your app being served to the public Web.
-Aside from being cleaner in principle than serving your app directly from a Git repo, this considerably simplifies managagement of Laravel's `.env` file, the PHP `vendor` directory, and NPM's `node_modules` directory for your production app (none of these files should be placed in a Git repo in the first place).
+Aside from being cleaner in principle than serving your app directly from a Git repo, this considerably simplifies managagement of Laravel's `.env` file, the PHP `vendor` directory, and the Node.js `node_modules` directory for your production app (none of these files should be placed in a Git repo in the first place).
 
 ## Create a post-receive hook
 

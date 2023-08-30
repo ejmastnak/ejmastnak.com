@@ -49,5 +49,3 @@ The downside is additional complexity---you have to learn to use a new tool.
 Instead of trying to reinvent the wheel I'll refer you to his guide instead:
 you can either read [the whole series](https://lorisleiva.com/deploy-your-laravel-app-from-scratch/) or just the [zero-downtime redeployment article](https://lorisleiva.com/deploy-your-laravel-app-from-scratch/deploy-with-zero-downtime).
 This would be good reading even if you don't end up using Deployer, just to see the content of my guide from a different perspective.
-
-{{< deploy-laravel/navbar >}}

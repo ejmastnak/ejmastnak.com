@@ -1,19 +1,19 @@
 ---
-title: "Install a Laravel project's JavaScript dependencies"
+title: "Install a Laravel project's Node.js JavaScript dependencies"
 prevFilename: "composer"
 nextFilename: "env"
 date: 2023-07-18
 ---
 
-# Install a Laravel project's JavaScript dependencies
+# Install a Laravel project's Node.js dependencies
 
 {{< deploy-laravel/header >}}
 {{< deploy-laravel/navbar >}}
 
 *(You can skip this article if your Laravel app has no JavaScript dependencies.)*
 
-This short article shows how to install NPM, the standard package manager for the Node.js JavaScript runtime environment.
-We'll use NPM to install your application's JavaScript depedencies.
+This short article shows how to install the Node.js JavaScript runtime environment and NPM, the standard package manager for the Node.js.
+We'll use NPM to install your application's Node.js depedencies.
 
 (This is trivial if you've done it before, and it might be overkill to make a dedicated article for this. But I want to document every step so everyone can follow along.)
 
@@ -26,7 +26,7 @@ laravel@server$ sudo apt install nodejs
 
 ## Install Node.js packages
 
-Then change into the directory from which your app is served and use NPM to install your app's JavaScript dependencies:
+Then change into the directory from which your app is served and use NPM to install your app's Node.js dependencies:
 
 ```bash
 # Install your app's Node.js dependencies
@@ -44,9 +44,19 @@ This could cause problems when running `npm install` if your app's `package.json
 You can solve this by first uninstalling your outdated version of Node.js (e.g. using `sudo apt purge nodejs && sudo apt autoremove`), then following the instructions in [this Digital Ocean article on installing Node.js](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04) to install a more up-to-date version---probably the simplest choice is Option 2, "Installing Node.js with Apt Using a NodeSource PPA".
 {{< /details-danger >}}
 
+### Fix vulnerabilities in Node.js dependencies (optional)
+
+The `npm install` command may have warned you about vulnerabilities in installed packages.
+In this case you should run `npm audit fix`, which will try to (and generally succeed in) fixing these vulnerabilities:
+
+```bash
+# If necessary, try to fix vulnerabilities in Node.js packages
+laravel@server:laravel-project$ npm audit fix
+```
+
 ## Build your app
 
-After running `npm install`, you can now build your app for production (this assumes you have a `build` script defined in your project's `package.json` file, which a Laravel-Vue or Laravel-React project should come with by default):
+After running `npm install` (and `npm audit fix`, if needed), you can now build your app for production (this assumes you have a `build` script defined in your project's `package.json` file, which a Laravel-Vue or Laravel-React project should come with by default):
 
 ```bash
 # Build your app for production.

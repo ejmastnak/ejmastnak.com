@@ -63,8 +63,8 @@ ln -s ${SHARED}/.env ${RELEASE}/.env
 rm -rf ${RELEASE}/storage
 ln -s ${SHARED}/storage ${RELEASE}/storage
 
-# If your app uses SQLite, link database into place
-ln -s ${SHARED}/database.sqlite ${RELEASE}/database/sqlite/database.sqlite
+# # If your app uses SQLite, link database into place
+# ln -s ${SHARED}/database.sqlite ${RELEASE}/database/sqlite/database.sqlite
 # --------------------------------------------------------------------------- #
 
 
@@ -167,7 +167,6 @@ laravel@server$ sudo visudo
 
 # ...but you can easily override this with your preferred $EDITOR
 laravel@server$ sudo EDITOR=nano visudo
-laravel@server$ sudo EDITOR=vi visudo
 laravel@server$ sudo EDITOR=vim visudo
 ```
 
@@ -187,10 +186,10 @@ Inside the `sudoers` file (e.g. towards the bottom, but anywhere should work), p
 
 ```bash
 # Allow laravel user to change owning group of release directories
-laravel ALL=NOPASSWD: /usr/bin/chgrp -R www-data /srv/www/nutria/releases/*
+laravel ALL=NOPASSWD: /usr/bin/chgrp -R www-data /srv/www/laravel-project/releases/*
 
 # Allow laravel user to change file permissions in release directories
-laravel ALL=NOPASSWD: /usr/bin/chmod -R g\=rwX /srv/www/nutria/releases/**/*
+laravel ALL=NOPASSWD: /usr/bin/chmod -R g\=rwX /srv/www/laravel-project/releases/**/*
 ```
 
 Comments:
@@ -206,12 +205,12 @@ I suggest testing the updated `sudoers` settings: run the whitelisted commands a
 laravel@server$ sudo -k
 
 # Test that you can run the chgrp and chmod without a password.
-# Note that you need the full paths to match the globs in `sudoers`.
+# Attention: you need the full paths to match the globs in `sudoers`.
 sudo chgrp -R www-data /srv/www/laravel-project/releases/initial/
 sudo chmod -R g=rwX /srv/www/laravel-project/releases/initial/bootstrap/cache/
 ```
 
-Still need being prompted for a `sudo` password? Something is wrong with either your `sudoers` setup or the commands you entered---double check this section.
+Still being prompted for a `sudo` password? Something is wrong with either your `sudoers` setup or the commands you entered---double check this section.
 
 ### Cleaning up old releases (optional-ish)
 
@@ -266,7 +265,7 @@ I hope one of these options is helpful---I personally use Option 1 and stick the
 
 Time to test if this zero-downtime redeployment setup is working properly.
 
-Make a test change to your app on your dev machine (add a new feature, change some text, tweak a color, etc.---anything you'll easily notice), commit the change, then push the new version of your app to the server.
+Make a test change to your app on your dev machine (add a new feature, change some text, tweak a color, etc.---anything you'll easily notice), commit the change, then push the new version of your app to the server, just like in the [dev-side Git setup article]({{< relref "git-dev" >}})):
 
 ```bash
 # On your dev machine, push your app's main branch to the production server.
@@ -300,5 +299,6 @@ Other than that, at the risk of being super annoying, give this article (*includ
 And if you're sure you've exactly followed the guide so far and your app is still down, please [let me know](/contact)---I've done my best to battle-test this guide and triple-check that everything works, but there could still be mistakes or unexpected failure modes, which I would want to address.
 {{< /details >}}
 
+**Next:** The next article shows how to set up a custom domain name for your web app.
 
 {{< deploy-laravel/navbar >}}

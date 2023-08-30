@@ -145,4 +145,6 @@ With that said:
 - Is the `npm run build` command failing? Make sure your Node.js is reasonably up to date and then your server has sufficient RAM (covered in the [NPM article]({{< relref "npm" >}})).
 {{< /details >}}
 
+**Next:** The next article shows how to set up a custom domain name for your web app.
+
 {{< deploy-laravel/navbar >}}

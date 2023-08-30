@@ -11,7 +11,8 @@ date: 2023-07-17
 {{< deploy-laravel/header >}}
 {{< deploy-laravel/navbar >}}
 
-This short article shows how to configure Git on your development machine to push code to your app's server.
+This short article shows how to configure Git on your development machine.
+You should have read and implemented [the previous article]({{< relref "git-server" >}}) on server-side Git setup before beginning this article.
 
 ## SSH config for Git push {#ssh-config}
 
@@ -90,10 +91,12 @@ Here's what should happen:
   Make sure:
 
   - that the non-root user owns the `/srv/www/laravel-project` directory on the server (the directory is not writable otherwise);
-  - that the `post-receive` Git hook in the server-side Git hook is executable;
+  - that the `post-receive` Git hook in the server-side Git repo is executable;
   - and that the username in the SSH aliases in `~/.ssh/config` on your dev machine match the non-root user on the server.
 
 Give this and the previous article a reread just be sure, and then please [let me know](/contact) if you're still having problems pushing code to the server---it might be a mistake in this guide.
 {{< /details >}}
+
+**Next:** The next article shows how to install Composer and how to use Composer to install your Laravel project's PHP dependencies.
 
 {{< deploy-laravel/navbar >}}

@@ -211,8 +211,11 @@ You should then be able to log in to a PostgreSQL shell as follows:
 laravel@server$ psql -U laravel -d laraveldb -h localhost
 ```
 
-Assuming you've followed along with the guide, you need the `-h` flag to initiate a host-based connection---`psql` would otherwise attempt a socket-pased connection with `peer` authentication, which will fail.
-This is a consequence of how we've set up the PostgreSQL user combined with the default settings in `pg_hba.conf`, and falls beyond the scope of this article.
+{{< details-warning summary="You need the `--host` flag!" >}}
+Assuming you're following along with the guide, you need the `-h` flag (short for `--host`) to initiate a local host-based connection;
+`psql` would otherwise attempt a socket-pased connection using `peer` authentication, which will fail because of how we've set up the PostgreSQL user combined with the default settings in `pg_hba.conf`.
+(Although explaning the details of PostgreSQL authentication modes falls beyond the scope of this article.)
+{{< /details-warning >}}
 
 ## SQLite {#sqlite}
 
@@ -224,5 +227,7 @@ laravel@server$ sudo apt install sqlite3
 ```
 
 That's all you need for now---I'm assuming you'll be bring along an existing `*.sqlite` database file with a Laravel app.
+
+**Next:** The next article covers server-side Git setup.
 
 {{< deploy-laravel/navbar >}}

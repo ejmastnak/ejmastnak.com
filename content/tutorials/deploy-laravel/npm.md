@@ -1,11 +1,11 @@
 ---
-title: "Install NPM for deploying a Laravel and Vue web application"
+title: "Install a Laravel project's JavaScript dependencies"
 prevFilename: "composer"
 nextFilename: "env"
 date: 2023-07-18
 ---
 
-# Install NPM for deploying a Laravel and Vue.js web application
+# Install a Laravel project's JavaScript dependencies
 
 {{< deploy-laravel/header >}}
 {{< deploy-laravel/navbar >}}
@@ -41,12 +41,12 @@ This command looks in your Laravel project's `package.json` file and installs th
 The version of Node.js shipped with Ubuntu LTS and stable Debian (which I imagine many readers are using) tends to be quite outdated.
 This could cause problems when running `npm install` if your app's `package.json` requires a recent version of Node---in this case NPM will warn you that your Node.js is outdated.
 
-You can solve this by first uninstalling your outdated version of Node.js (e.g. using `apt purge nodejs && apt autoremove`), then following the instructions in [this Digital Ocean article on installing Node.js](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04) to install a more up-to-date version---probably the simplest choice is Option 2, "Installing Node.js with Apt Using a NodeSource PPA".
+You can solve this by first uninstalling your outdated version of Node.js (e.g. using `sudo apt purge nodejs && sudo apt autoremove`), then following the instructions in [this Digital Ocean article on installing Node.js](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04) to install a more up-to-date version---probably the simplest choice is Option 2, "Installing Node.js with Apt Using a NodeSource PPA".
 {{< /details-danger >}}
 
 ## Build your app
 
-Finally build your app for production (this assumes you have a `build` script defined in your project's `package.json` file, which a Laravel-Vue or Laravel-React project should come with by default):
+After running `npm install`, you can now build your app for production (this assumes you have a `build` script defined in your project's `package.json` file, which a Laravel-Vue or Laravel-React project should come with by default):
 
 ```bash
 # Build your app for production.
@@ -67,5 +67,7 @@ One final detail: double check that there is no `public/hot` directory in your s
 
 (This directory is used by Vite for hot reloading during development, but will cause problems on a production machine.
 It shouldn't end up on your server because it is ignored in Laravel's default `.gitignore`, but check just in case.)
+
+**Next:** The next article covers the necessary environment configuration for running a Laravel app in production.
 
 {{< deploy-laravel/navbar >}}

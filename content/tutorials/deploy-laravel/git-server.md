@@ -10,7 +10,7 @@ date: 2023-07-18
 {{< deploy-laravel/header >}}
 {{< deploy-laravel/navbar >}}
 
-This article shows how to set up a Git repository on the server to which we will push code from your development machine, and a post-receive Git hook to automate (re)deploying your app on every Git push to the server.
+This article shows how to set up a Git repository on your app's server, to which you will push code from your development machine, and how to create a post-receive Git hook to automate (re)deploying your app on every Git push to the server.
 
 ## Preview
 
@@ -21,16 +21,16 @@ For orientation, here's the Git and deployment workflow we'll use in this guide:
 1. A post-receive Git hook automatically copy your app's code to the `/srv/www/` directory from which Nginx will serve your app to the public Web.
 
 {{< details summary="Credit where credit is due" >}}
-The Git workflow used in this guide is based on [Farhan Hasin Chowdhury's guide to deploying a Laravel web app on a VPS](https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers) (which in turm seems to be inspired by [J. Alexander Curtis's guide to deploying a Laravel 5.3 app on a LEMP stack](https://devmarketer.io/learn/deploy-laravel-5-app-lemp-stack-ubuntu-nginx/)).
-I encourage you to read through both guides.
+The Git workflow used in this guide is originally inspired by [Farhan Hasin Chowdhury's guide to deploying a Laravel web app on a VPS](https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers) (which in turm seems to be based on [J. Alexander Curtis's guide to deploying a Laravel 5.3 app on a LEMP stack](https://devmarketer.io/learn/deploy-laravel-5-app-lemp-stack-ubuntu-nginx/)).
+I encourage you to read both guides.
 {{< /details >}}
 
 {{< details summary="What if I want to host my Git repo on GitHub?" >}}
-No problem, you can do that too!
+No problem, you can do that too, in parallel to the server-side Git setup in this article.
 Just set up multiple remotes on your dev machine.
 E.g. `origin` (GitHub) and `prod` (server).
 
-You could even [base your deployment workflow on GitHub actions](https://stefanzweifel.dev/posts/2021/05/24/deployer-on-github-actions), but that is a whole 'nother can of worms.
+As an aside, you could even [base your deployment workflow on GitHub actions](https://stefanzweifel.dev/posts/2021/05/24/deployer-on-github-actions), but that is a separate topic and beyond the scope of this tutorial.
 {{< /details >}}
 
 ## Install Git
@@ -112,7 +112,7 @@ And why use separate Git and server directories in the first place?
 This setup decouples the Git repo (which has your app's entire commit history) from the most recent version of your app being served to the public Web.
 Aside from being cleaner in principle than serving your app directly from a Git repo, this considerably simplifies managagement of Laravel's `.env` file, the PHP `vendor` directory, and NPM's `node_modules` directory for your production app (none of these files should be placed in a Git repo in the first place).
 
-## Create post-receive hook
+## Create a post-receive hook
 
 We then just need to create a Git hook to checkout your app from the Git repo to the server directory.
 We'll do this with a `post-receive` hook (the exact name is important here), which Git will automatically run after every push to the server.
@@ -169,5 +169,7 @@ The work tree and Git directory are foundational Git concepts, but are all too o
 
 The end result is to automatically copy the most recent version of your app to the server directory `/srv/www/` after every Git push.
 We'll give this a try at the end of the next article.
+
+**Next:** The next article covers Git setup on your development machine.
 
 {{< deploy-laravel/navbar >}}

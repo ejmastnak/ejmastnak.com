@@ -103,7 +103,7 @@ server {
   # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
   add_header X-Content-Type-Options "nosniff";
 
-  # Use PHP (and not HTML) index files (likely because Laravel is PHP-based).
+  # Use PHP (and not HTML) index files (because Laravel is PHP-based).
   index index.php;
 
   # Specify UTF-8 character encoding in Content-Type HTTP response header fields.
@@ -199,5 +199,6 @@ There are, of course, a lot of moving parts here---far more than I could fully c
 And if you're sure you've exactly followed the guide so far and your app is still down, please [let me know](/contact)---I've done my best to battle-test this guide and triple-check everything works, but there could still be mistakes or unexpected failure modes, which I would want to address.
 {{< /details >}}
 
+**Next:** The next article covers automated redeployment of your Laravel app.
 
 {{< deploy-laravel/navbar >}}

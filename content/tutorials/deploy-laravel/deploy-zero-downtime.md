@@ -290,6 +290,6 @@ At the risk of being super annoying, give this article (*including the prerequis
 If you're sure you've exactly followed this article and your app is still down, please [let me know](/contact)---I've done my best to battle-test this guide to make triple-check everything works, but there could still be mistakes, which I would want to fix.
 {{< /details >}}
 
-The [next article]({{< relref "deploy-zero-downtime-2" >}}) shows how to automate zero-downtime redeployment.
+**Next:** The next article shows how to automate zero-downtime redeployment.
 
 {{< deploy-laravel/navbar >}}

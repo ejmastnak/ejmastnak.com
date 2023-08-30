@@ -17,7 +17,7 @@ You might also like [this guide from Digital Ocean](https://www.digitalocean.com
 ## Possibly create a swap file {#swap}
 
 Rumor has it you need about 2 GB of RAM to comfortably install Composer packages.
-If your server has less than 2 GB RAM, consider creating and activating a swap file (which lets the server use hard disk space to supplement RAM):
+If your server has less than 2 GB RAM, consider creating and activating a swap file to make up for the missing RAM (the swap file lets the server use hard disk space to supplement RAM):
 
 ```bash
 # Create a 1 GB swap file (adjust as needed to get about 2 GB total swap + RAM)
@@ -95,5 +95,7 @@ This command looks in your Laravel project's `composer.json` file and installs t
 The options are [recommended by Laravel](https://laravel.com/docs/10.x/deployment#autoloader-optimization); `--optimize-autoloader` speeds up autoloading and `--no-dev` ignores development dependencies that won't be needed in production.
 
 (Note that `optimize-autoloader` is probably turned on by default in the `config` section of your `composer.json` file, but it can't hurt to specify it explicitly.)
+
+**Next:** The next article shows how to install your application's JavaScript depedencies.
 
 {{< deploy-laravel/navbar >}}

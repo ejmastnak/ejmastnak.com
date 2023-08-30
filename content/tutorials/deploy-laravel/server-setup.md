@@ -41,7 +41,7 @@ This is to ensure you're starting off with up-to-date software.
 ## Set up a non-root user to manage the web app
 
 Then create a non-root user to manage your web app.
-I'll create and use a non-root user called `laravel` in this guide, but the name "laravel" is completely arbitrary. Feel to use something else.
+I'll create and use a non-root user called `laravel` in this guide, but the name "laravel" is completely arbitrary. Feel to use a different name---but be sure to stay consistent throughout the guide.
 
 ```bash
 # Create a non-root user
@@ -115,6 +115,8 @@ There are a few ways to do this---choose whichever you prefer:
    # place the appropriate public SSH key inside
    laravel@server:~$ vim .ssh/authorized_keys
    ```
+
+### Set SSH-related permissions
 
 In all three cases you'll want to set correct SSH-related permissions:
 
@@ -252,5 +254,8 @@ Digital Ocean provides a free service called [Cloud Firewalls](https://docs.digi
 Digital Ocean's Cloud Firewalls are *separate* from `ufw` firewalls (Cloud Firewalls are more Internet-facing, i.e. incoming IP packets first hit the Digital Ocean firewall, then the `ufw` firewall.)
 I'd suggest setting up both on a new droplet.
 {{< /details >}}
+
+**Next:** The next article covers the installation of PHP and the PHP extensions needed for Laravel to run.
+
 
 {{< deploy-laravel/navbar >}}

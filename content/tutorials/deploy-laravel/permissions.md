@@ -27,7 +27,7 @@ There are two special directories requiring write permissions[^1]:
 1. `storage/`
 2. `bootstrap/cache/`
 
-[^1]: You can see the `storage/` and `bootstrap/cache/` directories mentioned in [old Laravel documentation](https://laravel.com/docs/5.3#configuration) (scroll to the "Directory Permissions" section), but for whatever reason I cannot find a reference to this in the current Laravel docs, although the requirement certainly still exists!.
+[^1]: You can see the `storage/` and `bootstrap/cache/` directories mentioned in [old Laravel documentation](https://laravel.com/docs/5.3#configuration) (scroll to the "Directory Permissions" section), but for whatever reason I cannot find a reference to this in the current Laravel docs, although the requirement certainly still exists!
 
 **The solution:** simple---grant the web server running your Laravel app permissions to write files in your app's `storage/` and `bootstrap/cache/` directories.
 In this guide we'll use Nginx to serve your app (this is covered in the next article), so you need to grant Nginx write permissions on the `storage/` and `bootstrap/cache/` directories.
@@ -60,8 +60,7 @@ Then give the owning group (i.e. `www-data`) write permissions on your app's `st
 ```bash
 # Grant the owning group write permissions on storage/ and bootstrap/cache/
 laravel@server$ cd /srv/www/laravel-project/
-laravel@server:laravel-project$ sudo chmod -R g=rwX storage/
-laravel@server:laravel-project$ sudo chmod -R g=rwX bootstrap/cache/
+laravel@server:laravel-project$ sudo chmod -R g=rwX storage/ bootstrap/cache/
 ```
 
 I'm using `chmod`'s `g` mode to modify only group permissions,
@@ -146,5 +145,7 @@ The relevant `.env` file setting should look something like this:
 ```bash
 DB_DATABASE=/srv/www/laravel-project/database/sqlite/database.sqlite
 ```
+
+**Next:** The next article shows how to configure Nginx for serving a Laravel web app.
 
 {{< deploy-laravel/navbar >}}

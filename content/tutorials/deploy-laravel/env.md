@@ -10,7 +10,7 @@ date: 2023-07-18
 {{< deploy-laravel/header >}}
 {{< deploy-laravel/navbar >}}
 
-This article covers the necessary environment configuration for running a Laravel app in production.
+This article covers the necessary environment configuration for running a Laravel app in production, along with a few pre-deployment optimizations.
 
 ## Production environment configuration
 
@@ -176,5 +176,7 @@ laravel@server:laravel-project$ php artisan view:cache
 ```
 
 These optimizations should be rerun after each (re)deployment---we'll take care of that in a future article.
+
+**Next:** The next article covers a few ownership and permission settings needed to run a Laravel app.
 
 {{< deploy-laravel/navbar >}}

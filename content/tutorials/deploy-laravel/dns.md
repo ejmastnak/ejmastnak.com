@@ -12,7 +12,7 @@ date: 2023-07-18
 {{< deploy-laravel/navbar >}}
 
 This article covers setting up a custom domain name for your web app.
-I'll use `mylaravelproject.com` as an example in this guide, but you should of course change this to whatever domain name you'll be using.
+I'll use `mylaravelproject.com` as an example in this guide, but you should, of course, change this to whatever domain name you'll be using.
 
 ## Prerequisites
 
@@ -91,7 +91,7 @@ I suggest using `dig`, in which case a successful test would look something like
 you@dev$ dig mylaravelproject.com
 # A succesful lookup will include an ANSWER section with your server's IP address
 ;; ANSWER SECTION:
-nutrianutrition.app. 600 IN A 1.2.3.4
+mylaravelproject.com. 600 IN A 1.2.3.4
 ```
 
 {{< details-warning summary="Your web browser is not the best way to check DNS records." >}}
@@ -121,6 +121,6 @@ mylaravelproject.com. 600 IN A 1.2.3.4
 You can of course ignore this you haven't created any subdomain DNS settings for your site.
 {{< /details >}}
 
-
+**Next:** This article shows how to set up HTTPS connections to your Laravel web app.
 
 {{< deploy-laravel/navbar >}}

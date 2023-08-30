@@ -17,10 +17,11 @@ This article covers the installation of PHP (the language on top of which Larave
 First install PHP:
 
 ```bash
-# If you know what you're doing and have a good reason do so, you can install
-# a specific version of PHP with e.g. `apt install php8.2` for PHP 8.2
-# Otherwise just install the latest packaged version of PHP:
+# Install the latest packaged version of PHP
 laravel@server$ sudo apt install php
+
+# (If you know what you're doing and have a good reason do so, you can install
+# a specific version of PHP with e.g. `apt install php8.2` for PHP 8.2)
 ```
 
 Then install the [list of PHP extensions required by Laravel](https://laravel.com/docs/10.x/deployment#server-requirements).
@@ -135,4 +136,7 @@ How to interpret: the above `php --ini` output tells us that the PDO, Calendar, 
 Caution: there are some subleties with `php --ini`, for example after installing the XML extension, `php --ini` shows the conf files `20-xmlreader.ini` and `20-xmlwriter.ini` instead of `20-xml.ini`, and the FPM extension does not have an entry at all (you enable FPM from your web server config; which we'll do in the article on [Nginx configuration]({{< relref "nginx" >}}))!
 
 {{< /details >}}
+
+**Next:** The next article covers the installation and basic set up a database management system.
+
 {{< deploy-laravel/navbar >}}

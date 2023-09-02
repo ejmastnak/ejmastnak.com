@@ -118,7 +118,7 @@ Here's how I'd suggest going about this:
 
 1. Create a `releases/` directory.
 1. Create an `initial/` directory inside `releases/` to hold your app's "initial" release (use a different name if you like, just be consistent).
-1. Move your app's files into the intial release directory.
+1. Move your app's files into the initial release directory.
 
 Do this however you like (`mv`, a command-line file manager, etc.);
 after completing this step your directory structure should look like this:
@@ -174,7 +174,7 @@ laravel@server:initial$ ln -s ../../shared/.env .env
 laravel@server:laravel-project$ rm -r storage/
 laravel@server:laravel-project$ ln -s ../../shared/storage/ storage
 
-# Link SQLite dstabase into place, if using SQLite
+# Link SQLite database into place, if using SQLite
 laravel@server:laravel-project$ ln -s ../../shared/database.sqlite database/sqlite/database.sqlite
 ```
 
@@ -278,7 +278,7 @@ root /srv/www/laravel-project/active/public;
 Test the syntax of the updated Nginx config, then reload Nginx:
 
 ```bash
-# Test Nginx config syntax is ok, then reload config
+# Test Nginx config syntax is OK, then reload config
 laravel@server$ sudo nginx -t
 laravel@server$ sudo systemctl restart nginx.service
 ```

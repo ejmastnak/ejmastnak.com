@@ -133,7 +133,7 @@ An example `php --ini` output after a fresh install of PHP on Ubuntu 22.10 looks
 
 How to interpret: the above `php --ini` output tells us that the PDO, Calendar, Ctype, Exif, FFI, Fileinfo, etc. PHP extensions are already installed and being used by PHP.
 
-Caution: there are some subleties with `php --ini`, for example after installing the XML extension, `php --ini` shows the conf files `20-xmlreader.ini` and `20-xmlwriter.ini` instead of `20-xml.ini`, and the FPM extension does not have an entry at all (you enable FPM from your web server config; which we'll do in the article on [Nginx configuration]({{< relref "nginx" >}}))!
+Caution: there are some subtleties with `php --ini`, for example after installing the XML extension, `php --ini` shows the conf files `20-xmlreader.ini` and `20-xmlwriter.ini` instead of `20-xml.ini`, and the FPM extension does not have an entry at all (you enable FPM from your web server config; which we'll do in the article on [Nginx configuration]({{< relref "nginx" >}}))!
 
 {{< /details >}}
 

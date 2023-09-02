@@ -13,7 +13,7 @@ date: 2023-07-18
 *(You can skip this article if your Laravel app has no JavaScript dependencies.)*
 
 This short article shows how to install the Node.js JavaScript runtime environment and NPM, the standard package manager for the Node.js.
-We'll use NPM to install your application's Node.js depedencies.
+We'll use NPM to install your application's Node.js dependencies.
 
 (This is trivial if you've done it before, and it might be overkill to make a dedicated article for this. But I want to document every step so everyone can follow along.)
 

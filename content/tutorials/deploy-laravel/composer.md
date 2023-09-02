@@ -96,6 +96,6 @@ The options are [recommended by Laravel](https://laravel.com/docs/10.x/deploymen
 
 (Note that `optimize-autoloader` is probably turned on by default in the `config` section of your `composer.json` file, but it can't hurt to specify it explicitly.)
 
-**Next:** The next article shows how to install your application's JavaScript depedencies.
+**Next:** The next article shows how to install your application's JavaScript dependencies.
 
 {{< deploy-laravel/navbar >}}

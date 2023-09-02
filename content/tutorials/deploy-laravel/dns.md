@@ -89,7 +89,7 @@ I suggest using `dig`, in which case a successful test would look something like
 ```bash
 # Perform a DNS lookup on your app's domain name
 you@dev$ dig mylaravelproject.com
-# A succesful lookup will include an ANSWER section with your server's IP address
+# A successful lookup will include an ANSWER section with your server's IP address
 ;; ANSWER SECTION:
 mylaravelproject.com. 600 IN A 1.2.3.4
 ```
@@ -101,7 +101,7 @@ But a dedicated DNS lookup utility like `dig` is a better choice.
 The problem with a browser is the risk false negatives: many modern browsers will try to upgrade your connection to HTTPS and refuse to connect over plain HTTP.
 In other words, your DNS records might be perfectly set up, but your browser will report a connection error because you have not yet set up HTTPS (we'll do this in [the next article]({{< relref "https" >}})).
 
-A dedicated DNS lookup utility like `dig` is, suprise, suprise, the best way to test DNS settings.
+A dedicated DNS lookup utility like `dig` is, surprise, surprise, the best way to test DNS settings.
 {{< /details-warning >}}
 
 {{< details summary="If you're also testing subdomain redirection..." >}}
@@ -111,7 +111,7 @@ A dedicated DNS lookup utility like `dig` is, suprise, suprise, the best way to 
 # Optional: DNS lookup to test subdomain redirection to your root domain
 you@dev$ dig bar.mylaravelproject.com
 
-# A succesful lookup will include an ANSWER section with a CNAME record with
+# A successful lookup will include an ANSWER section with a CNAME record with
 # your app's root domain.
 ;; ANSWER SECTION:
 bar.mylaravelproject.app. 600 IN CNAME mylaravelproject.com.

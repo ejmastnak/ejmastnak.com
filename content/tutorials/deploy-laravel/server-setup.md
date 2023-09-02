@@ -240,10 +240,10 @@ Finally, enable the firewall:
 
 ```bash
 # Enable firewall
-sudo ufw enable
+laravel@server$ sudo ufw enable
 
 # If you're interested, check firewall status
-sudo ufw status
+laravel@server$ sudo ufw status
 ```
 
 {{< details summary="PSA: Digital Ocean firewalls are different from UFW firewalls" >}}

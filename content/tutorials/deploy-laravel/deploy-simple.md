@@ -85,14 +85,14 @@ php artisan view:cache
 # The force flag is needed for automated deploys to suppress warning prompt.
 php artisan migrate --force
 
-# Leave maintenance mode and reenable your application
+# Leave maintenance mode and re-enable your application
 php artisan up
 ```
 
 Comments:
 
 - Most of the redeployment commands should be familiar from the past few articles---they're just collected here in one place.
-- We're using `php artisan down` to temporarily disable your app during the redeployment, then `php artisan up` to reenable your app after the redeployment completes (here's a [link to the Laravel docs on maintenance mode](https://laravel.com/docs/configuration#maintenance-mode)).
+- We're using `php artisan down` to temporarily disable your app during the redeployment, then `php artisan up` to re-enable your app after the redeployment completes (here's a [link to the Laravel docs on maintenance mode](https://laravel.com/docs/configuration#maintenance-mode)).
 - We're installing Node.js dependencies with `npm ci` instead of `npm install`.
   This is standard best practice in production environments---see e.g. [this Stack Overflow answer](https://stackoverflow.com/questions/52499617/what-is-the-difference-between-npm-install-and-npm-ci) for details.
 
@@ -109,7 +109,7 @@ Here are a few commands to consider using if your app needs them:
 
 {{< /details >}}
 
-At this the `post-receive` hook should successfully take care of updating and redeploying your app everytime you push a new version to your server-side Git repo.
+At this the `post-receive` hook should successfully take care of updating and redeploying your app every time you push a new version to your server-side Git repo.
 
 ### Moment of truth
 

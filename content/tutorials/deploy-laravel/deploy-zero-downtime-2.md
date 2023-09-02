@@ -204,8 +204,8 @@ laravel@server$ sudo -k
 
 # Test that you can run the chgrp and chmod without a password.
 # Attention: you need the full paths to match the globs in `sudoers`.
-sudo chgrp -R www-data /srv/www/laravel-project/releases/initial/
-sudo chmod -R g=rwX /srv/www/laravel-project/releases/initial/bootstrap/cache/
+laravel@server$ sudo chgrp -R www-data /srv/www/laravel-project/releases/initial/
+laravel@server$ sudo chmod -R g=rwX /srv/www/laravel-project/releases/initial/bootstrap/cache/
 ```
 
 Still being prompted for a `sudo` password? Something is wrong with either your `sudoers` setup or the commands you entered---double check this section.
@@ -213,7 +213,7 @@ Still being prompted for a `sudo` password? Something is wrong with either your 
 ### Cleaning up old releases (optional-ish)
 
 **Problem:** you could run out of disk space.
-The zero-downtime redeployment workflow described above does not remove old releases, and given that a typical Laravel app with a JavaScript frontend weighs in on the order of 100 MB, you could easily exhaust the disk space on a lightweight server after, say, a year of regular releases.
+The zero-downtime redeployment workflow described above does not remove old releases, and given that a typical Laravel app with a JavaScript frontend weighs in on the order of 100 MB, you could easily exhaust the disk space on a lightweight server after, say, a year of regular releases (and considerably sooner if you're hosting multiple apps on the same server).
 
 **Solution:** 
 I'd suggest adding a few lines to the end of your `post-receive` script to remove old releases after each redeployment, but I suppose you could also use a Systemd service/timer, or just manually SSH into your server every once in a while and manually delete old releases.

@@ -8,13 +8,17 @@ description: Content on Elijan Mastnak’s website.
 
 ## Tutorials
 
-[**A guide to turbocharged mathematical typesetting**]({{< relref "/tutorials/vim-latex/intro.md" >}})
+[**A guide to turbocharged mathematical typesetting**]({{< relref "/tutorials/vim-latex/intro" >}})
 <br>
 Quickly write math in LaTeX using (Neo)Vim and snippets
 
 [**Find your footing on Arch Linux**]({{< relref "/tutorials/arch/about" >}})
 <br>
 Bite-sized tutorials to help you set up a functional work environment after a minimal install of Arch
+
+[**Deploy a Laravel web app**]({{< relref "/tutorials/deploy-laravel/about" >}})
+<br>
+A guide to deploying a web application with a Laravel backend and a JavaScript-based frontend on a dedicated or virtual private server.
 
 ## Academics
 

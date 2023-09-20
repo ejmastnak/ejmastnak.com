@@ -113,7 +113,7 @@ There are a few ways to do this---choose whichever you prefer:
    ```bash
    # Manually open (or create) the laravel user's authorized_keys file and
    # place the appropriate public SSH key inside
-   laravel@server:~$ vim .ssh/authorized_keys
+   laravel@server:~$ nano .ssh/authorized_keys
    ```
 
 ### Set SSH-related permissions

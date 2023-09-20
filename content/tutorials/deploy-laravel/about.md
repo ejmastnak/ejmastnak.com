@@ -7,9 +7,8 @@ date: 2023-07-17
 
 This is a guide to deploying a web application with a [Laravel](https://laravel.com/) backend and a JavaScript-based frontend on a dedicated or virtual private server.
 
-You can read more about the guide [below](#about), or [jump right in]({{< relref "server-setup" >}}).
-
-**TODO:** here are some web apps I deployed using the process in this guide.
+The articles are listed in order below;
+you can read more meta-information about the guide [below the table of contents](#about).
 
 ## Contents
 
@@ -23,7 +22,7 @@ You can read more about the guide [below](#about), or [jump right in]({{< relref
 1. [Laravel environment setup]({{< relref "env" >}}): take care of your `.env` file, database migrations, and a few pre-deployment optimizations.
 1. [Directory permissions]({{< relref "permissions" >}}): a few ownership and permission tweaks for Laravel to run.
 1. [Nginx]({{< relref "nginx" >}}): install Nginx; create and activate your app's Nginx config.
-1. [Automated redeployment]({{< relref "deploy" >}}): three options for automated redeployment.
+1. [Automating deployment]({{< relref "deploy" >}}): three options for automated redeployment.
 1. [Custom domain name]({{< relref "dns" >}}): set up DNS records needed for a custom domain name.
 1. [HTTPS]({{< relref "https" >}}): set up a free, autorenewing HTTPS certificate with Certbot.
 
@@ -31,31 +30,27 @@ You can read more about the guide [below](#about), or [jump right in]({{< relref
 
 ### What's this?
 
-A guide to deploying a web application with a [Laravel](https://laravel.com/) backend and JavaScript-based frontend (e.g. Vue.js, React, etc.) on a dedicated or virtual private server.
+A guide to deploying a web application with a [Laravel](https://laravel.com/) backend and JavaScript-based frontend (e.g. Vue, React, etc.) on a dedicated or virtual private server.
 My goal in writing this was to document the process for future reference and help anyone else doing the same thing.
-The guide should be applicable, with minor adjustments, to other frontend frameworks.
 
 ### Tech stack
 
-- Server: either a [virtual private server](https://en.wikipedia.org/wiki/Virtual_private_server) (e.g. a Digital Ocean droplet) or a physical server, running a Debian-based Linux distro (e.g. Debian, Ubuntu)
+- Server: either a [virtual private server](https://en.wikipedia.org/wiki/Virtual_private_server) (e.g. a Digital Ocean droplet) or a physical server, running a Debian-based Linux distro (e.g. Debian, Ubuntu).
 - Backend: [Laravel](https://laravel.com/)
 - Web server: [Nginx](https://www.nginx.com/)
-- Database: your choice of [MySQL](https://www.mysql.com/) (well, [MariaDB](https://mariadb.org/)), [PostgreSQL](https://www.postgresql.org/), [SQLite](https://www.sqlite.org/index.html)
-- Frontend: Any JavaScript-based framework (e.g. [Vue.js](https://vuejs.org/), [React](https://react.dev/), etc.) for which you could reasonably define an `npm run build` script.
+- Database: your choice of [MySQL](https://www.mysql.com/)/[MariaDB](https://mariadb.org/), [PostgreSQL](https://www.postgresql.org/), [SQLite](https://www.sqlite.org/index.html)
+- Frontend: Any JavaScript-based framework (e.g. [Vue](https://vuejs.org/), [React](https://react.dev/), etc.) for which you could reasonably define an `npm run build` script.
   The frontend has a relatively minor role in this guide.
 
 ## Prerequisites
 
-- You willing and able to operate in a Linux command line environment.
+- You are willing and able to operate in a Linux command line environment.
 - You have root access to a Linux server.
-- You can access the server over SSH and have the basic SSH knowledge (e.g. generating a public/private keypair; copying your public key to the `authorized_keys` file on the server; logging in over SSH) required to do so.
+- You can access the server over SSH and have the basic SSH knowledge required to do so (e.g. generating a public/private keypair; copying your public key to the `authorized_keys` file on the server; logging in over SSH).
 
 ## Conventions {#conventions}
 
-I'm using `vim` to edit files. Replace with your editor of choice!
-Actually kiddo just change this to `nano`---experiences users will know to change this to their editor of choice.
-
-Server's IP is 1.2.3.4
+I'll generally show shell prompts in `username@host$` format, and sometimes append the current working directory `username@host:cwd$` for clarity:
 
 ```bash
 # You on your development machine
@@ -79,15 +74,20 @@ laravel@server:/var/www$ pwd
 /var/www
 ```
 
+Other conventions:
 
-## Credit to
+- I'll use `1.2.3.4` as a server IP address.
+- I'll use `laravel` as the name of the non-root user on your app's server.
+- I'll use `laravel-project` as the name of your project's root server-side directory.
 
-- https://devmarketer.io/learn/deploy-laravel-5-app-lemp-stack-ubuntu-nginx/
-- https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers
+## Other guides
 
-Another decent guide: https://mhmdomer.com/the-ultimate-laravel-deployment-guide
+Below is a list of other great guides to deploying a Laravel app that I've found online and taken inspiration from.
+Each covers the material from a slightly different angle, so you'll probably get something out of reading all of them.
 
-And another really nice one: https://lorisleiva.com/deploy-your-laravel-app-from-scratch/deploy-with-zero-downtime
+- [Loris Leiva's guide to zero-downtime redeployment](https://lorisleiva.com/deploy-your-laravel-app-from-scratch/deploy-with-zero-downtime)
+- [Farhan Hasin Chowdhury's guide to deploying a Laravel web app on a VPS](https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers)
+- [J. Alexander Curtis's guide to deploying a Laravel 5.3 app on a LEMP stack](https://devmarketer.io/learn/deploy-laravel-5-app-lemp-stack-ubuntu-nginx/)).
 
 <div class="text-center mx-auto mt-6 mb-8 bg-blue-50 font-semibold dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
 <a href="/tutorials/deploy-laravel/server-setup" class="block py-2">Begin the series!</a>

@@ -171,11 +171,11 @@ laravel@server$ cd /srv/www/laravel-project/releases/initial
 laravel@server:initial$ ln -s ../../shared/.env .env
 
 # Link storage directory into place (you'll have to remove the existing one)
-laravel@server:laravel-project$ rm -r storage/
+laravel@server:laravel-project$ rm -r storage/  # if needed
 laravel@server:laravel-project$ ln -s ../../shared/storage/ storage
 
 # Link SQLite database into place, if using SQLite
-laravel@server:laravel-project$ ln -s ../../shared/database.sqlite database/sqlite/database.sqlite
+laravel@server:laravel-project$ ln -s ../../../../shared/database.sqlite database/sqlite/database.sqlite
 ```
 
 Two comments:

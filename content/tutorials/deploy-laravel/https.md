@@ -12,13 +12,6 @@ date: 2023-07-18
 
 This article shows how to set up HTTPS connections to your Laravel web app.
 
-References:
-
-- [Configuring a Domain Name With HTTPS](https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers)
-- [7. Install a Let's Encrypt Certificate](https://www.vultr.com/docs/how-to-install-nginx-mariadb--php-lemp-on-debian-11-99568/)
-- [Install certbot on Ubuntu running Nginx](https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal)
-- [Installing snap](https://snapcraft.io/docs/installing-snapd)
-
 ## Prerequisite
 
 You have set a DNS Type A record that points a custom domain name to your app server's IP address, and have verified the DNS record with a DNS lookup tool like `dig`.

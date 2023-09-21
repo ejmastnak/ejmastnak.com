@@ -74,6 +74,9 @@ See [this StackOverflow thread](https://serverfault.com/questions/527630/differe
 
 Inside `/etc/nginx/sites-available/laravel-project` paste [Laravel's example Nginx config](https://laravel.com/docs/10.x/deployment#nginx) (I've added some comments---feel free to remove them).
 
+Make sure to update the `server_name` and `root` directives, and possibly the PHP version and/or file path in `fastcgi_pass`.
+The rest can be left as is.
+
 ```nginx
 server {
   # Listen for connections on port 80 (HTTP)

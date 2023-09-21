@@ -20,8 +20,8 @@ We'll use NPM to install your application's Node.js dependencies.
 ## Install Node.js
 
 ```bash
-# Install Node.js, which will also include NPM 
-laravel@server$ sudo apt install nodejs
+# Install Node.js and NPM
+laravel@server$ sudo apt install nodejs npm
 ```
 
 ## Install Node.js packages

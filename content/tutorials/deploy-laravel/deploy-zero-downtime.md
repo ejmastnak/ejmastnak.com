@@ -231,6 +231,17 @@ Your directory structure should now look like this:
     # Add SQLite database if used by your app
 ```
 
+### Update path to SQLite database (for SQLite users)
+
+Non-SQLite users: ignore this and jump to the next section.
+
+SQLite users: you'll need to update the path to your SQLite database in your `.env` file to reflect the zero-downtime directory structure.
+
+```bash
+# Update DB_DATABASE to include the `active` symlink!
+DB_DATABASE=/srv/www/laravel-project/active/database/sqlite/database.sqlite
+```
+
 ### Ownership and permission reset
 
 There's a chance you unintentionally tweaked directory ownership and/or permissions while rearranging your app's directory structure to accommodate zero-downtime redeployment.

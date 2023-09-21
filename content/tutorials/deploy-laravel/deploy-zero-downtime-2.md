@@ -63,7 +63,8 @@ ln -s ${SHARED}/.env ${RELEASE}/.env
 rm -rf ${RELEASE}/storage
 ln -s ${SHARED}/storage ${RELEASE}/storage
 
-# # If your app uses SQLite, link database into place
+# # If your app uses SQLite, create a parent directory and link database into place
+# mkdir -p ${RELEASE}/database/sqlite
 # ln -s ${SHARED}/database.sqlite ${RELEASE}/database/sqlite/database.sqlite
 # --------------------------------------------------------------------------- #
 
@@ -208,6 +209,7 @@ laravel@server$ sudo chgrp -R www-data /srv/www/laravel-project/releases/initial
 laravel@server$ sudo chmod -R g=rwX /srv/www/laravel-project/releases/initial/bootstrap/cache/
 ```
 
+Note that you need the full paths to match the glob patterns in `sudoers`.
 Still being prompted for a `sudo` password? Something is wrong with either your `sudoers` setup or the commands you entered---double check this section.
 
 ### Cleaning up old releases (optional-ish)

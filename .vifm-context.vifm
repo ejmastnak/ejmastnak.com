@@ -1,6 +1,6 @@
 let $VIFM_CONTEXT = expand('%d')
 
-source $VIFM/personal/navigation-contexts/hugo.vifm
+source $VIFM/navigation/hugo.vifm
 
 nnoremap ;cc :cd $VIFM_CONTEXT/content<CR>
 

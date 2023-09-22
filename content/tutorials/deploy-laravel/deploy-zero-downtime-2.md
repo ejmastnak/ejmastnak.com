@@ -65,7 +65,7 @@ ln -s ${SHARED}/storage ${RELEASE}/storage
 
 # # If your app uses SQLite, create a parent directory and link database into place
 # mkdir -p ${RELEASE}/database/sqlite
-# ln -s ${SHARED}/database.sqlite ${RELEASE}/database/sqlite/database.sqlite
+# ln -s ${SHARED}/sqlite/database.sqlite ${RELEASE}/database/sqlite/database.sqlite
 # --------------------------------------------------------------------------- #
 
 

@@ -155,7 +155,7 @@ After this step your directory structure should be something like this:
 └── shared/
     ├── .env
     ├── storage/
-    └── database.sqlite  # if using SQLite
+    └── sqlite/database.sqlite  # if using SQLite
 ```
 
 ### Link shared files into place
@@ -170,20 +170,19 @@ laravel@server$ cd /srv/www/laravel-project/releases/initial
 # Link .env file into place
 laravel@server:initial$ ln -s ../../shared/.env .env
 
-# Link storage directory into place (you'll have to remove the existing one)
-laravel@server:laravel-project$ rm -r storage/  # if you haven't removed it yet
+# Link storage directory into place (you'll have to remove the existing one first)
 laravel@server:laravel-project$ ln -s ../../shared/storage/ storage
 
 # Link SQLite database into place, if using SQLite
 laravel@server:laravel-project$ cd database/sqlite
-laravel@server:sqlite$ ln -s ../../../../shared/database.sqlite database.sqlite
+laravel@server:sqlite$ ln -s ../../../../shared/sqlite/database.sqlite database.sqlite
 ```
 
 Two comments:
 
 - You must manually remove the existing storage directory in the initial release before you can overwrite it with a symlink to the shared storage directory.
 This is a quirk of `ln` that stops you from overwriting an existing directory---see e.g. [this Stack Overflow answer](https://stackoverflow.com/a/38095952) for details.
-- SQLite users wondering about the strange directory structure: it's from the [permissions article]({{< relref "permissions" >}}#sqlite)---recall that your SQLite database needs to be in a directory that is writable by your web server.
+- SQLite users wondering why the SQLite database is inside an `sqlite` directory: it's from the [permissions article]({{< relref "permissions" >}}#sqlite)---recall that your SQLite database must be nested inside a directory that is writable by your web server.
 
 Here's what your directory structure should look like after this step:
 
@@ -256,6 +255,7 @@ laravel@server:laravel-project$ sudo chgrp -R www-data releases/ shared/
 # Grant owning group write access for special directories
 laravel@server$ sudo chmod -R g=rwX shared/storage
 laravel@server$ sudo chmod -R g=rwX releases/initial/bootstrap/cache
+laravel@server$ sudo chmod -R g=rwX shared/sqlite  # if using SQLite
 
 # Restrict the env file's permissions (rw for owning user, r for owning group)
 laravel@server:laravel-project$ chmod 640 shared/.env

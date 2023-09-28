@@ -20,8 +20,8 @@
     {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
     <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
     {{ else }}
-    <!-- Use manually compiled stylesheet for local development -->
-    {{ $styles := resources.Get "css/main.css" }}
+    <!-- Use all Tailwind classes in local development-->
+    {{ $styles := resources.Get "css/all.css" }}
     <link rel="stylesheet" href="{{ $styles.Permalink }}">
     {{ end }}
     <!-- ------------------------------------------------------- -->

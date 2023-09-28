@@ -6,6 +6,7 @@ module.exports = {
   darkMode: 'class',
   content: [
     "./content/**/*.md",
+    "./content/**/*.html",
     "./layouts/**/*.html",
     "./assets/js/*.js",
   ],

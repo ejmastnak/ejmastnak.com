@@ -16,6 +16,12 @@
   }
 }
 
+@layer components {
+  .link {
+    @apply text-sky-600 dark:text-sky-50 dark:font-semibold hover:underline;
+  }
+}
+
 /* Nord syntax highlighting */
 .chroma .err { color: #bf616a; }    /* Error */
 .chroma .x   { color: #d8dee9; }    /* Other */

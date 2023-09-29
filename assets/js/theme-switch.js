@@ -1,9 +1,9 @@
-var listbox = document.getElementById('listbox-options');
-var listboxButton = document.getElementById('listbox-button');
-var listboxButtonSunIcon = document.getElementById('listbox-button-sun');
-var listboxButtonMoonIcon = document.getElementById('listbox-button-moon');
+var themeswitchListbox = document.getElementById('themeswitch-listbox-options');
+var themeswitchListboxButton = document.getElementById('themeswitch-listbox-button');
+var themeswitchListboxButtonSunIcon = document.getElementById('themeswitch-listbox-button-sun');
+var themeswitchListboxButtonMoonIcon = document.getElementById('themeswitch-listbox-button-moon');
 
-var options = [...listbox.children];
+var themeswitchOptions = [...themeswitchListbox.children];
 var lightOption = document.getElementById('listbox-option-light');
 var lightIcon = document.getElementById('light-icon');
 var lightLabel = document.getElementById('light-label');
@@ -15,39 +15,37 @@ var systemIcon = document.getElementById('system-icon');
 var systemLabel = document.getElementById('system-label');
 
 // For the purposes of keyboard navigation through listbox options
-var activeOption = systemOption;
+var themeswitchActiveOption = systemOption;
 
-const colorOn = 'text-sky-500';
-const colorOnDark = 'dark:text-sky-500';
-const bgActive = 'bg-gray-100';
-const bgActiveDark = 'dark:bg-gray-700';
+const themeswitchColorActive = 'text-sky-500';
+const themeswitchColorActiveDark = 'dark:text-sky-500';
+const themeswitchBGActive = 'bg-gray-100';
+const themeswitchBGActiveDark = 'dark:bg-gray-700';
 
 // Hides listbox
 function hideListbox() {
-  listboxButton.setAttribute('aria-expanded', 'false')
-  listbox.classList.add('hidden');
-  listbox.blur()
+  themeswitchListboxButton.setAttribute('aria-expanded', 'false')
+  themeswitchListbox.classList.add('hidden');
+  themeswitchListbox.blur()
 }
 
 // Displays listbox
 function showListbox() {
-  listboxButton.setAttribute('aria-expanded', 'true')
+  themeswitchListboxButton.setAttribute('aria-expanded', 'true')
 
   // Highlight background of selected option
-  if (lightOption.getAttribute('aria-selected') == 'true') {
-    lightOption.classList.add(bgActive, bgActiveDark);
-  } else if (darkOption.getAttribute('aria-selected') == 'true') {
-    darkOption.classList.add(bgActive, bgActiveDark);
-  }  else if (systemOption.getAttribute('aria-selected') == 'true') {
-    systemOption.classList.add(bgActive, bgActiveDark);
-  }
+  themeswitchOptions.forEach((option => {
+    if (option.getAttribute('aria-selected') === 'true')
+    option.classList.add(themeswitchBGActive, themeswitchBGActiveDark);
+    }
+  ))
 
-  listbox.classList.remove('hidden');
-  listbox.focus()
+  themeswitchListbox.classList.remove('hidden')
+  themeswitchListbox.focus()
 }
 
 function toggleListbox() {
-  const expanded = listboxButton.getAttribute('aria-expanded');
+  const expanded = themeswitchListboxButton.getAttribute('aria-expanded');
   if (expanded === 'true') {
     hideListbox();
   } else {
@@ -60,62 +58,62 @@ if (localStorage.getItem('theme') === 'dark') {
   unstyleAll();
   style('dark');
   switchSelectionTo('dark');
-  activeOption = darkOption;
+  themeswitchActiveOption = darkOption;
 }
 else if (localStorage.getItem('theme') === 'light') {
   unstyleAll();
   style('light');
   switchSelectionTo('light');
-  activeOption = lightOption;
+  themeswitchActiveOption = lightOption;
 } else {
   unstyleAll();
   style('system');
   switchSelectionTo('system');
-  activeOption = systemOption;
+  themeswitchActiveOption = systemOption;
 }
 
 // Removes selected styles from all listbox labels and icons
 function unstyleAll() {
-  lightIcon.classList.remove(colorOn, colorOnDark);
-  lightLabel.classList.remove(colorOn, colorOnDark);
-  darkIcon.classList.remove(colorOn, colorOnDark);
-  darkLabel.classList.remove(colorOn, colorOnDark);
-  systemIcon.classList.remove(colorOn, colorOnDark);
-  systemLabel.classList.remove(colorOn, colorOnDark);
+  lightIcon.classList.remove(themeswitchColorActive, themeswitchColorActiveDark);
+  lightLabel.classList.remove(themeswitchColorActive, themeswitchColorActiveDark);
+  darkIcon.classList.remove(themeswitchColorActive, themeswitchColorActiveDark);
+  darkLabel.classList.remove(themeswitchColorActive, themeswitchColorActiveDark);
+  systemIcon.classList.remove(themeswitchColorActive, themeswitchColorActiveDark);
+  systemLabel.classList.remove(themeswitchColorActive, themeswitchColorActiveDark);
 }
 
 // Removes background style from all listbox options
 function removeAllBG() {
-  lightOption.classList.remove(bgActive, bgActiveDark);
-  darkOption.classList.remove(bgActive, bgActiveDark);
-  systemOption.classList.remove(bgActive, bgActiveDark);
+  lightOption.classList.remove(themeswitchBGActive, themeswitchBGActiveDark);
+  darkOption.classList.remove(themeswitchBGActive, themeswitchBGActiveDark);
+  systemOption.classList.remove(themeswitchBGActive, themeswitchBGActiveDark);
 }
 
 // Manages stylistic changes when switching themes
 function style(theme) {
   if (theme === 'light') {
-    lightIcon.classList.add(colorOn, colorOnDark);
-    lightLabel.classList.add(colorOn, colorOnDark);
-    listboxButtonMoonIcon.classList.add('hidden');
-    listboxButtonSunIcon.classList.remove('hidden');
-    listboxButtonSunIcon.classList.add(colorOn, colorOnDark);
+    lightIcon.classList.add(themeswitchColorActive, themeswitchColorActiveDark);
+    lightLabel.classList.add(themeswitchColorActive, themeswitchColorActiveDark);
+    themeswitchListboxButtonMoonIcon.classList.add('hidden');
+    themeswitchListboxButtonSunIcon.classList.remove('hidden');
+    themeswitchListboxButtonSunIcon.classList.add(themeswitchColorActive, themeswitchColorActiveDark);
   } else if (theme === 'dark') {
-    darkIcon.classList.add(colorOn, colorOnDark);
-    darkLabel.classList.add(colorOn, colorOnDark);
-    listboxButtonSunIcon.classList.add('hidden');
-listboxButtonMoonIcon.classList.remove('hidden');
-listboxButtonMoonIcon.classList.add(colorOn, colorOnDark);
+    darkIcon.classList.add(themeswitchColorActive, themeswitchColorActiveDark);
+    darkLabel.classList.add(themeswitchColorActive, themeswitchColorActiveDark);
+    themeswitchListboxButtonSunIcon.classList.add('hidden');
+    themeswitchListboxButtonMoonIcon.classList.remove('hidden');
+    themeswitchListboxButtonMoonIcon.classList.add(themeswitchColorActive, themeswitchColorActiveDark);
   } else if (theme === 'system') {
-    systemIcon.classList.add(colorOn, colorOnDark);
-    systemLabel.classList.add(colorOn, colorOnDark);
+    systemIcon.classList.add(themeswitchColorActive, themeswitchColorActiveDark);
+    systemLabel.classList.add(themeswitchColorActive, themeswitchColorActiveDark);
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      listboxButtonSunIcon.classList.add('hidden');
-      listboxButtonMoonIcon.classList.remove('hidden');
-      listboxButtonMoonIcon.classList.remove(colorOn, colorOnDark);
+      themeswitchListboxButtonSunIcon.classList.add('hidden');
+      themeswitchListboxButtonMoonIcon.classList.remove('hidden');
+      themeswitchListboxButtonMoonIcon.classList.remove(themeswitchColorActive, themeswitchColorActiveDark);
     } else {
-      listboxButtonMoonIcon.classList.add('hidden');
-      listboxButtonSunIcon.classList.remove('hidden');
-      listboxButtonSunIcon.classList.remove(colorOn, colorOnDark);
+      themeswitchListboxButtonMoonIcon.classList.add('hidden');
+      themeswitchListboxButtonSunIcon.classList.remove('hidden');
+      themeswitchListboxButtonSunIcon.classList.remove(themeswitchColorActive, themeswitchColorActiveDark);
     }
   }
 }
@@ -168,10 +166,10 @@ function switchModeToSystem() {
   hideListbox();
 }
 
-// Toggle listbox visibility when clicking listboxButton
-listboxButton.addEventListener('click', function () {
+// Toggle listbox visibility when clicking themeswitchListboxButton
+themeswitchListboxButton.addEventListener('click', function () {
   toggleListbox();
-  listboxButton.blur();
+  themeswitchListboxButton.blur();
 });
 
 // Switch modes when clicking options
@@ -181,65 +179,65 @@ systemOption.addEventListener('click', switchModeToSystem);
 
 // Hide listbox when clicking outside listbox
 document.addEventListener('mouseup', function(event) {
-  if ((!listbox.contains(event.target)) && (!listboxButton.contains(event.target))) {
+  if ((!themeswitchListbox.contains(event.target)) && (!themeswitchListboxButton.contains(event.target))) {
     hideListbox();
   }
 });
 
 // We highlight bg of selected option when opening listbox
 // but then switch to mouse-hover-based bg highlighting.
-options.forEach(element => element.addEventListener('mouseenter', function(event) {
+themeswitchOptions.forEach(element => element.addEventListener('mouseenter', function(event) {
   removeAllBG();
-  element.classList.add(bgActive, bgActiveDark);
-  activeOption = element;
+  element.classList.add(themeswitchBGActive, themeswitchBGActiveDark);
+  themeswitchActiveOption = element;
 }));
-listbox.addEventListener('mouseleave', function(event) {
+themeswitchListbox.addEventListener('mouseleave', function(event) {
   removeAllBG();
 });
 
 // Cycle through options with arrow keys
-listbox.addEventListener('keydown', function(event) {
+themeswitchListbox.addEventListener('keydown', function(event) {
   if(event.key === "Escape") {
     hideListbox();
   } else if (event.key === "ArrowDown") {
     event.preventDefault();   // prevent page from scrolling down
-    movedToOption = nextOption(activeOption);
+    movedToOption = nextOption(themeswitchActiveOption);
     removeAllBG();
-    movedToOption.classList.add(bgActive, bgActiveDark);
-activeOption = movedToOption;
+    movedToOption.classList.add(themeswitchBGActive, themeswitchBGActiveDark);
+    themeswitchActiveOption = movedToOption;
   } else if (event.key === "ArrowUp") {
     event.preventDefault();   // prevent page from scrolling up
-    movedToOption = prevOption(activeOption);
+    movedToOption = prevOption(themeswitchActiveOption);
     removeAllBG();
-    movedToOption.classList.add(bgActive, bgActiveDark);
-    activeOption = movedToOption;
+    movedToOption.classList.add(themeswitchBGActive, themeswitchBGActiveDark);
+    themeswitchActiveOption = movedToOption;
   } else if (event.key === 'Enter') {
-    if (activeOption == lightOption) {
+    if (themeswitchActiveOption == lightOption) {
       switchModeToLight();
-    } else if (activeOption == darkOption) {
+    } else if (themeswitchActiveOption == darkOption) {
       switchModeToDark();
     } else {
       switchModeToSystem();
     }
-}
+  }
 });
 
 function nextOption(option) {
   if (option == lightOption) {
     return darkOption;
-} else if (option == darkOption) {
-  return systemOption;
+  } else if (option == darkOption) {
+    return systemOption;
   } else {
     return lightOption;
-}
+  }
 }
 
 function prevOption(option) {
   if (option == lightOption) {
     return systemOption;
   } else if (option == darkOption) {
-  return lightOption;
+    return lightOption;
   } else {
-  return darkOption;
+    return darkOption;
   }
 }

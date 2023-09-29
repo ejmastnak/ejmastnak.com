@@ -5,55 +5,69 @@ description: The home page of Elijan Mastnak’s website.
 showFooter: true
 ---
 
-<div class="">
+<main>
 
   <!-- ejmastnak logo -->
   <div class="w-44 xxs:w-56 xs:w-60 sm:w-80">
     <a href="/" class="link">
       <div class="dark:hidden">
-          {{< logo/light >}}
-        </div>
-        <div class="hidden dark:block">
-          {{< logo/dark >}}
-        </div>
+        {{< logo/light >}}
+      </div>
+      <div class="hidden dark:block">
+        {{< logo/dark >}}
+      </div>
     </a>
   </div>
 
-  <p class="mt-6 max-w-lg">
-    You've reached Elijan Mastnak's website.
-    Here you'll find my projects, notes, and tutorial series, which mostly cover software in the Linux ecosystem, web development, and physics.
-  </p>
+  <div class="mt-6 xs:flex xs:flex-row-reverse">
 
-  <p class="mt-4 max-w-lg">
-    Here is some information <a href="/about" class="link">about me</a>, and here is a list of the <a href="/content" class="link">content on this site</a>.
-  </p>
+    <div class="hidden ml-2 w-40 h-40 xxs:inline xxs:float-right xs:inline-block xs:-mt-4 xs:ml-4 xs:w-44 xs:h-44 sm:-mt-12 sm:ml-6 sm:w-52 sm:h-52 md:w-60 md:h-60 md:ml-12 lg:w-72 lg:h-72  shrink-0 rounded-full overflow-hidden">
+      <img
+        class="object-cover"
+        src="elijan.jpg"
+        alt="A profile picture of Elijan in the Julian Alps"
+      />
+    </div>
 
-  <h2 class="text-2xl text-gray-600 dark:text-gray-300 font-semibold mt-6 ">First time here?</h2>
-  <p class="mt-3">Here are quick links to my favorite content:</p>
+    <!-- Intro to the website -->
+    <p class="max-w-md lg:max-w-lg">
+      You've reached Elijan Mastnak's website.
+      Here you'll find my projects, notes, and tutorial series, which mostly cover software in the Linux ecosystem, web development, and physics.
+      You can find a list of the content on this site <a href="/content" class="link">on the Content page</a>.
+    </p>
 
-  <ul class="mt-4 ml-5 list-disc space-y-3">
+  </div>
 
-    <li>
-      <a href="/tutorials/vim-latex/intro" class="link font-semibold">A guide to turbocharged mathematical typesetting</a>
-      <p class="text-gray-600 dark:text-gray-300">
-        Typeset math in LaTeX as fast as you can write by hand.
-      </p>
-    </li>
+  <section class="mt-8 sm:mt-4 md:-mt-6 lg:-mt-12">
+    <h2 class="text-2xl text-gray-600 dark:text-gray-300 font-semibold">About me</h2>
+    <p class="mt-3 max-w-lg lg:max-w-md">
+      I grew up between United States and Slovenia, studied physics at the University of Ljubljana,
+      and am currently living in Slovenia, spending my time between kinesiology-related data analysis, running a small farm, and learning web development.
+      You can find more information about me <a href="/about" class="link">on the About page</a>.
+    </p>
+  </section>
 
-    <li>
-      <a href="/tutorials/arch/about" class="link font-semibold">Find your footing on Arch Linux</a>
-      <p class="text-gray-600 dark:text-gray-300">
-        Bite-sized steps toward a functional work environment after a minimal install of Arch.
-      </p>
-    </li>
+  <section class="mt-8 lg:mt-12 mb-8">
+    <h2 class="text-2xl text-gray-600 dark:text-gray-300 font-semibold">First time here?</h2>
+    <p class="mt-3">Here are quick links to the most popular content:</p>
 
-    <li>
-      <a href="/notes/fmf/fmf" class="link font-semibold">1500+ pages of undergraduate physics notes typeset with LaTeX</a>
-      <p class="text-gray-600 dark:text-gray-300">
-        From the final two years of undergrad at the Faculty of Math and Physics in Ljubljana.
-      </p>
-    </li>
+    <ul class="mt-4 ml-5 list-disc space-y-3">
 
-  </ul>
+      <li>
+        <a href="/tutorials/vim-latex/intro" class="link font-semibold">A guide to turbocharged mathematical typesetting</a>
+        <p class="text-gray-600 dark:text-gray-300">
+          Typeset math in LaTeX as fast as you can write by hand.
+        </p>
+      </li>
 
-</div>
+      <li>
+        <a href="/notes/fmf/fmf" class="link font-semibold">1500+ pages of undergraduate physics notes typeset with LaTeX</a>
+        <p class="text-gray-600 dark:text-gray-300">
+          From the final two years of undergrad at the Faculty of Math and Physics in Ljubljana.
+        </p>
+      </li>
+
+    </ul>
+  </section>
+
+</main>

@@ -1,7 +1,13 @@
 <!-- Listbox widget for switching between light and dark mode. -->
 <!-- Only works with corresponding Javascript loaded. -->
 
-<div id="themeswitch-istbox-container" class="relative mr-4">
+<!--
+This div should be positon:relative so as to anchor the absolutely positioned
+listbox inside, unless you're using a higher-up parent element as the absolute
+anchor, which I'm using in this case to allow overflow behavior in parent
+element
+-->
+<div id="themeswitch-listbox-container">
 
   <label class="sr-only" id="themeswitch-listbox-button-label">Theme</label>
   <button

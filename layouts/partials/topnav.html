@@ -4,19 +4,11 @@
 {{ $currentPage := . -}}
 
 <header class="w-full">
-  <ul class="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg whitespace-nowrap overflow-x-auto overflow-y-hidden my-2 px-4 py-4 sm:py-3">
+  <ul class="flex items-start space-x-6">
 
-    <!-- Logo (mobile) -->
-    <li class="block sm:hidden w-12 h-12 flex items-center justify-center rounded-full bg-blue-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 -my-3 -ml-2 mr-4 shrink-0 grow-0">
-      <a href="/" class="dark:hidden">
-        {{ partial "logo/mobile-light.html" . }}
-      </a>
-      <a href="/" class="hidden dark:block">
-        {{ partial "logo/mobile-dark.html" . }}
-      </a>
-    </li>
-    <!-- Logo (desktop) -->
-    <li class="hidden sm:block mr-6">
+    <!-- ejmastnak logo -->
+    {{ if ne $currentPage.Title "Home" }}
+    <li class="mr-4">
       <a href="/" class="dark:hidden">
         {{ partial "logo/desktop-light.html" . }}
       </a>
@@ -24,12 +16,36 @@
         {{ partial "logo/desktop-dark.html" . }}
       </a>
     </li>
+    {{ end }}
 
-    <li class="xxs:hidden"><a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Home" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/">Home</a></li>
-    <li class="hidden xxs:block xs:ml-2"><a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Home" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/">Home</a></li>
-    <li class="hidden xxs:block ml-6 xs:ml-8"><a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Content" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/content">Content</a></li>
-    <li class="hidden xs:block ml-6 xs:ml-8"><a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Contact" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/contact">Contact</a></li>
-    <li class="hidden xxs:block ml-6 xs:ml-8"><a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "About" }}font-medium text-gray-900 dark:text-gray-200{{ end }}" href="/about">About</a></li>
+    <!-- Home -->
+    <li class="!ml-auto hidden sm:block">
+      <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Home" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/">
+        Home
+      </a>
+    </li>
+
+    <!-- Content -->
+    <li class="hidden sm:block">
+      <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Content" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/content">
+        Content
+      </a>
+    </li>
+
+    <!-- Contact -->
+    <li class="hidden sm:block">
+      <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Contact" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/contact">
+        Contact
+      </a>
+    </li>
+
+    <!-- About -->
+    <li class="hidden sm:block">
+      <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "About" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/about">
+        About
+      </a>
+    </li>
+
   </ul>
 </header>
 

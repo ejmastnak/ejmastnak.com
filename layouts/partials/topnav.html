@@ -3,50 +3,64 @@
 <!-- Used to highlight current page in navbar -->
 {{ $currentPage := . -}}
 
-<header class="w-full">
-  <ul class="flex items-start space-x-6">
+<!-- I'm using an outer div as a relative anchor for absolutely positioned -->
+<!-- listbox menus to allow overflow in child nav element -->
+<div class="relative">
+  <!-- Top and right padding ensures focus rings appear on screen -->
+  <nav class="w-full overflow-x-auto pt-1 pr-1">
 
-    <!-- ejmastnak logo -->
-    {{ if ne $currentPage.Title "Home" }}
-    <li class="mr-4">
-      <a href="/" class="dark:hidden">
-        {{ partial "logo/desktop-light.html" . }}
-      </a>
-      <a href="/" class="hidden dark:block">
-        {{ partial "logo/desktop-dark.html" . }}
-      </a>
-    </li>
-    {{ end }}
+    <ul class="w-full flex items-start space-x-6">
 
-    <!-- Home -->
-    <li class="!ml-auto hidden sm:block">
-      <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Home" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/">
-        Home
-      </a>
-    </li>
+      <!-- ejmastnak logo -->
+      <li class="!mr-auto">
+        {{ if ne $currentPage.Title "Home" }}
+        <a href="/" class="dark:hidden">
+          {{ partial "logo/desktop-light.html" . }}
+        </a>
+        <a href="/" class="hidden dark:block">
+          {{ partial "logo/desktop-dark.html" . }}
+        </a>
+        {{ end }}
+      </li>
 
-    <!-- Content -->
-    <li class="hidden sm:block">
-      <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Content" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/content">
-        Content
-      </a>
-    </li>
+      <!-- Home -->
+      <li class="hidden sm:block">
+        <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Home" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/">
+          Home
+        </a>
+      </li>
 
-    <!-- Contact -->
-    <li class="hidden sm:block">
-      <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Contact" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/contact">
-        Contact
-      </a>
-    </li>
+      <!-- Content -->
+      <li class="hidden sm:block">
+        <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Content" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/content">
+          Content
+        </a>
+      </li>
 
-    <!-- About -->
-    <li class="hidden sm:block">
-      <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "About" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/about">
-        About
-      </a>
-    </li>
+      <!-- Contact -->
+      <li class="hidden sm:block">
+        <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Contact" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/contact">
+          Contact
+        </a>
+      </li>
 
-  </ul>
-</header>
+      <!-- About -->
+      <li class="hidden sm:block">
+        <a class="text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "About" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/about">
+          About
+        </a>
+      </li>
+
+      <li class="!ml-2 xss:!ml-auto sm:hidden">
+        {{ partial "hamburger.html" . }}
+      </li>
+
+      <li class="!ml-2 sm:!ml-4">
+        {{ partial "theme-switch.html" . }}
+      </li>
+
+    </ul>
+  </nav>
+</div>
 
 

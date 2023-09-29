@@ -58,19 +58,9 @@
   </head>
   <!-- Background color to match GIF backgrounds in Vim-LaTeX tutorial -->
   <body class="leading-normal font-md text-gray-800 dark:text-gray-300 bg-neutral-50 dark:bg-gray-900">
-    <div class="max-w-[800px] mx-auto pt-6 pb-8 px-4 sm:px-8">
+    <div class="max-w-[800px] mx-auto pt-4 sm:pt-6 pb-8 px-4 sm:px-8">
 
-      <div class="relative">
-        <nav class="w-full flex items-start overflow-x-auto">
-              {{ partial "topnav.html" . }}
-              <div class="ml-3 sm:hidden">
-                {{ partial "hamburger.html" . }}
-              </div>
-              <div class="ml-2 sm:ml-4">
-                {{ partial "theme-switch.html" . }}
-              </div>
-            </nav>
-      </div>
+      {{ partial "topnav.html" . }}
 
       <div class="mt-4 sm:mt-6 px-1">
         {{ block "main" . }}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
   <head>
     <meta charset='UTF-8'/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -57,19 +57,19 @@
 
   </head>
   <!-- Background color to match GIF backgrounds in Vim-LaTeX tutorial -->
-  <body class="leading-normal font-md text-gray-800 dark:text-gray-300 bg-neutral-50 dark:bg-gray-900 h-full">
-    <div class="max-w-[800px] mx-auto pt-4 sm:pt-6 pb-8 px-4 sm:px-8 h-full flex flex-col">
+  <body class="leading-normal font-md text-gray-800 dark:text-gray-300 bg-neutral-50 dark:bg-gray-900">
+    <div class="max-w-[800px] mx-auto pt-4 sm:pt-6 pb-8 px-4 sm:px-8 min-h-[100vh] flex flex-col">
 
       {{ partial "topnav.html" . }}
 
-      <div class="mt-4 sm:mt-6 px-1">
+      <div class="mt-4 sm:mt-6 px-1 mb-2">
         {{ block "main" . }}
         {{ end }}
       </div>
 
       <!-- Footer with copyright -->
       {{ if .Params.showFooter }}
-      <footer class="mt-auto text-sm sm:text-base -mb-2 md:mb-0 px-4 xs:px-6 sm:px-8 pt-2 text-gray-400 dark:text-gray-500 flex gap-x-2 border-t border-gray-200 dark:border-gray-500 overflow-x-auto">
+      <footer class="mt-auto text-sm sm:text-base -mb-4 md:-mb-4 px-4 xs:px-6 sm:px-8 pt-2 text-gray-400 dark:text-gray-500 flex gap-x-2 border-t border-gray-200 dark:border-gray-500 overflow-x-auto">
         <p>@2023</p>
         <MyLink href="https://ejmastnak.com" class="whitespace-nowrap">Elijan Mastnak</MyLink>
         <a href="mailto:elijan@ejmastnak.com">elijan@ejmastnak.com</a>

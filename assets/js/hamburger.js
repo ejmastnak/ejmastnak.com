@@ -66,21 +66,21 @@ hamburgerListbox.addEventListener('keydown', function(event) {
     hideHamburgerMenu();
   } else if (event.key === "ArrowDown") {
     event.preventDefault();   // prevent page from scrolling down
-    moveToNextItem();
+    moveToNextHamburgerItem();
   } else if (event.key === "ArrowUp") {
     event.preventDefault();   // prevent page from scrolling down
-    moveToPrevItem();
+    moveToPrevHamburgerItem();
   } else if (event.shiftKey && event.key == "Tab") {
     event.preventDefault();   // trap focus in menu
-    moveToPrevItem();
+    moveToPrevHamburgerItem();
   } else if (event.key == "Tab") {
     event.preventDefault();   // trap focus in menu
-    moveToNextItem();
+    moveToNextHamburgerItem();
   }
 });
 
 // Used with arrow key and tab navigation to move focus/selection to next item
-function moveToNextItem() {
+function moveToNextHamburgerItem() {
   idx = nextHamburgerIdx();
   removeAllHamburgerBG();
   hamburgerMenuItems[idx].classList.add(hamburgerBGActive, hamburgerBGActiveDark);
@@ -89,7 +89,7 @@ function moveToNextItem() {
 }
 
 // Used with arrow key and tab navigation to move focus/selection to previous item
-function moveToPrevItem() {
+function moveToPrevHamburgerItem() {
   idx = prevHamburgerIdx();
   removeAllHamburgerBG();
   hamburgerMenuItems[idx].classList.add(hamburgerBGActive, hamburgerBGActiveDark);

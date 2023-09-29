@@ -68,8 +68,7 @@
       </div>
 
       <!-- Footer with copyright -->
-      {{ $currentPage := . -}}
-      {{ if eq $currentPage.Title "Home" }}
+      {{ if .Params.showFooter }}
       <footer class="mt-auto text-sm sm:text-base -mb-2 md:mb-0 px-4 xs:px-6 sm:px-8 pt-2 text-gray-400 dark:text-gray-500 flex gap-x-2 border-t border-gray-200 dark:border-gray-500 overflow-x-auto">
         <p>@2023</p>
         <MyLink href="https://ejmastnak.com" class="whitespace-nowrap">Elijan Mastnak</MyLink>

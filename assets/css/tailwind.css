@@ -18,7 +18,7 @@
 
 @layer components {
   .link {
-    @apply text-sky-600 dark:text-sky-50 dark:font-semibold hover:underline;
+    @apply text-sky-600 dark:text-sky-50 font-medium dark:font-semibold hover:underline;
   }
 }
 

@@ -36,9 +36,12 @@
     }
     </script>
 
-    <!-- Dark/light theme toggle logic -->
+    <!-- Dark/light theme switcher script -->
     {{ $themeswitchjs := resources.Get "js/theme-switch.js" }}
     <script defer src="{{ $themeswitchjs.RelPermalink }}"></script>
+    <!-- Hamburger menu switcher script -->
+    {{ $hamburgerjs := resources.Get "js/hamburger.js" }}
+    <script defer src="{{ $hamburgerjs.RelPermalink }}"></script>
     <!-- ------------------------------------------------------- -->
 
     <!-- Favicon settings -->
@@ -47,10 +50,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
-      <!-- ------------------------------------------------------- -->
+    <!-- ------------------------------------------------------- -->
 
-      <!-- Load KaTeX on math pages -->
-      {{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
+    <!-- Load KaTeX on math pages -->
+    {{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
 
   </head>
   <!-- Background color to match GIF backgrounds in Vim-LaTeX tutorial -->
@@ -59,6 +62,9 @@
 
       <nav class="w-full -ml-2 mb-6 flex items-center">
         {{ partial "topnav.html" . }}
+        <div class="ml-3">
+          {{ partial "hamburger.html" . }}
+        </div>
         <div class="ml-3">
           {{ partial "theme-switch.html" . }}
         </div>

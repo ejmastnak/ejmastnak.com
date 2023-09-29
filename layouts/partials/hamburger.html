@@ -1,0 +1,100 @@
+<!-- Mobile hamburget menu -->
+<!-- Only works with corresponding Javascript loaded. -->
+
+<!-- Used to highlight current page in navbar -->
+{{ $currentPage := . -}}
+
+<div id="hamburger-container" class="relative">
+
+  <label class="sr-only" id="hamburger-button-label">Navigation menu</label>
+  <button
+    id="hamburger-button"
+    type="button"
+    aria-expanded="false"
+    aria-labelledby="hamburger-button-label"
+    aria-haspopup="true"
+    aria-controls="hamburger-options"
+    class="text-gray-500 dark:text-gray-400 focus:outline-none focus:ring-offset-2 focus:ring-2 active:ring-0 focus:border-0 focus:ring-sky-500 ring-offset-blue-50 dark:ring-offset-gray-900"
+  >
+
+    <!-- Hamburger () Icon -->
+    <svg id="hamburger-button-hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+    </svg>
+
+    <!-- X Mark icon -->
+    <svg id="hamburger-button-xmark-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.0" stroke="currentColor" class="w-6 h-6 hidden">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+
+  </button>
+
+
+
+  <!-- Listbox options -->
+  <ul
+    id="hamburger-listbox"
+    role="listbox"
+    aria-labelledby="hamburger-button-label"
+    aria-orientation="vertical"
+    tabindex="0"
+    class="hidden absolute overflow-hidden right-0 w-32 flex flex-col bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-600 shadow  focus:outline-none focus:ring-offset-2 focus:ring-2 focus:border-0 focus:ring-sky-500 ring-offset-blue-50 dark:ring-offset-gray-800">
+
+    <!-- Home -->
+    <li
+      id="hamburger-item-home"
+      role="option"
+      tabindex="-1"
+      aria-selected="false"
+      class="px-3 py-2 space-x-1 text-left text-gray-500 dark:text-gray-400">
+      <a
+        id="hamburger-link-home"
+        class="inline-block text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Home" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/">
+        Home
+      </a>
+    </li>
+
+    <!-- Content -->
+    <li
+      id="hamburger-item-content"
+      role="option"
+      tabindex="-1"
+      aria-selected="false"
+      class="px-3 py-2 space-x-1 text-left text-gray-500 dark:text-gray-400">
+      <a
+        id="hamburger-link-content"
+        class="inline-block text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Content" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/content">
+        Content
+      </a>
+    </li>
+
+    <!-- Contact -->
+    <li
+      id="hamburger-item-contact"
+      role="option"
+      tabindex="-1"
+      aria-selected="false"
+      class="px-3 py-2 space-x-1 text-left text-gray-500 dark:text-gray-400">
+      <a
+        id="hamburger-link-contact"
+        class="inline-block text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Contact" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/contact">
+        Contact
+      </a>
+    </li>
+
+    <!-- About -->
+    <li
+      id="hamburger-item-about"
+      role="option"
+      tabindex="-1"
+      aria-selected="false"
+      class="px-3 py-2 space-x-1 text-left text-gray-500 dark:text-gray-400">
+      <a
+        id="hamburger-link-about"
+        class="inline-block text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "About" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/about">
+        About
+      </a>
+    </li>
+
+  </ul>
+</div>

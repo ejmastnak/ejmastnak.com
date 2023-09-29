@@ -59,7 +59,35 @@
         {{ partial "theme-switch.html" . }}
       </li>
 
+      <!-- Fallback mobile menu when JavaScript is disabled -->
+      <noscript>
+        <div class="ml-auto sm:hidden flex flex-wrap gap-x-3">
+          <!-- Home -->
+          <a class="inline-block text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Home" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/">
+            Home
+          </a>
+
+          <!-- Content -->
+          <a class="inline-block text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Content" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/content">
+            Content
+          </a>
+
+          <!-- Contact -->
+          <a class="inline-block text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "Contact" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/contact">
+            Contact
+          </a>
+
+          <!-- About -->
+          <a class="inline-block text-gray-500 dark:text-gray-400 hover:underline hover:text-sky-600 {{ if eq $currentPage.Title "About" }}font-medium text-gray-900 dark:text-gray-200{{ end }}"href="/about">
+            About
+          </a>
+
+        </div>
+      </noscript>
+
     </ul>
+
+
   </nav>
 </div>
 

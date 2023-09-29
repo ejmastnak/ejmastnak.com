@@ -1,3 +1,6 @@
+var themeswitchContainer = document.getElementById('themeswitch-container');
+themeswitchContainer.classList.remove('hidden');
+
 var themeswitchListbox = document.getElementById('themeswitch-listbox-options');
 var themeswitchListboxButton = document.getElementById('themeswitch-listbox-button');
 var themeswitchListboxButtonSunIcon = document.getElementById('themeswitch-listbox-button-sun');

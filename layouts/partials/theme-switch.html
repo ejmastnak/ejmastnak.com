@@ -1,13 +1,8 @@
 <!-- Listbox widget for switching between light and dark mode. -->
-<!-- Only works with corresponding Javascript loaded. -->
 
-<!--
-This div should be positon:relative so as to anchor the absolutely positioned
-listbox inside, unless you're using a higher-up parent element as the absolute
-anchor, which I'm using in this case to allow overflow behavior in parent
-element
--->
-<div id="themeswitch-listbox-container">
+<!-- Intentionally hidden; we then remove hidden class with JS, so as to -->
+<!-- hide the element entirely when JS is disabled and it won't work -->
+<div id="themeswitch-container" class="hidden">
 
   <label class="sr-only" id="themeswitch-listbox-button-label">Theme</label>
   <button

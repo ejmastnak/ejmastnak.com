@@ -1,3 +1,6 @@
+var hamburgerContainer = document.getElementById('hamburger-container');
+hamburgerContainer.classList.remove('hidden');
+
 var hamburgerListbox = document.getElementById('hamburger-listbox');
 var hamburgerButton = document.getElementById('hamburger-button');
 var hamburgerButtonHamburgerIcon = document.getElementById('hamburger-button-hamburger-icon');

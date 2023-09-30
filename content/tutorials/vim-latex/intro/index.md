@@ -1,12 +1,12 @@
 ---
-title: "Turbocharged LaTeX using Vim/Neovim, VimTeX, and snippets"
+title: "Supercharged LaTeX using Vim/Neovim, VimTeX, and snippets"
 date: 2021-10-08
 ---
 
 <script type="text/javascript" src="/helpers/carousel.js"></script>
 <link rel="stylesheet" href="/helpers/carousel.css">
 
-# A guide to turbocharged mathematical typesetting
+# A guide to supercharged mathematical typesetting
 
 This is a tutorial series to help you set up the Vim or Neovim text editors for efficiently writing math in LaTeX.
 Here is an example of what I have in mind:

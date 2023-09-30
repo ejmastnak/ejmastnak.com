@@ -10,7 +10,7 @@ The material should be applicable, with adjustments to package installation, to 
 
 **Purpose:** improve the transition and onboarding experience for new users.
 
-{{< details summary="**What about the ArchWiki** (click to expand)" >}}
+{{< details summary="**What about the ArchWiki?** (click to expand)" >}}
 I’ve tried to address the following issue:
 the ArchWiki, kind of like the Unix `man` pages, is the best place to go when you know what you’re doing and what you’re looking for,
 but can be intimidating to new users because of the sheer amount of information, the lack of strong opinions on how to approach a given topic, and the need to read multiple cross-linked articles before fully understanding a concept.

@@ -10,7 +10,7 @@ showFooter: true
   <h1 class="text-3xl">What's on this website?</h1>
 
   <p class="mt-2 text-gray-600 dark:text-gray-300 max-w-lg">
-    This page lists the technical writing, tutorial series, academic material, and miscellaneous side projects you can find on this site.
+    Here is the technical writing, tutorial series, academic material, and miscellaneous side projects you can find on this site.
   </p>
 
   <section class="mt-6 sm:mt-8 pb-6 sm:pb-8 border-b border-gray-300 dark:border-gray-500">
@@ -20,28 +20,23 @@ showFooter: true
       Multi-article series explaining software-related topics—my attempt to provide the resource I wish I'd had access to when learning the material for the first time myself.
     </p>
 
-    <ul class="mt-3 space-y-3">
+    <ul class="mt-6 space-y-6">
 
-      <li>
-        <a href="/tutorials/vim-latex/intro" class="link font-semibold">A guide to turbocharged mathematical typesetting</a>
-        <p class="-mt-0.5 text-gray-600 dark:text-gray-300">
-          Typeset math in LaTeX as fast as you can write it by hand.
-        </p>
-      </li>
+      <!-- Vim-LaTeX -->
+      {{< contentitem src="/img/content-thumbnails/vim-latex.png" alt="The LaTeX and Neovim logos." href="/tutorials/vim-latex/intro" title="A guide to turbocharged mathematical typesetting" >}}
+        Typeset math in LaTeX as fast as you can write it by hand—a 7-article-series covering snippets, VimTeX, compilation, PDF reader integration, relevant Vim theory, and battle-tested tips and best practices.
+        {{< /contentitem >}}
 
-      <li>
-        <a href="/tutorials/arch/about" class="link font-semibold">Find your footing on Arch Linux</a>
-        <p class="-mt-0.5 text-gray-600 dark:text-gray-300">
+        <!-- Arch -->
+        {{< contentitem src="/img/content-thumbnails/arch.png" alt="The Arch Linux logo." href="/tutorials/arch/about" title="Find your footing on Arch Linux" >}}
           Bite-sized steps toward a functional work environment after a minimal install of Arch.
-        </p>
-      </li>
+          From the basics of network connections and hardware integration to power-user key bindings to eye-candy wallpapers.
+          {{< /contentitem >}}
 
-      <li>
-        <a href="/tutorials/deploy-laravel/about" class="link font-semibold">Deploy a Laravel web app</a>
-        <p class="-mt-0.5 text-gray-600 dark:text-gray-300">
-          A guide to deploying a web application with a Laravel backend and a JavaScript-based frontend on a dedicated or virtual private server.
-        </p>
-      </li>
+          <!-- Laravel deployment -->
+          {{< contentitem src="/img/content-thumbnails/laravel.png" alt="The Laravel logo." href="/tutorials/deploy-laravel/about" title="Deploy a Laravel web app" >}}
+            A guide to deploying a web application with a Laravel backend and a JavaScript-based frontend—13 articles take you from SSHing into a fresh server to automated zero-downtime redeployment.
+            {{< /contentitem >}}
 
     </ul>
 
@@ -54,28 +49,23 @@ showFooter: true
       Material from my undergraduate studies and student teaching at the Faculty of Physics at the University of Ljubljana.
     </p>
 
-    <ul class="mt-3 space-y-3">
+    <ul class="mt-6 space-y-6">
 
-      <li>
-        <a href="/notes/fmf/fmf" class="link font-semibold">1500+ pages of undergraduate physics notes typeset with LaTeX</a>
-        <p class="-mt-0.5 text-gray-600 dark:text-gray-300">
-          From the final two years of undergrad at the Faculty of Math and Physics in Ljubljana.
-        </p>
-      </li>
+      <!-- Lecture notes -->
+      {{< contentitem src="/img/content-thumbnails/fmf.png" alt="The leters FMF, the Slovene abbreviation for the Faculty of Mathematics and Physics." href="/notes/fmf/fmf" title="1500+ pages of undergraduate physics notes typeset with LaTeX" >}}
+        Lecture notes and exercise sets from the final two years of undergrad at the Faculty of Math and Physics (FMF) in Ljubljana. 
+        Intended primarily for FMF students taking the same courses, but everyone is welcome!
+        {{< /contentitem >}}
 
-      <li>
-        <a href="/projects/seminar" class="link font-semibold">Undergraduate "mini-thesis"</a>
-        <p class="-mt-0.5 text-gray-600 dark:text-gray-300">
-          End-to-end particle physics classification with convolutional neural networks.
-        </p>
-      </li>
+        <!-- Thesis -->
+        {{< contentitem src="/img/content-thumbnails/higgs.png" alt="A Feynman diagram of a Higgs boson decay channel." href="/projects/seminar" title="Undergraduate thesis" >}}
+          My undergraduate "mini-thesis", on using convolutional neural networks for classifying the products of high-energy collisions in particle physics experiments. Check out the figures and slide-show presentation!
+          {{< /contentitem >}}
 
-      <li>
-        <a href="/rof/home" class="link font-semibold">ROF tutorstvo 2022/23</a>
-        <p class="-mt-0.5 text-gray-600 dark:text-gray-300">
-          Spletna stran tutorstva za predmet Računalniška orodja v fiziki. (A web page I made for first-year students when serving as a student tutor for the course Computer Tools in Physics in the 2023 spring semester.)
-        </p>
-      </li>
+          <!-- ROF -->
+          {{< contentitem src="/img/content-thumbnails/numpy.png" alt="The Numpy logo." href="/rof/home" title="ROF tutorstvo 2022/23" >}}
+            Spletna stran tutorstva za predmet Računalniška orodja v fiziki. (A web page made for first-year physics students when I served as a tutor for the course Computer Tools in Physics in the 2023 spring semester.)
+            {{< /contentitem >}}
 
     </ul>
 
@@ -88,21 +78,19 @@ showFooter: true
       Miscellaneous side projects; under development.
     </p>
 
-    <ul class="mt-3 ml-1 space-y-3">
+    <ul class="mt-6 space-y-6">
 
-      <li>
-        <a href="https://casinograph.ejmastnak.com/" class="link font-semibold">CasinoGraph</a>
-        <p class="-mt-0.5 text-gray-600 dark:text-gray-300">
-          Latin dance crossed with graph theory: Cuban Casino as a directed cyclic graph.
-        </p>
-      </li>
+      <!-- CasinoGraph -->
+      {{< contentitem src="/img/content-thumbnails/casinograph.png" alt="A simple diagram of a directed cyclic graph with three nodes." href="https://casinograph.ejmastnak.com/" title="CasinoGraph" >}}
+        A Latin social dance crossed with graph theory: Cuban salsa, aka Casino, represented as a directed cyclic graph in which the figures (edges) connect the positions (vertices).
+        {{< /contentitem >}}
 
-      <li>
-        <a href="/projects/hilbert" class="link font-semibold">Digital Hilbert transformer "from scratch"</a>
-        <p class="-mt-0.5 text-gray-600 dark:text-gray-300">
+
+        <!-- Hilbert Transformer -->
+        {{< contentitem src="/img/content-thumbnails/hilbert.png" alt="A graph of a Digital Hilbert transformer's impulse response" href="/projects/hilbert" title="Digital Hilbert transformer \"from scratch\"" >}}
           A (near) real-time FIR Hilbert transformer and bandpass filter using Python's Numpy and PyAudio.
-        </p>
-      </li>
+          {{< /contentitem >}}
+
 
     </ul>
 

@@ -1,0 +1,20 @@
+<li class="flex">
+
+  <div class="mt-1 w-24 h-24 p-1 bg-neutral-50 dark:bg-neutral-300 shrink-0 grow-0 rounded-xl border border-gray-300 dark:border-none shadow-md overflow-hidden">
+    <a href="{{ .Get `href`}}">
+      <img
+        class="object-cover"
+        src="{{ .Get `src`}}"
+        alt="{{ .Get `alt`}}"
+      />
+    </a>
+  </div>
+
+  <div class="ml-4 max-w-lg">
+    <a href="{{ .Get `href`}}" class="inline-block link font-semibold leading-snug">{{ .Get `title`}}</a>
+    <p class="mt-1 sm:mt-0 text-gray-600 dark:text-gray-300 text-sm">
+      {{ .Inner }}
+    </p>
+  </div>
+
+</li>

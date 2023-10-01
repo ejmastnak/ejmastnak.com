@@ -101,7 +101,7 @@ This is actually a little *faster* than I can write by hand---try taking out a p
 (Yes, I know I'm cheating by throwing in a bunch of hard-to-handwrite integrals.)
 If you like, you can see [**more examples on YouTube**](https://www.youtube.com/watch?v=P7iMX1lqGnU).
 
-**Credit where it is due**: the above GIFs are inspired by Gilles Castel's video [Fast LaTeX editing with Vim and UltiSnips](https://www.youtube.com/watch?v=a7gpx0h-BuU)---it is beautifully done and I encourage you to watch it.
+**Credit where credit is due**: the above GIFs are inspired by Gilles Castel's video [Fast LaTeX editing with Vim and UltiSnips](https://www.youtube.com/watch?v=a7gpx0h-BuU)---it is beautifully done and I encourage you to watch it.
 
 ### The original Vim-LaTeX article
 

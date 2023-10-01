@@ -20,6 +20,9 @@
   .link {
     @apply text-sky-600 dark:text-sky-50 font-medium dark:font-semibold hover:underline;
   }
+  .lightlink {
+    @apply text-sky-600 dark:text-gray-300 font-medium dark:font-semibold hover:underline;
+  }
 }
 
 /* Nord syntax highlighting */

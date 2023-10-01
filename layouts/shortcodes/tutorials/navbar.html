@@ -1,0 +1,19 @@
+<div class="not-prose text-center mx-auto bg-blue-50 dark:bg-gray-800 rounded-xl py-2 border border-gray-400 dark:border-gray-700">
+  <ul class="flex items-center list-none justify-around px-2 overflow-auto">
+    <li>
+      <a class="lightlink whitespace-nowrap" href="{{ .Get `baseurl` }}/{{ .Page.Params.prevFilename }}">
+        « Previous
+      </a>
+    </li>
+    <li>
+      <a class="lightlink" href="{{ .Get `baseurl` }}/{{ .Get `index` }}">
+        Series homepage
+      </a>
+    </li>
+    <li>
+      <a class="lightlink whitespace-nowrap" href="{{ .Get `baseurl` }}/{{ .Page.Params.nextFilename }}">
+        Next »
+      </a>
+    </li>
+  </ul>
+</div>

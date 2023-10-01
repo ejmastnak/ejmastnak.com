@@ -8,7 +8,9 @@ date: 2023-07-18
 # Install Composer for deploying a Laravel web application
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 This article shows how to install [Composer](https://getcomposer.org/), the standard package manager for PHP, and how to install the PHP packages required for serving a Laravel application.
 
@@ -98,4 +100,15 @@ The options are [recommended by Laravel](https://laravel.com/docs/10.x/deploymen
 
 **Next:** The next article shows how to install your application's JavaScript dependencies.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

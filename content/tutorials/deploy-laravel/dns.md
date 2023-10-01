@@ -9,7 +9,10 @@ date: 2023-07-18
 # Set up a custom domain name for a Laravel web application
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
 
 This article covers setting up a custom domain name for your web app.
 I'll use `mylaravelproject.com` as an example in this guide, but you should, of course, change this to whatever domain name you'll be using.
@@ -123,4 +126,15 @@ You can of course ignore this you haven't created any subdomain DNS settings for
 
 **Next:** This article shows how to set up HTTPS connections to your Laravel web app.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

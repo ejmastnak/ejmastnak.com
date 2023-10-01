@@ -9,7 +9,9 @@ date: 2023-07-17
 # Dev-side Git setup for deploying a Laravel web application
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 This short article shows how to configure Git on your development machine.
 You should have read and implemented [the previous article]({{< relref "git-server" >}}) on server-side Git setup before beginning this article.
@@ -99,4 +101,15 @@ Give this and the previous article a reread just be sure, and then please [let m
 
 **Next:** The next article shows how to install Composer and how to use Composer to install your Laravel project's PHP dependencies.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

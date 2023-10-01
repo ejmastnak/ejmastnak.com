@@ -8,7 +8,10 @@ date: 2023-07-17
 # Set up MySQL, PostgreSQL, or SQLite for a Laravel web application
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
 
 This article covers the installation and basic set up a database management system.
 
@@ -230,4 +233,14 @@ That's all you need for now---I'm assuming you'll be bring along an existing `*.
 
 **Next:** The next article covers server-side Git setup.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>

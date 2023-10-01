@@ -8,7 +8,9 @@ date: 2023-07-18
 # Zero-downtime deployment of a Laravel web application, part 1
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 This is part 1 of the coverage of zero-downtime redeployment in this series.
 
@@ -307,4 +309,15 @@ If you're sure you've exactly followed this article and your app is still down, 
 
 **Next:** The next article shows how to automate zero-downtime redeployment.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

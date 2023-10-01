@@ -8,7 +8,9 @@ date: 2023-07-18
 # Server-side Git setup for deploying a Laravel web app
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 This article shows how to set up a Git repository on your app's server, to which you will push code from your development machine, and how to create a post-receive Git hook to automate (re)deploying your app on every Git push to the server.
 
@@ -172,4 +174,15 @@ We'll give this a try at the end of the next article.
 
 **Next:** The next article covers Git setup on your development machine.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

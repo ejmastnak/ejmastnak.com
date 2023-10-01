@@ -8,7 +8,10 @@ date: 2023-07-18
 # Simple automated deployment of a Laravel web application
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
 
 This article walks you through a simple script for automatically redeploying your app after every Git push to the server.
 
@@ -145,4 +148,15 @@ With that said:
 
 **Next:** The next article shows how to set up a custom domain name for your web app.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

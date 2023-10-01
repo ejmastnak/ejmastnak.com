@@ -8,7 +8,9 @@ date: 2023-07-17
 # Set up a server for deploying a Laravel web application
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+    {{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 This article takes you through setting up the server used to host and serve your web app.
 You might also benefit from Digital Ocean's [guide to setting up an Ubuntu server]( https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04), which covers similar material.
@@ -258,4 +260,14 @@ I'd suggest setting up both on a new droplet.
 **Next:** The next article covers the installation of PHP and the PHP extensions needed for Laravel to run.
 
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>

@@ -8,7 +8,9 @@ date: 2023-07-18
 # Configure a Laravel environment for production
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 This article covers the necessary environment configuration for running a Laravel app in production, along with a few pre-deployment optimizations.
 
@@ -186,4 +188,15 @@ These optimizations should be rerun after each (re)deployment---we'll take care 
 
 **Next:** The next article covers a few ownership and permission settings needed to run a Laravel app.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

@@ -8,7 +8,10 @@ date: 2023-07-18
 # Automated deployment of a Laravel web application
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
 
 This guide covers three workflows for (re)deployment of your app.
 Read through the summaries below and pick the best one for you.
@@ -50,3 +53,11 @@ The downside is additional complexity---you have to learn to use a new tool.
 Instead of trying to reinvent the wheel I'll refer you to his guide instead:
 you can either read [the whole series](https://lorisleiva.com/deploy-your-laravel-app-from-scratch/) or just the [zero-downtime redeployment article](https://lorisleiva.com/deploy-your-laravel-app-from-scratch/deploy-with-zero-downtime).
 This would be good reading even if you don't end up using Deployer, just to see the content of my guide from a different perspective.
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>

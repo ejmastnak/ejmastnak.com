@@ -8,7 +8,9 @@ date: 2023-07-18
 # Directory ownership and permissions for deploying a Laravel web app
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 This article covers a few ownership and permission settings that will allow the Nginx web server to properly serve your Laravel web app.
 (Some familiarity with Unix permissions, users, and groups is helpful here; I've done my best to explain the big picture for everyone interested.)
@@ -148,4 +150,14 @@ DB_DATABASE=/srv/www/laravel-project/database/sqlite/database.sqlite
 
 **Next:** The next article shows how to configure Nginx for serving a Laravel web app.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>

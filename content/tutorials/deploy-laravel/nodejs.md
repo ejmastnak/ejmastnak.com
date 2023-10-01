@@ -8,7 +8,9 @@ date: 2023-07-18
 # Install a Laravel project's Node.js dependencies
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 *(You can skip this article if your Laravel app has no JavaScript dependencies.)*
 
@@ -80,4 +82,14 @@ It shouldn't end up on your server because it is ignored in Laravel's default `.
 
 **Next:** The next article covers the necessary environment configuration for running a Laravel app in production.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>

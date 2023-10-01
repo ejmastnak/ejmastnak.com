@@ -8,7 +8,9 @@ date: 2023-07-18
 # Set up HTTPS for a Laravel web application
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 This article shows how to set up HTTPS connections to your Laravel web app.
 
@@ -116,4 +118,15 @@ Then recache your app's config settings by running `php artisan config:cache` fr
 
 And that wraps up this guide. Thanks for reading!
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

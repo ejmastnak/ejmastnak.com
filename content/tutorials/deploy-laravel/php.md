@@ -8,7 +8,9 @@ date: 2023-07-17
 # Install PHP and extensions for deploying a Laravel web application
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 This article covers the installation of PHP (the language on top of which Laravel is built) and the PHP extensions needed for Laravel to run.
 
@@ -139,4 +141,14 @@ Caution: there are some subtleties with `php --ini`, for example after installin
 
 **Next:** The next article covers the installation and basic set up a database management system.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>

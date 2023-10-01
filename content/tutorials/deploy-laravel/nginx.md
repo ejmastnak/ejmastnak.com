@@ -8,7 +8,9 @@ date: 2023-07-18
 # Configure Nginx for serving a Laravel web application
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
 
 This article shows how to configure Nginx for serving a Laravel web app.
 We'll be using [Laravel's example Nginx config](https://laravel.com/docs/10.x/deployment#nginx)---it works well in my experience and I see no reason to reinvent the wheel here.
@@ -204,4 +206,15 @@ And if you're sure you've exactly followed the guide so far and your app is stil
 
 **Next:** The next article covers automated redeployment of your Laravel app.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

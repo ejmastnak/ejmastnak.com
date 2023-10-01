@@ -8,7 +8,10 @@ date: 2023-07-18
 # Zero-downtime deployment of a Laravel web application, part 2
 
 {{< deploy-laravel/header >}}
-{{< deploy-laravel/navbar >}}
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
 
 This is part 2 of the coverage of zero-downtime redeployment in this series.
 
@@ -301,4 +304,15 @@ And if you're sure you've exactly followed the guide so far and your app is stil
 
 **Next:** The next article shows how to set up a custom domain name for your web app.
 
-{{< deploy-laravel/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}
+</div>
+
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

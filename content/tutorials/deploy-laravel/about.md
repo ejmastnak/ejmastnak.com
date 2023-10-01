@@ -89,7 +89,10 @@ Each covers the material from a slightly different angle, so you'll probably get
 - [Farhan Hasin Chowdhury's guide to deploying a Laravel web app on a VPS](https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers)
 - [J. Alexander Curtis's guide to deploying a Laravel 5.3 app on a LEMP stack](https://devmarketer.io/learn/deploy-laravel-5-app-lemp-stack-ubuntu-nginx/)).
 
-<div class="text-center mx-auto mt-6 mb-8 bg-blue-50 font-semibold dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-<a href="/tutorials/deploy-laravel/server-setup" class="block py-2">Begin the series!</a>
+<div class="my-8">
+{{< tutorials/begin href="/tutorials/deploy-laravel/server-setup" >}}
 </div>
 
+<div class="mt-6">
+  {{< tutorials/license >}}
+<div>

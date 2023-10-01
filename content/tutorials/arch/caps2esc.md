@@ -5,8 +5,7 @@ date: 2022-04-29
 
 # Remap Caps Lock to Escape and Control
 
-{{< arch/arch-notes-header >}}
-
+{{< arch/header >}}
 {{< date-last-mod >}}
 
 **Goal:** use the `caps2esc` utility to make the Caps Lock key act like the Escape key when pressed alone and act like the Control key when pressed in combination with other keys.
@@ -95,4 +94,14 @@ systemctl status udevmon
 At this point you should be done---try using e.g. `<CapsLock>-L` to clear the terminal screen (like you would normally do with `<Ctrl>-L`).
 If the `udevmon` service is enabled, the `udevmon` program should automatically start at boot in the future.
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+    {{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

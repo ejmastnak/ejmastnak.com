@@ -5,8 +5,7 @@ date: 2022-04-29
 
 # Clipboard on X11, Alacritty, and Vim
 
-{{< arch/arch-notes-header >}}
-
+{{< arch/header >}}
 {{< date-last-mod >}}
 
 **Goal:** Comfortably copy and paste between GUI applications in the X Window System, the Alacritty terminal, and Vim/Neovim.
@@ -174,4 +173,14 @@ Scroll back up to the [Requirements]({{< relref "#requirements" >}}) section for
 <!-- https://github.com/tmux/tmux/wiki/Clipboard -->
 
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+    {{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

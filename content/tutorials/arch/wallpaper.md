@@ -5,7 +5,7 @@ date: 2022-05-07
 
 # Set wallpaper with feh
 
-{{< arch/arch-notes-header >}}
+{{< arch/header >}}
 
 {{< date-last-mod >}}
 
@@ -155,4 +155,14 @@ systemctl --user list-timers
 Note that you only enable and start the `change-wallpaper.timer` unit and not the `.service` unit.
 The wallpaper slideshow should be ready after this step.
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+{{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

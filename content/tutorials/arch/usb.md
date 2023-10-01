@@ -5,7 +5,7 @@ date: 2022-04-29
 
 # Using USB drives on Arch
 
-{{< arch/arch-notes-header >}}
+{{< arch/header >}}
 
 {{< date-last-mod >}}
 
@@ -230,4 +230,14 @@ Here's how to automount USB drives with `udiskie`:
 
 - Interact with and eject the drive as described earlier in the [`udisks2` section]({{< relref "#udisk2" >}}), i.e. you still manually eject the drive with `umount` and `power-off`.
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+{{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

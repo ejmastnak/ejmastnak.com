@@ -5,10 +5,9 @@ date: 2022-05-07
 
 # Monitor hot-plugging with X
 
-{{< arch/arch-notes-header-with-comment >}}
+{{< arch/header-with-comment >}}
 and part 2 in a two-part monitor sequence. You should be familiar with [part 1]({{< relref "/tutorials/arch/displays" >}}) first.
-{{< /arch/arch-notes-header-with-comment >}}
-
+{{< /arch/header-with-comment >}}
 {{< date-last-mod >}}
 
 **Goal:** use `udev` to detect when a monitor cable is physically connected or disconnected, and use `xrandr` to automatically update the monitor display in response.
@@ -209,4 +208,14 @@ Based on my current understanding of `udev` and `systemd` best practices and som
 
    For hot-plugging, it is thus more reliable to check a display's connection state from the contents of `/sys/class/drm/*/status` than to use `grep` to parse the output of the `xrandr` command, as in e.g. [part 1]({{< relref "/tutorials/arch/displays" >}}).
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+{{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

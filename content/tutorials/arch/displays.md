@@ -5,9 +5,9 @@ date: 2022-05-07
 
 # Connect laptop to an external monitor on X
 
-{{< arch/arch-notes-header-with-comment >}}
+{{< arch/header-with-comment >}}
 and part 1 in a two-part monitor sequence. Read [part 2]({{< relref "/tutorials/arch/monitor-hotplug" >}}) for monitor hot-plugging.
-{{< /arch/arch-notes-header-with-comment >}}
+{{< /arch/header-with-comment >}}
 
 {{< date-last-mod >}}
 
@@ -222,4 +222,14 @@ xrandr --output ${internal} --auto
 xrandr --output ${external} --off
 ```
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+{{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

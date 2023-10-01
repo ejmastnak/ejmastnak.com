@@ -5,7 +5,7 @@ date: 2022-05-11
 
 # Keyboard-based volume adjustment
 
-{{< arch/arch-notes-header >}}
+{{< arch/header >}}
 
 {{< date-last-mod >}}
 
@@ -310,4 +310,14 @@ else
 fi
 ```
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+{{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

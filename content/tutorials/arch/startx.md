@@ -5,7 +5,7 @@ date: 2022-05-03
 
 # Install and start Xorg
 
-{{< arch/arch-notes-header >}}
+{{< arch/header >}}
 
 {{< date-last-mod >}}
 
@@ -211,4 +211,14 @@ We'll use the default `xinitrc` file in `/etc/X11/xinit/` as a starting point, a
   [set a background wallpaper]({{< relref "/tutorials/arch/wallpaper" >}});
   customize your shell prompt, etc.
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+{{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

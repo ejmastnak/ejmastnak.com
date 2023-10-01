@@ -5,8 +5,7 @@ date: 2022-05-07
 
 # Adjust laptop backlight
 
-{{< arch/arch-notes-header >}}
-
+{{< arch/header >}}
 {{< date-last-mod >}}
 
 **Goal:** understand how to programmatically adjust your laptop's backlight brightness from the command line, then create convenient key bindings to do this for you.
@@ -335,4 +334,14 @@ options root=/dev/sdaXYZ rw acpi_backlight=video     # after
 
 For adding kernel parameters with other boot loaders, consult [ArchWiki: Kernel parameters](https://wiki.archlinux.org/title/Kernel_parameters).
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+    {{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

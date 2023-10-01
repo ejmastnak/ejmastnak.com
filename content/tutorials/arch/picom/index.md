@@ -5,8 +5,7 @@ date: 2022-05-28
 
 # Transparent windows with `picom`
 
-{{< arch/arch-notes-header >}}
-
+{{< arch/header >}}
 {{< date-last-mod >}}
 
 **Goal:** Use the `picom` compositor to make unfocused window backgrounds slightly transparent, so you can enjoy [your background wallpaper]({{< relref "/tutorials/arch/wallpaper" >}}).
@@ -29,11 +28,11 @@ The window manager is [i3-gaps](https://github.com/Airblader/i3); you can find t
 <!-- vim-markdown-toc GFM -->
 
 * [Transparent windows](#transparent-windows)
-  * [Targeted transparency by window class](#targeted-transparency-by-window-class)
-  * [Launch and autostart `picom`](#launch-and-autostart-picom)
+    * [Targeted transparency by window class](#targeted-transparency-by-window-class)
+    * [Launch and autostart `picom`](#launch-and-autostart-picom)
 * [Appendix: other `picom` features](#appendix-other-picom-features)
-  * [Rendering backends](#rendering-backends)
-  * [Just disable everything except opacity](#just-disable-everything-except-opacity)
+    * [Rendering backends](#rendering-backends)
+    * [Just disable everything except opacity](#just-disable-everything-except-opacity)
 
 <!-- vim-markdown-toc -->
 
@@ -211,4 +210,14 @@ fading = false
 corner-radius = 0
 ```
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+{{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+  {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+  {{< tutorials/license >}}
+<div>

@@ -5,7 +5,7 @@ date: 2022-04-29
 
 # First steps with NetworkManager
 
-{{< arch/arch-notes-header >}}
+{{< arch/header >}}
 
 {{< date-last-mod >}}
 
@@ -223,4 +223,14 @@ ip -c addresses  # use the `-c` flag for colored output
 
 The output of `ip address` is a bit verbose---check the `inet` field of each interface for an IPv4 address and the `inet6` field for an IPv6 address.
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+{{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

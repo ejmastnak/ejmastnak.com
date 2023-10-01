@@ -5,7 +5,7 @@ date: 2022-04-29
 
 # Key delay and repeat rate on X11
 
-{{< arch/arch-notes-header >}}
+{{< arch/header >}}
 
 {{< date-last-mod >}}
 
@@ -71,4 +71,14 @@ sudo kbdrate -d 200 -r 30
 You can use a `systemd` unit to make the change permanent at every boot.
 I suggest following the ArchWiki's clear instructions at [ArchWiki: Linux console/Keyboard configuration/Systemd service](https://wiki.archlinux.org/title/Linux_console/Keyboard_configuration#Systemd_service).
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+{{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+    {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+    {{< tutorials/license >}}
+<div>

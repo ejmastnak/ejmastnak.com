@@ -87,3 +87,8 @@ Best served with transparent windows and `i3gaps`.
 [**Transparent windows**]({{< relref "picom" >}})
 <br>
 Use the `picom` compositor to make unfocused window backgrounds slightly transparent, so you can enjoy your background wallpaper.
+
+<div class="mt-8">
+  {{< tutorials/license >}}
+<div>
+

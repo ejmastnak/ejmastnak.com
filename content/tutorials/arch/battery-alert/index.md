@@ -5,8 +5,7 @@ date: 2022-04-29
 
 # Battery level alert 
 
-{{< arch/arch-notes-header >}}
-
+{{< arch/header >}}
 {{< date-last-mod >}}
 
 **Goal:** Create a desktop notification when battery falls below a threshold percentage of your choice.
@@ -25,13 +24,13 @@ You should first [set up X]({{< relref "tutorials/arch/startx" >}}) if you have 
 <!-- vim-markdown-toc GFM -->
 
 * [Set up a notification server](#set-up-a-notification-server)
-  * [Do you need a notification server?](#do-you-need-a-notification-server)
+    * [Do you need a notification server?](#do-you-need-a-notification-server)
 * [Check battery level programmatically](#check-battery-level-programmatically)
 * [Script with battery alert logic](#script-with-battery-alert-logic)
 * [Create a notification service and timer](#create-a-notification-service-and-timer)
-  * [Create battery alert service](#create-battery-alert-service)
-  * [Create timer](#create-timer)
-  * [Reload and start timer](#reload-and-start-timer)
+    * [Create battery alert service](#create-battery-alert-service)
+    * [Create timer](#create-timer)
+    * [Reload and start timer](#reload-and-start-timer)
 
 <!-- vim-markdown-toc -->
 
@@ -201,4 +200,14 @@ Troubleshooting: If the timer fails to enable with a message along the lines of 
 Explanation: enabling units requires creating symlinks, and `systemctl` is complaining because the directory in which it would create a symlink does not exist yet.
 Creating the directory solves the problem.
 
-{{< arch/arch-notes-footer >}}
+<div class="mt-10">
+    {{< tutorials/backhome homehref="/tutorials/arch/about" >}}
+</div>
+
+<div class="mt-8">
+  {{< tutorials/thank-you >}}
+<div>
+
+<div class="mt-6">
+  {{< tutorials/license >}}
+<div>

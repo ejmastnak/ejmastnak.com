@@ -7,10 +7,14 @@ nextDisplayName: "3. Vim's ftplugin system »"
 date: 2021-10-08
 ---
 
-# 2. An UltiSnips guide for LaTeX workflows
+# An UltiSnips guide for LaTeX workflows
 
 {{< vim-latex/header part="two" >}}
-{{< vim-latex/navbar >}}
+
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+</div>
+
 
 This article covers the Ultisnips snippets plugin with a focus on writing LaTeX documents, and was last modified on {{< date-last-mod-span >}}.
 
@@ -21,7 +25,7 @@ You might be interested in this article for two reasons:
 
 [There is also a LuaSnip version of this article.]({{< relref "/tutorials/vim-latex/luasnip" >}})
 
-{{< vim-latex/toc level="2" title="Contents of this article" >}}
+{{< toc level="2" title="Contents of this article" >}}
 
 ## Two ways to read this article
 
@@ -607,8 +611,15 @@ endsnippet
 ...but this would make the UltiSnips parser think that the line `snippet ${1:trigger}...` starts a new snippet definition, when the goal is to insert the literal string `snippet ${1:trigger}...` into another file.
 In any case, this problem is specific to using the string `snippet` inside a snippet, and most snippets are much easier to write than this.
 
-{{< vim-latex/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+<div>
 
-{{< vim-latex/thank-you >}}
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
 
-{{< vim-latex/license >}}
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

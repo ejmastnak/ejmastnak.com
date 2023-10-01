@@ -7,15 +7,18 @@ nextDisplayName: "5. Compilation »"
 date: 2021-11-24
 ---
 
-# 4. Getting started with the VimTeX plugin
+# Getting started with the VimTeX plugin
 
 {{< vim-latex/header part="four" >}}
-{{< vim-latex/navbar >}}
+
+<div class="mt-4 mb-10">
+    {{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+</div>
 
 This article covers the excellent [VimTeX plugin](https://github.com/lervag/vimtex/), a modular Vim and Neovim plugin with heaps of useful features for writing LaTeX files.
 The article was last modified on {{< date-last-mod-span >}}.
 
-{{< vim-latex/toc level="2" title="Contents of this article" >}}
+{{< toc level="2" title="Contents of this article" >}}
 
 **Background knowledge:** this article will make regular references to the `ftplugin` and `plugin` directories, which we will use to implement LaTeX-specific Vim configuration.
 To get the most out of this article, you should understand the purpose of these directories.
@@ -731,8 +734,14 @@ If you want to use both VimTeX and your own `tex` filetype plugin and currently 
 
 (The `let b:did_ftplugin = 1` business is a standard safety mechanism described in the Vim documentation at `:help ftplugin` that gives the user control over loading filetype plugins.)
 
-{{< vim-latex/navbar >}}
+<div class="mt-8">
+  {{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+<div>
 
-{{< vim-latex/thank-you >}}
+<div class="mt-8">
+  {{< tutorials/thank-you >}}
+<div>
 
-{{< vim-latex/license >}}
+<div class="mt-6">
+  {{< tutorials/license >}}
+<div>

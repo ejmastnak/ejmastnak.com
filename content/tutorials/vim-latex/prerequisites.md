@@ -7,17 +7,21 @@ nextDisplayName: "2. Snippets »"
 date: 2022-01-24
 ---
 
-# 1. Suggested Prerequisites for Writing LaTeX in Vim
+# Suggested Prerequisites for Writing LaTeX in Vim
 
 {{< vim-latex/header part="one" >}}
-{{< vim-latex/navbar >}}
+
+<div class="mt-4 mb-10">
+    {{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+</div>
+
 
 This article covers prerequisite knowledge for following along with the series, and was last modified on {{< date-last-mod-span >}}.
 
 Unfortunately, some prerequisite knowledge is unavoidable here, and I cover suggested prerequisites below (but always with a suggestion or mini-tutorial for getting up to speed).
 I believe you should be comfortable with the material in this article to get the most out of this series.
 
-{{< vim-latex/toc level="2" title="Contents of this article" >}}
+{{< toc level="2" title="Contents of this article" >}}
 
 ## LaTeX knowledge
 
@@ -236,6 +240,11 @@ The abbreviations you should know for this series are:
 
 {{< /details >}}
 
-{{< vim-latex/navbar >}}
 
-{{< vim-latex/license >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+<div>
+
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>

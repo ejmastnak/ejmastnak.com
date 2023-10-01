@@ -7,10 +7,14 @@ nextDisplayName: "3. Vim's ftplugin system »"
 date: 2022-09-27
 ---
 
-# 2. A LuaSnip guide for LaTeX workflows
+# A LuaSnip guide for LaTeX workflows
 
 {{< vim-latex/header part="two" >}}
-{{< vim-latex/navbar >}}
+
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+</div>
+
 
 This article covers the LuaSnip snippets plugin with a focus on writing LaTeX documents, and was last modified on {{< date-last-mod-span >}}.
 
@@ -1573,8 +1577,15 @@ Of course, if needed, you should update `~/.config/nvim/LuaSnip/` to your own sn
 
 In case they look unfamiliar, the above code snippets are Vim *key mappings*, a standard Vim configuration tool described in much more detail in the series's final article, [7. A Vim Configuration Primer for Filetype-Specific Workflows]({{< relref "/tutorials/vim-latex/vimscript" >}}).
 
-{{< vim-latex/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+<div>
 
-{{< vim-latex/thank-you >}}
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
 
-{{< vim-latex/license >}}
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

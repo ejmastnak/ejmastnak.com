@@ -7,15 +7,18 @@ nextDisplayName: "6. PDF Reader »"
 date: 2021-10-08
 ---
 
-# 5. Compiling LaTeX Documents in a Vim-Based Workflow
+# Compiling LaTeX Documents in a Vim-Based Workflow
 
 {{< vim-latex/header part="five" >}}
-{{< vim-latex/navbar >}}
+
+<div class="mt-4 mb-10">
+    {{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+</div>
 
 This article covers compilation and should explain what you need to get started compiling LaTeX documents from within Vim using either the VimTeX plugin's compilation features or a custom compilation set-up of your own design.
 The article was last modified on {{< date-last-mod-span >}}.
 
-{{< vim-latex/toc level="2" title="Contents of this article" >}}
+{{< toc level="2" title="Contents of this article" >}}
 
 **Background knowledge:**
 
@@ -813,8 +816,14 @@ setlocal errorformat+=%Cl.%l\ %m
 setlocal errorformat+=%-G%.%#
 ```
 
-{{< vim-latex/navbar >}}
+<div class="mt-8">
+  {{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+<div>
 
-{{< vim-latex/thank-you >}}
+<div class="mt-8">
+  {{< tutorials/thank-you >}}
+<div>
 
-{{< vim-latex/license >}}
+<div class="mt-6">
+  {{< tutorials/license >}}
+<div>

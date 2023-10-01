@@ -7,15 +7,18 @@ nextDisplay-name: "Introduction"
 date: 2021-10-08
 ---
 
-# 7. A Vim Configuration Primer for Filetype-Specific Workflows
+# A Vim Configuration Primer for Filetype-Specific Workflows
 
 {{< vim-latex/header part="seven" >}}
-{{< vim-latex/navbar >}}
+
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+</div>
 
 This article is a guide to using Vimscript in filetype-specific workflows and aims to give you a foundation for understanding key mapping syntax, Vimscript functions, and other configuration used earlier in this series.
 The article was last modified on {{< date-last-mod-span >}}.
 
-{{< vim-latex/toc level="2" title="Contents of this article" >}}
+{{< toc level="2" title="Contents of this article" >}}
 
 The article is a selection of the Vimscript and Vim configuration concepts needed to understand the content of this series, presented in a way that should hopefully be easier for a new user to understand than tackling the Vim documentation directly, together with references of exactly where in the Vim docs to find more information.
 
@@ -628,8 +631,14 @@ You can find official documentation of autoload functions at `:help autoload-fun
 
 This concludes the series---good luck with your Vimming!
 
-{{< vim-latex/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+<div>
 
-{{< vim-latex/thank-you >}}
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
 
-{{< vim-latex/license >}}
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>

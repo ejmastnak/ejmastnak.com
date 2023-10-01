@@ -7,15 +7,19 @@ nextDisplayName: "7. Vimscript »"
 date: 2021-10-08
 ---
 
-# 6. Setting Up a PDF Reader for Writing LaTeX with Vim
+# Setting Up a PDF Reader for Writing LaTeX with Vim
 
 {{< vim-latex/header part="six" >}}
-{{< vim-latex/navbar >}}
+
+<div class="mt-4 mb-10">
+{{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+</div>
+
 
 This article explains, for both Linux and macOS, how to set up a PDF reader for displaying the PDF file associated with the LaTeX source file being edited in Vim.
 The article was last modified on {{< date-last-mod-span >}}.
 
-{{< vim-latex/toc level="2" title="Contents of this article" >}}
+{{< toc level="2" title="Contents of this article" >}}
 
 **Background knowledge:** 
 
@@ -781,8 +785,15 @@ If you prefer to disable this behavior, place the following code in [an appropri
 let g:vimtex_view_automatic = 0
 ```
 
-{{< vim-latex/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+<div>
 
-{{< vim-latex/thank-you >}}
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
 
-{{< vim-latex/license >}}
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

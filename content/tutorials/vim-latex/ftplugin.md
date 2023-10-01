@@ -7,14 +7,18 @@ nextDisplayName: "4. The VimTeX plugin »"
 date: 2022-03-20
 ---
 
-# 3. Vim's ftplugin system
+# Vim's ftplugin system
 
 {{< vim-latex/header part="three" >}}
-{{< vim-latex/navbar >}}
+
+<div class="mb-10">
+    {{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+</div>
+
 
 This article covers a few concepts related to Vim plugins and file-type plugins and was last modified on {{< date-last-mod-span >}}.
 
-{{< vim-latex/toc level="2" title="Contents of this article" >}}
+{{< toc level="2" title="Contents of this article" >}}
 
 ## The goal of this article...
 
@@ -219,8 +223,15 @@ or split up among multiple files in `ftplugin/{filetype}/*.vim`.
 Think of the `ftplugin` files as a `vimrc` for one file type only,
 and keep your actual `vimrc` for global settings you want to apply to *all* file types.
 
-{{< vim-latex/navbar >}}
+<div class="mt-8">
+{{< tutorials/navbar baseurl="/tutorials/vim-latex" index="intro" >}}
+<div>
 
-{{< vim-latex/thank-you >}}
+<div class="mt-8">
+{{< tutorials/thank-you >}}
+<div>
 
-{{< vim-latex/license >}}
+<div class="mt-6">
+{{< tutorials/license >}}
+<div>
+

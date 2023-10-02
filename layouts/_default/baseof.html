@@ -27,6 +27,9 @@
     {{ end }}
     <!-- ------------------------------------------------------- -->
 
+    <!-- Self-hosted Plausible analytics -->
+    <script defer data-domain="ejmastnak.com" src="https://plausible.ejmastnak.com/js/script.js"></script>
+
     <!-- Set dark theme if user preferences are saved in storage  -->
     <script>
     if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {

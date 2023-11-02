@@ -76,9 +76,17 @@ you@dev:laravel-project$ git remote set-url production ssh://laravel@laravel_pro
 Time to test if Git setup from the last two articles is working properly.
 
 ```bash
-# Push your app's main branch to the production server.
+# Push your app's main branch to the production server. (Assuming you're using
+# a main branch; update branch name (to e.g. master) as necessary.)
 you@dev:laravel-project$ git push production main
 ```
+
+{{< details-warning summary="Warning: your server and dev Git branch names must match!" >}}
+The name of the branch in your server-side Git repo must match the name of the branch you're pushing from your development machine (e.g. *both* server and dev branches should be `main`, or both should be `master`, etc.), or the checkout part of the `post-receive` hook will fail.
+
+The most likely way you'd run into problems is having a `master` branch on your server (by default most Git distributions will use `master` as the default name) and a `main` branch on your dev machine.
+{{< /details-warning >}}
+
 
 Here's what should happen:
 

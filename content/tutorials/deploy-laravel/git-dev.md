@@ -85,6 +85,7 @@ you@dev:laravel-project$ git push production main
 The name of the branch in your server-side Git repo must match the name of the branch you're pushing from your development machine (e.g. *both* server and dev branches should be `main`, or both should be `master`, etc.), or the checkout part of the `post-receive` hook will fail.
 
 The most likely way you'd run into problems is having a `master` branch on your server (by default most Git distributions will use `master` as the default name) and a `main` branch on your dev machine.
+As long as you give both branches the same name (e.g. both `main`, both `master`, or whatever else you prefer) you should be fine.
 {{< /details-warning >}}
 
 

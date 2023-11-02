@@ -80,6 +80,28 @@ Other conventions:
 - I'll use `laravel` as the name of the non-root user on your app's server.
 - I'll use `laravel-project` as the name of your project's root server-side directory.
 
+### Feedback, suggestions, etc. {#feedback}
+
+If you have ideas for improving the series, I will quite likely implement them, appreciate your input, and give you a shoutout for your contributions.
+Feedback is welcome and appreciated.
+
+Shoutouts to readers: many thanks to [Nicola Pugliese](http://www.nicolapugliese.com/) for offering good ideas on how improve this series.
+
+You can reach me by email at [elijan@ejmastnak.com](mailto:elijan@ejmastnak.com) or by opening an issue or pull request at [github.com/ejmastnak/ejmastnak.com](https://github.com/ejmastnak/ejmastnak.com)).
+
+### Want to say thank you? {#thank-you}
+
+You could:
+
+- [Send me an email!]({{< relref "/contact" >}})
+  Seriously, if this material helped you, it will make my day to know.
+  I love hearing from readers, and you'll almost certainly get a message back from me.
+
+- [Contribute financially.](https://www.buymeacoffee.com/ejmastnak)
+  Based on reader input, there are in fact people out there interested in compensating me financially for this guide.
+  That's awesome---thank you!
+  You can [Buy Me a Coffee here.](https://www.buymeacoffee.com/ejmastnak)
+
 ## Other guides
 
 Below is a list of other great guides to deploying a Laravel app that I've found online and taken inspiration from.

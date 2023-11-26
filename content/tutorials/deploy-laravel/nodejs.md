@@ -43,7 +43,7 @@ This command looks in your Laravel project's `package.json` file and installs th
 The version of Node.js shipped with Ubuntu LTS and stable Debian (which I imagine many readers are using) tends to be quite outdated.
 This could cause problems when running `npm install` if your app's `package.json` requires a recent version of Node---in this case NPM will warn you that your Node.js is outdated.
 
-You can solve this by first uninstalling your outdated version of Node.js (e.g. using `sudo apt purge nodejs && sudo apt autoremove`), then following the instructions in [this Digital Ocean article on installing Node.js](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04) to install a more up-to-date version---probably the simplest choice is Option 2, "Installing Node.js with Apt Using a NodeSource PPA".
+You can solve this by first uninstalling your outdated version of Node.js (e.g. using `sudo apt purge nodejs && sudo apt autoremove`), then following the [instructions for installing an up-to-date version of Node.js](https://github.com/nodesource/distributions#installation-instructions) on the Nodesource GitHub page. At the time of writing, I recommend installing Node version 20 or later.
 {{< /details-danger >}}
 
 ### Fix vulnerabilities in Node.js dependencies (optional)
@@ -66,7 +66,7 @@ After running `npm install` (and `npm audit fix`, if needed), you can now build 
 laravel@server:laravel-project$ npm run build
 ```
 
-{{< details-danger summary="Warning: `npm run build` can fail because of too little RAM" >}}
+{{< details-danger summary="Warning: `npm run build` can fail because of insufficient RAM" >}}
 The `npm run build` command can unexpectedly fail (it will exit with the message `Killed`, and fail to produce a `public/build` directory) if your machine has too little RAM, which might happen on lightweight servers.
 
 The solution is the same as when [installing Composer]({{< relref "composer" >}}#swap)---create a swap file with more RAM (1 GB should be plenty).

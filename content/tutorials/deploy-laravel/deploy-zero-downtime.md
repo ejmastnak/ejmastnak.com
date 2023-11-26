@@ -120,7 +120,7 @@ Here's how I'd suggest going about this:
 
 1. Create a `releases/` directory.
 1. Create an `initial/` directory inside `releases/` to hold your app's "initial" release (use a different name if you like, just be consistent).
-1. Move your app's files into the initial release directory.
+1. Move your app's files into the initial release directory (remember to move hidden dotfiles!).
 
 Do this however you like (`mv`, a command-line file manager, etc.);
 after completing this step your directory structure should look like this:

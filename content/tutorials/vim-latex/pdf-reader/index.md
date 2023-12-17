@@ -456,6 +456,14 @@ Here is how to fix both problems (some steps are the same as for terminal Vim/Ne
 
    Again, you may want to tweak the forward search delay time (somewhere from from 50ms to 300ms should suit most users) until refocus works properly on your window manager and hardware.
 
+
+### Zathura on WSL (reader-contributed tip) {#zathura-wsl}
+
+I don't really cover Windows or WSL in this guide, but wanted to share this reader-contributed tip:
+
+When configuring forward search on WSL, VimTeX might report the error  `Viewer cannot find Zathura window ID!` and fail to perform forward search. This is likely caused by a problem with access to D-Bus in WSL, and supposedly you can solve this by creating a `.bash_sysint` file. See [VimTeX issue #2577](https://github.com/lervag/vimtex/issues/2577#issuecomment-1326825268) and the linked article therein for details.
+Thank you to Ehud Gordon for sharing this!
+
 ## Skim (read this on macOS) {#skim}
 
 *Power users: you can also try your luck with [Zathura on macOS](#zathura-macos), but it is unreliable and you should know what you're doing if you attempt this.*

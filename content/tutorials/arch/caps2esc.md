@@ -16,11 +16,11 @@ date: 2022-04-29
 - [The caps2esc GitLab page](https://gitlab.com/interception/linux/plugins/caps2esc)
 - [Ask Ubuntu: How do I install caps2esc?](https://askubuntu.com/questions/979359/how-do-i-install-caps2esc)
 
+The `caps2esc` utility allows you to remap Caps Lock to Escape and Control at the level of the `libevdev` library.
+Bonus: because `libevdev` is relatively low level---just above the operating system kernel---this solution works in a plain Linux console in addition to graphical environments.
 
 ## Procedure
 
-The `caps2esc` utility allows you to remap Caps Lock to Escape and Control at the level of the `libevdev` library.
-Bonus: because `libevdev` is relatively low level---just above the operating system kernel---this solution works in a plain Linux console in addition to graphical environments.
 Here's what to do:
 
 ### Installation

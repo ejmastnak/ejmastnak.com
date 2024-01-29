@@ -53,7 +53,7 @@ Use [Skim](https://skim-app.sourceforge.io/), which you can download as a macOS 
 
 {{< details summary="You *might* also have success using Zathura on macOS..." >}}
 ...thanks to the Homebrew formula provided by [`homebrew-zathura` project](https://github.com/zegervdv/homebrew-zathura) and the instructions in `:help vimtex-faq-zathura-macos`.
-I've personally managed to get Zathura and VimTeX working on an Intel MacBook Pro (and have included a section at the end of this article explaining how), but many VimTeX users have reported issues following the same produced I used, particularly with Apple Silicon Macs.
+I've personally managed to get Zathura and VimTeX working on an Intel MacBook Pro (and have included a section at the end of this article explaining how), but many VimTeX users have reported issues following the same procedure I used, particularly with Apple Silicon Macs.
 
 TLDR: Zathura *might* work on macOS, but seems to be very finicky; 
 unless you really know your way around Homebrew and macOS you should probably use Skim, which should "just work".
@@ -209,10 +209,10 @@ Quoting from `:help macvim-clientserver` (only available if you use MacVim's ver
 
 You can easily test this for yourself on macOS:
 1. Install MacVim with `brew install --cask macvim`.
-1. Run `vim --version` and note that the output includes `+clientserver`
+1. Run `vim --version` and note that the output includes `+clientserver`.
 1. Start Vim with `vim --servername VIM myfile.tex` and note that `:echo v:servername` returns `VIM`, suggesting client-server functionality will work.
 1. Now here is the catch: open another terminal, run `vim --listservers`, and notice that the result is blank!
-   In other words, even though the Vim instance editing `myfile.tex` is running a server, this server is not visible to the outside world, and effectively useful for the purposes of inverse search.
+   In other words, even though the Vim instance editing `myfile.tex` is running a server, this server is not visible to the outside world, and effectively useless for the purposes of inverse search.
 
 See the GitHub issue [Client Server mode does not work in non-GUI macvim #657](https://github.com/macvim-dev/macvim/issues/657) for a longer discussion of this problem.
 
@@ -542,12 +542,12 @@ Some of the steps are the same as for Zathura on Linux, so excuse the repetition
 
 ## Zathura on macOS {#zathura-macos}
 
-You *might* have luck with Zathura and VimTeX on macOS using to the Homebrew formulae provided by [github.com/zegervdv/homebrew-zathura](https://github.com/zegervdv/homebrew-zathura).
+You *might* have luck with Zathura and VimTeX on macOS using the Homebrew formulae provided by [github.com/zegervdv/homebrew-zathura](https://github.com/zegervdv/homebrew-zathura).
 
 {{< details summary="*I'm repeating myself here, but Zathura and macOS don't seem to play nicely together; try this at your own risk or [use Skim](#skim), which should \"just work\".*" >}}
 See e.g. VimTeX issues [#2424](https://github.com/lervag/vimtex/issues/2424) and [#2581](https://github.com/lervag/vimtex/issues/2581) for details of macOS-Zathura troubles.
 More specifically, Macs seem to have difficulty activating the `dbus` service, which is required for forward search and inverse search.
-You can still build Zathura on a Macs without much difficulty, but there is a chance it won’t support forward and inverse search, won’t work with VimTeX, and thus won’t be useful as a LaTeX PDF reader.
+You can still build Zathura on a Mac without much difficulty, but there is a chance it won’t support forward and inverse search, won’t work with VimTeX, and thus won’t be useful as a LaTeX PDF reader.
 {{< /details >}}
 
 ### Building Zathura and dependencies on macOS

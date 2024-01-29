@@ -331,7 +331,7 @@ Here is the how to use it:
 1. Type the trigger to expand the previously-written snippet that included the `${VISUAL}` keyword.
    The snippet expands, and the text you had selected in visual mode appears in place of the `${VISUAL}` keyword in the snippet body.
 
-As an example, here is a snippet for the LaTeX `\textit` command that uses a visual placeholder to make it easer to surround text in italics:
+As an example, here is a snippet for the LaTeX `\textit` command that uses a visual placeholder to make it easier to surround text in italics:
 
 ```yaml
 # Snippet for italic font

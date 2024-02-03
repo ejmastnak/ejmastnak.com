@@ -48,7 +48,7 @@ There are two parts in this article:
 Only worry about the [first part of this article](#vimtex).
 
 Guys, don't roll your own compilation plugin.
-VimTeX's compilation features are tested by thousands of users, thoroughly debugged, and require minimal work to set up on your part, and so are good place to begin as a new user.
+VimTeX's compilation features are tested by thousands of users, thoroughly debugged, and require minimal work to set up on your part, and so are a good place to begin as a new user.
 As you get more comfortable, you can come back to the second part of this article and experiment with your own compilation plugin if you're interested.
 
 As a personal anecdote, I did the exact opposite of what I recommend now: motivated by a naive desire to build everything from scratch, I spent many hours putting together my own LaTeX compilation setup.
@@ -78,7 +78,7 @@ Following is a more detailed description.
 VimTeX offers multiple compilation backends, and each backend can use different LaTeX engines to perform actual compilation.
 Here is a short summary:
 
-- VimTeX's uses `latexmk` as the default compiler backend.
+- VimTeX uses `latexmk` as the default compiler backend.
   This should work well for most users, and I will cover only the default `latexmk` backend in this article.
   See `:help g:vimtex_compiler_method` if you want to use something else.
 - The default LaTeX engine used by the `latexmk` backend is `pdflatex`, which should again work well for most users.

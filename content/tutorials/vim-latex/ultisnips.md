@@ -100,7 +100,7 @@ The file's base name determines which Vim `filetype` the snippets apply to.
 For example, snippets inside the file `tex.snippets` would apply to files with `filetype=tex`.
 If you want certain snippets to apply globally to *all* file types, place these global snippets in the file `all.snippets`, which is documented towards the bottom of `:help UltiSnips-how-snippets-are-loaded`.
 
-By default, UltiSnips expects your `.snippet` files to live in directories called `UltiSnips`, which, if you wanted, you could place anywhere in your Vim `runtimepath`.
+By default, UltiSnips expects your `.snippets` files to live in directories called `UltiSnips`, which, if you wanted, you could place anywhere in your Vim `runtimepath`.
 You can use folder names other than the default `UltiSnips`, too---the snippet directory name is controlled with the global variable `g:UltiSnipsSnippetDirectories`.
 From `:help UltiSnips-how-snippets-are-loaded`,
 
@@ -130,7 +130,7 @@ This behavior is documented in `:help UltiSnips-how-snippets-are-loaded`.
 
 You might prefer to further organize `filetype`-specific snippets into multiple files of their own.
 To do so, make a folder named with the target `filetype` inside your snippets directory.
-UltiSnips will then load *all* `.snippet` files inside this folder, regardless of their basename.
+UltiSnips will then load *all* `.snippets` files inside this folder, regardless of their basename.
 Again, this behavior is documented in `:help UltiSnips-how-snippets-are-loaded`.
 As a concrete example, a selection of my UltiSnips directory looks like this:
 
@@ -331,7 +331,7 @@ Here is the how to use it:
 1. Type the trigger to expand the previously-written snippet that included the `${VISUAL}` keyword.
    The snippet expands, and the text you had selected in visual mode appears in place of the `${VISUAL}` keyword in the snippet body.
 
-As an example, here is a snippet for the LaTeX `\textit` command that uses a visual placeholder to make it easer to surround text in italics:
+As an example, here is a snippet for the LaTeX `\textit` command that uses a visual placeholder to make it easier to surround text in italics:
 
 ```yaml
 # Snippet for italic font

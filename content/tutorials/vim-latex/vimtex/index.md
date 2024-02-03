@@ -456,7 +456,7 @@ You can:
 
 ### Customization is easy {#customization}
 
-Every shortcut and key binding show above can be easily customized to anything you like.
+Every shortcut and key binding shown above can be easily customized to anything you like.
 To define a custom key binding, you need to know three things:
 
 1. The command/text object/motion's `<Plug>` mapping, given above for each action and also shown in the three-column table in `:help vimtex-default-mappings`.
@@ -473,7 +473,7 @@ Using `:help vimtex-default-mappings` for reference,
 To implement this change, place the following code in [an appropriate config file](#configuration):
 
 ```vim
-" Use `dsm` to delete surrounding math (replacing the default shorcut `ds$`)
+" Use `dsm` to delete surrounding math (replacing the default shortcut `ds$`)
 nmap dsm <Plug>(vimtex-env-delete-math)
 ```
 
@@ -690,7 +690,7 @@ Here are a few more features to look into to learn about once you master the bas
 - VimTeX provides completion of citations and reference labels, together with integration with common autocompletion plugins.
   See `:help vimtex-completion` for more information.
 
-- VimTeX's provides code folding---see `:help vimtex-folding` and the references therein.
+- VimTeX provides code folding---see `:help vimtex-folding` and the references therein.
   You have a lot of power here if you like code folding, but you'll probably have to configure a few things yourself before the feature is practically useful.
 
 - VimTeX provides indentation features that improve on Vim's default indentation plugin for LaTeX.

@@ -131,7 +131,7 @@ We'll fix this later in this article in the section [The useful `<Cmd>` keyword]
 
 **Solution:** You can use the Vim command `:help {key}<C-D>` (where `<C-D>` is Vim notation for `<Ctrl>d`) to see if `{key}` is used for some built-in or plugin-defined Vim command.
 For example `:help s<C-D>` shows a multi-column list of all commands beginning with `s` (there are a lot!).
-You can then type out the full version of any command you see in this list and press enter to go its help page. 
+You can then type out the full version of any command you see in this list and press enter to go to its help page. 
 This useful tip is tucked away at the bottom of `:help map-which-keys`.
 
 It also helps to use Vim's leader key functionality to avoid conflicts with built-in Vim commands---the leader key is described a few paragraphs below in the section [The leader key](#leader).
@@ -163,7 +163,7 @@ This series will use mostly `noremap` and `nnoremap`,  and occasionally `omap`, 
 #### The leader key {#leader}
 
 Vim offers a tool called the *leader key*, which is basically a prefix you can use to begin the `{lhs}` of key mappings.
-The leader key works should be used a unique identifier that helps prevent your own key mapping shortcuts from clashing with Vim's default key bindings, and it is common practice to begin the `{lhs}` of your custom key mappings with a leader key.
+The leader key should be used as a unique identifier that helps to prevent your own key mapping shortcuts from clashing with Vim's default key bindings, and it is common practice to begin the `{lhs}` of your custom key mappings with a leader key.
 For official documentation, see `:help mapleader`.
 
 Here's how the leader key business works in practice:
@@ -213,18 +213,18 @@ Here's how the leader key business works in practice:
 1. Enjoy!
    For example, you could then type `<leader>s` in normal mode, of course replacing `<leader>` with the value of your leader key, to call `:set spell!<CR>` and toggle Vim's spell-checking on and off.
 
-Disclaimer: A few of the above example mappings are actually poor Vimscript---Vim offer a better way to call commands from key mappings using a special `<Cmd>` keyword.
+Disclaimer: A few of the above example mappings are actually poor Vimscript---Vim offers a better way to call commands from key mappings using a special `<Cmd>` keyword.
 But because I haven't introduced it yet, the above mappings use `:` to enter Command mode.
 We'll fix this later in this article in the section [The useful `<Cmd>` keyword](#cmd).
 
 #### The local leader key
 
 Vim is flexible, and allows you (if you wanted) to define a different leader key for each Vim buffer.
-You would do this with the built-in variable `maplocalleader` and the corresponding keyword `<localleader>`, which are the buffer-local equivalents of `mapleader` and `<localleader>`, and you can use them in the exactly same way.
+You would do this with the built-in variable `maplocalleader` and the corresponding keyword `<localleader>`, which are the buffer-local equivalents of `mapleader` and `<leader>`, and you can use them in exactly the same way.
 
 When would you use local leader?
 
-- As an end user, you'd usually use the local leader key, if you so wanted, to create custom leader key different filetypes (for example `<Space>` as a local leader in LaTeX files, `,` in Python files, and optionally a different key, say `\`, as a global leader key).
+- As an end user, you'd usually use the local leader key, if you so wanted, to create a custom leader key for different filetypes (for example `<Space>` as a local leader in LaTeX files, `,` in Python files, and optionally a different key, say `\`, as a global leader key).
 - As a plugin author, you might use `<localleader>` as a precaution to avoid overriding the plugin user's own `<leader>` mappings.
   VimTeX does precisely this.
 
@@ -233,7 +233,7 @@ To do this, add the following code to your `ftplugin/tex.vim` file:
 
 ```vim
 " This code would go in ftplugin/tex.vim, and sets
-" space as the leader leader key for `tex` filetype.
+" space as the leader key for `tex` filetype.
 let maplocalleader = " "
 ```
 
@@ -288,7 +288,7 @@ nnoremap <leader>i <Cmd>VimtexInfo<CR>
 
 ### Diagnostics: Listing mappings and getting information
 
-You can see a list of all mappings currently defined in a given map mode using the `:map`, `:nmap`, `imap`, etc. commands without any arguments.
+You can see a list of all mappings currently defined in a given map mode using the `:map`, `:nmap`, `:imap`, etc. commands without any arguments.
 For example, `:nmap` will list all mappings defined in normal mode, `:imap` all mappings defined in insert mode, etc.
 
 To filter the search down, you can use `:map {characters}` to show a list of all mappings with a `{lhs}` starting with `{characters}`.
@@ -297,8 +297,8 @@ For example, `:nmap \` will show all normal mode mappings beginning with `\`, `:
 An example output of `:map <leader>` (which would show all mappings in normal, visual, and operator-pending modes beginning with the leader key) might look something like this:
 
 ```vim
-  " Using some of the mappings defined earlier in this article,
-  " and assuming <Space> is the leader key.
+" Using some of the mappings defined earlier in this article,
+" and assuming <Space> is the leader key.
   <Space>c   * <Cmd>write<CR><Cmd>VimtexCompile<CR>
   <Space>b   * <Cmd>bnext<CR>
 n <Space>i   * <Cmd>VimtexInfo<CR>
@@ -341,7 +341,7 @@ Since that probably sounds abstract, here is a real-life example, taken from the
    nmap <leader>c <Plug>(vimtex-compile)
    ```
 
-   (It is important to use `nmap` instead of `noremap`, since it is *intended* for the mapping's `rhs`, i.e. `<Plug>(vimtex-compile)`, to remap to its original meaning of `:VimtexCompile` as defined in the VimTeX plugin.)
+   (It is important to use `nmap` instead of `nnoremap`, since it is *intended* for the mapping's `rhs`, i.e. `<Plug>(vimtex-compile)`, to remap to its original meaning of `:VimtexCompile` as defined in the VimTeX plugin.)
 
 1. The user can then use `<leader>c` in normal mode to call `:VimtexCompile` and thus compile their LaTeX documents.
 
@@ -371,7 +371,7 @@ In my experience the coverage of functions in `eval.txt` is more comprehensive b
 
 A quick Vim vocabulary lesson:
 
-- *Vim functions* (a better name might be *built-in functions*) are functions built-in to Vim, like `expand()` and `append()`; built-in function start with lowercase letters.
+- *Vim functions* (a better name might be *built-in functions*) are functions built-in to Vim, like `expand()` and `append()`; built-in functions start with lowercase letters.
   You can find a full list at `:help vim-function`, which is 7500+ lines long.
 
 - *User functions* are custom Vimscript functions written by a user in their personal plugins or Vim config; their usage is documented at `:help user-function`.
@@ -484,7 +484,7 @@ endif
 
 Explanation: a filetype plugin is sourced every time a file of the target file type is opened.
 The above techniques are two ways to make sure functions in filetype plugins are not loaded twice; the second preserves the existing definition and the first overwrites it.
-The first option is more concise and readable, while the second is probably slightly more efficient, since evaluating an `if` statement is faster that overwriting and reloading a function from scratch.
+The first option is more concise and readable, while the second is probably slightly more efficient, since evaluating an `if` statement is faster than overwriting and reloading a function from scratch.
 But on modern hardware it is unlikely you would notice any difference in speed between the two.
 
 ### Script-local functions
@@ -550,24 +550,24 @@ nnoremap <SID>TexCompile :call <SID>TexCompile()<CR>
 ```
 
 You could then use `,c` in normal mode to call the `s:TexCompile` function from *any* file with the `tex` filetype.
-(You could off course replace `,c` with whatever shortcut you wanted.)
+(You could of course replace `,c` with whatever shortcut you wanted.)
 
 Here's an explanation of what the above Vimscript does:
 
 - `nmap ,c <Plug>TexCompile` maps the shortcut `,c` to the string `<Plug>TexCompile` (in normal mode because of `nmap`) using a `<Plug>` mapping, which was described earlier in this article in the section [Plug mappings](#plug-mappings).
 
-- `nnoremap <script> <Plug>TexCompile <SID>TexCompile` maps the string `<Plug>TexCompile` to `<SID>Compile`.
+- `nnoremap <script> <Plug>TexCompile <SID>TexCompile` maps the string `<Plug>TexCompile` to `<SID>TexCompile`.
 
-- The final line maps `<SID>Compile` to the command `:call <SID>TexCompile()<CR>`, which calls the `s:TexCompile()` function (`<CR>` represents the enter key).
-  Using `<SID>` before the function name, as in `<SID>TexCompile()`, allows Vim to identify the script ID of the script the function was originally defined in, which makes it possible for Vim to find and execute the function even when the mapping the calls it is used outside the original script.
+- The final line maps `<SID>TexCompile` to the command `:call <SID>TexCompile()<CR>`, which calls the `s:TexCompile()` function (`<CR>` represents the enter key).
+  Using `<SID>` before the function name, as in `<SID>TexCompile()`, allows Vim to identify the script ID of the script the function was originally defined in, which makes it possible for Vim to find and execute the function even when the mapping that calls it is used outside the original script.
   You can read more about this admittedly convoluted process at `:help <SID>`.
 
-  It's important that `nmap ,c <Plug>TexCompile` uses `nmap` and not `nnoremap`, since it is *intended* that `<Plug>TexCompile` remaps to `<SID>Compile`.
-  Using `noremap ,c <Plug>TexCompile` (instead of `nmap`) would make `,c` the equivalent of literally typing the key sequence `<Plug>TexCompile` in normal mode.
+  It's important that `nmap ,c <Plug>TexCompile` uses `nmap` and not `nnoremap`, since it is *intended* that `<Plug>TexCompile` remaps to `<SID>TexCompile`.
+  Using `nnoremap ,c <Plug>TexCompile` (instead of `nmap`) would make `,c` the equivalent of literally typing the key sequence `<Plug>TexCompile` in normal mode.
 
 In summary, `,c` maps to `<Plug>TexCompile`, which maps to `<SID>TexCompile`, which calls the `s:TexCompile()` function.
 Kind of a bother, right? Oh well, consider it a peculiarity of Vim.
-And, if followed, this technique ensure functions from different scripts won't conflict, which is important for maintaining a healthy plugin ecosystem.
+And, if followed, this technique ensures functions from different scripts won't conflict, which is important for maintaining a healthy plugin ecosystem.
 
 Note that, in principle, the `<SID>` and `<Plug>` mappings and the function name could all be different! Both of the following would let you use `,c` to call a script-local `TexCompile()` function:
 
@@ -581,7 +581,7 @@ nnoremap <script> <Plug>ABC <SID>XYZ
 nnoremap <SID>XYZ :call <SID>TexCompile()<CR>
 ```
 
-But it is conventional to use similar names for the `<Plug>` mapping, `<SID` mapping, and function definition.
+But it is conventional to use similar names for the `<Plug>` mapping, `<SID>` mapping, and function definition.
 
 **Review of the big picture**
 
@@ -596,7 +596,7 @@ But it is conventional to use similar names for the `<Plug>` mapping, `<SID` map
 **The result:** The above mapping process makes script-local functions usable outside of the script in which they were written, but in a way that prevents conflict with mappings and functions in other plugins.
 
 This is most relevant for plugin authors, who must ensure *their* plugin functions don't unexpectedly overwrite the personal functions of the users who installed their plugins.
-If you're not a plugin author and feel sure that a function name doesn't occur anywhere else in your Vim `runtimepath` (which is reasonable if you prefix your function name with a short abbreviation of your script and have a good picture of your third-party plugins), you'll can probably get away with not using a script-local function.
+If you're not a plugin author and feel sure that a function name doesn't occur anywhere else in your Vim `runtimepath` (which is reasonable if you prefix your function name with a short abbreviation of your script and have a good picture of your third-party plugins), you can probably get away with not using a script-local function.
 
 ### Autoload functions
 
@@ -620,11 +620,11 @@ Here is the basic workflow for using autoload functions:
 
   The general naming syntax is `{filename}#{function-name}`, where
   `{filename}` must exactly match the name of the Vimscript file within which the function is defined.
-  When autoloading functions, it is conventional that `function-name` starts with lowercase characters.
+  When autoloading functions, it is conventional that `{function-name}` starts with lowercase characters.
 
 - When needed, call the function using `call my_function_script#function_name()`.
   
-  Here is what happens: Vim recognizes the `{filename}#{function-name}` syntax, realizes the function is an autoload function, and searches all `autoload` directories in your Vim `runtimepath` for files name `filename`, then within these files searches for functions named `function_name`.
+  Here is what happens: Vim recognizes the `{filename}#{function-name}` syntax, realizes the function is an autoload function, and searches all `autoload` directories in your Vim `runtimepath` for files named `{filename}`, then within these files searches for functions named `{function_name}`.
   If a match is found, a function is loaded into memory, can be called by the user, and should be visible with `:function`.
 
 You can find official documentation of autoload functions at `:help autoload-functions`.

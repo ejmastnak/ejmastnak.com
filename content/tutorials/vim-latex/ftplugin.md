@@ -218,7 +218,7 @@ For our purposes:
 
   - a directory `ftplugin/{filetype}` (e.g. `ftplugin/tex` for the `filetype=tex`), then Vim loads all `.vim` files inside the `{filetype}` directory.
 
-As a best practice, keep filetype-specific settings in either in a dedicated `{filetype}.vim` file at `ftplugin/{filetype}.vim`,
+As a best practice, keep filetype-specific settings either in a dedicated `{filetype}.vim` file at `ftplugin/{filetype}.vim`,
 or split up among multiple files in `ftplugin/{filetype}/*.vim`.
 Think of the `ftplugin` files as a `vimrc` for one file type only,
 and keep your actual `vimrc` for global settings you want to apply to *all* file types.

@@ -178,7 +178,7 @@ you@dev$ ssh laravel@1.2.3.4 -i ~/path/to/your/ssh-key
 
 ### Tip: easier SSH access from your dev machine
 
-Here's an optional tip for easer SSH access to your server from your development machine:
+Here's an optional tip for easier SSH access to your server from your development machine:
 create an alias in the SSH config on your dev machine.
 
 In `~/.ssh/config` on your development machine add:

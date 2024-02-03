@@ -2,7 +2,7 @@
 title: Vim Configuration Tutorial for Filetype-Specific Workflows | Vim and LaTeX Series Part 7
 prevFilename: "pdf-reader"
 prevDisplay-name: "« 6. PDF Reader"
-nextFilename: "thank-you"
+nextFilename: "intro"
 nextDisplay-name: "Introduction"
 date: 2021-10-08
 ---

@@ -186,7 +186,7 @@ if xrandr | grep "${external} connected"; then
 else
     xrandr --output "${external}" --off
     # Turn laptop screen back on (if needed)
-    xrandr--output "${internal}" --auto
+    xrandr --output "${internal}" --auto
 fi
 ```
 

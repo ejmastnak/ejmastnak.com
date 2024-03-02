@@ -128,7 +128,7 @@ Here is an overview of the setup used in this series:
 If you have ideas for improving the series, I will quite likely implement them, appreciate your input, and give you a shoutout for your contributions.
 Feedback is welcome and appreciated.
 
-Shoutouts to previous readers: many thanks to [Carl von Randow](https://github.com/carlvr), Ehud Gordon, Andrey Rukhin, [Merlin Büge](https://github.com/camoz), [Albert Gu](https://github.com/albertfgu), Pano Otis, Jason Yao, [@Glirastes](https://github.com/Glirastes), [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how to improve this series.
+Shoutouts to previous readers: many thanks to [@rltyty](https://github.com/rltyty), [Carl von Randow](https://github.com/carlvr), Ehud Gordon, Andrey Rukhin, [Merlin Büge](https://github.com/camoz), [Albert Gu](https://github.com/albertfgu), Pano Otis, Jason Yao, [@Glirastes](https://github.com/Glirastes), [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how to improve this series.
 
 You can reach me by email at [elijan@ejmastnak.com](mailto:elijan@ejmastnak.com) or by opening an issue or pull request at [github.com/ejmastnak/ejmastnak.com](https://github.com/ejmastnak/ejmastnak.com).
 

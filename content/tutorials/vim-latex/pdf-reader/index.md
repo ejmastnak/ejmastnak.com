@@ -542,26 +542,26 @@ Some of the steps are the same as for Zathura on Linux, so excuse the repetition
 
 ## Zathura on macOS {#zathura-macos}
 
-You *might* have luck with Zathura and VimTeX on macOS using the Homebrew formulae provided by [github.com/zegervdv/homebrew-zathura](https://github.com/zegervdv/homebrew-zathura).
-
-{{< details summary="*I'm repeating myself here, but Zathura and macOS don't seem to play nicely together; try this at your own risk or [use Skim](#skim), which should \"just work\".*" >}}
+{{< details-warning summary="*Warning: Zathura and macOS don't seem to play nicely together; try this at your own risk if you are comfortable debugging and potentially tinkering with DBUS in the terminal. Alternatively, [use Skim](#skim), which should \"just work\".*" >}}
 See e.g. VimTeX issues [#2424](https://github.com/lervag/vimtex/issues/2424) and [#2581](https://github.com/lervag/vimtex/issues/2581) for details of macOS-Zathura troubles.
 More specifically, Macs seem to have difficulty activating the `dbus` service, which is required for forward search and inverse search.
-You can still build Zathura on a Mac without much difficulty, but there is a chance it won’t support forward and inverse search, won’t work with VimTeX, and thus won’t be useful as a LaTeX PDF reader.
-{{< /details >}}
+Note that you can *build* Zathura on a Mac without much difficulty, but there is a good chance it won’t support forward and inverse search, won’t work with VimTeX, and thus won’t be useful as a LaTeX PDF reader.
+{{< /details-warning >}}
+
 
 ### Building Zathura and dependencies on macOS
 
 **For Intel Macs**, building Zathura is described in the VimTeX documentation at `:help vimtex-faq-zathura-macos`---I have tested this successfully on an Intel CPU MacBook Pro 11,5 running macOS 12.1, but your mileage may vary.
 
 **For Apple Silicon Macs**, a slightly more complicated process setting up Zathura is described in [Homebrew Zathura issue 99](https://github.com/zegervdv/homebrew-zathura/issues/99#issuecomment-1356384136).
+Note: I have no personal experience with this Zathura setup on an Apple Silicon Mac, and can only relay second-hand information.
 
 Quoting more or less directly from `:help vimtex-faq-zathura-macos`, here is how to build Zathura on macOS (see [Homebrew Zathura issue 99](https://github.com/zegervdv/homebrew-zathura/issues/99#issuecomment-1356384136) if you have an Apple Silicon chip):
 
 1. Check if you already have Zathura installed using e.g. `which zathura`.
-   If you have Zathura installed, I recommend uninstalling it and repeating from scratch to ensure all dependencies are correctly sorted out.
+   If you *do* have Zathura installed, I recommend first uninstalling it, then following this tutorial with a clean slate (to ensure all dependencies are correctly sorted out).
 
-1. If needed, uninstall your existing Zathura and related libraries with the following code:
+   If needed, you can uninstall your existing Zathura and related libraries like this:
 
    ```bash
    # Remove symlinks
@@ -619,6 +619,10 @@ Quoting more or less directly from `:help vimtex-faq-zathura-macos`, here is how
    Loaded: ✔
    ```
    
+   {{< details summary="D-Bus not starting?" >}}
+   This [comment in VimTeX issue #2889](https://github.com/lervag/vimtex/issues/2889#issuecomment-1974827512), which has a work-around for manually starting D-Bus, *might* help you out.
+   (Thank you, [@rltyty](https://github.com/rltyty)!)
+   {{< /details >}}
 
 1. Install the most recent version of Zathura (i.e. HEAD):
 
@@ -644,7 +648,7 @@ For the original GitHub discussion that produced the instructions in `:help vimt
 
 ### Setting up Zathura on macOS
 
-Assuming your build succeeded, here is how to set up Zathura on macOS (many steps are similar to those for [setting up Zathura on Linux](#zathura); please excuse any repetition):
+Assuming you successfully *built* Zathura and got D-Bus working (previous section), you can now set up Zathura to work with VimTeX (many steps are similar to those for [setting up Zathura on Linux](#zathura); please excuse any repetition):
 
 - Install the [`xdotool`](https://github.com/jordansissel/xdotool) program with `brew install xdotool`.
   (VimTeX uses `xdotool` to make forward search work properly; see `:help vimtex-view-zathura` for reference.)

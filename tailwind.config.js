@@ -23,7 +23,7 @@ module.exports = {
       typography: (theme) => ({
         ejmastnak: {  // my custom typography theme; slight fork of default gray theme 
           css: {
-            '--tw-prose-body': theme('colors.gray[700]'),
+            '--tw-prose-body': theme('colors.gray[800]'),
             '--tw-prose-headings': theme('colors.gray[900]'),
             '--tw-prose-lead': theme('colors.gray[600]'),
             '--tw-prose-links': theme('colors.sky[600]'),

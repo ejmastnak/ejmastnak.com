@@ -105,8 +105,8 @@ You might find other guides online with a slightly different sequence of command
 
 Here are a few commands to consider using if your app needs them:
 
-- `php artisan cache:clear` if using an [application cache](https://laravel.com/docs/cache)
 - `php artisan queue:restart` if using [queues](https://laravel.com/docs/queues)
+- `php artisan cache:clear` if using an [application cache](https://laravel.com/docs/cache) (which you will probably have to run with `sudo`, since cache files are created by the web server and the `laravel` user doesn't have permission to delete them)
 
 (But if you're using these more advanced Laravel features you probably already know what your doing!)
 

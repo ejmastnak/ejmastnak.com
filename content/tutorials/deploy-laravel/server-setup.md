@@ -96,7 +96,7 @@ There are a few ways to do this---choose whichever you prefer:
 1. Option 1: use `ssh-copy-id` from your development machine (I'm assuming you've done this before).
 1. Option 2: copy the root user's `authorized_keys` file.
    Your cloud provider (e.g. Digital Ocean) may have already created an `authorized_keys` file for the root user when provisioning your server.
-   In this case you can just copy the root user's authorized_keys file---but make sure to update permissions:
+   In this case you can just copy the root user's `authorized_keys` file---but make sure to update permissions:
 
    ```sh
    # Create an SSH directory for the laravel user, if needed

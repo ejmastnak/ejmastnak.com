@@ -5,7 +5,8 @@ source $VIFM/navigation/hugo.vifm
 nnoremap ;cc :cd $VIFM_CONTEXT/content<CR>
 
 nnoremap ;tt :goto $VIFM_CONTEXT/TODO.md<CR>
+
+nnoremap ;tu :cd $VIFM_CONTEXT/content/tutorials<CR>
 nnoremap ;ta :cd $VIFM_CONTEXT/content/tutorials/arch<CR>
 nnoremap ;tv :cd $VIFM_CONTEXT/content/tutorials/vim-latex<CR>
 nnoremap ;tl :cd $VIFM_CONTEXT/content/tutorials/deploy-laravel<CR>
-nnoremap ;td :cd $VIFM_CONTEXT/content/tutorials/deploy-laravel<CR>

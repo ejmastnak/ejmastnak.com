@@ -7,7 +7,7 @@ nextFilename: "server-setup-once#nodejs"
 
 # Install Composer for deploying a Laravel web application
 
-{{< deploy-laravel/header >}}
+{{< deploy-laravel/header2 >}}
 <div class="mt-4 mb-10">
 {{< tutorials/navbar baseurl="/tutorials/deploy-laravel-2" index="about" >}}
 </div>

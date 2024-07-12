@@ -7,7 +7,7 @@ date: 2023-07-18
 
 # Directory ownership and permissions for deploying a Laravel web app
 
-{{< deploy-laravel/header >}}
+{{< deploy-laravel/header2 >}}
 <div class="mt-4 mb-10">
 {{< tutorials/navbar baseurl="/tutorials/deploy-laravel-2" index="about" >}}
 </div>

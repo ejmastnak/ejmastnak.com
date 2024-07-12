@@ -93,7 +93,7 @@ php artisan migrate --force
 sudo chgrp -R www-data "${RELEASE}"
 
 # Grant owning group write access for the release's bootstrap/cache directory
- sudo chmod -R g=rwX "${RELEASE}/bootstrap/cache"
+sudo chmod -R g=rwX "${RELEASE}/bootstrap/cache"
 # --------------------------------------------------------------------------- #
 
 
@@ -149,8 +149,8 @@ Comments:
 
   Not to worry---this is a standard problem with a standard solution---in the next section we'll allow specifically those `chgrp` and `chmod` commands to run with `sudo` privileges without requiring a password.
 
-### Allowing passwordless sudo for `chgrp` and `chmod`
-
+- ### Allowing passwordless sudo for `chgrp` and `chmod`
+  
 **Problem:** the `post-receive` redeployment script needs `sudo` privileges to run the `chgrp` and `chmod` commands, but during redeployment you don't have access to an interactive prompt from which to enter a `sudo` password.
 
 **Solution:** use the `sudoers` file to allow specifically those `chgrp` and `chmod` commands to run with `sudo` privileges without requiring a password.
@@ -264,6 +264,7 @@ Comments:
 - `-print` passes matching releases releases to `xargs`, which passes them onward to `rm` for deletion.
 
 I hope one of these options is helpful---I personally use Option 1 and stick the code at the bottom of `post-receive`, but feel free to modify this as you like.
+
 ### Moment of truth
 
 Time to test if this zero-downtime redeployment setup is working properly.

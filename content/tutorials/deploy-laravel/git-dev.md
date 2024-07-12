@@ -5,7 +5,6 @@ nextFilename: "composer"
 date: 2023-07-17
 ---
 
-
 # Dev-side Git setup for deploying a Laravel web application
 
 {{< deploy-laravel/header >}}
@@ -52,7 +51,7 @@ you@dev:laravel-project$ git remote add production ssh://laravel@laravel_project
 Here's a breakdown of `git remote` command:
 
 - `add` is a subcommand used to, well, add a new remote.
-- `production` is the name for the remote. The name is your choice; I chose `proudction` because the remote server hosts your app in production.
+- `production` is the name for the remote. The name is your choice; I chose `production` because the remote server hosts your app in production.
 - `ssh` is the protocol used to connect to the server. This should stay as is.
 - `laravel` is the name of the non-root user on the app's server and must match, well, the name of whatever non-root user you're using on the server.
 - `laravel_project_git` is the SSH alias used in the SSH config on your dev machine to identify your app's server.

@@ -127,7 +127,7 @@ server {
   # Redirect to the home page (i.e. /index.php) on 404 errors.
   error_page 404 /index.php;
 
-  # Laravel's recommended for handling requests for PHP files.
+  # Laravel's recommended settings for handling requests for PHP files.
   location ~ \.php$ {
     # The `fastcgi_pass` directive should point to the address of the FastCGI
     # Process Manager (FPM) on your server. The value below should be correct,

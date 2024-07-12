@@ -62,7 +62,7 @@ Zero-downtime redeployment uses a directory structure something like this:
 └── shared/  # contains `.env`, `storage/`, and other files shared by all releases
 ```
 
-- The `releases/` directory hold releases of your app.
+- The `releases/` directory holds releases of your app.
 - `active/` is a symlink pointing to the active release of your app (i.e. the release served to the public Web).
 - The `shared/` directory contains your app's `.env` file, `storage/` directory, and any other files that are shared by all releases and/or not normally tracked by Git (e.g. a `database.sqlite` file if your app uses SQLite.)
 
@@ -173,7 +173,7 @@ laravel@server$ cd /srv/www/laravel-project/releases/initial
 laravel@server:initial$ ln -s ../../shared/.env .env
 
 # Link storage directory into place (you'll have to remove the existing one first)
-laravel@server:laravel-project$ ln -s ../../shared/storage/ storage
+laravel@server:laravel-project$ ln -s ../../shared/storage storage
 
 # Link SQLite database into place, if using SQLite
 laravel@server:laravel-project$ cd database/sqlite
@@ -211,7 +211,7 @@ Activate your initial release by creating the `active` symlink:
 ```bash
 # Create a symlink activating your initial release
 laravel@server$ cd /srv/www/laravel-project/
-laravel@server:laravel-project$ ln -s  releases/initial/ active
+laravel@server:laravel-project$ ln -s  releases/initial active
 ```
 
 Your directory structure should now look like this:

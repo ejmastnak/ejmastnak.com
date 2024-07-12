@@ -100,7 +100,7 @@ There are a few ways to do this---choose whichever you prefer:
 
    ```sh
    # Create an SSH directory for the laravel user, if needed
-   laravel@server:~$ mkdir .shh
+   laravel@server:~$ mkdir .ssh
 
    # Copy the root user's authorized_keys file, which should already have your
    # public SSH key

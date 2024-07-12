@@ -74,7 +74,7 @@ Other conventions:
 If you have ideas for improving the series, I will quite likely implement them, appreciate your input, and give you a shoutout for your contributions.
 Feedback is welcome and appreciated.
 
-Shoutouts to readers: many thanks to [Nicola Pugliese](http://www.nicolapugliese.com/) for offering good ideas on how improve this series.
+Shoutouts to readers: many thanks to [Nicola Pugliese](http://www.nicolapugliese.com/) and [Kai Breucker](https://bonfireatnight.github.io/index.html) for offering good ideas on how improve this series.
 
 You can reach me by email at [elijan@ejmastnak.com](mailto:elijan@ejmastnak.com) or by opening an issue or pull request at [github.com/ejmastnak/ejmastnak.com](https://github.com/ejmastnak/ejmastnak.com)).
 

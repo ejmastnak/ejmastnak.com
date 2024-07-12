@@ -124,7 +124,7 @@ mylaravelproject.com. 600 IN A 1.2.3.4
 You can of course ignore this you haven't created any subdomain DNS settings for your site.
 {{< /details >}}
 
-**Next:** This article shows how to set up HTTPS connections to your Laravel web app.
+**Next:** The next article shows how to set up HTTPS connections to your Laravel web app.
 
 <div class="mt-8">
 {{< tutorials/navbar baseurl="/tutorials/deploy-laravel" index="about" >}}

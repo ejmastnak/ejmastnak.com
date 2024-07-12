@@ -3,31 +3,33 @@ title: "Deploy a Laravel and Vue web app"
 date: 2023-07-17
 ---
 
-# Deploy a Laravel and Vue.js web app
+# A guide to deploying a Laravel and Vue.js web app
 
 This is a guide to deploying a [Laravel](https://laravel.com/) web application with a JavaScript-based frontend.
 The guide will take you from a fresh Linux server to a fully-functioning Laravel application served over HTTPS from a custom domain name with automated redeployment.
 
-## Prerequisites {#prerequisites}
+## Before you start... {#prerequisites}
+
+This tutorial is written with the expectation that:
 
 - You're prepared to operate in a Linux command line environment.
 - You have root access to a Linux server on which you will host your app.
 - You can access the server over SSH and have the basic SSH knowledge required to do so (e.g. generating a public/private keypair; copying your public key to the `authorized_keys` file on the server; logging in over SSH).
 
-## Contents
+## The guide
 
-The tutorial is divided into four phases:
+This guide is divided into four parts, which you should read through in sequence, beginning with part 1.
 
-1. [Steps taken on your server *once per server* ]({{< relref "server-setup-once" >}})
-1. [Steps taken on your server *once per Laravel application*]({{< relref "server-setup-app" >}})
-1. [Deploying your application for the first time]({{< relref "deployment" >}}).
-1. [Automating redeployment]({{< relref "redeployment" >}}).
+- Part 1: [Steps taken on your server *once per server* ]({{< relref "server-setup-once" >}}) (start here)
+- Part 2: [Steps taken on your server *once per Laravel application*]({{< relref "server-setup-app" >}})
+- Part 3: [Deploying your application for the first time]({{< relref "deployment" >}}).
+- Part 4: [Automating redeployment]({{< relref "redeployment" >}}).
 
 ## More about the tutorial {#about}
 
-### Why?
+### Why write this?
 
-My goal in writing this was to document the process for future reference and help anyone else doing the same thing along the way.
+My goal in writing this was to document the process for my future reference and hopefully help anyone else doing the same thing along the way.
 
 ### Tech stack used in this tutorial
 
@@ -74,7 +76,7 @@ Other conventions:
 If you have ideas for improving the series, I will quite likely implement them, appreciate your input, and give you a shoutout for your contributions.
 Feedback is welcome and appreciated.
 
-Shoutouts to readers: many thanks to [Nicola Pugliese](http://www.nicolapugliese.com/) and [Kai Breucker](https://bonfireatnight.github.io/index.html) for offering good ideas on how improve this series.
+Shoutouts to readers: many thanks to [Nicola Pugliese](http://www.nicolapugliese.com/) and [Kai Breucker](https://bonfireatnight.github.io/index.html) for catching mistakes and offering good ideas on how improve this series.
 
 You can reach me by email at [elijan@ejmastnak.com](mailto:elijan@ejmastnak.com) or by opening an issue or pull request at [github.com/ejmastnak/ejmastnak.com](https://github.com/ejmastnak/ejmastnak.com)).
 

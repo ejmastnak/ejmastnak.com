@@ -47,7 +47,7 @@ See [this StackOverflow thread](https://serverfault.com/questions/527630/differe
 
 Inside `/etc/nginx/sites-available/laravel` paste [Laravel's example Nginx config](https://laravel.com/docs/10.x/deployment#nginx) (I've added some comments---feel free to remove them).
 
-Make sure to:
+**Changes you need to make**
 
 - Update the `server_name` and `root` directives.
 - Ensure the PHP version specified with `fastcgi_pass` matches your system PHP version.

@@ -18,7 +18,7 @@ This article shows how to automate the Laravel redeployment process using a tech
 
 ## Background: zero-downtime redeployment
 
-This tutorial will use a deployment workflow called *zero-downtime redeployment*, and relies on a `post-receive` Git hook in the server-side Git repo to automatically run the deployment steps performed manually in the previous article every time you push new code to your production server. 
+This tutorial will use a deployment workflow called *zero-downtime redeployment*, and relies on a `post-receive` Git hook in the serverside Git repo to automatically run the deployment steps performed manually in the previous article every time you push new code to your production server. 
 
 If you want to read an explanation of this deployment workflow, open the details/summary elements below.
 Feel free to skip if impatient.
@@ -27,7 +27,8 @@ Feel free to skip if impatient.
 A typical redeployment looks something like this:
 
 1. You develop your app on your dev machine.
-2. You push code from your dev machine to your app's server-side Git repo, triggering a `post-receive` hook (a shell script that runs when you push code to your server-side repo; see `man githooks` for details).
+2. When you are ready to publish a new version of your app, you push code from your dev machine to the Git remote linked to your app's production server.
+  This pushes code to your serverside Git repo and triggers a `post-receive` hook (a shell script that runs serverside when you push code to your serverside repo; see `man githooks` for details).
 
    The `post-receive` hook runs the redeployment process we performed manually in the previous article.
    Among other things, it:
@@ -39,7 +40,7 @@ A typical redeployment looks something like this:
 
    (There are few more details we'll fill in later.)
 
-For orientation, after a few redeployments, your server-side directory structure might look something like this...
+For orientation, after a few redeployments, your serverside directory structure might look something like this...
 
 ```bash
 /srv/www/laravel/
@@ -65,7 +66,7 @@ And why would you want zero-downtime redeployment?
 
 ## Create a `post-receive` hook
 
-Create a `post-receive` hook in your server-side Git repo—this is a shell script that will automatically run whenever you push code to the repo.
+Create a `post-receive` hook in your serverside Git repo—this is a shell script that will automatically run whenever you push code to the repo.
 
 ```bash
 # Change into your Git repo's hooks directory.
@@ -162,7 +163,13 @@ ln -sfn ${RELEASE} ${ACTIVE}
 # --------------------------------------------------------------------------- #
 ```
 
-Comments: 
+**Changes you need to make:**
+
+- Update the `REPO` and `SRV` variables to the correct paths on your server
+- Uncomment the commented-out SQLite-related code if your app uses SQLite (or, if desired, remove it completely if your app does not use SQLite).
+- Remove the `npm`-related code if your app does not have any Javascript dependencies.
+
+And some explanatory comments: 
 
 - The script is really just a Bash implementation of the zero-downtime redeployment procedure [from the previous article]({{< relref "deployment" >}}).
   Most of the commands should look familiar from previous article---they're just collected in one place here.
@@ -173,7 +180,6 @@ Comments:
   This is standard best practice in production environments---see e.g. [this Stack Overflow answer](https://stackoverflow.com/questions/52499617/what-is-the-difference-between-npm-install-and-npm-ci) for details.
 - The `-f` flag in the final `ln` command is used to force an overwrite of the previous release link.
   The `-n` flag stops `ln` from trying to dereference and follow the previous release symlink; this is important---leave this out and you'll get a symlink *inside* of the existing `active` release, instead of in `/srv/www/laravel/` where it should be!
-- Uncomment the SQLite-related code if your app uses SQLite.
 - Note that we need `sudo` for the `chgrp` and `chmod` commands, but that you should be able to run these two commands as `sudo` without a password if you followed the `sudoers` instructions in the earlier [permissions article]({{< relref "permissions" >}}#sudoers).
 
 ## Cleaning up old releases (optional-ish)
@@ -240,8 +246,8 @@ you@dev:laravel-project$ git push prod main
 Here's what should happen:
 
 - Git on your dev machine picks up on the SSH Git settings associated with the `dev`-side Git remote (covered at the start of the [previous article]({{< relref "deployment" >}}#ssh)), recognizes which SSH key to use to connect to the server, and prompts you for the key's password, if needed.
-- Your app is pushed to the server-side Git repo (SSH into the server and check that `git log` in `/home/laravel/repo/laravel.git` shows your app's latest commit history).
-- Pushing code to the server triggers the server-side `post-receive` hook.
+- Your app is pushed to the serverside Git repo (SSH into the server and check that `git log` in `/home/laravel/repo/laravel.git` shows your app's latest commit history).
+- Pushing code to the server triggers the serverside `post-receive` hook.
 - The `post-receive` script creates a new release directory under `/srv/www/laravel/releases/`, into which it copies the latest version of your app.
   The script then runs through each of the deployment steps covered in this and the previous article---you should be able to follow along as the script's standard output appears in your SSH session.
 - The previous version of your app should continue to be live during the 30-60 seconds that the `post-receive` script is executing.
@@ -255,7 +261,7 @@ With that said:
 
 - Is your SSH connection failing?
   Ensure the dev-side Git remote and SSH host settings in your dev-side SSH config match what was covered in the [previous article]({{< relref "deployment" >}}#ssh)).
-- The server-side `post-receive` hook is executable, right?
+- The serverside `post-receive` hook is executable, right?
 - All paths and usernames are correct (and not still using the generic names from this guide), right?
 - Is the `npm run build` command failing? Make sure your Node.js is reasonably up to date and then your server has sufficient RAM (covered in the [Node.js article]({{< relref "nodejs" >}})).
 - Check that you've properly performed the manual steps for [setting up zero-downtime redeployment](#preparations) (you've made a `shared` directory, all your symlinks are current, etc.).

@@ -22,8 +22,8 @@ This guide is divided into four parts, which you should read through in sequence
 
 - Part 1: [Steps taken on your server *once per server* ]({{< relref "server-setup-once" >}}) (start here)
 - Part 2: [Steps taken on your server *once per Laravel application*]({{< relref "server-setup-app" >}})
-- Part 3: [Deploying your application for the first time]({{< relref "deployment" >}}).
-- Part 4: [Automating redeployment]({{< relref "redeployment" >}}).
+- Part 3: [Deploying your application for the first time]({{< relref "deployment" >}})
+- Part 4: [Automating redeployment]({{< relref "redeployment" >}})
 
 ## More about the tutorial {#about}
 
@@ -69,7 +69,7 @@ laravel@server:/var/www$ pwd
 Other conventions:
 
 - I'll use `1.2.3.4` as a server IP address.
-- I'll use `laravel` as the name of the non-root user on your app's server and as the name of your project's root server-side directory.
+- I'll use `laravel` as the name of the non-root user on your app's server and as the name of your project's root serverside directory.
 
 ### Feedback, suggestions, etc. {#feedback}
 

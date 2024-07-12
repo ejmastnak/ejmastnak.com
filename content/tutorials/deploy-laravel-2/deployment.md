@@ -96,9 +96,12 @@ Host laravel_git
   IdentitiesOnly yes
 ```
 
-With the first entry, you can access your server with `ssh laravel` instead of having to type `ssh laravel@1.2.3.4 -i ~/.ssh/LaravelApp_id_ed25519`.
+The entries have separate purposes:
 
-The second entry will be used to push code to your server when deploying. 
+- With the first entry, you can access your server with `ssh laravel` instead of having to type `ssh laravel@1.2.3.4 -i ~/.ssh/LaravelApp_id_ed25519`.
+- The second entry will be used to push code to your server when deploying. 
+
+It's fine that both entries have most of their lines in common.
 
 ## Production Git remote on your development machine
 
@@ -118,11 +121,11 @@ Here's a breakdown of `git remote` command:
 - `git remote add` creates new Git remotes.
 - `prod` is the remote name. The name is your choice; I chose `prod` because we'll use this remote for production code.
 - `ssh` is the protocol used to connect to the server. This should stay as is.
-- `laravel` is the name of the server-side user you will create (in a few articles) to administer your web app.
+- `laravel` is the name of the serverside user you will create (in a few articles) to administer your web app.
 - `laravel_git` is the SSH Host created above for pushing code to your production server.
   It must exactly match the `Host` field used in [the previous section](#ssh-config).
 
-- `/home/laravel/repo/laravel.git` is the path, on the server, to the server-side Git repo storing your web app.
+- `/home/laravel/repo/laravel.git` is the path, on the server, to the serverside Git repo storing your web app.
 
 {{< details summary="Need to update the remote's URL?" >}}
 You can use `git remote set-url` anytime you need to update or edit the `prod` remote's URL on your development machine:
@@ -149,22 +152,27 @@ you@dev$ git push prod main
 ```
 
 {{< details-warning summary="Warning: your server and dev Git branch names must match!" >}}
-The name of the branch in your server-side Git repo must match the name of the branch you're pushing from your development machine (e.g. *both* server and dev branches should be `main`, or both should be `master`, etc.), or the checkout part of the `post-receive` hook will fail.
+The name of the branch in your serverside Git repo *must* match the name of the branch you're pushing from your development machine, or the checkout part of the `post-receive` hook will fail
+(e.g. *both* server and dev branches should be `main`, or both should be `master`, etc.).
+
+You can check the current branch name in both the serverside and dev-side repos with `git branch`.
 
 The most likely way you'd run into problems is having a `master` branch on your server (by default most Git distributions will use `master` as the default name) and a `main` branch on your dev machine.
-As long as you give both branches the same name (e.g. both `main`, both `master`, or whatever else you prefer) you should be fine.
+You could solve this, for example, by renaming the serverside branch to `main`, or, more permanently, set `main` as the default serverside branch name with `git config --global init.defaultBranch main` and [create a new serverside Git repo]({{< relref "server-setup-app#directory-structure" >}}), which will then have `main` as the default branch.
 {{< /details-warning >}}
 
 Here's what should happen:
 
 - Git on your dev machine reads the `laravel_git` SSH host information you added in the previous step, recognizes which SSH key to use to connect to the server (you might be prompted for the SSH key's password, or `ssh-agent` might take of this for you under the hood, depending on your SSH setup).
-- Your app is pushed to the server-side Git repo (SSH into the server and check the contents of `git log` in `/home/laravel/repo/laravel.git`).
+- Your app is pushed to the serverside Git repo (SSH into the server and check the contents of `git log` in `/home/laravel/repo/laravel.git`).
+
+  (Note that, assuming you're following along with the tutorial and using a bare serverside Git repo, your app's files *will not* appear on the file system in the serverside Git repo because a bare Git repo does not have a working tree. That is expected—you confirm the push's success with `git log`, which should show your project's commit history.)
 
 {{< details summary="Ran into problems?" >}}
 - Errors with Git's SSH connection to the server are probably due to an SSH or Git misconfiguration on your dev machine.
   Double check that the alias in `~/.ssh/config` and the Git remote URL match on your dev machine what's in this article.
 
-- Server-side errors, at least at this stage, most likely arise from Git branch naming conflicts—see the warning about matching Git branch names above.
+- Serverside errors, at least at this stage, most likely arise from Git branch naming conflicts—see the warning about matching Git branch names above.
 
 Give this and the previous two dev-side steps a reread just be sure, and then please [let me know](/contact) if you're still having problems pushing code to the server---it might be a mistake in this guide.
 {{< /details >}}
@@ -225,7 +233,7 @@ laravel@server$ ln -s ${SHARED}/sqlite/database.sqlite ${RELEASE}/database/sqlit
 You're now ready to run a few standard Laravel deployment commands 
 (most of which you can find in the [Laravel docs](https://laravel.com/docs/11.x/deployment)).
 
-Begin by installing your app's PHP dependencies:
+Begin by installing your app's PHP dependencies using Composer:
 
 ```bash
 # Change into the intial release directory
@@ -235,7 +243,7 @@ laravel@server$ cd /srv/www/laravel/releases/initial/
 laravel@server$ composer install --no-dev --optimize-autoloader
 ```
 
-Then install and build your app's JavaScript dependencies:
+Then install and build your app's JavaScript dependencies (skip this step if your app has no JavaScript dependencies):
 
 ```bash
 # Install your app's JavaScript dependencies

@@ -40,7 +40,7 @@ I encourage you to read both guides.
 First create a bare Git repository to which you'll push production code:
 
 ```bash
-# Create directory for your server-side Git repo.
+# Create directory for your serverside Git repo.
 # The ~/repo/ directory is just convention—use whatever you like.
 laravel@server$ mkdir -p ~/repo/laravel.git
 
@@ -69,7 +69,7 @@ a deeper appreciation of bare repos requires some familiarity with Git concepts 
 Then create the directories in `/srv/www/` from which you'll serve the app:
 
 ```bash
-# Create server-side directory structure for deployment.
+# Create serverside directory structure for deployment.
 laravel@server$ sudo mkdir -p /srv/www/laravel
 laravel@server$ sudo mkdir -p /srv/www/laravel/releases
 laravel@server$ sudo mkdir -p /srv/www/laravel/shared/storage

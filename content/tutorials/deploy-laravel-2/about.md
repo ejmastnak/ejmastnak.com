@@ -100,6 +100,15 @@ Each covers the material from a slightly different angle, so you'll probably get
 - [Farhan Hasin Chowdhury's guide to deploying a Laravel web app on a VPS](https://adevait.com/laravel/deploying-laravel-applications-virtual-private-servers)
 - [J. Alexander Curtis's guide to deploying a Laravel 5.3 app on a LEMP stack](https://devmarketer.io/learn/deploy-laravel-5-app-lemp-stack-ubuntu-nginx/)).
 
+## Historical note
+
+Full disclosure: this guide is a rewrite of an older version I had published in the summer of 2023, which I replaced in the summer of 2024 with the current version, which you are reading now.
+[Here is the old version, if you are curious]({{< relref "/tutorials/deploy-laravel/about" >}}).
+
+The old version covered the same material, but presented it in an order I later realized was scattered and unstructured, jumping around from dev machine to app-specific server settings to global server settings and back in a rather chaotic way, sometimes overwriting steps taken earlier in the tutorial.
+
+The current version is more streamlined and follows a logical progression from global server settings to app-specific server settings to deployment, which also reflects how I currently deploy my Laravel apps after a few years' experience.
+
 <div class="my-8">
 {{< tutorials/begin href="/tutorials/deploy-laravel-2/server-setup-once" >}}
 </div>

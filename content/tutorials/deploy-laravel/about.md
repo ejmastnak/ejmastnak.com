@@ -5,6 +5,8 @@ date: 2023-07-17
 
 # Deploy a Laravel and Vue.js web app
 
+*Note: you are reading an outdated version of this guide, which I keep online only for historical purposes. The up-to-date version is [here]({{< relref "/tutorials/deploy-laravel-2/about" >}}).*
+
 This is a guide to deploying a web application with a [Laravel](https://laravel.com/) backend and a JavaScript-based frontend on a dedicated or virtual private server.
 
 The articles are listed in order below;

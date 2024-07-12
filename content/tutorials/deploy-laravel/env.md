@@ -49,7 +49,7 @@ Then open the `.env` file, and inside make the following changes.
 
 ```bash
 # Update to a name of your choice
-APP_NAME='My Cool App'
+APP_NAME="My Cool App"
 
 # Leave this as "production"
 APP_ENV=production

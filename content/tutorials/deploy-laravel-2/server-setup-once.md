@@ -190,9 +190,9 @@ You can solve this by first uninstalling your outdated version of Node.js (e.g. 
 
 ## Install Nginx
 
-We'll use Nginx to server your web app.
+We'll use Nginx to serve your web app.
 
-Your server might be using Apache as the default web server instead.
+Note that your server might be using Apache as the default web server instead of Nginx.
 If so, you should disable Apache to avoid conflicts with Nginx.
 
 ```bash

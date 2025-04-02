@@ -148,7 +148,7 @@ Here is a representative example of what the list looks like:
  <localleader>li  <Plug>(vimtex-info)                           n
  <localleader>ll  <Plug>(vimtex-compile)                        n
  csd              <Plug>(vimtex-delim-change-math)              n
- tse              <Plug>(vimtex-env-toggle-star)                n
+ tss              <Plug>(vimtex-env-toggle-star)                n
  ac               <Plug>(vimtex-ac)                             xo
  id               <Plug>(vimtex-id)                             xo
  ae               <Plug>(vimtex-ae)                             xo
@@ -338,23 +338,39 @@ You can:
 The following commands toggle back and forth between states of various LaTeX environments and commands. 
 You can:
 
-- **Toggle starred commands and environments using `tsc` and `tse`**, which both work in normal mode and are mapped to `<Plug>(vimtex-cmd-toggle-star)` and `<Plug>(vimtex-env-toggle-star)`, respectively.
+- **Toggle starred commands and environments using `tsc` and `tss`**, which both work in normal mode and are mapped to `<Plug>(vimtex-cmd-toggle-star)` and `<Plug>(vimtex-env-toggle-star)`, respectively.
 
-  The following example uses `tsc` in a `\section` command to toggle section numbering and `tse` inside an `equation` environment to toggle equation numbering:
+  The following example uses `tsc` in a `\section` command to toggle section numbering and `tss` inside an `equation` environment to toggle equation numbering:
 
   ```tex
                       tsc                       tsc
   \section{Toggling}  -->  \section*{Toggling}  -->  \section{Toggling}
 
-  \begin{equation}   tse   \begin{equation*}   tse   \begin{equation}
+  \begin{equation}   tss   \begin{equation*}   tss   \begin{equation}
       x + y = z      -->        x + y = z      -->       x + y = z
   \end{equation}           \end{equation*}           \end{equation}
   ```
   Here are the above two examples in a GIF:
 
-  {{< img-centered src="tsc-tse.gif" width="100%" alt="GIF: demonstrating the tsc and tse commands." >}}
+  {{< img-centered src="tsc-tss.gif" width="100%" alt="GIF: demonstrating the tsc and tss commands." >}}
 
-- **Toggle between inline and display math `ts$`**, which works in normal mode and is mapped to `<Plug>(vimtex-env-toggle-math)`.
+- **Toggle between related environments with using `tse`** (works in normal mode, mapped to `<Plug>(vimtex-env-toggle)`).
+
+  The following example uses `tse` to toggle between `itemize` and `enumerate` environments:
+
+  ```tex
+  \begin{itemize}   tse   \begin{enumerate}   tse   \begin{itemize}
+      % ...         -->        % ...          -->       % ...
+  \end{itemize}           \end{enumerate}           \end{itemize}
+  ```
+
+  Here is the above examples in a GIF:
+
+  {{< img-centered src="tse.gif" width="100%" alt="GIF: demonstrating the tse command." >}}
+
+  At the time of writing, `tse` only toggles between `itemize` and `enumerate` by default, but you can change or add more environments to this list using the `g:vimtex_env_toggle_map` variable. See `:help g:vimtex_env_toggle_map` for details.
+
+- **Toggle between inline and display math using `ts$`**, which works in normal mode and is mapped to `<Plug>(vimtex-env-toggle-math)`.
   The following example uses `ts$` to switch between inline math, display math, and an `equation` environment
 
   ```tex

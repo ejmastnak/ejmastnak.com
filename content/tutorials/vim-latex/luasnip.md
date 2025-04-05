@@ -445,34 +445,34 @@ Here is the **anatomy of a LuaSnip snippet** in code:
 ```lua
 -- Anatomy of a LuaSnip snippet
 require("luasnip").snippet(
-  snip_params:table,  -- table of snippet parameters
-  nodes:table,        -- table of snippet nodes
-  opts:table|nil      -- *optional* table of additional snippet options
+  context:table,   -- context table of snippet parameters
+  nodes:table,     -- table of snippet nodes
+  opts:table|nil   -- *optional* table of additional snippet options
 )
 ```
 
 And here is an English language summary of the arguments:
 
-1. `snip_params`: a table of basic snippet parameters.
+1. `context`: a table of basic snippet parameters that controls the context in which the snippet expands.
    This is where you put the snippet's trigger, description, and priority level, autoexpansion policy, and so on.
 1. `nodes`: a table of nodes making up the snippet (this is the most important part!).
 1. `opts`: an *optional* table of additional arguments for more advanced workflows, for example a condition function to implementing custom logic to control snippet expansion or callback functions triggered when navigating through snippet nodes.
    You'll leave this optional table blank for simple use cases.
 
-I'll first cover the `snip_params` table, then spend most of the remainder of this article explaining various nodes and their use cases.
+I'll first cover the `context` table, then spend most of the remainder of this article explaining various nodes and their use cases.
 
-### Setting snippet parameters
+### Setting snippet parameters in the context table
 
 **TLDR** (if you're familiar with Lua):
-`snip_params` is a Lua table;
-the data type and purpose of each table key is clearly stated towards the end of `:help luasnip-snippets`.
+`context` is a Lua table passed as the first parameter to the snippet definition function `s()`, and controls the context in which the snippet will expand.
+The data type and purpose of each table key is clearly stated towards the end of `:help luasnip-snippets`.
 You can now [jump to the next section](#shortcut).
 **End TLDR**.
 
 And if you're not yet familiar with Lua tables, you:
 
-- define any Lua table, including the `snip_params` table, with `{ }` curly braces, 
-- find the list of possible table parameter keys in the LuaSnip docs at `:help luasnip-snippets`,
+- define any Lua table, including the `context` table, with `{ }` curly braces, 
+- find the list of possible context table keys in the LuaSnip docs at `:help luasnip-snippets`,
 - use `key=value` syntax to set each of the table's keys, using the possible values listed in `:help luasnip-snippets`.
 
 Since that might sound vague, here is a concrete example of a "Hello, world!" snippet with a bunch of parameters manually specified, to give you a feel for how this works.
@@ -564,7 +564,7 @@ Here is a simple "Hello, world!" example that expands the trigger `hi` into the 
 return {
 -- A simple "Hello, world!" text node
 s(
-  {trig = "hi"}, -- Table of snippet parameters
+  {trig = "hi"}, -- Context table, which controls snippet expansion
   { -- Table of snippet nodes
     t("Hello, world!")
   }
@@ -729,14 +729,14 @@ Here's the big picture perspective:
 ```lua
 -- What we've done so far: write a snippet by specifying node table manaully
 require("luasnip").snippet(
-  snip_params:table,
+  context:table,
   nodes:table,        -- manually specified node table
   opts:table|nil
 )
 
 -- Alternative: using the fmt function to create the node table
 require("luasnip").snippet(
-  snip_params:table,
+  context:table,
   fmt(args),          -- fmt returns the node table
   opts:table|nil
 )
@@ -1102,14 +1102,14 @@ For future reference, here are the Lua pattern keywords needed for this article:
 
 **Here's how the following sections will work:**
 
-- I'll first give the generic snippet parameter table needed to use each class of regex triggers, and use `foo` as the example trigger.
+- I'll first give the generic snippet context table needed to use each class of regex triggers, and use `foo` as the example trigger.
 - I'll give a short explanation of how each Lua regex works.
 - I'll give a few real life examples I personally find useful when writing LaTeX.
 
 #### Suppress expansion after alphanumeric characters.
 
 The following trigger expands after blank spaces, punctuation marks, braces and other delimiters, but not after alphanumeric characters.
-Here are the snippet parameter tables for a few variations on the same theme:
+Here are the snippet context tables for a few variations on the same theme:
 
 ```lua
 -- Prevents expansion if 'foo' is typed after letters
@@ -1263,17 +1263,16 @@ and the other uses `new` to create a new environment.
 -- In a snippet file, first require the line_begin condition...
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 
--- ...then add `condition=line_begin` to any snippet's `opts` table:
+-- ...then add `condition=line_begin` to any snippet's context table:
 return {
-s({trig = "h1", dscr="Top-level section"},
+s({trig = "h1", dscr="Top-level section", condition = line_begin },
   fmta(
     [[\section{<>}]],
     { i(1) }
-  ), 
-  {condition = line_begin}  -- set condition in the `opts` table
+  )
 ),
 
-s({trig="new", dscr="A generic new environmennt"},
+s({trig="new", dscr="A generic new environmennt", condition = line_begin},
   fmta(
     [[
       \begin{<>}
@@ -1285,8 +1284,7 @@ s({trig="new", dscr="A generic new environmennt"},
       i(2),
       rep(1),
     }
-  ),
-  {condition = line_begin}
+  )
 ),
 }
 ```
@@ -1314,13 +1312,12 @@ here's how to use it more generally:
    -- but I wanted to make the if/else logic explicitly clear.)
    ```
 
-1. Set the `condition` key in a snippet's `opts` table to the name of the expansion function:
+1. Set the `condition` key in a snippet's context table to the name of the expansion function:
 
    ```lua
    return {
-   s({trig="test", snippetType="autosnippet"},
-      {t("The current line number is even")},
-      {condition = is_even_line}
+   s({trig="test", snippetType="autosnippet", condition = is_even_line},
+      {t("The current line number is even")}
    ),
    }
    ```
@@ -1342,20 +1339,19 @@ local in_mathzone = function()
   -- The `in_mathzone` function requires the VimTeX plugin
   return vim.fn['vimtex#syntax#in_mathzone']() == 1
 end
--- Then pass the table `{condition = in_mathzone}` to any snippet you want to
+-- Then include `condition = in_mathzone` to any snippet you want to
 -- expand only in math contexts.
 
 return {
 -- Another take on the fraction snippet without using a regex trigger
-s({trig = "ff"},
+s({trig = "ff", condition = in_mathzone},
   fmta(
     "\\frac{<>}{<>}",
     {
       i(1),
       i(2),
     }
-  ),
-  {condition = in_mathzone}  -- `condition` option passed in the snippet `opts` table 
+  )
 ),
 }
 ```
@@ -1399,14 +1395,13 @@ end
 ```lua
 return {
 -- Expand 'dd' into \draw, but only in TikZ environments
-s({trig = "dd"},
+s({trig = "dd",  condition = tex_utils.in_tikz },
   fmta(
     "\\draw [<>] ",
     {
       i(1, "params"),
     }
-  ),
-  { condition = tex_utils.in_tikz }
+  )
 ),
 }
 ```
@@ -1449,10 +1444,9 @@ In no particular order, here are some useful tips based on my personal experienc
 
      ```lua
      return {
-     s({trig = "df", snippetType = "autosnippet"},
-       { t("\\diff") },
-       { condition = tex.in_mathzone }
-     ),
+     s({trig = "df", snippetType = "autosnippet",  condition = tex.in_mathzone },
+       { t("\\diff") }
+     )
      }
      ```
      This `df` snippet makes typing differentials a breeze, with correct spacing, upright font, and all that.
@@ -1468,11 +1462,10 @@ In no particular order, here are some useful tips based on my personal experienc
 
      ```lua
      return {
-     s({trig = 'sd', snippetType="autosnippet", wordTrig=false},
+     s({trig = 'sd', snippetType="autosnippet", wordTrig=false, condition = tex.in_mathzone},
        fmta("_{\\mathrm{<>}}",
          { d(1, get_visual) }
-       ),
-       {condition = tex.in_mathzone}
+       )
      ),
      }
      ```

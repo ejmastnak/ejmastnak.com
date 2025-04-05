@@ -1291,7 +1291,7 @@ s({trig="new", dscr="A generic new environmennt", condition = line_begin},
 
 ### Context-specific expansion for LaTeX
 
-The `condition` option in a LuaSnip snippet's `opts` table gives you essentially arbitrary control over when snippets expand.
+The `condition` option in a LuaSnip snippet's context table gives you essentially arbitrary control over when snippets expand.
 We used it above to implement the `line_begin` expansion condition;
 here's how to use it more generally:
 
@@ -1325,7 +1325,7 @@ here's how to use it more generally:
    The above snippet will expand only on even lines (just make sure to include the `is_even_line` function in the snippet file).
 
 The `condition` key gives you a lot of power, especially if you leverage built-in Vim functions (e.g. `line()`, `col()`, `nvim_get_current_line()`, etc.) to get information about the current line and cursor position for use in the `condition` function.
-LuaSnip even passes a few convenience variables to the `condition` function for you---see the `opts` section in `:help luasnip-snippets` for details.
+LuaSnip even passes a few convenience variables to the `condition` function for you---see the `condition` section in `:help luasnip-snippets` for details.
 
 To **implement math-specific snippet expansion**, you basically need a function that returns `true` in math contexts and `false` otherwise.
 The excellent [VimTeX plugin](https://github.com/lervag/vimtex/) provides exactly such a function---the `in_mathzone()` function in `vimtex/autoload/vimtex/syntax.vim`.

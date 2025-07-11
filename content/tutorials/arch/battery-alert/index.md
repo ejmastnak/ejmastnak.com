@@ -24,13 +24,13 @@ You should first [set up X]({{< relref "tutorials/arch/startx" >}}) if you have 
 <!-- vim-markdown-toc GFM -->
 
 * [Set up a notification server](#set-up-a-notification-server)
-    * [Do you need a notification server?](#do-you-need-a-notification-server)
+  * [Do you need a notification server?](#do-you-need-a-notification-server)
 * [Check battery level programmatically](#check-battery-level-programmatically)
 * [Script with battery alert logic](#script-with-battery-alert-logic)
 * [Create a notification service and timer](#create-a-notification-service-and-timer)
-    * [Create battery alert service](#create-battery-alert-service)
-    * [Create timer](#create-timer)
-    * [Reload and start timer](#reload-and-start-timer)
+  * [Create battery alert service](#create-battery-alert-service)
+  * [Create timer](#create-timer)
+  * [Reload and start timer](#reload-and-start-timer)
 
 <!-- vim-markdown-toc -->
 
@@ -48,7 +48,7 @@ If this produces a "Hello, world!" notification (probably in the top right of yo
 No notification appearing? 
 Then you need a standalone notification server---here's what to do:
 
-1. Install the [`notification-daemon` package](https://archlinux.org/packages/community/x86_64/notification-daemon/)
+1. Install the [`notification-daemon` package](https://archlinux.org/packages/extra/x86_64/notification-daemon/)
 1. Create the `/usr/share/dbus-1/services/` directory (if necessary), inside it create the file `org.freedesktop.Notifications.service`, and inside the file add the following:
 
    ```systemd

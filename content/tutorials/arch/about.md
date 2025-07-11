@@ -95,7 +95,7 @@ Use the `picom` compositor to make unfocused window backgrounds slightly transpa
 If you have ideas for improving the series, I will quite likely implement them, appreciate your input, and give you a shoutout for your contributions.
 Feedback is welcome and appreciated.
 
-Shoutouts to previous readers: many thanks to Tristan Harris for catching mistakes and offering good ideas on how to improve this series.
+Shoutouts to previous readers: many thanks to Tristan Harris and John Wick for catching mistakes and offering good ideas on how to improve this series.
 
 You can reach me by email at [elijan@ejmastnak.com](mailto:elijan@ejmastnak.com) or by opening an issue or pull request at [github.com/ejmastnak/ejmastnak.com](https://github.com/ejmastnak/ejmastnak.com).
 

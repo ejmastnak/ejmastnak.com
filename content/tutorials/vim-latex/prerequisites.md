@@ -191,7 +191,7 @@ But in case you need practice, search YouTube or the wider Internet for one of t
 
 ## Installing system packages
 
-**Prerequisite:** you have a preferred method for installing new software onto your computer and know yow to use it.
+**Prerequisite:** you have a preferred method for installing new software onto your computer and know how to use it.
 
 {{< details summary="**Suggestion** (click arrow to expand)" >}}
 Use your distribution’s package manager on Linux and the [Homebrew package manager](https://brew.sh/) on macOS.

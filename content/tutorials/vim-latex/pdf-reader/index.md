@@ -216,7 +216,7 @@ You can easily test this for yourself on macOS:
 
 See the GitHub issue [Client Server mode does not work in non-GUI macvim #657](https://github.com/macvim-dev/macvim/issues/657) for a longer discussion of this problem.
 
-Note that Homebrew used to offer `brew install vim --with-client-server` (and you might still see this floating aroud on the Internet), but this option is no longer available.
+Note that Homebrew used to offer `brew install vim --with-client-server` (and you might still see this floating around on the Internet), but this option is no longer available.
 It may well be possible to compile a version of terminal Vim from source that includes `+clientserver`, and, in combination with XQuartz, get inverse search to work on macOS using terminal Vim, but that falls beyond the scope of this tutorial.
 {{< /details >}}
 

@@ -1,7 +1,10 @@
 baseURL = "https://ejmastnak.com/"
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'ejmastnak'
 disableKinds = ['taxonomy', 'term', 'section']
+
+[security]
+  allowContent = ['^text/html$', '^text/markdown$']
 
 [markup]
   [markup.highlight]

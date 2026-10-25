@@ -1,0 +1,11 @@
+public
+resources
+node_modules
+.hugo_build.lock
+
+# Result of compiling Tailwind CSS and set of all Tailwind CSS classes
+assets/css/main.css
+assets/css/all.css
+
+TODO.md
+.root

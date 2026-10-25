@@ -128,22 +128,22 @@ Here is an overview of the setup used in this series:
 If you have ideas for improving the series, I will quite likely implement them, appreciate your input, and give you a shoutout for your contributions.
 Feedback is welcome and appreciated.
 
-Shoutouts to previous readers: many thanks to Richard Depetris, Mitchel Hall, [@rltyty](https://github.com/rltyty), [Carl von Randow](https://github.com/carlvr), Ehud Gordon, Andrey Rukhin, [Merlin Büge](https://github.com/camoz), [Albert Gu](https://github.com/albertfgu), Pano Otis, Jason Yao, [@Glirastes](https://github.com/Glirastes), [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how to improve this series.
+Shoutouts to previous readers: many thanks to Brandon Muliadi, Richard Depetris, Mitchel Hall, [@rltyty](https://github.com/rltyty), [Carl von Randow](https://github.com/carlvr), Ehud Gordon, Andrey Rukhin, [Merlin Büge](https://github.com/camoz), [Albert Gu](https://github.com/albertfgu), Pano Otis, Jason Yao, [@Glirastes](https://github.com/Glirastes), [Daniele Avitabile](https://www.danieleavitabile.com/), Kai Breucker, Maxwell Jiang, [@lodisy](https://github.com/lodisy), and [@subnut](https://github.com/subnut) for catching mistakes and offering good ideas on how to improve this series.
 
 You can reach me by email at [elijan@ejmastnak.com](mailto:elijan@ejmastnak.com) or by opening an issue or pull request at [github.com/ejmastnak/ejmastnak.com](https://github.com/ejmastnak/ejmastnak.com).
 
-### Want to say thank you? {#thank-you}
-
-You could:
-
-- [Send me an email!]({{< relref "/contact" >}})
-  Seriously, if this material helped you, it will make my day to know.
-  I love hearing from readers, and you'll almost certainly get a message back from me.
-
-- [Contribute financially.](https://www.buymeacoffee.com/ejmastnak)
-  Based on reader input, there are in fact people out there interested in compensating me financially for this guide.
-  That's awesome---thank you!
-  You can [Buy Me a Coffee here.](https://www.buymeacoffee.com/ejmastnak)
+<!-- ### Want to say thank you? {#thank-you} -->
+<!---->
+<!-- You could: -->
+<!---->
+<!-- - [Send me an email!]({{< relref "/contact" >}}) -->
+<!--   Seriously, if this material helped you, it will make my day to know. -->
+<!--   I love hearing from readers, and you'll almost certainly get a message back from me. -->
+<!---->
+<!-- - [Contribute financially.](https://www.buymeacoffee.com/ejmastnak) -->
+<!--   Based on reader input, there are in fact people out there interested in compensating me financially for this guide. -->
+<!--   That's awesome---thank you! -->
+<!--   You can [Buy Me a Coffee here.](https://www.buymeacoffee.com/ejmastnak) -->
 
 <div class="my-8">
 {{< tutorials/begin href="/tutorials/vim-latex/prerequisites" >}}

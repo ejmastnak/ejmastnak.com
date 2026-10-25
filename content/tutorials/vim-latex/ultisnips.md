@@ -400,97 +400,164 @@ My original source for the implementation of math-context expansion: [https://ca
 For our purposes, if you aren't familiar with them, regular expressions let you (among many other things) implement conditional pattern matching in snippet triggers.
 You could use a regular expression trigger, for example, to do something like "make `_` expand to a subscript snippet like `_{$1}$0`, but only if the `_` trigger immediately follows an alphanumeric character".
 
-A formal explanation of regular expressions falls beyond the scope of this article, and I offer the examples below in a "cookbook" style in the hope that you can adapt the ideas to your own use cases.
-Regex tutorials abound on the internet; if you need a place to start, I recommend [Corey Schafer's tutorial on YouTube](https://www.youtube.com/watch?v=sa-TUpSx1JA).
+A thorough explanation of regular expressions falls beyond the scope of this article, and I offer the examples below in a "cookbook" style in the hope that you can adapt the ideas to your own use cases.
+Regex tutorials abound on the internet; if you need a place to start, I recommend watching [Corey Schafer's tutorial on YouTube](https://www.youtube.com/watch?v=sa-TUpSx1JA), and/or consulting an LLM, which should be able to understand or explain the use of regex in the examples below.
 
-1. This class of triggers suppresses expansion following alphanumeric text and permits expansion after blank space, punctuation marks, braces and other delimiters, etc.
+#### Regex triggers 1: preventing unwanted expansion
 
-   ```yaml
-   snippet "([^a-zA-Z])trigger" "Expands if 'trigger' is typed after characters other than a-z or A-Z" r
-   `!p snip.rv = match.group(1)`snippet body
-   endsnippet
+The following class of triggers suppresses expansion following alphanumeric text and permits expansion after blank space, punctuation marks, braces and other delimiters, etc.
 
-   snippet "(^|[^a-zA-Z])trigger" "Expands on a new line or after characters other than a-z or A-Z" r
-   `!p snip.rv = match.group(1)`snippet body
-   endsnippet
+```yaml
+snippet "([^a-zA-Z])trigger" "Expands if 'trigger' is typed after characters other than a-z or A-Z" r
+`!p snip.rv = match.group(1)`snippet body
+endsnippet
 
-   # This trigger suppresses numbers, too
-   snippet "(^|[\W])trigger" "Expands on a new line or after characters other than 0-9, a-z, or A-Z" r
-   `!p snip.rv = match.group(1)`snippet body
-   endsnippet
-   ```
+snippet "(^|[^a-zA-Z])trigger" "Expands on a new line or after characters other than a-z or A-Z" r
+`!p snip.rv = match.group(1)`snippet body
+endsnippet
 
-   This is by far my most-used class of regex triggers.
+# This trigger suppresses numbers, too
+snippet "(^|[\W])trigger" "Expands on a new line or after characters other than 0-9, a-z, or A-Z" r
+`!p snip.rv = match.group(1)`snippet body
+endsnippet
+```
 
-   Here are some example use cases:
+Some comments:
 
-   - Make `mm` expand to `$ $` (inline math), including on new lines, but not in words like "communication", "command", etc...
+- `[a-zA-Z]` matches characters a-z and A-Z
+- `[^a-zA-Z]` (note the `^`) excludes them
+- `([^a-zA-Z])` (note the surrounding parentheses) wraps the regex target in a capture group, so that it can later be inserted back into the snippet
+- `^|`, in the context of e.g. `^|[^a-zA-Z]` means "a new line OR"—the `^` in this context is a new line, `|` means logical OR. This allows the snippet to expand at the start of new lines without the main regex part `[^a-zA-Z]` interfering.
+- `` `!p snip.rv = match.group(1)` `` inserts the regex group captured by the trigger parentheses back into the original text.
+  Since that might sound vague, try omitting `` `!p snip.rv = match.group(1)` `` from any of the examples below see what happens---the first character in the snippet trigger (the regex target) disappears after the snippet expands.
 
-     ```yaml
-     snippet "(^|[^a-zA-Z])mm" "Inline LaTeX math" rA
-     `!p snip.rv = match.group(1)`\$ ${1:${VISUAL:}} \$$0
-     endsnippet
-     ```
+This is by far my most-used class of regex triggers.
+Here are some example use cases:
 
-     Note that the dollar signs used for the inline math must be escaped (i.e. written `\$` instead of just `$`) to avoid conflict with UltiSnips tabstops, as described in `:help UltiSnips-character-escaping`.
+- Make `mm` expand to `$ $` (inline math), including on new lines, but not in words like "communication", "command", etc...
 
-   - Make `ee` expand to `e^{}` (Euler's number raised to a power) after spaces, `(`, `{`, and other delimiters, but not in words like "see", "feel", etc...
+  ```yaml
+  snippet "(^|[^a-zA-Z])mm" "Inline LaTeX math" rA
+  `!p snip.rv = match.group(1)`\$ ${1:${VISUAL:}} \$$0
+  endsnippet
+  ```
 
-     ```yaml
-     # Easily insert Euler's number e
-     snippet "([^a-zA-Z])ee" "e^{} supercript" rA
-     `!p snip.rv = match.group(1)`e^{${1:${VISUAL:}}}$0
-     endsnippet
-     ```
+  Note that the dollar signs used for the inline math must be escaped (i.e. written `\$` instead of just `$`) to avoid conflict with UltiSnips tabstops, as described in `:help UltiSnips-character-escaping`.
 
-   - Make `ff` expand to `frac{}{}` but not in words like "off", "offer", etc...
+- Make `ee` expand to `e^{}` (Euler's number raised to a power) after spaces, `(`, `{`, and other delimiters, but not in words like "see", "feel", etc...
 
-     ```yaml
-     # Prevent fraction expansion in words containing "ff"
-     snippet "(^|[^a-zA-Z])ff" "\frac{}{}" rA
-     `!p snip.rv = match.group(1)`\frac{${1:${VISUAL:}}}{$2}$0
-     endsnippet
-     ```
+  ```yaml
+  # Easily insert Euler's number e
+  snippet "([^a-zA-Z])ee" "e^{} supercript" rA
+  `!p snip.rv = match.group(1)`e^{${1:${VISUAL:}}}$0
+  endsnippet
+  ```
 
-     The line `` `!p snip.rv = match.group(1)` `` inserts the regex group captured by the trigger parentheses back into the original text.
-     Since that might sound vague, try omitting `` `!p snip.rv = match.group(1)` `` from any of the above snippets and seeing what happens---the first character in the snippet trigger disappears after the snippet expands.
+- Make `ff` expand to `frac{}{}` but not in words like "off", "offer", etc...
 
-1. This class of triggers expands only after alphanumerical characters (`\w`) or the characters `}`, `)`, `]`, and `|`.
+  ```yaml
+  # Prevent fraction expansion in words containing "ff"
+  snippet "(^|[^a-zA-Z])ff" "\frac{}{}" rA
+  `!p snip.rv = match.group(1)`\frac{${1:${VISUAL:}}}{$2}$0
+  endsnippet
+  ```
 
-   ```yaml
-   # Expands if 'trigger' is typed after 0-9, a-z, and  A-Z
-   snippet "([\w])trigger" "" r
-   `!p snip.rv = match.group(1)`snippet body
-   endsnippet
 
-   # Of course, modify the }, ), ], and | characters as you wish
-   snippet "([\w]|[\}\)\]\|])trigger" "Expands after 0-9, a-z, A-Z and }, ), ], and |" r
-   `!p snip.rv = match.group(1)`snippet body
-   endsnippet
+#### Regex triggers 2: expanding only after target characters
 
-   # This trigger suppresses expansion after numbers
-   snippet "([a-zA-Z]|[\}\)\]\|])trigger" "Expands after a-z, A-Z and }, ), ], and |" r
-   `!p snip.rv = match.group(1)`snippet body
-   endsnippet
-   ```
+The following class of triggers expands only after alphanumerical characters (`\w`) or the characters `}`, `)`, `]`, and `|`.
 
-   I don't use this one often, but here is one example I really like.
-   It makes `00` expand to the `_{0}` subscript after letters and closing delimiters, but not in numbers like `100`:
+```yaml
+# Expands if 'trigger' is typed after 0-9, a-z, and A-Z
+snippet "([\w])trigger" "" r
+`!p snip.rv = match.group(1)`snippet body
+endsnippet
 
-   ```yaml
-   # Quickly insert a zero subscript
-   snippet "([a-zA-Z]|[\}\)\]\|'])00" "Automatic 0 subscript" rA
-   `!p snip.rv = match.group(1)`_{0}
-   endsnippet
-   ```
+# Of course, modify the }, ), ], and | characters as you wish
+snippet "([\w]|[\}\)\]\|])trigger" "Expands after 0-9, a-z, A-Z and }, ), ], and |" r
+`!p snip.rv = match.group(1)`snippet body
+endsnippet
 
-   Here is the above snippet in action:
+# This trigger suppresses expansion after numbers
+snippet "([a-zA-Z]|[\}\)\]\|])trigger" "Expands after a-z, A-Z and }, ), ], and |, but not after 0-9" r
+`!p snip.rv = match.group(1)`snippet body
+endsnippet
+```
 
-   {{< img-centered src="images/vim-latex/snippets/0-subscript.gif" width="100%" global="1" alt="GIF demonstrating a snippet for creating a zero subscript." >}}
-   
+I don't use this one often, but here is one example I really like.
+It makes `00` expand to the `_{0}` subscript after letters and closing delimiters, but not in numbers like `100`:
+
+```yaml
+# Quickly insert a zero subscript
+snippet "([a-zA-Z]|[\}\)\]\|'])00" "Automatic 0 subscript" rA
+`!p snip.rv = match.group(1)`_{0}
+endsnippet
+```
+
+Here is the above snippet in action:
+
+{{< img-centered src="images/vim-latex/snippets/0-subscript.gif" width="100%" global="1" alt="GIF demonstrating a snippet for creating a zero subscript." >}}
+
+
 Combined with math-context expansion, these two classes of regex triggers cover the majority of my use cases and should give you enough to get started writing your own.
 Note that you can do much fancier stuff than this.
 See the UltiSnips documentation or look through the snippets in `vim-snippets` for inspiration.
+
+#### An alternative to capture groups: regex triggers with lookaheads and lookbehinds
+
+*Thank you Brandon Muliadi for suggesting this section!*
+
+You can also implement the above snippets using a regex feature called *lookbehinds*.
+Lookbehinds check what comes behind your current position without including those characters in the final match, i.e. they are non-capturing, and can be used to replace the capture groups in the above snippets. 
+
+(Lookbehinds are an advanced regex feature supported natively only UltiSnips but not by Luasnip, at least at the time of writing, so you won't find a corresponding section in the Luasnip guide.)
+I suggest [this MDN article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Lookahead_assertion) for more information.
+
+Which to choose, lookbehinds vs capture groups? Both work, it's ultimately your preference; here are some points to consider:
+- advantage: lookbehinds resolve the need for capture groups (the `!p snip.rv = match.group(1)` in the above snippets), producing cleaner and more elegant snippet bodies
+- advantage: lookbehinds solve an indentation problem in multi-line snippets where, if the trigger is indented, a space in the indentation gets captured, causing the following lines to be indented one level less
+- disadvantage: lookbehinds are in principle more computationally demanding, but this is likely negligible on modern hardware
+- depends: the lookbehind syntax might be more confusing than capture groups, or capture group syntax might be more confusing than lookbehinds. Up to you.
+
+
+Implemented with lookbehinds, the first class of triggers (to prevent unwanted expansion after alphabetical characters), would look like this...
+
+```yaml
+snippet "(?<=[^a-zA-Z])trigger" "Expands if 'trigger' is typed after characters other than a-z or A-Z" r
+snippet body
+endsnippet
+
+snippet "(?<![a-zA-Z])trigger" "Expands on a new line or after characters other than a-z or A-Z" r
+snippet body
+endsnippet
+
+snippet "(?<!\w)trigger" "Expands on a new line or after characters other than 0-9, a-z, A-Z, or _" r
+snippet body
+endsnippet
+
+# Concrete example: Make ff expand to \frac{}{} (fraction), including on new lines, but not in words like "off", "offer", etc.
+snippet "(?<![a-zA-Z])ff" "" r
+\frac{${1:${VISUAL:}}}{$2}$0
+endsnippet
+```
+
+...while the second class of triggers (expand only after alphanumeric or other target characters), implemented with lookbehinds, would look like this:
+
+```yaml
+snippet "(?<=\w)trigger" "Expands if 'trigger' is typed after 0-9, a-z, and A-Z" r
+snippet body
+endsnippet
+
+# Of course, modify the }, ), ], and | characters as you wish
+snippet "(?<=[\w\}\)\]\|])trigger" "Expands after 0-9, a-z, A-Z, _ and }, ), ], and |" r
+snippet body
+endsnippet
+
+# This trigger suppresses expansion after numbers
+snippet "(?<=[a-zA-Z\}\)\]\|])trigger" "Expands after a-z, A-Z and }, ), ], and |, but not after 0-9" r
+snippet body
+endsnippet
+```
 
 ### Tip: Refreshing snippets
 

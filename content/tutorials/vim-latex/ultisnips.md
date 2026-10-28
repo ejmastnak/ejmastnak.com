@@ -431,6 +431,8 @@ Some comments:
 - `` `!p snip.rv = match.group(1)` `` inserts the regex group captured by the trigger parentheses back into the original text.
   Since that might sound vague, try omitting `` `!p snip.rv = match.group(1)` `` from any of the examples below see what happens---the first character in the snippet trigger (the regex target) disappears after the snippet expands.
 
+  **Note:** there is an alternative to capture groups, called *lookbehinds*, covered in the [lookbehinds section](#lookbehinds) below.
+
 This is by far my most-used class of regex triggers.
 Here are some example use cases:
 
@@ -503,7 +505,7 @@ Combined with math-context expansion, these two classes of regex triggers cover 
 Note that you can do much fancier stuff than this.
 See the UltiSnips documentation or look through the snippets in `vim-snippets` for inspiration.
 
-#### An alternative to capture groups: regex triggers with lookaheads and lookbehinds
+#### An alternative to capture groups: regex triggers with lookbehinds {#lookbehinds}
 
 *Thank you Brandon Muliadi for suggesting this section!*
 
